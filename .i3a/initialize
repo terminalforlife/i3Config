@@ -1,0 +1,131 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/initialize
+# Started On        - Sat 23 Sep 14:47:51 BST 2017
+# Last Change       - Sun 24 Sep 01:11:30 BST 2017
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+[ $UID -eq 0 ] && exit 1
+
+BACKGROUND="/usr/share/wallpapers/road_fog_nature_trees_91499_1920x1080.jpg"
+BELLSND="/usr/share/sounds/freedesktop/stereo/window-attention.oga"
+SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
+COMPCONF="$HOME/.config/compton.conf"
+
+if type -P $HOME/bin/tcpwatch &> /dev/null
+then
+	# Run a logging program for TCP connections.
+	$HOME/bin/tcpwatch
+fi
+
+if [ -f "$BACKGROUND" ] && [ -r "$BACKGROUND" ]
+then
+	if type -P /usr/bin/feh &> /dev/null
+	then
+		# Set the background.
+		/usr/bin/feh --bg-center "$BACKGROUND"
+	elif type -P /usr/bin/nitrogen &> /dev/null
+	then
+		# Use nitrogen to do the same, if no feh.
+		/usr/bin/nitrogen "$BACKGROUND"
+	fi
+fi
+
+if type -P /usr/bin/{pactl,pulseaudio} &> /dev/null
+then
+	# Ensure Pulse Audio is running.
+	/usr/bin/pulseaudio --start
+
+	if [ -f "$BELLSND" ] && [ -r "$BELLSND" ]
+	then
+		# Tell PA to use this sample for the bell.
+		/usr/bin/pactl upload-sample $BELLSND x11-bell
+
+		# Actually enable the bell, using the above.
+		/usr/bin/pactl load-module module-x11-bell\
+			sample=x11-bell display=$DISPLAY
+	fi
+fi
+
+if type -P /usr/bin/setxkbmap &> /dev/null
+then
+	# Enable the use of Ctrl + Alt + Backspace to kill X.
+	/usr/bin/setxkbmap -option terminate:ctrl_alt_bksp
+fi
+
+if type -P /usr/bin/xsetroot &> /dev/null
+then
+	# Set the root window background to black.
+	/usr/bin/xsetroot -solid "#000000"
+fi
+
+if type -P /usr/bin/xset &> /dev/null
+then
+	# Set bell volume to 70%, disable DPMS (power-saving for your
+	# monitor), and set the keyboard repeat delay and rate.
+fi
+
+if type -P /usr/bin/xmodmap &> /dev/null
+then
+	# Remap F1 to Esc, and disable Caps Lock.
+	/usr/bin/xmodmap -e "keysym F1 = Escape" -e "clear lock"
+fi
+
+if type -P /usr/bin/mesg &> /dev/null
+then
+	# Disallow user messages to display the in the terminal.
+	/usr/bin/mesg n
+fi
+
+if type -P /usr/bin/compton &> /dev/null
+then
+	# Launch compton using the configuration file specified.
+	if [ -f "$COMPCONF" ] && [ -r "$COMPCONF" ]
+	then
+		/usr/bin/compton --config "$COMPCONF"
+	fi
+fi
+
+if type -P /usr/bin/redshift &> /dev/null
+then
+	# Redshift sets the gamma to the neutral; default.
+	/usr/bin/redshift -O 6500K
+fi
+
+if [ -f "$SOUND04" ] && [ -r "$SOUND04" ]
+then
+	# Play a little startup sound.
+	if type -P /usr/bin/pactl &> /dev/null
+	then
+		/usr/bin/pactl --volume 40000 "$SOUND04"
+	fi
+fi
+
+if type -P /usr/bin/kernelchk &> /dev/null
+then
+	# Check for kernel version changes; see kernelchk repository.
+	/usr/bin/kernelchk
+fi
+
+if type -P /usr/bin/mocp &> /dev/null
+then
+	# Launches mocp in the background, ready for music.
+	/usr/bin/mocp -S
+fi
+
+if type -P /usr/bin/medlog &> /dev/null
+then
+	# Log medication taken; see miscellaneous repository.
+	/usr/bin/medlog
+fi
+
+if type -P $HOME/bin/notify-upgrade &> /dev/null
+then
+	# Launch tool which checks occasionally for system upgrades; this
+	# can be found in the miscellaneous repository. Interval is by
+	# default set to 20 minutes.
+	$HOME/bin/notify-upgrade
+fi

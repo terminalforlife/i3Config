@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/scrot_take
+# Started On        - Sat 23 Sep 14:47:51 BST 2017
+# Last Change       - Sun 24 Sep 01:12:10 BST 2017
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+[ $UID -eq 0 ] && exit 1
+
+if type -P /usr/bin/scrot /bin/date &> /dev/null
+then
+	FILENAME="$HOME/Desktop/Screenshot_`/bin/date +%F_%X`.png"
+	SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
+
+	/usr/bin/paplay --volume 40000  "$SOUND03"
+	/usr/bin/scrot -q 100 "$FILENAME" 
+fi
