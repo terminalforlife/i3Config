@@ -10,11 +10,10 @@
 
 [ $UID -eq 0 ] && exit 1
 
-if type -P /usr/bin/scrot /bin/date &> /dev/null
-then
-	FILENAME="$HOME/Desktop/Screenshot_`/bin/date +%F_%X`.png"
+[ -x /usr/bin/scrot ] && {
+	FILENAME="$HOME/Desktop/Screenshot_`printf '%(%F_%X)T'`.png"
 	SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
 
 	/usr/bin/paplay --volume 40000  "$SOUND03"
 	/usr/bin/scrot -q 100 "$FILENAME" 
-fi
+}

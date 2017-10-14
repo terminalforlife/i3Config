@@ -3,15 +3,14 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/use_dmenu
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Tue 26 Sep 15:56:57 BST 2017
+# Last Change       - Sat 14 Oct 12:03:12 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
-if type -P /usr/bin/dmenu_run &> /dev/null
-then
+[ -x /usr/bin/dmenu_run ] && {
 	/usr/bin/dmenu_run -fn Oxygen-Mono:style=Bold:size=11 -b\
 		-nb \#000000 -nf \#ffffff -sb \#333333 -sf \#ffffff
-fi
+}

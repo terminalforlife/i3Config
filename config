@@ -27,9 +27,9 @@ bindsym Mod1+Shift+c reload
 bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
-bindsym Mod1+Return exec $HOME/.i3a/terminal
+bindsym Mod1+Return exec bash $HOME/.i3a/terminal
 bindsym Mod4+w exec /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
-bindsym Mod4+r exec $HOME/.i3a/dtrecord
+bindsym Mod4+r exec bash $HOME/.i3a/dtrecord
 #----------------------------------------------------------------------------------
 # class                  border   backgr.  text     indic.   child_border                                                                                                                        
 client.focused           #222222  #222222  #999999  #000000  #ffffff                                                                                                                             
@@ -130,21 +130,21 @@ for_window [title="Preferences"] floating enable
 for_window [title="Open Image"] floating enable
 for_window [title="^.* - Oracle VM VirtualBox$"] floating disabled
 #----------------------------------------------------------------------------------
-bindsym XF86AudioRaiseVolume exec $HOME/.i3a/sink_raise
-bindsym XF86AudioLowerVolume exec $HOME/.i3a/sink_lower
-bindsym XF86AudioMute exec $HOME/.i3a/sink_mute
-bindsym Shift+XF86AudioRaiseVolume exec $HOME/.i3a/source_raise
-bindsym Shift+XF86AudioLowerVolume exec $HOME/.i3a/source_lower
-bindsym Shift+XF86AudioMute exec $HOME/.i3a/source_mute
+bindsym XF86AudioRaiseVolume exec bash $HOME/.i3a/sink_raise
+bindsym XF86AudioLowerVolume exec bash $HOME/.i3a/sink_lower
+bindsym XF86AudioMute exec bash $HOME/.i3a/sink_mute
+bindsym Shift+XF86AudioRaiseVolume exec bash $HOME/.i3a/source_raise
+bindsym Shift+XF86AudioLowerVolume exec bash $HOME/.i3a/source_lower
+bindsym Shift+XF86AudioMute exec bash $HOME/.i3a/source_mute
 bindsym XF86AudioPlay exec /usr/bin/mocp -G
-bindsym Mod4+p exec $HOME/.i3a/track_notify
+bindsym Mod4+p exec bash $HOME/.i3a/track_notify
 bindsym Mod4+bracketright exec /usr/bin/mocp --seek +3
 bindsym Mod4+bracketleft exec /usr/bin/mocp --seek -3
 bindsym Mod4+Shift+bracketright exec /usr/bin/mocp --next
 bindsym Mod4+Shift+bracketleft exec /usr/bin/mocp --previous
 bindsym XF86Calculator exec /usr/bin/xcalc
-bindsym Print exec $HOME/.i3a/scrot_take
-bindsym Mod1+d exec $HOME/.i3a/use_dmenu
-bindsym Mod1+shift+num exec $HOME/bin/telldate
+bindsym Print exec bash $HOME/.i3a/scrot_take
+bindsym Mod1+d exec bash $HOME/.i3a/use_dmenu
+bindsym Mod1+shift+num exec bash $HOME/bin/telldate
 #----------------------------------------------------------------------------------
-exec $HOME/.i3a/initialize
+exec bash $HOME/.i3a/initialize
