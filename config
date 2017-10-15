@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 10 Oct 11:39:42 BST 2017
+# Last Change       - Sun 15 Oct 22:46:28 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -27,9 +27,9 @@ bindsym Mod1+Shift+c reload
 bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
-bindsym Mod1+Return exec bash $HOME/.i3a/terminal
-bindsym Mod4+w exec /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
-bindsym Mod4+r exec bash $HOME/.i3a/dtrecord
+bindsym Mod1+Return exec --no-startup-id bash $HOME/.i3a/terminal
+bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
+bindsym Mod4+r exec --no-startup-id bash $HOME/.i3a/dtrecord
 #----------------------------------------------------------------------------------
 # class                  border   backgr.  text     indic.   child_border                                                                                                                        
 client.focused           #222222  #222222  #999999  #000000  #ffffff                                                                                                                             
@@ -93,21 +93,23 @@ bindsym shift+Mod4+Down resize grow height 1 px or 1 ppt
 bindsym shift+Mod4+Up resize shrink height 1 px or 1 ppt
 bindsym shift+Mod4+Left resize grow width 1 px or 1 ppt
 #----------------------------------------------------------------------------------
-bindsym Mod4+0 exec /usr/bin/redshifter -i 25
-bindsym Mod4+9 exec /usr/bin/redshifter -d 25
-bindsym Mod4+8 exec /usr/bin/redshifter -r
+bindsym Mod4+0 exec --no-startup-id /usr/bin/redshifter -i 25
+bindsym Mod4+9 exec --no-startup-id /usr/bin/redshifter -d 25
+bindsym Mod4+8 exec --no-startup-id /usr/bin/redshifter -r
 #----------------------------------------------------------------------------------
 for_window [window_role="popup"] floating enable
 for_window [class=".*"] floating enable
 #----------------------------------------------------------------------------------
 for_window [class="Links"] floating disabled
-for_window [class="Thunderbird"] floating disabled
+for_window [class="Thunderbird"] floating enable
 for_window [class="kdenlive"] floating disabled
 for_window [class="Audacity"] floating disabled
 for_window [class="skypeforlinux"] floating disabled
 for_window [class="Xfce4-terminal"] floating disabled
 for_window [class="Firefox"] floating disabled
 #----------------------------------------------------------------------------------
+for_window [title=" - Mozilla Thunderbird$"] floating disabled
+for_window [title="Write: "] floating disabled
 for_window [title="Account Settings"] floating enable
 for_window [title="Items for Offline Use"] floating enable
 for_window [title="Choose Terminal Font"] floating enable
@@ -115,36 +117,37 @@ for_window [title="Facebook call - Mozilla Firefox"] floating enable
 for_window [title="Confirm"] floating enable
 for_window [title="File Upload"] floating enable
 for_window [title="Opening *"] floating enable
-for_window [title="Sending Message - Re:*"] floating enable
+for_window [title="Sending Message - Re:.*$"] floating enable
 for_window [title="Save Message"] floating enable
 for_window [title="Send Message Error"] floating enable
 for_window [title="NoScript Options"] floating enable
-for_window [title="Adblock Plus*"] floating enable
+for_window [title="^Adblock Plus.*"] floating enable
 for_window [title="GIMP Tip of the Day"] floating enable
 for_window [title="GIMP Message"] floating enable
 for_window [title="Select Background Image File"] floating enable
-for_window [title="About*"] floating enable
+for_window [title="About.*$"] floating enable
 for_window [title="GNU Image Manipulation Program"] floating disabled
 for_window [title="Terminal Preferences"] floating enable
 for_window [title="Preferences"] floating enable
 for_window [title="Open Image"] floating enable
 for_window [title="^.* - Oracle VM VirtualBox$"] floating disabled
+for_window [title="Save Image"] floating enable
 #----------------------------------------------------------------------------------
-bindsym XF86AudioRaiseVolume exec bash $HOME/.i3a/sink_raise
-bindsym XF86AudioLowerVolume exec bash $HOME/.i3a/sink_lower
-bindsym XF86AudioMute exec bash $HOME/.i3a/sink_mute
-bindsym Shift+XF86AudioRaiseVolume exec bash $HOME/.i3a/source_raise
-bindsym Shift+XF86AudioLowerVolume exec bash $HOME/.i3a/source_lower
-bindsym Shift+XF86AudioMute exec bash $HOME/.i3a/source_mute
-bindsym XF86AudioPlay exec /usr/bin/mocp -G
-bindsym Mod4+p exec bash $HOME/.i3a/track_notify
-bindsym Mod4+bracketright exec /usr/bin/mocp --seek +3
-bindsym Mod4+bracketleft exec /usr/bin/mocp --seek -3
-bindsym Mod4+Shift+bracketright exec /usr/bin/mocp --next
-bindsym Mod4+Shift+bracketleft exec /usr/bin/mocp --previous
-bindsym XF86Calculator exec /usr/bin/xcalc
-bindsym Print exec bash $HOME/.i3a/scrot_take
-bindsym Mod1+d exec bash $HOME/.i3a/use_dmenu
-bindsym Mod1+shift+num exec bash $HOME/bin/telldate
+bindsym XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/sink_raise
+bindsym XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/sink_lower
+bindsym XF86AudioMute exec --no-startup-id bash $HOME/.i3a/sink_mute
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/source_raise
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/source_lower
+bindsym Shift+XF86AudioMute exec --no-startup-id bash $HOME/.i3a/source_mute
+bindsym XF86AudioPlay exec --no-startup-id /usr/bin/mocp -G
+bindsym Mod4+p exec --no-startup-id bash $HOME/.i3a/track_notify
+bindsym Mod4+bracketright exec --no-startup-id /usr/bin/mocp --seek +3
+bindsym Mod4+bracketleft exec --no-startup-id /usr/bin/mocp --seek -3
+bindsym Mod4+Shift+bracketright exec --no-startup-id /usr/bin/mocp --next
+bindsym Mod4+Shift+bracketleft exec --no-startup-id /usr/bin/mocp --previous
+bindsym XF86Calculator exec --no-startup-id /usr/bin/xcalc
+bindsym Print exec --no-startup-id bash $HOME/.i3a/scrot_take
+bindsym Mod1+d exec --no-startup-id bash $HOME/.i3a/use_dmenu
+bindsym Mod1+shift+num exec --no-startup-id bash $HOME/bin/telldate
 #----------------------------------------------------------------------------------
-exec bash $HOME/.i3a/initialize
+exec --no-startup-id bash $HOME/.i3a/initialize
