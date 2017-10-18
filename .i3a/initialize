@@ -84,7 +84,7 @@ COMPCONF="$HOME/.config/compton.conf"
 { [ -x /usr/bin/feh ] && [ -x /bin/sleep ]; } && {
 	STWALLS="$HOME/Pictures/Wallpapers/Steampunk%20Wallpapers"
 	while :; do
-		for FILE in "${STWALLS//%20/ }"/steampunk-wallpaper-1920x1080-*; {
+		for FILE in "${STWALLS//%20/ }"/*; {
 			/usr/bin/feh --bg-center "$FILE"
 			/bin/sleep 10
 		}
