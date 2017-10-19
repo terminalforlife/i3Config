@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Sat 14 Oct 12:16:19 BST 2017
+# Last Change       - Fri 20 Oct 00:14:35 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,6 +12,8 @@
 
 MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
+
+[ -f "$SOUND05" ] || exit 1
 
 [ -x /usr/bin/pactl ] && {
 	/usr/bin/paplay --volume 40000  "$SOUND05"
