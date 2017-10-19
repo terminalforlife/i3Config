@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Thu 19 Oct 19:14:50 BST 2017
+# Last Change       - Fri 20 Oct 00:10:56 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,6 +18,7 @@ COMPCONF="$HOME/.config/compton.conf"
 # Run a logging program for TCP connections.
 [ -x $HOME/bin/tcpwatch ] && { $HOME/bin/tcpwatch & disown; }
 
+# Set background (wallpaper) using feh or nitrogen; whichever is available.
 { [ -f "$BACKGROUND" ] && [ -r "$BACKGROUND" ]; } && {
 	if [ -x /usr/bin/feh ]; then
 		/usr/bin/feh --bg-center "$BACKGROUND" & disown
@@ -26,6 +27,7 @@ COMPCONF="$HOME/.config/compton.conf"
 	fi
 }
 
+# Be sure pulseaudio is enabled and set up the bell sound.
 { [ -x /usr/bin/pactl ] && [ -x /usr/bin/pulseaudio ]; } && {
 	/usr/bin/pulseaudio --check || {
 		/usr/bin/pulseaudio --start
