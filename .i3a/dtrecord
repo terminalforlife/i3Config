@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/dtrecord
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 14 Oct 12:03:40 BST 2017
+# Last Change       - Fri 20 Oct 00:07:46 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -23,7 +23,7 @@
 	
 	if [ "$DT_REC_MODE" == "false" ]
 	then
-		[ -x /usr/bin/ffmpeg ] && {
+		{ [ -x /usr/bin/ffmpeg ] && [ -x /usr/bin/lsof ]; } && {
 			/usr/bin/ffmpeg -f x11grab -video_size 1920x1080\
 				-framerate 60 -i :0.0 "$FILENAME"
 	
