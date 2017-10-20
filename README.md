@@ -23,6 +23,7 @@ WHAT'S ON OFFER?
 * Various keyboard shortcuts to support my music editor of choice, moc (Music on Console).
 * Sink and source volume mute toggle and raise/lower support, using pactrl. Note: You'll have to specify your own devices!
 * Support for various event sound effects. I've not yet got mine up on GitHub. See below.
+* A nice wallpaper slideshow using feh. See program "dlspwalls" in miscellaneous repository.
 
 ...and probably other things I'm missing.
 
@@ -40,6 +41,7 @@ suckless-tools - simple commands for minimalistic window managers
 xfce4-terminal - Xfce terminal emulator
 notify-osd - daemon that displays passive pop-up notifications
 libnotify4 - sends desktop notifications to a notification daemon
+feh - imlib2 based image viewer
 xorg - X.Org X Window System
 ```
 
