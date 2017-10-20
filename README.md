@@ -10,32 +10,21 @@ WHAT'S ON OFFER?
 ----------------
 
 * Tidy, carefully-written configuration files.
-
 * Scripts which allow additional features and help keep the i3 "config" file nice and tidy.
-
 * The flag --no-startup-id is attached to all instanced of "exec", to avoid the endless busy cursor.
-
 * For as long as I use i3-wm (I dunno how I could survive without it!), these will surely be updated and maintained.
-
 * Absolutely no bars, as I consider them unnecessary. This gives you the entire screen to utilize.
-
 * Support for various XF86 keys, as I use quite a few of those with my Lenovo KU-0989 keyboard.
-
 * Support for taking full screenshots as well as "Selectshots", which make use of scrot with the -s flag.
-
 * Support for floating webcam window at the touch of a button(s) which allows for easier screencasting.
-
 * No indicator! My setup assumes you can i3-wm well, without the need for things like the indicator, borders, and title bars.
-
 * Standard i3-wm (touch-type) mapping scheme. I remap VIM to match i3-wm as I touch-type properly. Totally not bitter.
-
 * No need to mess around with modes; cool as they are, they're inefficient. You can resize windows on-the-fly.
-
 * Various keyboard shortcuts to support my music editor of choice, moc (Music on Console).
-
 * Sink and source volume mute toggle and raise/lower support, using pactrl. Note: You'll have to specify your own devices!
-
 * Support for various event sound effects. I've not yet got mine up on GitHub. See below.
+
+...and probably other things I'm missing.
 
 REQUIREMENTS
 ------------
