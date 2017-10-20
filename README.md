@@ -43,13 +43,15 @@ REQUIREMENTS
 To get the most out of this setup, or to even have it working at all like it does for me, you'll need the following Ubuntu and/or Debian based packages, and their dependencies:
 
 ```
-i3-wm
-suckless-tools
-xfce4-terminal
-pulseaudio
-xorg
-scrot
-moc
+i3-wm - improved dynamic tiling window manager
+moc - ncurses based console audio player
+pulseaudio-utils - Command line tools for the PulseAudio sound server
+scrot - command line screen capture utility
+suckless-tools - simple commands for minimalistic window managers
+xfce4-terminal - Xfce terminal emulator
+notify-osd - daemon that displays passive pop-up notifications
+libnotify4 - sends desktop notifications to a notification daemon
+xorg - X.Org X Window System
 ```
 
 USING COMPTON
