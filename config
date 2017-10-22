@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 20 Oct 00:27:31 BST 2017
+# Last Change       - Sun 22 Oct 15:29:25 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -172,6 +172,8 @@ for_window [title="Save Image"] floating enable
 for_window [title="^Save Project.*"] floating enable
 for_window [title="^Save changed?"] floating enable
 for_window [title="Launch Application"] floating enable
+for_window [title="Page Info - .*"] floating enable
+for_window [title="Save As"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
