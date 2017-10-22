@@ -1,6 +1,11 @@
 # i3config
 My configuration file(s) and scripts for the i3-wm.
 
+**MASTER** - _Hopefully stable branch._\
+**DEV** - _Development Branch (latest changes)_
+
+I will eventually incorporate this method to all of my repositories, but that will _definitely_ take time.
+
 WHAT IS IT?
 -----------
 
