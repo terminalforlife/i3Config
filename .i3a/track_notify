@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/track_notify
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 14 Oct 12:18:52 BST 2017
+# Last Change       - Mon 23 Oct 13:00:54 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -14,6 +14,7 @@
 	NOTIFICATION=$(
 		/usr/bin/mocp --format="%file"\
 			| /bin/sed 's/^.*\///; s/\.[A-Za-z0-9]\+$//'
+			#TODO - Use pure shell method in place of sed.
 	)
 	
 	/usr/bin/notify-send  "$NOTIFICATION"
