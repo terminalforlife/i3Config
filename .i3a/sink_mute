@@ -3,17 +3,19 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/master_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 23 Oct 01:47:18 BST 2017
+# Last Change       - Mon 23 Oct 11:47:31 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
+MASTER="alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
+
 [ -f "$SOUND05" ] || exit 1
 
 [ /usr/bin/pactl ] && {
 	/usr/bin/paplay --volume 40000 "$SOUND05"
-	/usr/bin/pactl set-sink-mute toggle
+	/usr/bin/pactl set-sink-mute "$MASTER" toggle
 }
