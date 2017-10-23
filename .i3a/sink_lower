@@ -3,19 +3,17 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/master_lower
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Fri 20 Oct 00:13:57 BST 2017
+# Last Change       - Mon 23 Oct 01:47:09 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
-MASTER="alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-
 [ -f "$SOUND05" ] || exit 1
 
 { [ -x /usr/bin/pactl ] && [ -x /usr/bin/paplay ]; } && {
-	/usr/bin/paplay --volume 40000  "$SOUND05"
-	/usr/bin/pactl set-sink-volume "$MASTER" -250
+	/usr/bin/paplay --volume 40000 "$SOUND05"
+	/usr/bin/pactl set-sink-volume -250
 }
