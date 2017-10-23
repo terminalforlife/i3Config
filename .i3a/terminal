@@ -3,11 +3,30 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/terminal
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 14 Oct 12:16:44 BST 2017
+# Last Change       - Mon 23 Oct 12:49:11 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
-[ -x /usr/bin/xfce4-terminal ] && /usr/bin/xfce4-terminal
+T(){ [ -x "$1" ] && { $@ & exit 0; } || exit 1; }
+
+#----------------------------------------------------------------------INSTRUCTIONS
+
+# Only the first T will be used if more than one is listed. Just add your T, like
+# below, with the first argument (field next to T) being the absolute (full) path
+# to the executable you wish to use as the terminal emulator.
+#
+# If your executable has spaces in the filename, or any other, non-standard
+# characters, be sure to write it "like this", 'like this', or\ like\ this. Special
+# characters include (but are not limited to), &, +, ?, and *.
+#
+# NOTE: Arguments for your chosen terminal should work just fine.
+
+#---------------------------------------------------------CHOOSE YOUR TINAL HERE
+
+T /usr/bin/xfce4-terminal
+T /usr/bin/xfce4-terminal -x /bin/sh
+T /usr/bin/xfce4-terminal -x /usr/bin/vim -T "xterm-256color"
+T /usr/bin/xfce4-terminal -x /usr/bin/vim -E -T "xterm-256color"
