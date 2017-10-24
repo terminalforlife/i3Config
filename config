@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Mon 23 Oct 13:06:40 BST 2017
+# Last Change       - Tue 24 Oct 01:25:29 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -173,7 +173,18 @@ for_window [title="^Save Project.*"] floating enable
 for_window [title="^Save changed?"] floating enable
 for_window [title="Launch Application"] floating enable
 for_window [title="Page Info - .*"] floating enable
-for_window [title="Save As"] floating enable
+for_window [title="^Save As$"] floating enable
+for_window [title="^Configure.* . Kdenlive$"] floating enable
+for_window [title="^Get Hot New Stuff . Kdenlive$"] floating enable
+for_window [title="^Welcome to Kdenlive$"] floating enable
+for_window [title="^Project Settings . Kdenlive$"] floating enable
+for_window [title="^Archive Project . Kdenlive$"] floating enable
+for_window [title="^DVD Wizard . Kdenlive$"] floating enable
+for_window [title="^Files to transcode . Kdenlive$"] floating enable
+for_window [title="^Save As . Kdenlive$"] floating enable
+for_window [title="^Open . Kdenlive$"] floating enable
+for_window [title="^Rendering . Kdenlive$"] floating enable
+for_window [title="^Submit Bug Report . Kdenlive$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
