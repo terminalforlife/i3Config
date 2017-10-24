@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/master_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue 24 Oct 14:23:50 BST 2017
+# Last Change       - Tue 24 Oct 14:34:25 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -22,7 +22,8 @@ SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
 [ -x /usr/bin/pacmd ] && {
 	while read -ra X; do
 		[[ "${X[*]}" == *volume\:\ front-left\:\ +([0-9])* ]] && {
-			printf -v VOL "%d" "${X[2]}"
+			#TODO - Why do I need 64000 for it to match 65500?
+			printf -v VOL "%d" "$(( X[2] + 1500 ))"
 			[ $VOL -ge 65500 ] && exit 0 || break
 		}
 	done <<< "$(/usr/bin/pacmd list-sinks)"
