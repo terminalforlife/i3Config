@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 24 Oct 01:25:29 BST 2017
+# Last Change       - Tue 24 Oct 13:01:24 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -185,6 +185,7 @@ for_window [title="^Save As . Kdenlive$"] floating enable
 for_window [title="^Open . Kdenlive$"] floating enable
 for_window [title="^Rendering . Kdenlive$"] floating enable
 for_window [title="^Submit Bug Report . Kdenlive$"] floating enable
+for_window [title="^Close Firefox$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
