@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/master_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 23 Oct 11:47:42 BST 2017
+# Last Change       - Tue 24 Oct 14:23:50 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -14,6 +14,19 @@ MASTER="alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
 
 [ -f "$SOUND05" ] || exit 1
+
+#TODO - This is really inefficient! This is being called every single time the
+#       volume is called for change. Rework this ASAP. This is just here to avoid
+#       the volume going past 65500 (just about 100% with a standard mixer display)
+#       else distortion is very likely, and could get unhealthily high.
+[ -x /usr/bin/pacmd ] && {
+	while read -ra X; do
+		[[ "${X[*]}" == *volume\:\ front-left\:\ +([0-9])* ]] && {
+			printf -v VOL "%d" "${X[2]}"
+			[ $VOL -ge 65500 ] && exit 0 || break
+		}
+	done <<< "$(/usr/bin/pacmd list-sinks)"
+}
 
 [ -x /usr/bin/pactl ] && {
 	/usr/bin/paplay --volume 40000 "$SOUND05"
