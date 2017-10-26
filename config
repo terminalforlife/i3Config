@@ -186,6 +186,7 @@ for_window [title="^Open . Kdenlive$"] floating enable
 for_window [title="^Rendering . Kdenlive$"] floating enable
 for_window [title="^Submit Bug Report . Kdenlive$"] floating enable
 for_window [title="^Close Firefox$"] floating enable
+for_window [title="^Problem loading page . Mozilla Firefox$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
