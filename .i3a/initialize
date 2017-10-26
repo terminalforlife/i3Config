@@ -114,6 +114,7 @@ COMPCONF="$HOME/.config/compton.conf"
 }
 
 # Launch Firefox, to ensure I get notifications from Facebook and YouTube.
-[ -x /usr/bin/firefox ] && {
-	/usr/bin/firefox & disown
-}
+[ -x /usr/bin/firefox ] && { /usr/bin/firefox & disown; }
+
+# Launch Thunderbird. I often forget, so this helps me.
+[ -x /usr/bin/thunderbird ] && { /usr/bin/thunderbird & disown; }
