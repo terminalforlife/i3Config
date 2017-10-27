@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 24 Oct 13:01:24 BST 2017
+# Last Change       - Thu 26 Oct 16:17:43 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -187,6 +187,13 @@ for_window [title="^Rendering . Kdenlive$"] floating enable
 for_window [title="^Submit Bug Report . Kdenlive$"] floating enable
 for_window [title="^Close Firefox$"] floating enable
 for_window [title="^Problem loading page . Mozilla Firefox$"] floating enable
+for_window [title="^GIMPressionist$"] floating enable
+for_window [title="^GIMP Text Editor$"] floating enable
+for_window [title="^Script-Fu: .*"] floating enable
+for_window [title="^Van Gogh .LIC.$"] floating enable
+for_window [title="^Close ..*.$"] floating enable
+for_window [title="^Export Image$"] floating enable
+for_window [title="^Layer Attributes$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
@@ -206,6 +213,7 @@ bindsym XF86AudioPrev exec --no-startup-id /usr/bin/mocp --previous
 bindsym XF86Calculator exec --no-startup-id /usr/bin/xcalc
 bindsym Print exec --no-startup-id bash $HOME/.i3a/scrot_take
 bindsym Shift+Print exec --no-startup-id bash $HOME/.i3a/scrot_sel_take
+bindsym Ctrl+Shift+Print exec --no-startup-id bash $HOME/.i3a/scrot_win_take
 bindsym Mod1+d exec --no-startup-id bash $HOME/.i3a/use_dmenu
 bindsym Mod1+shift+num exec --no-startup-id bash $HOME/bin/telldate
 
