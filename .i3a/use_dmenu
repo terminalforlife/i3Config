@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/use_dmenu
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Mon 23 Oct 12:59:03 BST 2017
+# Last Change       - Fri 27 Oct 23:01:42 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,10 +18,14 @@
 # #ffffff = white  |  #000000 = black
 #
 # See man 1 dmenu for more information.
+#
+# Use comments to {en,dis}able the style you want. The top one is my own, but the
+# rest I took from various places online, because they seemed cool.
 
 #------------------------------------------------------------------------DMENU HERE
-
 [ -x /usr/bin/dmenu_run ] && {
-	/usr/bin/dmenu_run -p "Execute:" -fn Oxygen-Mono:style=Bold:size=13 -b\
-		-nb \#000000 -nf \#ffffff -sb \#333333 -sf \#ffffff
+	/usr/bin/dmenu_run -p "Execute:" -fn Oxygen-Mono:style=Bold:size=13 -b -nb \#000000 -nf \#ffffff -sb \#333333 -sf \#ffffff
+
+	# FROM: https://github.com/aguslr/.dotfiles/blob/master/dmenu/.dmenurc
+	#/usr/bin/dmenu_run -i -b -fn Terminus-12 -nb \#232729 -nf \#eeeeec -sb \#666666 -sf \#ffffff
 }
