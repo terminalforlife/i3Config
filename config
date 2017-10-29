@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu 26 Oct 16:17:43 BST 2017
+# Last Change       - Sun 29 Oct 00:31:35 BST 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ for_window [title="^Adblock Plus.*"] floating enable
 for_window [title="GIMP Tip of the Day"] floating enable
 for_window [title="GIMP Message"] floating enable
 for_window [title="Select Background Image File"] floating enable
-for_window [title="About.*$"] floating enable
+for_window [title="^About .*$"] floating enable
 for_window [title="Terminal Preferences"] floating enable
 for_window [title="Preferences"] floating enable
 for_window [title="Open Image"] floating enable
@@ -192,8 +192,13 @@ for_window [title="^GIMP Text Editor$"] floating enable
 for_window [title="^Script-Fu: .*"] floating enable
 for_window [title="^Van Gogh .LIC.$"] floating enable
 for_window [title="^Close ..*.$"] floating enable
-for_window [title="^Export Image$"] floating enable
+for_window [title="^Export Image.*$"] floating enable
 for_window [title="^Layer Attributes$"] floating enable
+for_window [title="^imgpsh_fullsize (.*)$"] floating enable
+for_window [title="^About me . Mozilla Firefox.*$"] floating disabled
+for_window [title="^Threshold$"] floating enabled
+for_window [title="^Rotate$"] floating enabled
+for_window [title="^Brightness-Contrast$"] floating enabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
