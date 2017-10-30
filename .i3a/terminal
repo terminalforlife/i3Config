@@ -27,6 +27,7 @@ T(){ [ -x "$1" ] && { $@ & exit 0; } || exit 1; }
 #---------------------------------------------------------CHOOSE YOUR TINAL HERE
 
 T /usr/bin/xfce4-terminal
+T /usr/bin/terminology
 T /usr/bin/xfce4-terminal -x /bin/sh
 T /usr/bin/xfce4-terminal -x /usr/bin/vim -T "xterm-256color"
 T /usr/bin/xfce4-terminal -x /usr/bin/vim -E -T "xterm-256color"
