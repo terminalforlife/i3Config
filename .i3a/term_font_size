@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/term_font_size
+# Started On        - Mon 30 Oct 15:14:16 GMT 2017
+# Last Change       - Mon 30 Oct 15:44:54 GMT 2017
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+XERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; exit 1; }
+
+[ $UID -eq 0 ] && XERR "$LINENO" "Root access is not required."
+[ $# -eq 1 ] || XERR "$LINENO" "One argument is required."
+
+[ -x /usr/bin/xfce4-terminal ] || {
+	XERR "$LINENO" "Dependency '/usr/bin/xfce4-terminal' not met."
+}
+
+[ -x /bin/sed ] || XERR "$LINENO" "Dependency '/bin/sed' not met."
+
+SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
+FILE="$HOME/.config/xfce4/terminal/terminalrc"
+[ -f "$FILE" ] || XERR "$LINENO" "Unable to find your configuration file."
+[ -f "$SOUND05" ] || XERR "$LINENO" "Unable to find sound file."
+
+while IFS="=" read -a X; do
+	[ "${X[0]}" == FontName ] && {
+		printf -v NOW "%d" "${X[1]//[!0-9]/}"
+	}
+done < "$FILE"
+
+if [ "$1" == "-r" ]; then
+	/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW+1))/" "$FILE"
+	[ /usr/bin/pactl ] && /usr/bin/paplay --volume 40000 "$SOUND05"
+elif [ "$1" == "-l" ]; then
+	/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW-1))/" "$FILE"
+	[ /usr/bin/pactl ] && /usr/bin/paplay --volume 40000 "$SOUND05"
+fi
