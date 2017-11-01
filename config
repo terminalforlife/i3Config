@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 31 Oct 00:13:14 GMT 2017
+# Last Change       - Wed  1 Nov 16:30:21 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -199,7 +199,7 @@ for_window [title="^Open . Kdenlive$"] floating enable
 for_window [title="^Rendering . Kdenlive$"] floating enable
 for_window [title="^Submit Bug Report . Kdenlive$"] floating enable
 for_window [title="^Close Firefox$"] floating enable
-for_window [title="^Problem loading page . Mozilla Firefox$"] floating enable
+for_window [title="^Problem loading page . Mozilla Firefox$"] floating disabled
 for_window [title="^GIMPressionist$"] floating enable
 for_window [title="^GIMP Text Editor$"] floating enable
 for_window [title="^Script-Fu: .*"] floating enable
@@ -214,6 +214,7 @@ for_window [title="^Rotate$"] floating enabled
 for_window [title="^Brightness-Contrast$"] floating enabled
 for_window [title="^Library$"] floating enabled
 for_window [title="^Terminology$"] floating disabled
+for_window [title="^Enter string value$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
