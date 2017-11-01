@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Mon 30 Oct 15:39:19 GMT 2017
+# Last Change       - Tue 31 Oct 00:13:14 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -63,6 +63,17 @@ assign [class="Firefox"] 4
 assign [class="skypeforlinux"] 3
 assign [title="Facebook call - Mozilla Firefox"] 3 #TODO - Fix?
 assign [class="Thunderbird"] 8
+
+#------------------------------------------------------------------------THE BAR(S)
+
+#bar {
+#	id 2
+#	font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#	status_command /usr/bin/i3blocks -c $HOME/i3blocks1.conf
+#	workspace_buttons none
+#	position bottom
+#	tray_output none
+#}
 
 #----------------------------------------------------------------------WINDOW FOCUS
 
@@ -126,8 +137,8 @@ bindsym shift+Mod4+Left resize grow width 1 px or 1 ppt
 
 #--------------------------------------------------------------REDSHIFT ADJUSTMENTS
 
-bindsym Mod4+0 exec --no-startup-id /usr/bin/redshifter -i 25
-bindsym Mod4+9 exec --no-startup-id /usr/bin/redshifter -d 25
+bindsym Mod4+0 exec --no-startup-id /usr/bin/redshifter -i 100
+bindsym Mod4+9 exec --no-startup-id /usr/bin/redshifter -d 100
 bindsym Mod4+8 exec --no-startup-id /usr/bin/redshifter -r
 
 #---------------------------------------------------------MISCELLANEOUS FOR WINDOWS
