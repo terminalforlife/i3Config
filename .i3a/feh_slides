@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/feh_slides
+# Started On        - Sun  5 Nov 12:04:09 GMT 2017
+# Last Change       - Sun  5 Nov 16:43:20 GMT 2017
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+{ [ $UID -eq 0 ] || ! [ -x /usr/bin/feh -a -x /bin/sleep ]; } && exit 2
+
+while [ -n "$1" ]; do
+	case "$1" in
+		-i)
+			shift
+			INTERVAL="$1" ;;
+		-d)
+			shift
+			DIR="$1" ;;
+		*)
+			exit 1 ;;
+	esac
+
+	shift
+done
+
+{ [ -z "$DIR" ] || ! [ -d "$DIR" ]; } && exit 3
+
+while :; do
+	for FILE in "${DIR%\/}"/*; {
+		if [ -f "$FILE" ]; then
+			/usr/bin/feh --bg-center "$FILE"
+			/bin/sleep ${INTERVAL:-5s}
+		fi
+	}
+done
