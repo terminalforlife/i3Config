@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/update_links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Mon 23 Oct 00:40:42 BST 2017
+# Last Change       - Tue  7 Nov 20:04:08 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -30,12 +30,10 @@ for DEP in /bin/{ln,rm}; {
 }
 
 for FILE in .i3a/* ; {
-	/bin/rm "$HOME/$FILE" && /bin/ln "$FILE" "$HOME/$FILE" || {
-		XERR "$LINENO" "Unable to delete file(s) -- will not link."
-	}
+	/bin/rm "$HOME/$FILE" 2> /dev/null
+	/bin/ln "$FILE" "$HOME/$FILE" 2> /dev/null
 }
 
 CFILE="$HOME/.config/i3/config"
-/bin/rm "$CFILE" && /bin/ln config "$CFILE" || {
-	XERR "$LINENO" "Unable to delete file(s) -- will not link."
-}
+/bin/rm "$CFILE" 2> /dev/null
+/bin/ln config "$CFILE" 2> /dev/null
