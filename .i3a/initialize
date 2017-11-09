@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed  8 Nov 01:56:38 GMT 2017
+# Last Change       - Thu  9 Nov 00:59:10 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -28,6 +28,11 @@ COMPCONF="$HOME/.config/compton.conf"
 #		/usr/bin/nitrogen "$BACKGROUND" & disown
 #	fi
 #}
+
+[ -x /usr/bin/dunst ] && {
+	DUNSTRC="$HOME/.config/dunst/dunstrc"
+	/usr/bin/dunst -config "$DUNSTRC" & disown
+}
 
 # Be sure pulseaudio is enabled and set up the bell sound.
 { [ -x /usr/bin/pactl ] && [ -x /usr/bin/pulseaudio ]; } && {
@@ -117,17 +122,17 @@ COMPCONF="$HOME/.config/compton.conf"
 # Launches mocp in the background, ready for music.
 [ -x /usr/bin/mocp ] && { /usr/bin/mocp -S & disown; }
 
-# Log medication taken; see miscellaneous repository.
-[ -x /usr/bin/medlog ] && { /usr/bin/medlog & disown; }
-
 # Launch Firefox, to ensure I get notifications from Facebook and YouTube.
 #[ -x /usr/bin/firefox ] && { /usr/bin/firefox & disown; }
 
 # Launch Thunderbird. I often forget, so this helps me.
 #[ -x /usr/bin/thunderbird ] && { /usr/bin/thunderbird & disown; }
 
-# Give things enough time to load up before spamming update notifications.
+# Give things enough time to load up before continuing.
 sleep 1m
+
+# Log medication taken; see miscellaneous repository.
+[ -x /usr/bin/medlog ] && { /usr/bin/medlog & disown; }
 
 # Run notify-send and have it check for updates in the background. To get this
 # small shell script, you can find it in the notify-upgrade repository.
