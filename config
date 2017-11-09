@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun  5 Nov 11:46:05 GMT 2017
+# Last Change       - Thu  9 Nov 00:14:23 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,7 +18,7 @@
 #----------------------------------------------------------------------INITIAL SETS
 
 new_float pixel 0
-new_window pixel 0
+new_window pixel 4
 workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
@@ -33,7 +33,7 @@ focus_on_window_activation urgent
 #---------------------------------------------------------------------MAIN BINDINGS
 
 bindsym Mod1+i border normal
-bindsym Mod1+u border none
+bindsym Mod1+u border pixel 4
 bindsym Mod1+Shift+space floating toggle
 bindsym Mod1+space focus mode_toggle
 bindsym Mod1+Shift+c reload
@@ -49,10 +49,10 @@ bindsym Mod4+r exec --no-startup-id bash $HOME/.i3a/dtrecord
 #-----------------------------------------------------------------------SOME COLORS
 
 # class                  border   backgr.  text     indic.   child_border
-client.focused           #222222  #222222  #999999  #000000  #ffffff
-client.focused_inactive  #222222  #222222  #888888  #000000  #ffffff
-client.unfocused         #222222  #111111  #555555  #000000  #ffffff
-client.urgent            #222222  #222222  #ff0000  #000000  #ffffff
+client.focused           #000000  #000000  #999999  #000000  #000000
+client.focused_inactive  #000000  #000000  #888888  #000000  #000000
+client.unfocused         #000000  #000000  #555555  #000000  #000000
+client.urgent            #000000  #000000  #ff0000  #000000  #000000
 client.placeholder       #000000  #000000  #000000  #000000  #000000
 
 client.background        #000000
@@ -109,6 +109,7 @@ bindsym Mod1+Shift+1 move container to workspace 1
 bindsym Mod1+Shift+2 move container to workspace 2
 bindsym Mod1+Shift+3 move container to workspace 3
 bindsym Mod1+Shift+4 move container to workspace 4
+bindsym Mod1+Shift+7 move container to workspace 7
 bindsym Mod1+Shift+8 move container to workspace 8
 bindsym Mod1+Shift+9 move container to workspace 9
 bindsym Mod1+Shift+0 move container to workspace 10
@@ -119,6 +120,7 @@ bindsym Mod1+1 workspace 1
 bindsym Mod1+2 workspace 2
 bindsym Mod1+3 workspace 3
 bindsym Mod1+4 workspace 4
+bindsym Mod1+7 workspace 7
 bindsym Mod1+8 workspace 8
 bindsym Mod1+9 workspace 9
 bindsym Mod1+0 workspace 10
