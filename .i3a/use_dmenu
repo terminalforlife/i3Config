@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/use_dmenu
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed  1 Nov 21:27:31 GMT 2017
+# Last Change       - Fri 10 Nov 01:55:26 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
 		/usr/bin/paplay --volume 40000 "$SOUND05" & disown
 
 		/usr/bin/dmenu_run -p "Execute:"\
-			-fn Ubuntu-Mono:style=Bold:size=15\
+			-fn Ubuntu-Mono:style=Bold:size=12\
 			-b -nb \#000000 -nf \#ffffff -sb \#333333 -sf \#ffffff
 	}
 }
