@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu  9 Nov 12:26:27 GMT 2017
+# Last Change       - Fri 10 Nov 02:21:30 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -31,8 +31,8 @@
 
 #----------------------------------------------------------------------INITIAL SETS
 
-new_float pixel 2
-new_window pixel 2
+new_float pixel 0
+new_window pixel 0
 workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
@@ -47,7 +47,7 @@ focus_on_window_activation urgent
 #---------------------------------------------------------------------MAIN BINDINGS
 
 bindsym Mod1+i border normal
-bindsym Mod1+u border pixel 4
+bindsym Mod1+u border pixel 0
 bindsym Mod1+Shift+space floating toggle
 bindsym Mod1+space focus mode_toggle
 bindsym Mod1+Shift+c reload
@@ -109,25 +109,25 @@ bindsym Mod1+f fullscreen
 
 #----------------------------------------------------------------CONTAINER MOVEMENT
 
-bindsym Mod1+Shift+1 move container to workspace 1  # Terminal
-bindsym Mod1+Shift+2 move container to workspace 2   # Terminal
-bindsym Mod1+Shift+3 move container to workspace 3    # Social
-bindsym Mod1+Shift+4 move container to workspace 4     # Browsing
-bindsym Mod1+Shift+7 move container to workspace 7      # Miscellaneous
-bindsym Mod1+Shift+8 move container to workspace 8       # VirtualBox GUI
-bindsym Mod1+Shift+9 move container to workspace 9      # Virtual Machine
-bindsym Mod1+Shift+0 move container to workspace 10    # Terminal/Music 
+bindsym Mod1+Shift+1 move container to workspace 1
+bindsym Mod1+Shift+2 move container to workspace 2
+bindsym Mod1+Shift+3 move container to workspace 3
+bindsym Mod1+Shift+4 move container to workspace 4
+bindsym Mod1+Shift+7 move container to workspace 7
+bindsym Mod1+Shift+8 move container to workspace 8
+bindsym Mod1+Shift+9 move container to workspace 9
+bindsym Mod1+Shift+0 move container to workspace 10
 
 #---------------------------------------------------------------WORKSPACE SWITCHING
 
-bindsym Mod1+1 workspace 1  # Terminal
-bindsym Mod1+2 workspace 2   # Terminal
-bindsym Mod1+3 workspace 3    # Social
-bindsym Mod1+4 workspace 4     # Browsing
-bindsym Mod1+7 workspace 7      # Miscellaneous
-bindsym Mod1+8 workspace 8       # VirtualBox GUI
-bindsym Mod1+9 workspace 9      # Virtual Machine
-bindsym Mod1+0 workspace 10    # Terminal/Music
+bindsym Mod1+1 workspace 1
+bindsym Mod1+2 workspace 2
+bindsym Mod1+3 workspace 3
+bindsym Mod1+4 workspace 4
+bindsym Mod1+7 workspace 7
+bindsym Mod1+8 workspace 8
+bindsym Mod1+9 workspace 9
+bindsym Mod1+0 workspace 10
 
 #-------------------------------------------------------------------WINDOW RESIZING
 
@@ -184,7 +184,7 @@ for_window [title="GIMP Message"] floating enable
 for_window [title="Select Background Image File"] floating enable
 for_window [title="^About .*$"] floating enable
 for_window [title="Terminal Preferences"] floating enable
-for_window [title="Preferences"] floating enable
+for_window [title="^Preferences$"] floating enable
 for_window [title="Open Image"] floating enable
 for_window [title="^.* - Oracle VM VirtualBox$"] floating disabled
 for_window [title="Save Image"] floating enable
@@ -244,6 +244,7 @@ for_window [title="^Pluck$"] floating enable
 for_window [title="^Save Compressed Project \".*\" As...$"] floating enable
 for_window [title="^Print$"] floating enable
 for_window [title="^Quit GIMP$"] floating enable
+for_window [title="^Clear All History$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
