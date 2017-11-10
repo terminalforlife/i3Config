@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/feh_slides
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Sun  5 Nov 16:43:20 GMT 2017
+# Last Change       - Fri 10 Nov 01:07:42 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ done
 while :; do
 	for FILE in "${DIR%\/}"/*; {
 		if [ -f "$FILE" ]; then
-			/usr/bin/feh --bg-center "$FILE"
+			/usr/bin/feh --no-fehbg --bg-center "$FILE"
 			/bin/sleep ${INTERVAL:-5s}
 		fi
 	}
