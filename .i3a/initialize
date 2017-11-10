@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Thu  9 Nov 00:59:10 GMT 2017
+# Last Change       - Thu  9 Nov 15:27:55 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -33,6 +33,8 @@ COMPCONF="$HOME/.config/compton.conf"
 	DUNSTRC="$HOME/.config/dunst/dunstrc"
 	/usr/bin/dunst -config "$DUNSTRC" & disown
 }
+
+[ -x /usr/bin/mountwatch ] && /usr/bin/mountwatch & disown
 
 # Be sure pulseaudio is enabled and set up the bell sound.
 { [ -x /usr/bin/pactl ] && [ -x /usr/bin/pulseaudio ]; } && {
