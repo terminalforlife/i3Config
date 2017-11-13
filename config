@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 10 Nov 02:21:30 GMT 2017
+# Last Change       - Sun 12 Nov 05:09:45 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ focus_follows_mouse no
 floating_modifier Mod1
 force_focus_wrapping no
 font pango: FreeMono bold 13
-floating_minimum_size 75 x 50
+floating_minimum_size 10 x 10
 #floating_maximum_size 1280 x 760
 popup_during_fullscreen smart
 force_display_urgency_hint 1000 ms
@@ -245,6 +245,8 @@ for_window [title="^Save Compressed Project \".*\" As...$"] floating enable
 for_window [title="^Print$"] floating enable
 for_window [title="^Quit GIMP$"] floating enable
 for_window [title="^Clear All History$"] floating enable
+for_window [title="^NINJA.IDE .Ninja.IDE Is Not Just Another IDE.$"] floating disabled
+#for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
