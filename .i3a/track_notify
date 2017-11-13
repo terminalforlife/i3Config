@@ -3,19 +3,25 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/track_notify
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Tue 24 Oct 14:44:08 BST 2017
+# Last Change       - Mon 13 Nov 12:56:41 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
-{ [ -x /usr/bin/notify-send ] && [ -x /usr/bin/mocp ]; } && {
-	shopt -s extglob
+[ -x /usr/bin/notify-send -a -x /usr/bin/mocp ] && {
+	SEP="1478217" # Avoids conflict with the fields.
+	DATA=`/usr/bin/mocp --format="%t${SEP}%A${SEP}%a"`
 
-	printf -v X "%s" "$(/usr/bin/mocp --format="%file")"
-	printf -v X "%s" "${X//*\/}"
-	printf -v X "%s" "${X%.+([0-9A-Za-z])}"
+	IFS="$SEP" read -a X <<< "$DATA"
+	printf -v TR "%s" "${X[0]}"
+	printf -v AL "%s" "${X[1]}"
+	printf -v AR "%s" "${X[2]}"
 
-	/usr/bin/notify-send  "$X"
+	TR="${TR:-Unknown Track}"
+	AL="${AL:-Unknown Album}"
+	AR="${AR:-Unknown Artist}"
+
+	/usr/bin/notify-send "$TR      $AL      $AR"
 }
