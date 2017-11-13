@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/feh_slides
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Fri 10 Nov 01:07:42 GMT 2017
+# Last Change       - Mon 13 Nov 11:06:21 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ while [ -n "$1" ]; do
 	shift
 done
 
-{ [ -z "$DIR" ] || ! [ -d "$DIR" ]; } && exit 3
+[ -d "$DIR" ] || exit 3
 
 while :; do
 	for FILE in "${DIR%\/}"/*; {
