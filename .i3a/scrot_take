@@ -3,14 +3,14 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/scrot_take
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Tue 24 Oct 14:51:07 BST 2017
+# Last Change       - Fri 17 Nov 01:41:19 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
-{ [ -x /usr/bin/scrot ] && [ -x /usr/bin/paplay ]; } && {
+[ -x /usr/bin/scrot -a -x /usr/bin/paplay ] && {
 	printf -v FILENAME "$HOME/Desktop/Screenshot_%(%F_%X)T.png"
 	SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
 
