@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Mon 13 Nov 10:57:25 GMT 2017
+# Last Change       - Fri 17 Nov 01:38:23 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -37,20 +37,20 @@ COMPCONF="$HOME/.config/compton.conf"
 [ -x /usr/bin/syswatch ] && /usr/bin/syswatch & disown
 
 # Be sure pulseaudio is enabled and set up the bell sound.
-{ [ -x /usr/bin/pactl ] && [ -x /usr/bin/pulseaudio ]; } && {
+[ -x /usr/bin/pactl -a -x /usr/bin/pulseaudio ] && {
 	/usr/bin/pulseaudio --check || /usr/bin/pulseaudio --start & disown
 
 	# Also load up an alert sound to be used by shell programs.
-	{ [ -f "$ALERTSND" ] && [ -r "$ALERTSND" ]; } && {
+	[ -f "$ALERTSND" -a -r "$ALERTSND" ] && {
 		/usr/bin/pactl upload-sample $ALERTSND x11-alert & disown
 	}
 
 	# Also load up an notification sound to be used by shell programs.
-	{ [ -f "$VOLCHSND" ] && [ -r "$VOLCHSND" ]; } && {
+	[ -f "$VOLCHSND" -a -r "$VOLCHSND" ] && {
 		/usr/bin/pactl upload-sample $VOLCHSND x11-volume-change
 	}
 
-	{ [ -f "$BELLSND" ] && [ -r "$BELLSND" ]; } && {
+	[ -f "$BELLSND" -a -r "$BELLSND" ] && {
 		/usr/bin/pactl upload-sample $BELLSND x11-bell & disown
 
 		/usr/bin/pactl load-module module-x11-bell\
@@ -104,7 +104,7 @@ COMPCONF="$HOME/.config/compton.conf"
 [ -x /usr/bin/keynav ] && /usr/bin/keynav & disown
 
 [ -x /usr/bin/compton ] && {
-	{ [ -f "$COMPCONF" ] && [ -r "$COMPCONF" ]; } && {
+	[ -f "$COMPCONF" -a -r "$COMPCONF" ] && {
 		/usr/bin/compton --config "$COMPCONF" -b & disown
 	}
 }
@@ -112,7 +112,7 @@ COMPCONF="$HOME/.config/compton.conf"
 # Redshift sets the gamma to the neutral; default.
 [ -x /usr/bin/redshift ] && { /usr/bin/redshift -O 6500K & disown; }
 
-{ [ -f "$SOUND04" ] && [ -r "$SOUND04" ]; } && {
+[ -f "$SOUND04" -a -r "$SOUND04" ] && {
 	[ -x /usr/bin/paplay ] && {
 		/usr/bin/paplay --volume 40000 "$SOUND04" & disown
 	}
