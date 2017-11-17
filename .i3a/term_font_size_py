@@ -1,0 +1,60 @@
+#!/usr/bin/python3.5
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3config/.i3a/term_font_size_py
+# Started On        - Fri 17 Nov 01:44:19 GMT 2017
+# Last Change       - Fri 17 Nov 02:29:01 GMT 2017
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+def Err(status, msg):
+	print("ERROR: %s" % msg)
+	quit(status)
+
+from os import, getenv, path
+from sys import version, platform
+from optparse import OptionParser
+
+if not float(version[0:3]) >= 3.5:
+	Err(1, "Python version 3.5 or greater required.")
+elif not platform == "linux":
+	Err(1, "This Python script was written for GNU/Linux.")
+
+soundFile = getenv("HOME") + "/.config/i3/Sounds/SND03.wav"
+editFile = getenv("HOME") + "/.config/xfce4/terminal/terminalrc"                                      
+
+opts = OptionParser()
+opts.add_option("--raise", "-r")
+opts.add_option("--lower", "-l")
+args = opts.parse_args[0]
+
+if not path.isfile(editFile):
+	Err(1, "Unable to find file: %s" % editFile)
+elif not path.isfile(soundFile):
+	Err(1, "Unable to find file: %s" % soundFile)
+
+buffer = open(editFile, "+")
+
+data = buffer.readline()
+while len(data) > 1:
+	if data.split("=")[0] == "FontName":
+		now = [data.split("=")[1]]
+
+		for field in now:
+			if field.isnumeric:
+				result = field
+				break
+
+		break
+	else:
+		data = buffer.readline()
+
+fulldata = buffer.read()
+
+if args.raise:
+#TODO - Finish.
+
+fulldata.replace("FontName=" + now, now)
+	
+buffer.close()
