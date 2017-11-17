@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/.i3a/term_font_size_py
 # Started On        - Fri 17 Nov 01:44:19 GMT 2017
-# Last Change       - Fri 17 Nov 02:29:01 GMT 2017
+# Last Change       - Fri 17 Nov 21:25:15 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,11 +12,13 @@ def Err(status, msg):
 	print("ERROR: %s" % msg)
 	quit(status)
 
-from os import, getenv, path
+from os import getenv, path, getuid
 from sys import version, platform
 from optparse import OptionParser
 
-if not float(version[0:3]) >= 3.5:
+if getuid() == 0:
+	Err(1, "Root access is not required.")
+elif not float(version[0:3]) >= 3.5:
 	Err(1, "Python version 3.5 or greater required.")
 elif not platform == "linux":
 	Err(1, "This Python script was written for GNU/Linux.")
@@ -24,37 +26,36 @@ elif not platform == "linux":
 soundFile = getenv("HOME") + "/.config/i3/Sounds/SND03.wav"
 editFile = getenv("HOME") + "/.config/xfce4/terminal/terminalrc"                                      
 
-opts = OptionParser()
-opts.add_option("--raise", "-r")
-opts.add_option("--lower", "-l")
-args = opts.parse_args[0]
+parser = OptionParser()
+parser.add_option("-i", dest='INC', type='int', help="Increase font size.")
+parser.add_option("-d", dest='DEC', type='int', help="Decrease font size.")
+opts, args = parser.parse_args()
+
+if opts.INC == None and opts.DEC == None:
+	Err(1, "Will you increase or decrease the font size?")
+elif not opts.INC == None and not opts.DEC == None:
+	Err(1, "Specify only one method of size alteration.")
 
 if not path.isfile(editFile):
 	Err(1, "Unable to find file: %s" % editFile)
 elif not path.isfile(soundFile):
 	Err(1, "Unable to find file: %s" % soundFile)
 
-buffer = open(editFile, "+")
+with open(editFile, "r+") as buffer:
+	for line in buffer.readlines():
+		line = line.strip()
 
-data = buffer.readline()
-while len(data) > 1:
-	if data.split("=")[0] == "FontName":
-		now = [data.split("=")[1]]
+		if "FontName=" in line:
+			line_buffer = line.split("=")[1:]
+			font = list(line.split())
+			#TODO - Finish this range-inducing thing.
+			for field in font:
+				print(field)
+				if field.isnumeric: size = int(field)
 
-		for field in now:
-			if field.isnumeric:
-				result = field
-				break
-
-		break
-	else:
-		data = buffer.readline()
-
-fulldata = buffer.read()
-
-if args.raise:
-#TODO - Finish.
-
-fulldata.replace("FontName=" + now, now)
-	
-buffer.close()
+			if opts.INC >= 1:
+				buffer.write(line.replace(size + 1))
+			elif opts.DEC >= 1:
+				buffer.write(line.replace(size - 1))
+		else:
+			buffer.write(line)
