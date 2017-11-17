@@ -66,6 +66,6 @@ If you'd like to make changes to the configuration files, this section might hel
 
 As mentioned above my i3-wm setup has a few event sounds. I used to have a lot, but they honestly got annoying after a while. I've since found a happy medium between sounds and silence, using discreet sounds when it's most useful to have audible feedback, mostly to ensure I actually pressed the key properly!
 
-If you see "pactrl" (might help to search for it with your text editor), then there's a good chance it's pointing to either a variable assigned to a filename, or the filename itself. This is what you want to change. Using pactrl does however limit you to certain file types; for example, pactrl will not play mp3 files, or at least it doesn't for me. Your best bet is to use ogg or wav, or look online to see which file formats it supports out of the box.
+If you see "paplay" (might help to search for it with your text editor), then there's a good chance it's pointing to either a variable assigned to a filename, or the filename itself. This is what you want to change. Using paplay does however limit you to certain file types; for example, paplay will not play mp3 files, or at least it doesn't for me. Your best bet is to use ogg or wav, or look online to see which file formats it supports out of the box.
 
 # ...to be continued!
