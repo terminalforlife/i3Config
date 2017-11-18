@@ -55,8 +55,8 @@ bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
 bindsym Mod1+Return exec --no-startup-id bash $HOME/.i3a/terminal
-bindsym Shift+Ctrl+Up exec --no-startup-id python3.5 $HOME/.i3a/term_font_size_py -r
-bindsym Shift+Ctrl+Down exec --no-startup-id python3.5 $HOME/.i3a/term_font_size_py -l
+bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r
+bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l
 bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
 #bindsym Mod4+r exec --no-startup-id bash $HOME/.i3a/dtrecord
 #TODO - Finish/Fix ^ It's commented out in-case I press it by mistake.
