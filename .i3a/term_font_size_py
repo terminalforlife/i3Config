@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/.i3a/term_font_size_py
 # Started On        - Fri 17 Nov 01:44:19 GMT 2017
-# Last Change       - Fri 17 Nov 21:25:15 GMT 2017
+# Last Change       - Sat 18 Nov 23:28:18 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ elif not platform == "linux":
 	Err(1, "This Python script was written for GNU/Linux.")
 
 soundFile = getenv("HOME") + "/.config/i3/Sounds/SND03.wav"
-editFile = getenv("HOME") + "/.config/xfce4/terminal/terminalrc"                                      
+editFile = getenv("HOME") + "/.config/xfce4/terminal/terminalrc"
 
 parser = OptionParser()
 parser.add_option("-i", dest='INC', type='int', help="Increase font size.")
@@ -48,7 +48,7 @@ with open(editFile, "r+") as buffer:
 		if "FontName=" in line:
 			line_buffer = line.split("=")[1:]
 			font = list(line.split())
-			#TODO - Finish this range-inducing thing.
+			#TODO - Finish this rage-inducing thing.
 			for field in font:
 				print(field)
 				if field.isnumeric: size = int(field)
