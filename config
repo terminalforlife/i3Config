@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 17 Nov 12:30:02 GMT 2017
+# Last Change       - Tue 21 Nov 12:29:05 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -147,6 +147,12 @@ bindsym Mod4+0 exec --no-startup-id /usr/bin/redshifter -i 100
 bindsym Mod4+9 exec --no-startup-id /usr/bin/redshifter -d 100
 bindsym Mod4+8 exec --no-startup-id /usr/bin/redshifter -r
 
+#----------------------------------------------------------------BAR (EXPERIMENTAL)
+
+#bar {
+#	status_command /usr/bin/python3.5 -u $HOME/Desktop/thingy.py
+#}
+
 #---------------------------------------------------------MISCELLANEOUS FOR WINDOWS
 
 for_window [window_role="popup"] floating enable
@@ -251,6 +257,12 @@ for_window [title="^Change Foreground Col(o|ou)r$"] floating enable
 for_window [title="^Change Background Col(o|ou)r$"] floating enable
 for_window [title="^Module Manager$"] floating enable
 for_window [title="^Unit Editor$"] floating enable
+for_window [title="^Allowed Web Sites . Pop.ups$"] floating enable
+for_window [title="^Latency problem$"] floating enable
+for_window [title="^Preferences: Quality$"] floating enable
+for_window [title="^Error$"] floating enable
+for_window [title="^Amplify$"] floating enable
+for_window [title="^Export Audio$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
