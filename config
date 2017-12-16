@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Wed 22 Nov 18:54:31 GMT 2017
+# Last Change       - Sat 16 Dec 11:23:37 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -268,6 +268,7 @@ for_window [title="^Error$"] floating enable
 for_window [title="^Amplify$"] floating enable
 for_window [title="^Export Audio$"] floating enable
 for_window [title="^Enter name of file to save to…$"] floating enable
+for_window [title="^moz-extension:.*$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
