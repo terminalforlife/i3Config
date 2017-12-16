@@ -74,7 +74,7 @@ COMPCONF="$HOME/.config/compton.conf"
 # Begin a slideshow of wallpapers. The feh_slides script takes arguments like so:
 # i N           - The interval N at which images will change. (/bin/sleep format)
 # d PATH        - Where PATH is the directory with images to use in slideshow.
-/bin/bash $HOME/.i3a/feh_slides -i 5s -d "$HOME/Pictures/Wallpapers/Steampunk Wallpapers" & disown
+/bin/bash $HOME/.i3a/feh_slides -i 5s -d "$HOME/Pictures/Wallpapers/Xmas Wallpapers" & disown
 
 # Enable the use of Ctrl + Alt + Backspace to kill X.
 [ -x /usr/bin/setxkbmap ] && {
