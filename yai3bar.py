@@ -32,7 +32,7 @@ def sdaSize():
 	with open(sizeFile, "r") as buffer:
 		data = buffer.read()
 		data
-		
+
 
 while True:
 	dateTime = (time.strftime("%F %X"))
