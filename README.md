@@ -4,8 +4,6 @@ My configuration file(s) and scripts for the i3-wm.
 **MASTER** - _Hopefully stable branch._\
 **DEV** - _Development Branch (latest changes)_
 
-I will eventually incorporate this method to all of my repositories, but that will _definitely_ take time.
-
 WHAT IS IT?
 -----------
 
@@ -49,6 +47,11 @@ libnotify4 - sends desktop notifications to a notification daemon
 feh - imlib2 based image viewer
 xorg - X.Org X Window System
 ```
+
+INSTALLATION
+------------
+
+Visit the installit repository to use the easy-to-use TFL downloader.
 
 USING COMPTON
 -------------

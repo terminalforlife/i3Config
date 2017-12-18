@@ -271,6 +271,7 @@ for_window [title="^Enter name of file to save to…$"] floating enable
 for_window [title="^moz-extension:.*$"] floating enable
 for_window [title="^Clear all cookies and site data$"] floating enable
 for_window [title="^Restart Firefox$"] floating enable
+for_window [title="^Enter name of the file to save to...$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
