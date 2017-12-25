@@ -3,14 +3,14 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri 17 Nov 01:38:23 GMT 2017
+# Last Change       - Mon 25 Dec 05:16:31 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
-#BACKGROUND="/usr/share/wallpapers/road_fog_nature_trees_91499_1920x1080.jpg"
+BACKGROUND="$HOME/Pictures/Wallpapers/minimalism_texture_black_55242_1920x1080.jpg"
 BELLSND="/usr/share/sounds/freedesktop/stereo/message.oga"
 ALERTSND="/usr/share/sounds/freedesktop/stereo/window-attention.oga"
 VOLCHSND="/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga"
@@ -18,25 +18,29 @@ SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
 COMPCONF="$HOME/.config/compton.conf"
 
 # Run a logging program for TCP connections.
-[ -x $HOME/bin/tcpwatch ] && { $HOME/bin/tcpwatch & disown; }
+[ -x $HOME/bin/tcpwatch ] && $HOME/bin/tcpwatch & disown
 
 # Set background (wallpaper) using feh or nitrogen; whichever is available.
-#{ [ -f "$BACKGROUND" ] && [ -r "$BACKGROUND" ]; } && {
-#	if [ -x /usr/bin/feh ]; then
-#		/usr/bin/feh --bg-center "$BACKGROUND" & disown
-#	elif [ -x /usr/bin/nitrogen ]; then
-#		/usr/bin/nitrogen "$BACKGROUND" & disown
-#	fi
-#}
+[ -f "$BACKGROUND" -a -r "$BACKGROUND" ] && {
+	if [ -x /usr/bin/feh ]; then
+		/usr/bin/feh --bg-center "$BACKGROUND" & disown
+	elif [ -x /usr/bin/nitrogen ]; then
+		/usr/bin/nitrogen "$BACKGROUND" & disown
+	fi
+}
 
+# Load up dunst, a lightweight and feature-rich notification daemon.
 [ -x /usr/bin/dunst ] && {
 	DUNSTRC="$HOME/.config/dunst/dunstrc"
 	/usr/bin/dunst -config "$DUNSTRC" & disown
 }
 
+# Load up a small script which uses your notification daemon and notify-send to
+# display notifications upon certain system changes reported by the kernel. This
+# can be found in the miscellaneous repository.
 [ -x /usr/bin/syswatch ] && /usr/bin/syswatch & disown
 
-# Be sure pulseaudio is enabled and set up the bell sound.
+# Be sure pulseaudio is enabled, and set up the bell sound.
 [ -x /usr/bin/pactl -a -x /usr/bin/pulseaudio ] && {
 	/usr/bin/pulseaudio --check || /usr/bin/pulseaudio --start & disown
 
@@ -50,6 +54,7 @@ COMPCONF="$HOME/.config/compton.conf"
 		/usr/bin/pactl upload-sample $VOLCHSND x11-volume-change
 	}
 
+	# Load up and enable the standard bell.
 	[ -f "$BELLSND" -a -r "$BELLSND" ] && {
 		/usr/bin/pactl upload-sample $BELLSND x11-bell & disown
 
@@ -74,19 +79,20 @@ COMPCONF="$HOME/.config/compton.conf"
 # Begin a slideshow of wallpapers. The feh_slides script takes arguments like so:
 # i N           - The interval N at which images will change. (/bin/sleep format)
 # d PATH        - Where PATH is the directory with images to use in slideshow.
-/bin/bash $HOME/.i3a/feh_slides -i 5s -d "$HOME/Pictures/Wallpapers/Xmas Wallpapers" & disown
+#/bin/bash $HOME/.i3a/feh_slides -i 5s -d "$HOME/Pictures/Wallpapers/Xmas Wallpapers" & disown
 
 # Enable the use of Ctrl + Alt + Backspace to kill X.
 [ -x /usr/bin/setxkbmap ] && {
 	/usr/bin/setxkbmap -option terminate:ctrl_alt_bksp & disown
 }
 
-[ -x /usr/bin/xsetroot ] && { /usr/bin/xsetroot -solid "#000000" & disown; }
+[ -x /usr/bin/xsetroot ] && /usr/bin/xsetroot -solid "#000000" & disown
 
 # Set bell volume to 70%, disable DPMS (power-saving for your monitor), and set the
 # keyboard repeat delay and rate.
 [ -x /usr/bin/xset ] && /usr/bin/xset b 50 -dpms r rate 170 70
 
+#TODO - Add this instead as a toggle-able feature.
 # Set this to disable your keyboard autorepeat; handy to improve your terminal or
 # vim experience, once you quit raging at the lack of autorepeat! Overrides the
 # keyboard setting above; this is intentional.
@@ -103,6 +109,9 @@ COMPCONF="$HOME/.config/compton.conf"
 # Load keynav to get mouse controls with a keyboard.
 [ -x /usr/bin/keynav ] && /usr/bin/keynav & disown
 
+# Load compton (lightweight compositing manager) and its config file. My config
+# file can be found in the miscellaneous repository. Or use your own. If you don't
+# want to use a config file, change the following compton command as applicable.
 [ -x /usr/bin/compton ] && {
 	[ -f "$COMPCONF" -a -r "$COMPCONF" ] && {
 		/usr/bin/compton --config "$COMPCONF" -b & disown
@@ -112,6 +121,7 @@ COMPCONF="$HOME/.config/compton.conf"
 # Redshift sets the gamma to the neutral; default.
 [ -x /usr/bin/redshift ] && { /usr/bin/redshift -O 6500K & disown; }
 
+# Play a little sound upon login. Uses a path at the start of this script.
 [ -f "$SOUND04" -a -r "$SOUND04" ] && {
 	[ -x /usr/bin/paplay ] && {
 		/usr/bin/paplay --volume 40000 "$SOUND04" & disown
@@ -119,23 +129,24 @@ COMPCONF="$HOME/.config/compton.conf"
 }
 
 # Check for kernel version changes; see kernelchk repository.
-[ -x /usr/bin/kernelchk ] && { /usr/bin/kernelchk & disown; }
+[ -x /usr/bin/kernelchk ] && /usr/bin/kernelchk & disown
 
 # Launches mocp in the background, ready for music.
-[ -x /usr/bin/mocp ] && { /usr/bin/mocp -S & disown; }
+[ -x /usr/bin/mocp ] && /usr/bin/mocp -S & disown
 
 # Launch Firefox, to ensure I get notifications from Facebook and YouTube.
-#[ -x /usr/bin/firefox ] && { /usr/bin/firefox & disown; }
+[ -x /usr/bin/firefox ] && /usr/bin/firefox & disown
 
 # Launch Thunderbird. I often forget, so this helps me.
 #[ -x /usr/bin/thunderbird ] && { /usr/bin/thunderbird & disown; }
 
-# Give things enough time to load up before continuing.
-sleep 1m
+# Give things enough time to load up before continuing. Make this longer if you're
+# not using an SSD or have an older machine.
+/bin/sleep 3s
 
 # Log medication taken; see miscellaneous repository.
-[ -x /usr/bin/medlogip ] && { /usr/bin/medlogip & disown; }
+[ -x /usr/bin/medlogip ] && /usr/bin/medlogip & disown
 
-# Run notify-send and have it check for updates in the background. To get this
+# Run notify-upgrade and have it check for updates in the background. To get this
 # small shell script, you can find it in the notify-upgrade repository.
-[ -x /usr/bin/notify-upgrade ] && { /usr/bin/notify-upgrade & disown; }
+[ -x /usr/bin/notify-upgrade ] && /usr/bin/notify-upgrade & disown
