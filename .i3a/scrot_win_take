@@ -3,14 +3,16 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/scrot_win_take
 # Started On        - Fri 27 Oct 14:55:25 BST 2017
-# Last Change       - Fri 27 Oct 14:56:39 BST 2017
+# Last Change       - Sat 30 Dec 23:33:57 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Take a screenshot of just the currently active window, with scrot.
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
-{ [ -x /usr/bin/scrot ] && [ -x /usr/bin/paplay ]; } && {
+[ -x /usr/bin/scrot -a -x /usr/bin/paplay ] && {
 	printf -v FILENAME "$HOME/Desktop/Windowshot_%(%F_%X)T.png"
 	SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
 
