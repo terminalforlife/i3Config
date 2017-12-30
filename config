@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 26 Dec 20:26:51 GMT 2017
+# Last Change       - Sat 30 Dec 23:31:25 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -58,8 +58,6 @@ bindsym Mod1+Return exec --no-startup-id bash $HOME/.i3a/terminal
 bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r
 bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l
 bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
-#bindsym Mod4+r exec --no-startup-id bash $HOME/.i3a/dtrecord
-#TODO - Finish/Fix ^ It's commented out in-case I press it by mistake.
 
 #-----------------------------------------------------------------------SOME COLORS
 
@@ -275,6 +273,12 @@ for_window [title="^Clear all cookies and site data$"] floating enable
 for_window [title="^Restart Firefox$"] floating enable
 for_window [title="^Enter name of the file to save to...$"] floating enable
 for_window [title="^Select Helper Application$"] floating enable
+for_window [title="^Restart with Add-ons Disabled$"] floating enable
+for_window [title="^Firefox Safe Mode$"] floating enable
+for_window [title="^Firefox . Choose User Profile$"] floating enable
+for_window [title="^Create Profile Wizard$"] floating enable
+for_window [title="^Delete Profile$"] floating enable
+for_window [title="^Rename Profile$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
