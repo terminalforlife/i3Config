@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sat 30 Dec 23:31:25 GMT 2017
+# Last Change       - Sun 31 Dec 00:00:19 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -54,10 +54,11 @@ bindsym Mod1+Shift+c reload
 bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
-bindsym Mod1+Return exec --no-startup-id bash $HOME/.i3a/terminal
-bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r
-bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l
+bindsym Mod1+Return exec --no-startup-id /bin/bash $HOME/.i3a/terminal
+bindsym Shift+Ctrl+Up exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -r
+bindsym Shift+Ctrl+Down exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -l
 bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
+bindsym Mod4+k exec --no-startup-id /bin/bash $HOME/.i3a/key_autorepeat
 
 #-----------------------------------------------------------------------SOME COLORS
 
@@ -284,25 +285,25 @@ for_window [title="^Rename Profile$"] floating enable
 #--------------------------------------------------------------------EXTRA BINDINGS
 
 # XF86MyComputer XF86AudioMedia
-bindsym XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/sink_raise
-bindsym XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/sink_lower
-bindsym XF86AudioMute exec --no-startup-id bash $HOME/.i3a/sink_mute
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/source_raise
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/source_lower
-bindsym Shift+XF86AudioMute exec --no-startup-id bash $HOME/.i3a/source_mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id /bin/bash $HOME/.i3a/sink_raise
+bindsym XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/sink_lower
+bindsym XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/sink_mute
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_raise
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_lower
+bindsym Shift+XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/source_mute
 bindsym XF86AudioPlay exec --no-startup-id /usr/bin/mocp -G
-bindsym Mod4+p exec --no-startup-id bash $HOME/.i3a/track_notify
+bindsym Mod4+p exec --no-startup-id /bin/bash $HOME/.i3a/track_notify
 bindsym Mod4+XF86AudioNext exec --no-startup-id /usr/bin/mocp --seek +3
 bindsym Mod4+XF86AudioPrev exec --no-startup-id /usr/bin/mocp --seek -3
 bindsym XF86AudioNext exec --no-startup-id /usr/bin/mocp --next
 bindsym XF86AudioPrev exec --no-startup-id /usr/bin/mocp --previous
 bindsym XF86Calculator exec --no-startup-id /usr/bin/xcalc
-bindsym Print exec --no-startup-id bash $HOME/.i3a/scrot_take
-bindsym Shift+Print exec --no-startup-id bash $HOME/.i3a/scrot_sel_take
-bindsym Ctrl+Shift+Print exec --no-startup-id bash $HOME/.i3a/scrot_win_take
-bindsym Mod1+d exec --no-startup-id bash $HOME/.i3a/use_dmenu
-bindsym Mod1+shift+num exec --no-startup-id bash $HOME/bin/telldate
+bindsym Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_take
+bindsym Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_sel_take
+bindsym Ctrl+Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_win_take
+bindsym Mod1+d exec --no-startup-id /bin/bash $HOME/.i3a/use_dmenu
+bindsym Mod1+shift+num exec --no-startup-id /bin/bash $HOME/bin/telldate
 
 #------------------------------------------------------------SESSION INITIALIZATION
 
-exec --no-startup-id bash $HOME/.i3a/initialize
+exec --no-startup-id /bin/bash $HOME/.i3a/initialize
