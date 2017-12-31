@@ -3,26 +3,34 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/key_autorepeat
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Wed  1 Nov 17:32:02 GMT 2017
+# Last Change       - Sun 31 Dec 00:20:44 GMT 2017
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-
-# Work in progress. Toggle the key autorepeat feature on and off.
-
+# Toggle the key autorepeat feature on and off. Uses simple flag file.
 #----------------------------------------------------------------------------------
 
 [ $UID -eq 0 ] && exit 1
 
+declare -i DEPCOUNT=0
+for DEP in /bin/{mkdir,rm} /usr/bin/{xset,pactl}; {
+	[ -x "$DEP" ] || exit 1
+}
+
 MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
+TOGFILE="$HOME/.config/key_auto"
 
-[ -f "$SOUND05" ] || exit 1
+[ -d "${TOGFILE/%\/*}" ] || /bin/mkdir "${TOGFILE/%\/*}"
 
-[ -x /usr/bin/pactl ] && {
+[ -f "$SOUND05" -a -r "$SOUND05" ] && {
 	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
 
-	B=$(
-		
-	)
+	if [ -f "$TOGFILE" -a -r "$TOGFILE" ]; then
+		/bin/rm "$TOGFILE"
+		/usr/bin/xset r off
+	else
+		> "$TOGFILE"
+		/usr/bin/xset r on
+	fi
 }
