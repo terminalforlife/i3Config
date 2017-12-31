@@ -27,6 +27,7 @@ WHAT'S ON OFFER?
 * Sink and source volume mute toggle and raise/lower support, using pactrl. Note: You'll have to specify your own devices!
 * Support for various event sound effects. I've not yet got mine up on GitHub. See below.
 * A nice wallpaper slideshow using feh. See program "dlspwalls" in miscellaneous repository.
+* Simple feature to enable and disable keyboard autorepeat at the press of a button.
 
 ...and probably other things I'm missing.
 
