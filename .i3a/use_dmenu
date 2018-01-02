@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/use_dmenu
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 30 Dec 23:48:22 GMT 2017
+# Last Change       - Mon  1 Jan 18:35:22 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -26,6 +26,6 @@ SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
 [ -x /usr/bin/dmenu_run -a -x /usr/bin/pactl -a -f "$SOUND05" ] && {
 	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
 
-	/usr/bin/dmenu_run -fn FreeMono:style=Bold:size=16 -nb \#000000\
+	/usr/bin/dmenu_run -fn FreeMono:style=Bold:size=11 -nb \#000000\
 		-nf \#ffffff -sb \#333333 -sf \#ffffff
 }
