@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun 31 Dec 00:00:19 GMT 2017
+# Last Change       - Tue  2 Jan 23:03:31 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -31,7 +31,7 @@
 
 #----------------------------------------------------------------------INITIAL SETS
 
-new_float pixel 6
+new_float pixel 4
 new_window pixel 3
 workspace_layout default
 focus_follows_mouse no
