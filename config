@@ -31,8 +31,8 @@
 
 #----------------------------------------------------------------------INITIAL SETS
 
-new_float pixel 4
-new_window pixel 3
+new_float pixel 3
+new_window pixel 2
 workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
