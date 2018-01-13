@@ -1,11 +1,10 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Mon  8 Jan 11:21:39 GMT 2018
+# Last Change       - Sat 13 Jan 15:52:33 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-
 # These are my main i3-wm settings.
 #
 # I use jkl; for movement, as in VIM; if you are not a fan of the traditional
@@ -28,7 +27,6 @@
 # the way I wanted them to, which was all sorted once I stopped using bars. Don't
 # get me wrong, I think the bars are sweet, but I don't need them anymore. If you
 # want to use them, add in your bar block as you prefer. I recommend i3blocks.
-
 #----------------------------------------------------------------------INITIAL SETS
 
 new_float pixel 3
@@ -37,7 +35,7 @@ workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
 force_focus_wrapping no
-font pango: FreeMono bold 13
+font pango: Monospace bold 13
 #floating_maximum_size 1280 x 760
 floating_minimum_size 10 x 10
 popup_during_fullscreen smart
@@ -47,7 +45,7 @@ focus_on_window_activation urgent
 #---------------------------------------------------------------------MAIN BINDINGS
 
 bindsym Mod1+i border normal
-bindsym Mod1+u border pixel 0
+bindsym Mod1+u border pixel 2
 bindsym Mod1+Shift+space floating toggle
 bindsym Mod1+space focus mode_toggle
 bindsym Mod1+Shift+c reload
@@ -173,6 +171,8 @@ for_window [class="Firefox"] floating disabled
 for_window [class="Gimp"] floating disabled
 for_window [class="Org.gnome.Maps"] floating disabled
 for_window [class="TuxGuitar"] floating disabled
+for_window [class="Mplayer"] floating disabled
+for_window [class="Mplayer"] sticky enable
 
 #-----------------------------------------------------------------FOR WINDOW TITLES
 
