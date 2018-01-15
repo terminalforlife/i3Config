@@ -1,0 +1,70 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/partmount
+# Started On        - Mon 15 Jan 20:17:34 GMT 2018
+# Last Change       - Mon 15 Jan 20:40:54 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# A work in progress. Toggle-mount partitions with a simple keyboard shortcut.
+#
+# SYNTAX:    partmount [OPTS]
+#
+# ARGS:      --uuid|-U UUID       - Where UUID is one of the filesystem to mount.
+#            --label|-L LABEL     - Where LABEL is one of the filesystem to mount.
+#            --name|-N NAME       - Where NAME is one of the filesystem to mount.
+#
+# NOTE:      NAME is the block device name, for example: /dev/sda1
+#----------------------------------------------------------------------------------
+
+XERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; exit 1; }
+ERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; }
+
+[ -x /usr/bin/udisksctl ] || XERR "$LINENO" "Dependency '/usr/bin/udisksctl' not met."
+
+while [ "$1" ]; do
+	case "$1" in
+		--uuid|-U)
+			shift; UUID="$1"
+			[ -z "$UUID" ] && XERR "$LINENO" "Empty UUID." ;;
+		--label|-L)
+			shift; LABEL="${1// /\\x20}"
+			[ -z "$LABEL" ] && XERR "$LINENO" "Empty LABEL." ;;
+		--name|-N)
+			shift; NAME="$1"
+			[ -z "$NAME" ] && XERR "$LINENO" "Empty NAME." ;;
+		*)
+			XERR "$LINENO" "Incorrect argument(s) specified." ;;
+	esac
+
+	shift
+done
+
+if [ "$UUID" ]; then
+	if [ -e /dev/disk/by-uuid/"$UUID" ]; then
+		if ! /usr/bin/udisksctl mount -b /dev/disk/by-uuid/"$UUID" 2> /dev/null; then
+			/usr/bin/udisksctl unmount -b /dev/disk/by-uuid/"$UUID"
+		fi
+	else
+		XERR "$LINENO" "Chosen UUID is invalid or unavailable."
+	fi
+elif [ "$LABEL" ]; then
+	if [ -e /dev/disk/by-label/"$LABEL" ]; then
+		if ! /usr/bin/udisksctl mount -b /dev/disk/by-label/"$LABEL" 2> /dev/null; then
+			/usr/bin/udisksctl unmount -b /dev/disk/by-label/"$LABEL"
+		fi
+	else
+		XERR "$LINENO" "Chosen LABEL is invalid or unavailable."
+	fi
+elif [ "$NAME" ]; then
+	if [ -e /dev/disk/by-name/"$NAME" ]; then
+		if ! /usr/bin/udisksctl mount -b "$NAME" 2> /dev/null; then
+			/usr/bin/udisksctl unmount -b "$NAME"
+		fi
+	else
+		XERR "$LINENO" "Chosen NAME is invalid or unavailable."
+	fi
+fi
+
+[ $UID -eq 0 ] && XERR "$LINENO" "Root access isn't required."
