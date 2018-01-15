@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Mon 15 Jan 20:56:03 GMT 2018
+# Last Change       - Mon 15 Jan 20:59:41 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -53,24 +53,45 @@ if [ "$UUID" ]; then
 	if [ -e /dev/disk/by-uuid/"$UUID" ]; then
 		if ! /usr/bin/udisksctl mount -b /dev/disk/by-uuid/"$UUID" 2> /dev/null; then
 			/usr/bin/udisksctl unmount -b /dev/disk/by-uuid/"$UUID"
+			/usr/bin/notify-send --urgency=critical\
+				"Filesystem unmounted by partmount."
+		else
+			/usr/bin/notify-send --urgency=critical\
+				"Filesystem mounted by partmount."
 		fi
 	else
+		/usr/bin/notify-send --urgency=critical\
+			"ERROR: Chosen UUID is invalid or unavailable."
 		XERR "$LINENO" "Chosen UUID is invalid or unavailable."
 	fi
 elif [ "$LABEL" ]; then
 	if [ -e /dev/disk/by-label/"$LABEL" ]; then
 		if ! /usr/bin/udisksctl mount -b /dev/disk/by-label/"$LABEL" 2> /dev/null; then
 			/usr/bin/udisksctl unmount -b /dev/disk/by-label/"$LABEL"
+			/usr/bin/notify-send --urgency=critical\
+				"Filesystem unmounted by partmount."
+		else
+			/usr/bin/notify-send --urgency=critical\
+				"Filesystem mounted by partmount."
 		fi
 	else
+		/usr/bin/notify-send --urgency=critical\
+			"ERROR: Chosen LABEL is invalid or unavailable."
 		XERR "$LINENO" "Chosen LABEL is invalid or unavailable."
 	fi
 elif [ "$NAME" ]; then
 	if [ -e /dev/disk/by-name/"$NAME" ]; then
 		if ! /usr/bin/udisksctl mount -b "$NAME" 2> /dev/null; then
 			/usr/bin/udisksctl unmount -b "$NAME"
+			/usr/bin/notify-send --urgency=critical\
+				"Filesystem unmounted by partmount."
+		else
+			/usr/bin/notify-send --urgency=critical\
+				"Filesystem mounted by partmount."
 		fi
 	else
+		/usr/bin/notify-send --urgency=critical\
+			"ERROR: Chosen NAME is invalid or unavailable."
 		XERR "$LINENO" "Chosen NAME is invalid or unavailable."
 	fi
 fi
