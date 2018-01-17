@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Mon 15 Jan 21:01:34 GMT 2018
+# Last Change       - Wed 17 Jan 00:30:54 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -184,6 +184,7 @@ for_window [class="Org.gnome.Maps"] floating disabled
 for_window [class="TuxGuitar"] floating disabled
 for_window [class="Mplayer"] floating disabled; sticky enable
 for_window [class="Openshot"] floating disabled
+for_window [class="Evince"] floating disabled
 
 #-----------------------------------------------------------------FOR WINDOW TITLES
 
@@ -307,6 +308,7 @@ for_window [title="^(Clip|File) Properties$"] floating enable
 for_window [title="^Unsupported File Type$"] floating enable
 for_window [title="^Openshot$"] floating enable
 for_window [title="^Properties for .*$"] floating enable
+for_window [title="^Open Document$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
