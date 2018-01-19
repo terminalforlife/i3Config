@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Wed 17 Jan 00:30:54 GMT 2018
+# Last Change       - Thu 18 Jan 14:26:32 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -75,6 +75,7 @@ assign [class="Firefox"] 4
 assign [class="skypeforlinux"] 3
 assign [title="Facebook call . Mozilla Firefox"] 3 #TODO - Fix?
 assign [class="Thunderbird"] 7
+assign [class="Audacious"] 10
 
 #----------------------------------------------------------------------WINDOW FOCUS
 
@@ -145,12 +146,18 @@ bindsym shift+Mod4+Left resize grow width 1 px or 1 ppt
 #---------------------------------------------------------------FILESYSTEM MOUNTING
 
 bindsym Shift+Mod4+1 exec --no-startup-id\
-	/bin/bash $HOME/.i3a/partmount -L "1TB Internal HDD"
+	/bin/bash $HOME/.i3a/partmount -L "Main Data"
 
 bindsym Shift+Mod4+2 exec --no-startup-id\
-	/bin/bash $HOME/.i3a/partmount -L "1TB External USB2"
+	/bin/bash $HOME/.i3a/partmount -L "Media 1"
 
 bindsym Shift+Mod4+3 exec --no-startup-id\
+	/bin/bash $HOME/.i3a/partmount -L "Media 2"
+
+bindsym Shift+Mod4+4 exec --no-startup-id\
+	/bin/bash $HOME/.i3a/partmount -L "Media 3"
+
+bindsym Shift+Mod4+5 exec --no-startup-id\
 	/bin/bash $HOME/.i3a/partmount -L "CloneZilla"
 
 #--------------------------------------------------------------REDSHIFT ADJUSTMENTS
@@ -185,6 +192,7 @@ for_window [class="TuxGuitar"] floating disabled
 for_window [class="Mplayer"] floating disabled; sticky enable
 for_window [class="Openshot"] floating disabled
 for_window [class="Evince"] floating disabled
+for_window [class="Audacious"] floating disabled
 
 #-----------------------------------------------------------------FOR WINDOW TITLES
 
@@ -309,6 +317,19 @@ for_window [title="^Unsupported File Type$"] floating enable
 for_window [title="^Openshot$"] floating enable
 for_window [title="^Properties for .*$"] floating enable
 for_window [title="^Open Document$"] floating enable
+for_window [title="^Open Files$"] floating enable
+for_window [title="^Add Files$"] floating enable
+for_window [title="^Audacious Settings$"] floating enable
+for_window [title="^Spectrum Analyzer$"] floating disabled
+for_window [title="^Add URL$"] floating enable
+for_window [title="^Select main player window font:$"] floating enable
+for_window [title="^Select playlist font:$"] floating enable
+for_window [title="^Crossfade Settings$"] floating enable
+for_window [title="^Silence Removal Settings$"] floating enable
+for_window [title="^Sample Rate Converter Settings$"] floating enable
+for_window [title="^Remove Playlist$"] floating enable
+for_window [title="^Song Change Settings$"] floating enable
+for_window [title="^Desktop Notifications Settings$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
@@ -320,18 +341,29 @@ bindsym XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/sink_mute
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_raise
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_lower
 bindsym Shift+XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/source_mute
-bindsym XF86AudioPlay exec --no-startup-id /usr/bin/mocp -G
-bindsym Mod4+p exec --no-startup-id /bin/bash $HOME/.i3a/track_notify
-bindsym Mod4+XF86AudioNext exec --no-startup-id /usr/bin/mocp --seek +3
-bindsym Mod4+XF86AudioPrev exec --no-startup-id /usr/bin/mocp --seek -3
-bindsym XF86AudioNext exec --no-startup-id /usr/bin/mocp --next
-bindsym XF86AudioPrev exec --no-startup-id /usr/bin/mocp --previous
 bindsym XF86Calculator exec --no-startup-id /usr/bin/xcalc
 bindsym Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_take
 bindsym Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_sel_take
 bindsym Ctrl+Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_win_take
 bindsym Mod1+d exec --no-startup-id /bin/bash $HOME/.i3a/use_dmenu
 bindsym Mod1+shift+num exec --no-startup-id /bin/bash $HOME/bin/telldate
+
+#------------------------------------------------------MEDIA PLAYBACK CONTROL (MOC)
+
+#bindsym Mod4+p exec --no-startup-id /bin/bash $HOME/.i3a/track_notify
+#bindsym Mod4+XF86AudioNext exec --no-startup-id /usr/bin/mocp --seek +3
+#bindsym Mod4+XF86AudioPrev exec --no-startup-id /usr/bin/mocp --seek -3
+#bindsym XF86AudioPlay exec --no-startup-id /usr/bin/mocp -G
+#bindsym XF86AudioNext exec --no-startup-id /usr/bin/mocp --next
+#bindsym XF86AudioPrev exec --no-startup-id /usr/bin/mocp --previous
+
+#------------------------------------------------MEDIA PLAYBACK CONTROL (AUDACIOUS)
+
+bindsym XF86AudioNext exec --no-startup-id /usr/bin/audtool --playlist-advance
+bindsym XF86AudioPrev exec --no-startup-id /usr/bin/audtool --playlist-reverse
+bindsym Mod4+XF86AudioNext exec --no-startup-id /usr/bin/audtool --playback-seek-relative +10
+bindsym Mod4+XF86AudioPrev exec --no-startup-id /usr/bin/audtool --playback-seek-relative -10
+bindsym XF86AudioPlay exec --no-startup-id /usr/bin/audtool --playback-playpause
 
 #------------------------------------------------------------SESSION INITIALIZATION
 
