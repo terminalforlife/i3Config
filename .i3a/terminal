@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/terminal
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 30 Dec 23:50:50 GMT 2017
+# Last Change       - Sun 28 Jan 18:40:15 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -24,8 +24,8 @@ T(){ [ -x "$1" ] && { $@ & exit 0; } || exit 1; }
 
 #------------------------------------------------------CHOOSE YOUR TERMINAL(S) HERE
 
-T /usr/bin/xfce4-terminal
 T /usr/bin/terminology
+T /usr/bin/xfce4-terminal
 T /usr/bin/xfce4-terminal -x /bin/sh
 T /usr/bin/xfce4-terminal -x /usr/bin/vim -T "xterm-256color"
 T /usr/bin/xfce4-terminal -x /usr/bin/vim -E -T "xterm-256color"
