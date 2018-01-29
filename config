@@ -331,6 +331,7 @@ for_window [title="^Remove Playlist$"] floating enable
 for_window [title="^Song Change Settings$"] floating enable
 for_window [title="^Desktop Notifications Settings$"] floating enable
 for_window [title="^Equaliser$"] floating enable
+for_window [title="^Cancel All Downloads\?$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
