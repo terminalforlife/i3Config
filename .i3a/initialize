@@ -90,7 +90,7 @@ COMPCONF="$HOME/.config/compton.conf"
 
 # Set bell volume to 70%, disable DPMS (power-saving for your monitor), and set the
 # keyboard repeat delay and rate.
-[ -x /usr/bin/xset ] && /usr/bin/xset b 50 -dpms r rate 170 7 # m default
+[ -x /usr/bin/xset ] && /usr/bin/xset b 50 -dpms r rate 170 70 # m default
 
 #TODO - Add this instead as a toggle-able feature.
 # Set this to disable your keyboard autorepeat; handy to improve your terminal or
