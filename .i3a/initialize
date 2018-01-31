@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 27 Jan 03:39:53 GMT 2018
+# Last Change       - Wed 31 Jan 14:46:13 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -17,64 +17,60 @@ VOLCHSND="/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga"
 SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
 COMPCONF="$HOME/.config/compton.conf"
 
-# Run a logging program for TCP connections.
-[ -x $HOME/bin/tcpwatch ] && $HOME/bin/tcpwatch & disown
-
 # Set background (wallpaper) using feh or nitrogen; whichever is available.
-[ -f "$BACKGROUND" -a -r "$BACKGROUND" ] && {
+if [ -f "$BACKGROUND" -a -r "$BACKGROUND" ]; then
 	if [ -x /usr/bin/feh ]; then
 		/usr/bin/feh --bg-center "$BACKGROUND" & disown
 	elif [ -x /usr/bin/nitrogen ]; then
 		/usr/bin/nitrogen "$BACKGROUND" & disown
 	fi
-}
+fi
+
+# Load compton (lightweight compositing manager) and its config file. My config
+# file can be found in the miscellaneous repository. Or use your own. If you don't
+# want to use a config file, change the following compton command as applicable.
+if [ -x /usr/bin/compton ]; then
+	if [ -f "$COMPCONF" -a -r "$COMPCONF" ]; then
+		/usr/bin/compton --config "$COMPCONF" -b & disown
+	fi
+elif [ -x /usr/bin/xcompmgr ]; then
+	# If compton isn't found, but xcompmgr is, then use that instead.
+	/usr/bin/xcompmgr -cCfFn
+fi
 
 # Load up dunst, a lightweight and feature-rich notification daemon.
-[ -x /usr/bin/dunst ] && {
+if [ -x /usr/bin/dunst ]; then
 	DUNSTRC="$HOME/.config/dunst/dunstrc"
 	/usr/bin/dunst -config "$DUNSTRC" & disown
-}
+fi
 
 # Load up a small script which uses your notification daemon and notify-send to
 # display notifications upon certain system changes reported by the kernel. This
 # can be found in the miscellaneous repository.
-[ -x /usr/bin/syswatch ] && /usr/bin/syswatch & disown
+[ -x /usr/bin/syswatch ] && { /usr/bin/syswatch & disown; }
 
 # Be sure pulseaudio is enabled, and set up the bell sound.
-[ -x /usr/bin/pactl -a -x /usr/bin/pulseaudio ] && {
+if [ -x /usr/bin/pactl -a -x /usr/bin/pulseaudio ]; then
 	/usr/bin/pulseaudio --check || /usr/bin/pulseaudio --start & disown
 
 	# Also load up an alert sound to be used by shell programs.
-	[ -f "$ALERTSND" -a -r "$ALERTSND" ] && {
+	if [ -f "$ALERTSND" -a -r "$ALERTSND" ]; then
 		/usr/bin/pactl upload-sample $ALERTSND x11-alert & disown
-	}
+	fi
 
 	# Also load up an notification sound to be used by shell programs.
-	[ -f "$VOLCHSND" -a -r "$VOLCHSND" ] && {
+	if [ -f "$VOLCHSND" -a -r "$VOLCHSND" ]; then
 		/usr/bin/pactl upload-sample $VOLCHSND x11-volume-change
-	}
+	fi
 
 	# Load up and enable the standard bell.
-	[ -f "$BELLSND" -a -r "$BELLSND" ] && {
+	if [ -f "$BELLSND" -a -r "$BELLSND" ]; then
 		/usr/bin/pactl upload-sample $BELLSND x11-bell & disown
 
 		/usr/bin/pactl load-module module-x11-bell\
 			sample=x11-bell display=$DISPLAY & disown
-	}
-
-	#TODO - Why won't this work!? It works when I enter it manually.
-	# Get and export the device name of the source and sink. This is required
-	# for various sound effects to work in this i3 setup.
-	#while read -ra X; do
-	#	if [[ "${X[@]%%: *}" == Default\ Source:\ * ]]; then
-	#		printf -v PA_DEF_SOURCE "%s" "${X[2]}"
-	#		export PA_DEF_SOURCE
-	#	elif [[ "${X[@]%%: *}" == Default\ Sink:\ * ]]; then
-	#		printf -v PA_DEF_SINK "%s" "${X[2]}"
-	#		export PA_DEF_SINK
-	#	fi
-	#done <<< "$(eval env /usr/bin/pactl info short)"
-}
+	fi
+fi
 
 # Begin a slideshow of wallpapers. The feh_slides script takes arguments like so:
 # i N           - The interval N at which images will change. (/bin/sleep format)
@@ -82,80 +78,63 @@ COMPCONF="$HOME/.config/compton.conf"
 #/bin/bash $HOME/.i3a/feh_slides -i 5s -d "$HOME/Pictures/Wallpapers/Steampunk Wallpapers" & disown
 
 # Enable the use of Ctrl + Alt + Backspace to kill X.
-[ -x /usr/bin/setxkbmap ] && {
+if [ -x /usr/bin/setxkbmap ]; then
 	/usr/bin/setxkbmap -option terminate:ctrl_alt_bksp & disown
-}
+fi
 
-[ -x /usr/bin/xsetroot ] && /usr/bin/xsetroot -solid "#000000" & disown
+[ -x /usr/bin/xsetroot ] && { /usr/bin/xsetroot -solid "#000000" & disown; }
 
 # Set bell volume to 70%, disable DPMS (power-saving for your monitor), and set the
 # keyboard repeat delay and rate.
-[ -x /usr/bin/xset ] && /usr/bin/xset b 50 -dpms r rate 170 70 # m default
-
-#TODO - Add this instead as a toggle-able feature.
-# Set this to disable your keyboard autorepeat; handy to improve your terminal or
-# vim experience, once you quit raging at the lack of autorepeat! Overrides the
-# keyboard setting above; this is intentional.
-#[ -x /usr/bin/xset ] && /usr/bin/xset r off
+[ -x /usr/bin/xset ] && { /usr/bin/xset b 50 -dpms r rate 170 70 & disown; }
 
 # Remap F1 to Esc, and disable Caps Lock.
-[ -x /usr/bin/xmodmap ] && {
+if [ -x /usr/bin/xmodmap ]; then
 	/usr/bin/xmodmap -e "keysym F1 = Escape" -e "clear lock" & disown
-}
+fi
 
 # Disallow user messages to display in the terminal.
-[ -x /usr/bin/mesg ] && /usr/bin/mesg n & disown
+[ -x /usr/bin/mesg ] && { /usr/bin/mesg n & disown; }
 
 # Load keynav to get mouse controls with a keyboard.
-[ -x /usr/bin/keynav ] && /usr/bin/keynav & disown
-
-# Load compton (lightweight compositing manager) and its config file. My config
-# file can be found in the miscellaneous repository. Or use your own. If you don't
-# want to use a config file, change the following compton command as applicable.
-if [ -x /usr/bin/compton ]; then
-	[ -f "$COMPCONF" -a -r "$COMPCONF" ] && {
-		/usr/bin/compton --config "$COMPCONF" -b & disown
-	}
-elif [ -x /usr/bin/xcompmgr ]; then
-	# If compton isn't found, but xcompmgr is, then use that instead.
-	/usr/bin/xcompmgr -cCfFn
-fi
+[ -x /usr/bin/keynav ] && { /usr/bin/keynav & disown; }
 
 # Redshift sets the gamma to the neutral; default.
 [ -x /usr/bin/redshift ] && { /usr/bin/redshift -O 6500K & disown; }
 
 # Play a little sound upon login. Uses a path at the start of this script.
-[ -f "$SOUND04" -a -r "$SOUND04" ] && {
-	[ -x /usr/bin/paplay ] && {
-		/usr/bin/paplay --volume 40000 "$SOUND04" & disown
-	}
-}
+if [ -f "$SOUND04" -a -r "$SOUND04" -a -x /usr/bin/paplay ]; then
+	/usr/bin/paplay --volume 40000 "$SOUND04" & disown
+fi
 
 # Check for kernel version changes; see kernelchk repository.
-[ -x /usr/bin/kernelchk ] && /usr/bin/kernelchk & disown
+[ -x /usr/bin/kernelchk ] && { /usr/bin/kernelchk & disown; }
 
 # Launches mocp in the background, ready for music.
 #[ -x /usr/bin/mocp ] && /usr/bin/mocp -S & disown
 
 # Launches Audacious in the background, ready for music.
-[ -x /usr/bin/audacious ] && /usr/bin/audacious & disown
+[ -x /usr/bin/audacious ] && { /usr/bin/audacious & disown; }
 
 # Launch Firefox, to ensure I get notifications from Facebook and YouTube.
-[ -x /usr/bin/firefox ] && /usr/bin/firefox & disown
+[ -x /usr/bin/firefox ] && { /usr/bin/firefox & disown; }
 
 # Launch Thunderbird. I often forget, so this helps me.
 #[ -x /usr/bin/thunderbird ] && { /usr/bin/thunderbird & disown; }
+
+# Log medication taken; see miscellaneous repository.
+[ -x /usr/bin/medlogip ] && { /usr/bin/medlogip & disown; }
 
 # Give things enough time to load up before continuing. Make this longer if you're
 # not using an SSD or have an older machine.
 /bin/sleep 3s
 
-# Log medication taken; see miscellaneous repository.
-[ -x /usr/bin/medlogip ] && /usr/bin/medlogip & disown
-
 # Run notify-upgrade and have it check for updates in the background. To get this
 # small shell script, you can find it in the notify-upgrade repository.
-[ -x /usr/bin/notify-upgrade ] && /usr/bin/notify-upgrade -i 60 & disown
+[ -x /usr/bin/notify-upgrade ] && { /usr/bin/notify-upgrade -i 60 & disown; }
+
+# Give it a bit of random time before starting mfw, to save being so bombarded.
+/bin/sleep ${RANDOM%???}s
 
 # Download & install this with: sudo insit -C miscellaneous mfw /usr/bin/mfw 755 0
-[ -x /usr/bin/mfw ] && /usr/bin/mfw 60 & disown
+[ -x /usr/bin/mfw ] && { /usr/bin/mfw 60 & disown; }
