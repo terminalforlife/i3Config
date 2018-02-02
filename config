@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri  2 Feb 19:39:48 GMT 2018
+# Last Change       - Fri  2 Feb 23:30:31 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -335,6 +335,7 @@ for_window [title="^Equaliser$"] floating enable
 for_window [title="^Cancel All Downloads\?$"] floating enable
 for_window [title="^Blender Error$"] floating enable
 for_window [title="^Importing FFmpeg-compatible files$"] floating enable
+for_window [title="^Error!$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
