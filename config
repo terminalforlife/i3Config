@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun 28 Jan 14:16:57 GMT 2018
+# Last Change       - Thu  1 Feb 11:05:09 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -57,6 +57,7 @@ bindsym Shift+Ctrl+Up exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -
 bindsym Shift+Ctrl+Down exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -l
 bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
 bindsym Mod4+k exec --no-startup-id /bin/bash $HOME/.i3a/key_autorepeat
+bindsym Mod4+m exec --no-startup-id /bin/sleep 1s && /usr/bin/xset dpms force off
 
 #-----------------------------------------------------------------------SOME COLORS
 
@@ -333,6 +334,7 @@ for_window [title="^Desktop Notifications Settings$"] floating enable
 for_window [title="^Equaliser$"] floating enable
 for_window [title="^Cancel All Downloads\?$"] floating enable
 for_window [title="^Blender Error$"] floating enable
+for_window [title="^Importing FFmpeg-compatible files$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
