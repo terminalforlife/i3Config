@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3config/.flout/pfreestorage
+# Started On        - Sun  4 Feb 20:00:09 GMT 2018
+# Last Change       - Sun  4 Feb 20:55:09 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Display the device $1's used amount of storage space, in percent.
+#----------------------------------------------------------------------------------
+
+while read -a X; do
+	if [ "${X[0]}" == "$1" ]; then
+		printf "%3d%%\n" "${X[4]%\%}"
+	fi
+done <<< "$(/bin/df -m)"
+
+unset X

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3config/.flout/usercountall
+# Started On        - Sun  4 Feb 20:00:09 GMT 2018
+# Last Change       - Sun  4 Feb 20:58:59 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Display the current number of users logged in. (may contain duplicates)
+#----------------------------------------------------------------------------------
+
+read -a X <<< `/usr/bin/users`
+printf "%2d" "${#X[@]}"
+
+unset X

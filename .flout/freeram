@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3config/.flout/freeram
+# Started On        - Sun  4 Feb 20:00:09 GMT 2018
+# Last Change       - Sun  4 Feb 20:42:11 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Display the currently available RAM, in MB/MiB.
+#----------------------------------------------------------------------------------
+
+while read -a X; do
+	if [ "${X[0]}" == "Mem:" ]; then
+		printf "%'6dM\n" "${X[3]}"
+	fi
+done <<< "$(/usr/bin/free -m)"
+
+unset X

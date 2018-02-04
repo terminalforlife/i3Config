@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3config/.flout/usedstorage
+# Started On        - Sun  4 Feb 20:00:09 GMT 2018
+# Last Change       - Sun  4 Feb 20:52:29 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Display the device $1's used amount of storage space, in MB/MiB.
+#----------------------------------------------------------------------------------
+
+while read -a X; do
+	if [ "${X[0]}" == "$1" ]; then
+		printf "%'7dM\n" "${X[2]}"
+	fi
+done <<< "$(/bin/df -m)"
+
+unset X
