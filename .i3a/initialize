@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri  2 Feb 19:42:41 GMT 2018
+# Last Change       - Sun  4 Feb 15:39:27 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -108,6 +108,7 @@ if [ -f "$SOUND04" -a -r "$SOUND04" -a -x /usr/bin/paplay ]; then
 	/usr/bin/paplay --volume 40000 "$SOUND04" & disown
 fi
 
+# Notify the user of NumLock and CapsLock state changes.
 [ -x /usr/bin/capnum ] && { /usr/bin/capnum 3 & disown; }
 
 # Check for kernel version changes; see kernelchk repository.
@@ -130,7 +131,7 @@ fi
 
 # Give things enough time to load up before continuing. Make this longer if you're
 # not using an SSD or have an older machine.
-/bin/sleep 10s
+#/bin/sleep 10s
 
 # Run notify-upgrade and have it check for updates in the background. To get this
 # small shell script, you can find it in the notify-upgrade repository.
