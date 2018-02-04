@@ -3,13 +3,11 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/update_links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Tue  7 Nov 20:04:08 GMT 2017
+# Last Change       - Sun  4 Feb 21:07:50 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-
 # Just a simple, quick script to update the hard links when changing branches.
-
 #------------------------------------------------------------------------------MAIN
 
 XERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; exit 1; }
@@ -30,6 +28,11 @@ for DEP in /bin/{ln,rm}; {
 }
 
 for FILE in .i3a/* ; {
+	/bin/rm "$HOME/$FILE" 2> /dev/null
+	/bin/ln "$FILE" "$HOME/$FILE" 2> /dev/null
+}
+
+for FILE in .flout/* ; {
 	/bin/rm "$HOME/$FILE" 2> /dev/null
 	/bin/ln "$FILE" "$HOME/$FILE" 2> /dev/null
 }
