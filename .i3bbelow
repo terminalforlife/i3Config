@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Tue  6 Feb 16:44:47 GMT 2018
+# Last Change       - Tue  6 Feb 17:10:26 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -13,14 +13,14 @@ separator_block_width=37
 markup=none
 
 [source]
-label= Source:
+label= OP:
 command=/bin/bash $HOME/.libi3bview 24
 color=#ffffff
 separator=false
 interval=1
 
 [sink]
-label= Sink:
+label= IP:
 command=/bin/bash $HOME/.libi3bview 26
 color=#ffffff
 separator=false
