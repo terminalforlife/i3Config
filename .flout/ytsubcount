@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3config/.flout/ytsubcount
+# Started On        - Mon  5 Feb 16:21:51 GMT 2018
+# Last Change       - Mon  5 Feb 17:40:17 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Display the total number of subscribers for channel YT_URL.
+#----------------------------------------------------------------------------------
+
+YT_URL="https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg"
+
+while read LINE; do
+	if [[ "$LINE" =~ [0-9]+\ subscribers\"\>[0-9]+ ]]; then
+		for FIELD in $LINE; {
+			if [[ "$FIELD" =~ subscribers\"\>[0-9]+\</span\> ]]; then
+				RESULT="${FIELD//[!0-9]}"
+
+				if [[ "$RESULT" =~ ^[0-9]+$ ]]; then
+					printf "%3d" "$RESULT"
+				fi
+
+				break 2
+			fi
+		}
+	fi
+done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
