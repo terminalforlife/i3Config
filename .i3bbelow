@@ -1,0 +1,97 @@
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3bbelow
+# Started On        - Sun  4 Feb 22:01:05 GMT 2018
+# Last Change       - Tue  6 Feb 16:44:47 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# This is the i3blocks configuration file for the bottom bar. This also assumes a
+# screen resolution of 1920x1080, in order for the text to fit properly.
+#----------------------------------------------------------------------------------
+
+separator_block_width=37
+markup=none
+
+[source]
+label= Source:
+command=/bin/bash $HOME/.libi3bview 24
+color=#ffffff
+separator=false
+interval=1
+
+[sink]
+label= Sink:
+command=/bin/bash $HOME/.libi3bview 26
+color=#ffffff
+separator=false
+interval=1
+
+[usedram]
+label= RAM:
+command=/bin/bash $HOME/.libi3bview 21
+color=#ffffff
+separator=false
+interval=1
+
+[usedswap]
+label= SWAP:
+command=/bin/bash $HOME/.libi3bview 19
+color=#ffffff
+separator=false
+interval=1
+
+[disk]
+label= Home:
+color=#ffffff
+separator=false
+command=/bin/bash $HOME/.libi3bview 17
+interval=1
+
+[disk]
+label= Root:
+color=#ffffff
+separator=false
+command=/bin/bash $HOME/.libi3bview 15
+interval=1
+
+[download_total]
+label= DL: 
+color=#ffffff
+command=/bin/bash $HOME/.libi3bview 14
+separator=false
+interval=1
+
+[upload_total]
+label= UL:
+color=#ffffff
+command=/bin/bash $HOME/.libi3bview 13
+separator=false
+interval=1
+
+[active_tcp_connection_count]
+label= TCPA:
+command=/bin/bash $HOME/.libi3bview 12
+color=#ffffff
+separator=false
+interval=1
+
+[listening_tcp_count]
+label= TCPL:
+command=/bin/bash $HOME/.libi3bview 11
+color=#ffffff
+separator=false
+interval=1
+
+[date]
+label= 
+color=#ffffff
+command=/bin/bash $HOME/.libi3bview 09
+separator=false
+interval=1
+
+[time]
+label= 
+color=#ffffff
+command=/bin/bash $HOME/.libi3bview 08
+separator=false
+interval=1
