@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/githubfollows
+# Started On        - Tue  6 Feb 20:21:00 GMT 2018
+# Last Change       - Tue  6 Feb 21:00:58 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Output the current number of followers the target account has.
+#----------------------------------------------------------------------------------
+
+GH_URL="https://github.com/terminalforlife?tab=followers"
+
+read -a FETCH <<< "$(
+	while read LINE; do
+		#TODO - This is probably unreliable, but it's something. Revise?
+		[[ "$LINE" =~ ^[0-9]+$ ]] && printf "%d " "${LINE//[!0-9]}"
+	done <<< "$(/usr/bin/wget -q "$GH_URL" -O -)"
+)"
+
+printf "%2d" "${FETCH[2]}"
+
+unset LINE GH_URL FETCH
