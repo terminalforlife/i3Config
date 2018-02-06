@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Tue  6 Feb 17:52:30 GMT 2018
+# Last Change       - Tue  6 Feb 21:06:44 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -20,6 +20,9 @@
 
 # Your full YouTube URL goes here, in order to parse it to count the subscribers.
 YT_URL="https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg"
+
+# Your full GitHub URL goes here, in order to parse it to count the followers.
+GH_URL="https://github.com/terminalforlife"
 
 YT_PAD=3                          # Spaces to pad for the YouTube subscriber count.
 IFACE="enp3s0"                    # What is your network interface name?
@@ -40,11 +43,11 @@ ytsubcount(){
 			for FIELD in $LINE; {
 				if [[ "$FIELD" =~ subscribers\"\>[0-9]+\</span\> ]]; then
 					RESULT="${FIELD//[!0-9]}"
-	
+
 					if [[ "$RESULT" =~ ^[0-9]+$ ]]; then
 						printf "%${YT_PAD}d" "$RESULT"
 					fi
-	
+
 					break 2
 				fi
 			}
@@ -57,13 +60,13 @@ ytsubcount(){
 upgrade_count(){
 	OPT='APT::Get::Show-User-Simulation-Note=false'
 
-        while read -a X; do
-                if [[ "${X[*]}" == *not\ to\ upgrade. ]]; then                         
-                        SUM="$((${X[0]}+${X[3]}))"                                     
+	while read -a X; do
+		if [[ "${X[*]}" == *not\ to\ upgrade. ]]; then
+			SUM="$((${X[0]}+${X[3]}))"
 			printf "%2d" "$SUM"
-                        break                                                          
-                fi      
-        done <<< "$(/usr/bin/apt-get -o $OPT -qs dist-upgrade)"
+			break
+		fi
+	done <<< "$(/usr/bin/apt-get -o $OPT -qs dist-upgrade)"
 }
 
 #--------------------------------------------------------CONNECTED USB DEVICE COUNT
@@ -352,10 +355,10 @@ storage_device_count(){
 latest_stable_kernel(){
 	KERN_URL="https://www.kernel.org/"
 	RE='<strong>[0-9]+.[0-9]+.[0-9]+</strong>'
-	
+
 	while read -a LINE; do
 		[ "${LINE[0]}" == \<td\>stable:\</td\> ] && CORRECT="true"
-	
+
 		if [ "$CORRECT" == "true" ]; then
 			if [[ "${LINE[@]}" =~ $RE ]]; then	
 				IFS="<" read -a SUB <<< "${LINE[@]}"
@@ -392,6 +395,21 @@ ltonemin_userfiles_modtime(){
 open_terms(){
 	read -a X <<< `/bin/pidof "$TERMINAL"`
 	printf "%2d" "${#X[@]}"
+}
+
+#------------------------------------------------------------------GITHUB_FOLLOWERS
+
+github_follows(){
+	GH_URL="https://github.com/terminalforlife?tab=followers"
+
+	read -a FETCH <<< "$(
+		while read LINE; do
+			#TODO - This is probably unreliable, but it's something. Revise?
+			[[ "$LINE" =~ ^[0-9]+$ ]] && printf "%d " "${LINE//[!0-9]}"
+		done <<< "$(/usr/bin/wget -q "$GH_URL" -O -)"
+	)"
+
+	printf "%2d" "${FETCH[2]}"
 }
 
 #--------------------------------------------------------------------CALL FUNCTIONS
@@ -434,4 +452,5 @@ case "$1" in
 	41) sbar_noti & ;;
 	42) upgrade_count & ;;
 	43) ytsubcount & ;;
+	44) github_follows & ;;
 esac
