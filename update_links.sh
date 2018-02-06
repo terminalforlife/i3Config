@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/update_links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Sun  4 Feb 21:07:50 GMT 2018
+# Last Change       - Tue  6 Feb 16:36:17 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -28,15 +28,23 @@ for DEP in /bin/{ln,rm}; {
 }
 
 for FILE in .i3a/* ; {
-	/bin/rm "$HOME/$FILE" 2> /dev/null
-	/bin/ln "$FILE" "$HOME/$FILE" 2> /dev/null
+	/bin/rm -v "$HOME/$FILE" 2> /dev/null
+	/bin/ln -v "$FILE" "$HOME/$FILE" 2> /dev/null
 }
 
 for FILE in .flout/* ; {
-	/bin/rm "$HOME/$FILE" 2> /dev/null
-	/bin/ln "$FILE" "$HOME/$FILE" 2> /dev/null
+	/bin/rm -v "$HOME/$FILE" 2> /dev/null
+	/bin/ln -v "$FILE" "$HOME/$FILE" 2> /dev/null
 }
 
 CFILE="$HOME/.config/i3/config"
-/bin/rm "$CFILE" 2> /dev/null
-/bin/ln config "$CFILE" 2> /dev/null
+/bin/rm -v "$CFILE" 2> /dev/null
+/bin/ln -v config "$CFILE" 2> /dev/null
+
+CFILE="$HOME/.i3bbelow"
+/bin/rm -v "$CFILE" 2> /dev/null
+/bin/ln -v .i3bbelow "$CFILE" 2> /dev/null
+
+CFILE="$HOME/.i3babove"
+/bin/rm -v "$CFILE" 2> /dev/null
+/bin/ln -v .i3babove "$CFILE" 2> /dev/null
