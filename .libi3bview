@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Tue  6 Feb 22:54:32 GMT 2018
+# Last Change       - Tue  6 Feb 22:58:21 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -448,7 +448,6 @@ case "$1" in
 	37) mocp_info & ;;
 	38) psa_count & ;;
 	40) usb_count & ;;
-	41) sbar_noti & ;;
 	42) upgrade_count & ;;
 	43) ytsubcount & ;;
 	44) github_follows & ;;
