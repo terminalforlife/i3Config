@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Tue  6 Feb 21:06:44 GMT 2018
+# Last Change       - Tue  6 Feb 22:54:32 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -38,10 +38,13 @@ TERMINAL="terminology"            # Which one terminal do you use? (file name)
 #----------------------------------------------------------YOUTUBE SUBSCRIBER COUNT
 
 ytsubcount(){
+	RE1='[0-9]+ subscribers">[0-9]+'
+	RE2='subscribers">[0-9]+</span>'
+
 	while read LINE; do
-		if [[ "$LINE" =~ [0-9]+\ subscribers\"\>[0-9]+ ]]; then
+		if [[ "$LINE" =~ $RE1 ]]; then
 			for FIELD in $LINE; {
-				if [[ "$FIELD" =~ subscribers\"\>[0-9]+\</span\> ]]; then
+				if [[ "$FIELD" =~ $RE2 ]]; then
 					RESULT="${FIELD//[!0-9]}"
 
 					if [[ "$RESULT" =~ ^[0-9]+$ ]]; then
@@ -140,6 +143,7 @@ net_status(){
 			break
 		fi
 	done <<< "$(/bin/ip link)"
+
 	[ "$Z" == "UP" ] && printf "[0]" || printf "[1]"
 }
 
@@ -155,7 +159,9 @@ max_proc_usage(){
 many_processes(){
 	local A=""
 	for ITEM in *; {
-		{ [ -d "$ITEM" ] && [[ "$ITEM" =~ [0-9]+ ]]; } && A+="$ITEM "
+		if [[ -d "$ITEM" && "$ITEM" =~ [0-9]+ ]]; then
+			A+="$ITEM "
+		fi
 	}
 
 	declare -i D=0
@@ -167,10 +173,10 @@ many_processes(){
 
 session_uptime(){
 	while read -a X; do
-		[ "${X[1]}" == "up" ] && {
+		if [ "${X[1]}" == "up" ]; then
 			printf "%3d\n" "${X[2]%,}"
 			break
-		}
+		fi
 	done <<< "$(/usr/bin/uptime)"
 }
 
@@ -206,18 +212,18 @@ cpu_freq(){
 
 #-----------------------------------------------------------PLAYBACK VOLUME (pactl)
 
-master_volume_pactl(){
+output_volume_pacmd(){
 	while read -a X; do
-		if [ "${X[0]}" == "Volume:" ]; then
-			printf "%d%%\n" "$((${X[4]%\%}-1))"
+		if [ "${X[0]}" == volume: ]; then
+			printf "%3d%%" "$((${X[4]%\%}-1))"
 			break
 		fi
-	done <<< "$(/usr/bin/pactl list sinks)"
+	done <<< "$(/usr/bin/pacmd list-sinks)"
 }
 
 #---------------------------------------------------------MICROPHONE STATUS (pacmd)
 
-mic_status(){
+input_volume_pacmd(){
 	# If you only have one mic device, you'll want to omit the check for the
 	# FIRST. I use this because I have an external mixer and the system's own
 	# mic port, but I don't use the first (system's), just the mixer's.
@@ -246,9 +252,7 @@ countdown(){
 
 ram_used_mb(){
 	while read -a X; do
-		if [ "${X[0]}" == "Mem:" ]; then
-			printf "%'6dM\n" "${X[2]}"
-		fi
+		[ "${X[0]}" == "Mem:" ] && printf "%'6dM\n" "${X[2]}"
 	done <<< "$(/usr/bin/free -m)"
 }
 
@@ -256,9 +260,7 @@ ram_used_mb(){
 
 swap_used_mb(){
 	while read -a X; do
-		if [ "${X[0]}" == "Swap:" ]; then
-			printf "%'6dM\n" "${X[2]}"
-		fi
+		[ "${X[0]}" == "Swap:" ] && printf "%'6dM\n" "${X[2]}"
 	done <<< "$(/usr/bin/free -m)"
 }
 
@@ -306,9 +308,7 @@ session_ul_total(){
 
 active_tcp_count(){
 	while read -a X; do
-		if [ "${X[0]}" == "TCP:" ]; then
-			printf "%3d" "${X[3]%,}"
-		fi
+		[ "${X[0]}" == "TCP:" ] && printf "%3d" "${X[3]%,}"
 	done <<< "$(/bin/ss -s -n)"
 }
 
@@ -324,6 +324,7 @@ listening_tcp_count(){
 cpu_temp(){
 	while read -a X; do
 		[ "${X[0]}${X[2]}" == "Physical0:" ] && LINE="true"
+
 		if [ "${X[0]}" == "temp1_input:" -a "$LINE" == "true" ]; then
 			printf "%2d°C" "${X[1]%.*}"
 			break
@@ -359,12 +360,10 @@ latest_stable_kernel(){
 	while read -a LINE; do
 		[ "${LINE[0]}" == \<td\>stable:\</td\> ] && CORRECT="true"
 
-		if [ "$CORRECT" == "true" ]; then
-			if [[ "${LINE[@]}" =~ $RE ]]; then	
-				IFS="<" read -a SUB <<< "${LINE[@]}"
-				printf "%s\n" "${SUB[2]/*>}"
-				break
-			fi
+		if [[ "$CORRECT" == "true" && "${LINE[@]}" =~ $RE ]]; then
+			IFS="<" read -a SUB <<< "${LINE[@]}"
+			printf "%s\n" "${SUB[2]/*>}"
+			break
 		fi
 	done <<< "$(/usr/bin/wget -q "$KERN_URL" -O -)"
 }
@@ -434,8 +433,8 @@ case "$1" in
 	19) swap_used_mb & ;;
 	21) ram_used_mb & ;;
 	23) countdown & ;;
-	24) mic_status & ;;
-	26) master_volume_pactl & ;;
+	24) input_volume_pacmd & ;;
+	26) output_volume_pacmd & ;;
 	27) cpu_freq & ;;
 	28) kernel_check & ;;
 	29) avg_cpu_idle & ;;
