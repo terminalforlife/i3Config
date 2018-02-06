@@ -15,7 +15,6 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 * Scripts which allow additional features and help keep the i3 "config" file nice and tidy.
 * For as long as I use i3-wm (I dunno how I could survive without it!), these will surely be updated and maintained.
 * The flag --no-startup-id is attached to all instanced of "exec", to avoid the endless busy cursor.
-* Absolutely no bars, as I consider them unnecessary; this gives you the entire screen to utilize.
 * Support for various XF86 keys, as I use quite a few of those with various keyboards.
 * Support for taking full screenshots as well as "Selectshots", which make use of scrot with the -s flag.
 * Support for floating webcam window at the touch of a button(s) which allows for easier screencasting.
@@ -27,6 +26,7 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 * Easy support for various event sound effects. I've not yet got mine up on GitHub. See below.
 * A nice wallpaper slideshow using feh. See program "dlspwalls" in miscellaneous repository.
 * Simple feature to enable and disable keyboard autorepeat at the press of a button.
+* Extensive i3blocks support, now featuring 2 satistically-rich bars. These can be disabled if desired.
 
 ...and probably other things I'm missing.
 
@@ -42,6 +42,7 @@ scrot - command line screen capture utility
 suckless-tools - simple commands for minimalistic window managers
 xfce4-terminal - Xfce terminal emulator
 libnotify4 - sends desktop notifications to a notification daemon
+i3blocks - highly flexible status line for the i3 window manager
 feh - imlib2 based image viewer
 xorg - X.Org X Window System
 ```
