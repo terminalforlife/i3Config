@@ -1,17 +1,18 @@
 #!/bin/bash
 
 #----------------------------------------------------------------------------------
-# Project Name      - $HOME/.i3a/libtflbar
+# Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Tue  6 Feb 17:09:02 GMT 2018
+# Last Change       - Tue  6 Feb 17:18:53 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
+# This was written for Ubuntu and Ubuntu-based distributions of Linux, with i3-wm.
+# However, the outputs these functions offer can still be used outside of i3-wm.
+#----------------------------------------------------------------------------------
 
 #TODO - Use absolute paths for all executables.
-#TODO - Incorporate a better depchk system - perhaps per section?
-#TODO - Do away with as many instances of cut, grep, sed, and awk as possible, -
-#       but without sacrificing too much performance, as that is important here!
+#TODO - Do away with as many instances of sed as possible.
 
 [ $UID -eq 0 ] && exit 1
 
@@ -25,6 +26,8 @@ ROOT_DEV="/dev/sda1"
 ROOT_DEV_PAD=7
 HOME_DEV="/dev/sdb1"
 HOME_DEV_PAD=7
+CD_TARGET="2018-12-25"
+TERMINAL="terminology"
 
 #----------------------------------------------------------YOUTUBE SUBSCRIBER COUNT
 
@@ -171,7 +174,7 @@ avg_cpu_idle(){
 	while read -a X; do
 		[ ${L:-1} -eq 0 ] && Y="${X[5]}"
 		[ "${X[0]}" == "avg-cpu:" ] && L=0
-	done <<< "$(iostat -c)"
+	done <<< "$(/usr/bin/iostat -c)"
 	printf "%3d%%\n" "${Y%.*}"
 }
 
@@ -224,9 +227,8 @@ mic_status(){
 #---------------------------------------------------------COUNTDOWN UNTIL (SECONDS)
 
 countdown(){
-	TARGET="2018-12-25"
 	printf -v NOW "%(%F)T\n" "-1"
-	RESULT=$((`/bin/date -d "$TARGET" +%s` - `printf '%(%s)T'`))
+	RESULT=$((`/bin/date -d "$CD_TARGET" +%s` - `printf '%(%s)T'`))
 	printf "%'10d" "$RESULT"
 }
 
@@ -378,17 +380,17 @@ ltonemin_userfiles_modtime(){
 	printf "%2d" "${#X[@]}"
 }
 
-#--------------------------------------------NUMBER OF OPEN TERMINALS (Terminology)
+#----------------------------------------------------------NUMBER OF OPEN TERMINALS
 
-open_terms_terminology(){
-	read -a X <<< `/bin/pidof terminology`
+open_terms(){
+	read -a X <<< `/bin/pidof "$TERMINAL"`
 	printf "%2d" "${#X[@]}"
 }
 
 #--------------------------------------------------------------------CALL FUNCTIONS
 
 case "$1" in
-	01) open_terms_terminology & ;;
+	01) open_terms & ;;
 	02) ltonemin_userfiles_modtime & ;;
 	03) official_repo_pkg_sup_status & ;;
 	04) official_repo_pkg_dl_status & ;;
