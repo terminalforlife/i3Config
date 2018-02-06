@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Tue  6 Feb 17:18:53 GMT 2018
+# Last Change       - Tue  6 Feb 17:52:30 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,16 +18,19 @@
 
 #---------------------------------------------------------------------YOUR SETTINGS
 
+# Your full YouTube URL goes here, in order to parse it to count the subscribers.
 YT_URL="https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg"
-YT_PAD=3
-IFACE="enp3s0"
-CORES=4
-ROOT_DEV="/dev/sda1"
-ROOT_DEV_PAD=7
-HOME_DEV="/dev/sdb1"
-HOME_DEV_PAD=7
-CD_TARGET="2018-12-25"
-TERMINAL="terminology"
+
+YT_PAD=3                          # Spaces to pad for the YouTube subscriber count.
+IFACE="enp3s0"                    # What is your network interface name?
+CORES=4                           # How many cores does your CPU have?
+ROOT_DEV="/dev/sda1"              # What is the name of your root file system?
+ROOT_DEV_PAD=7                    # Spaces to pad the root's disk usage.
+HOME_DEV="/dev/sdb1"              # What is the name of your home file system?*1
+HOME_DEV_PAD=7                    # Spaces to pad the home's disk usage.
+CD_TARGET="2018-12-25"            # What is the target of your countdown?
+CD_PAD=10                         # Spaces to pad for the in-seconds countdown.
+TERMINAL="terminology"            # Which one terminal do you use? (file name)
 
 #----------------------------------------------------------YOUTUBE SUBSCRIBER COUNT
 
@@ -209,19 +212,23 @@ master_volume_pactl(){
 	done <<< "$(/usr/bin/pactl list sinks)"
 }
 
-#--------------------------------------------------------MICROPHONE STATUS (amixer)
+#---------------------------------------------------------MICROPHONE STATUS (pacmd)
 
 mic_status(){
+	# If you only have one mic device, you'll want to omit the check for the
+	# FIRST. I use this because I have an external mixer and the system's own
+	# mic port, but I don't use the first (system's), just the mixer's.
 	while read -a X; do
-		if [ "${X[0]}" == "Volume:" ]; then
-			if [ "$FIRST" == "true" ]; then
-				printf "%3d%%" "${X[4]%\%}"
-				break
+		if [ "${X[0]}" == volume: ]; then
+			if ! [ "$FIRST" == "true" ]; then
+				FIRST="true"
+				continue
 			fi
 
-			FIRST="true"
+			printf "%3d%%" "${X[4]%\%}"
+			break
 		fi
-	done <<< "$(/usr/bin/pactl list sources)"
+	done <<< "$(/usr/bin/pacmd list-sources)"
 }
 
 #---------------------------------------------------------COUNTDOWN UNTIL (SECONDS)
@@ -229,7 +236,7 @@ mic_status(){
 countdown(){
 	printf -v NOW "%(%F)T\n" "-1"
 	RESULT=$((`/bin/date -d "$CD_TARGET" +%s` - `printf '%(%s)T'`))
-	printf "%'10d" "$RESULT"
+	printf "%'${CD_PAD}d" "$RESULT"
 }
 
 #--------------------------------------------------------------------RAM USED IN MB
