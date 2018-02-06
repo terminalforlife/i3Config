@@ -20,13 +20,6 @@
 # I don't use a variable for the "mod" key I want to use. If you want to change to
 # the other mod key, you can use sed or vim global substitution. Just know that I
 # have a few bindings which use that key, so they will need to be changed.
-#
-# As you should have seen on GitHub, assuming that's where you got this file, -
-# I don't use bars. I did, for a long time, but finally realised they were just
-# taking up space and actually serving very little purpose. Windows wouldn't align
-# the way I wanted them to, which was all sorted once I stopped using bars. Don't
-# get me wrong, I think the bars are sweet, but I don't need them anymore. If you
-# want to use them, add in your bar block as you prefer. I recommend i3blocks.
 #----------------------------------------------------------------------INITIAL SETS
 
 new_float pixel 0
