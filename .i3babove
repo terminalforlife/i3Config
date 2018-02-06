@@ -1,0 +1,76 @@
+#----------------------------------------------------------------------------------# List of valid properties:
+# Project Name      - $HOME/.i3babove
+# Started On        - Sun  4 Feb 22:00:25 GMT 2018
+# Last Change       - Tue  6 Feb 16:52:28 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# This is the i3blocks configuration file for the top bar. This also assumes a
+# screen resolution of 1920x1080, in order for the text to fit properly.
+#----------------------------------------------------------------------------------
+
+separator_block_width=37
+markup=none
+
+[ytsubcount]
+label= YouTube:
+command=/bin/bash $HOME/.libi3bview 43
+color=#ffffff
+separator=false
+interval=1300
+
+[countdown]
+label= CD:
+command=/bin/bash $HOME/.libi3bview 23
+color=#ffffff
+separator=false
+interval=1
+
+[usbcount]
+label= USB:
+command=/bin/bash $HOME/.libi3bview 40
+color=#ffffff
+separator=false
+interval=1
+
+[mocp_info]
+label= MOC:
+command=/bin/bash $HOME/.libi3bview 37
+color=#ffffff
+separator=false
+interval=1
+
+[user_count]
+label= User:
+command=/bin/bash $HOME/.libi3bview 35
+color=#ffffff
+separator=false
+interval=1
+
+[mountcount]
+label= Mount:
+command=/bin/bash $HOME/.libi3bview 34
+color=#ffffff
+separator=false
+interval=1
+
+[netstatus]
+label= INET:
+command=/bin/bash $HOME/.libi3bview 33
+color=#ffffff
+separator=false
+interval=1
+
+[cpu_temp]
+label= CPU:
+command=/bin/bash $HOME/.libi3bview 10
+color=#ffffff
+separator=false
+interval=1
+
+[kernel_version]
+label= Kernel:
+command=/bin/bash $HOME/.libi3bview 28
+color=#ffffff
+separator=false
+interval=3600
