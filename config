@@ -191,7 +191,7 @@ bar {
 	id 2
 	position top
 	tray_output none
-	workspace_buttons yes
+	workspace_buttons no
 	binding_mode_indicator yes
 	strip_workspace_numbers yes
 	status_command /usr/bin/i3blocks -c $HOME/.i3babove
