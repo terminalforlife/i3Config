@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/psacount
+# Started On        - Wed  7 Feb 23:23:17 GMT 2018
+# Last Change       - Wed  7 Feb 23:23:32 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+read -a PIDS <<< `/bin/ps --user ichy -ax -o pid=`
+printf "%'3d\n" "${#PIDS[@]}"
+
+unset PIDS
