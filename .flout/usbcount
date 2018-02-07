@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/usbcount
+# Started On        - Wed  7 Feb 23:21:33 GMT 2018
+# Last Change       - Wed  7 Feb 23:22:42 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+readarray X <<< "$(/usr/bin/lsusb)"
+printf "%2d\n" "${#X[@]}"
+
+unset X

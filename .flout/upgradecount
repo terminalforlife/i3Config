@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/upgradecount
+# Started On        - Wed  7 Feb 23:20:01 GMT 2018
+# Last Change       - Wed  7 Feb 23:20:24 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+OPT='APT::Get::Show-User-Simulation-Note=false'
+
+while read -a X; do
+	if [[ "${X[*]}" == *not\ to\ upgrade. ]]; then
+		SUM="$((${X[0]}+${X[3]}))"
+		printf "%2d" "$SUM"
+		break
+	fi
+done <<< "$(/usr/bin/apt-get -o $OPT -qs dist-upgrade)"
+
+unset OPT X SUM

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/terminals
+# Started On        - Wed  7 Feb 23:18:42 GMT 2018
+# Last Change       - Wed  7 Feb 23:19:12 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+TERMINAL="terminology"
+
+read -a X <<< `/bin/pidof "$TERMINAL"`
+printf "%2d" "${#X[@]}"
+
+unset X
