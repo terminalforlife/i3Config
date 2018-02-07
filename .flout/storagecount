@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/storagecount
+# Started On        - Wed  7 Feb 23:49:11 GMT 2018
+# Last Change       - Wed  7 Feb 23:49:36 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+readarray X < /proc/partitions
+printf "%2d" "$((${#X[@]}-2))"
+
+unset X
