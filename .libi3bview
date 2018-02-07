@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Wed  7 Feb 01:51:48 GMT 2018
+# Last Change       - Wed  7 Feb 22:14:10 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -94,11 +94,11 @@ mocp_info(){
 
 	case "${STATUS/* }" in
 		STOP)
-			printf "00:00" ;;
+			printf "00:00/00:00" ;;
 		N/A)
-			printf "??:??" ;;
+			printf "??:??/??:??" ;;
 		*)
-			/usr/bin/mocp -Q %tl ;;
+			/usr/bin/mocp -Q %ct/%tt ;;
 	esac
 }
 
@@ -400,7 +400,7 @@ open_terms(){
 	printf "%2d" "${#X[@]}"
 }
 
-#------------------------------------------------------------------GITHUB_FOLLOWERS
+#------------------------------------------------------------------GITHUB FOLLOWERS
 
 github_follows(){
 	GH_URL="https://github.com/terminalforlife?tab=followers"
@@ -413,6 +413,17 @@ github_follows(){
 	)"
 
 	printf "%2d" "${FETCH[2]}"
+}
+
+#--------------------------------------------------------------GITHUB CONTRIBUTIONS
+
+github_contribs(){
+	while read -a X; do
+		if [[ "${X[0]}${X[1]}" =~ ^[0-9,]+contributions$ ]]; then
+			printf "%'6d\n" "${X[0]//,}"
+			break
+		fi
+	done <<< "$(/usr/bin/wget -q "$GH_URL" -O -)"
 }
 
 #--------------------------------------------------------------------CALL FUNCTIONS
@@ -455,4 +466,5 @@ case "$1" in
 	42) upgrade_count & ;;
 	43) ytsubcount & ;;
 	44) github_follows & ;;
+	45) github_contribs & ;;
 esac
