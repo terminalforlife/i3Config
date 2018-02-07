@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/mocpstatus
+# Started On        - Wed  7 Feb 23:24:07 GMT 2018
+# Last Change       - Wed  7 Feb 23:24:21 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+STATUS=`/usr/bin/mocp -i || printf "N/A"`
+
+case "${STATUS/* }" in
+	STOP)
+		printf "00:00/00:00" ;;
+	N/A)
+		printf "??:??/??:??" ;;
+	*)
+		/usr/bin/mocp -Q %ct/%tt ;;
+esac
+
+unset STATUS
