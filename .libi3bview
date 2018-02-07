@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Wed  7 Feb 22:14:10 GMT 2018
+# Last Change       - Wed  7 Feb 23:45:20 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -75,9 +75,8 @@ upgrade_count(){
 #--------------------------------------------------------CONNECTED USB DEVICE COUNT
 
 usb_count(){
-	declare -i D=0
-	while read; do D+=1; done <<< "$(/usr/bin/lsusb)"
-	printf "%2d\n" "$D"
+	readarray X <<< "$(/usr/bin/lsusb)"
+	printf "%2d\n" "${#X[@]}"
 }
 
 #--------------------------------------------------------COUNT OF PROCESSES (ps -a)
@@ -105,10 +104,8 @@ mocp_info(){
 #------------------------------------------------------------------OPEN FILES COUNT
 
 open_files_count(){
-	declare -i D=0
-	while read; do
-		D+=1
-	done <<< "$(/usr/bin/lsof -Pn -u $USER 2> /dev/null)"
+	readarray X <<< "$(/usr/bin/lsof -t -u $UID 2> /dev/null)"
+	printf "%3d" "${#X[@]}"
 }
 
 #------------------------------------------------------------------------USER COUNT
@@ -134,15 +131,19 @@ user_count(){
 #--------------------------------------------------------STORAGE DEVICE MOUNT COUNT
 
 mount_count(){
-	GET=(`/bin/lsblk -rno mountpoint`)
-	printf "%2d" "${#GET[@]}"
+	declare -i C=0
+	while read -a X; do
+		[[ "${X[0]}" == /dev/* ]] && C+=1
+	done < /proc/mounts
+
+	printf "%2d" "$C"
 }
 
 #-----------------------------------------------------------INTERNET STATUS (iface)
 
 net_status(){
 	while read -a X; do
-		if [ "${X[1]%:}" == "$IFACE" -a "${X[7]}" == "state" ]; then
+		if [ "${X[1]%:}${X[7]}" == "${IFACE}state" ]; then
 			printf -v Z "${X[8]}"
 			break
 		fi
@@ -156,21 +157,6 @@ net_status(){
 max_proc_usage(){
 	read -a X <<< "$(/bin/ps -aU $USER -o %cpu=,pid= -k -%cpu)"
 	printf "%3d (%.5d)\n" "${X[0]}" "${X[1]}"
-}
-
-#----------------------------------------------------------------COUNT OF PROCESSES 
-
-many_processes(){
-	local A=""
-	for ITEM in *; {
-		if [[ -d "$ITEM" && "$ITEM" =~ [0-9]+ ]]; then
-			A+="$ITEM "
-		fi
-	}
-
-	declare -i D=0
-	for I in $A; { D+=1; }
-	printf "%3d\n" "$D"
 }
 
 #--------------------------------------------------------------------SESSION UPTIME
@@ -454,7 +440,6 @@ case "$1" in
 	28) kernel_check & ;;
 	29) avg_cpu_idle & ;;
 	30) session_uptime & ;;
-	31) many_processes & ;;
 	32) max_proc_usage & ;;
 	33) net_status & ;;
 	34) mount_count & ;;
