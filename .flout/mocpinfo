@@ -3,9 +3,11 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.flout/mocpstatus
 # Started On        - Wed  7 Feb 23:24:07 GMT 2018
-# Last Change       - Wed  7 Feb 23:24:21 GMT 2018
+# Last Change       - Wed  7 Feb 23:57:37 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Display MOC's current track's current time and total time.
 #----------------------------------------------------------------------------------
 
 STATUS=`/usr/bin/mocp -i || printf "N/A"`
