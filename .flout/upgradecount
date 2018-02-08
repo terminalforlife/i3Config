@@ -3,9 +3,11 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.flout/upgradecount
 # Started On        - Wed  7 Feb 23:20:01 GMT 2018
-# Last Change       - Wed  7 Feb 23:20:24 GMT 2018
+# Last Change       - Thu  8 Feb 00:00:31 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Output the current number of package changes detected by APT.
 #----------------------------------------------------------------------------------
 
 OPT='APT::Get::Show-User-Simulation-Note=false'
