@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/uploadttl
+# Started On        - Thu  8 Feb 00:12:59 GMT 2018
+# Last Change       - Thu  8 Feb 00:13:29 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+while read -a X; do
+	if [ "${X[0]}" == "$IFACE:" ]; then
+		printf "%'5dM" "$((${X[1]}/1024/1024))"
+	fi
+done < /proc/net/dev
+
+unset X IFACE
