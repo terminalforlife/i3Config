@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Tue  6 Feb 17:10:26 GMT 2018
+# Last Change       - Thu  8 Feb 21:29:15 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -26,16 +26,16 @@ color=#ffffff
 separator=false
 interval=1
 
-[usedram]
-label= RAM:
-command=/bin/bash $HOME/.libi3bview 21
+[cpufreq]
+label= Freq:
+command=/bin/bash $HOME/.libi3bview 27
 color=#ffffff
 separator=false
 interval=1
 
-[usedswap]
-label= SWAP:
-command=/bin/bash $HOME/.libi3bview 19
+[usedram]
+label= RAM:
+command=/bin/bash $HOME/.libi3bview 21
 color=#ffffff
 separator=false
 interval=1
