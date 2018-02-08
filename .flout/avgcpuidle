@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/avgcpuidle
+# Started On        - Thu  8 Feb 00:07:39 GMT 2018
+# Last Change       - Thu  8 Feb 00:09:17 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+while read -a X; do
+	[ ${L:-1} -eq 0 ] && Y="${X[5]}"
+	[ "${X[0]}" == "avg-cpu:" ] && L=0
+done <<< "$(/usr/bin/iostat -c)"
+
+printf "%3d%%\n" "${Y%.*}"
