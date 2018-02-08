@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Thu  8 Feb 21:20:53 GMT 2018
+# Last Change       - Thu  8 Feb 21:34:16 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -213,7 +213,7 @@ cpu_freq(){
 
 	declare -i A=0
 	for FREQ in ${B[@]}; { A+=$FREQ; }
-	printf "%-0.4bMHz\n" "$((A/CORES))"
+	printf "%4.4sMHz\n" "$((A/CORES))"
 }
 
 #-----------------------------------------------------------PLAYBACK VOLUME (pactl)
