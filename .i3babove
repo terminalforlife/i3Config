@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Wed  7 Feb 22:16:32 GMT 2018
+# Last Change       - Thu  8 Feb 21:23:47 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -75,16 +75,16 @@ color=#ffffff
 separator=false
 interval=1
 
-[netstatus]
-label= INET:
-command=/bin/bash $HOME/.libi3bview 33
+[cpu_temp]
+label= CPU:
+command=/bin/bash $HOME/.libi3bview 10
 color=#ffffff
 separator=false
 interval=1
 
-[cpu_temp]
-label= CPU:
-command=/bin/bash $HOME/.libi3bview 10
+[avgcpuusage]
+label= AVG:
+command=/bin/bash $HOME/.libi3bview 29
 color=#ffffff
 separator=false
 interval=1
