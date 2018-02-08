@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/downloadttl
+# Started On        - Thu  8 Feb 00:15:56 GMT 2018
+# Last Change       - Thu  8 Feb 00:16:09 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+while read -a X; do
+	if [ "${X[0]}" == "$IFACE:" ]; then
+		printf "%'5dM" "$((${X[9]}/1024/1024))"
+	fi
+done < /proc/net/dev
+
+unset X
