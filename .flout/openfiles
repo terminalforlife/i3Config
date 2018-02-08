@@ -1,18 +1,16 @@
 #!/bin/bash
 
 #----------------------------------------------------------------------------------
-# Project Name      - $HOME/.flout/terminals
-# Started On        - Wed  7 Feb 23:18:42 GMT 2018
-# Last Change       - Thu  8 Feb 00:00:11 GMT 2018
+# Project Name      - $HOME/.flout/openfiles
+# Started On        - Wed  7 Feb 23:51:59 GMT 2018
+# Last Change       - Wed  7 Feb 23:58:29 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Output the total number of TERMINAL processes.
+# Output the total number of opened files under the current user.
 #----------------------------------------------------------------------------------
 
-TERMINAL="terminology"
-
-read -a X <<< `/bin/pidof "$TERMINAL"`
-printf "%2d" "${#X[@]}"
+readarray X <<< "$(/usr/bin/lsof -t -u $UID 2> /dev/null)"
+printf "%3d" "${#X[@]}"
 
 unset X

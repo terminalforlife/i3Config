@@ -1,18 +1,20 @@
 #!/bin/bash
 
 #----------------------------------------------------------------------------------
-# Project Name      - $HOME/.flout/terminals
-# Started On        - Wed  7 Feb 23:18:42 GMT 2018
-# Last Change       - Thu  8 Feb 00:00:11 GMT 2018
+# Project Name      - $HOME/.flout/uptime
+# Started On        - Wed  7 Feb 23:53:12 GMT 2018
+# Last Change       - Thu  8 Feb 00:00:43 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Output the total number of TERMINAL processes.
+# Display the current session uptime.
 #----------------------------------------------------------------------------------
 
-TERMINAL="terminology"
-
-read -a X <<< `/bin/pidof "$TERMINAL"`
-printf "%2d" "${#X[@]}"
+while read -a X; do
+	if [ "${X[1]}" == "up" ]; then
+		printf "%3d\n" "${X[2]%,}"
+		break
+	fi
+done <<< "$(/usr/bin/uptime)"
 
 unset X

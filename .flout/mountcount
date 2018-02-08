@@ -1,18 +1,20 @@
 #!/bin/bash
 
 #----------------------------------------------------------------------------------
-# Project Name      - $HOME/.flout/terminals
-# Started On        - Wed  7 Feb 23:18:42 GMT 2018
-# Last Change       - Thu  8 Feb 00:00:11 GMT 2018
+# Project Name      - $HOME/.flout/mountcount
+# Started On        - Wed  7 Feb 23:50:30 GMT 2018
+# Last Change       - Wed  7 Feb 23:57:49 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Output the total number of TERMINAL processes.
+# Display the total number of mounted devices at /dev/*.
 #----------------------------------------------------------------------------------
 
-TERMINAL="terminology"
+declare -i C=0
+while read -a X; do
+	[[ "${X[0]}" == /dev/* ]] && C+=1
+done < /proc/mounts
 
-read -a X <<< `/bin/pidof "$TERMINAL"`
-printf "%2d" "${#X[@]}"
+printf "%2d" "$C"
 
-unset X
+unset C X

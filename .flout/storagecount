@@ -1,18 +1,16 @@
 #!/bin/bash
 
 #----------------------------------------------------------------------------------
-# Project Name      - $HOME/.flout/terminals
-# Started On        - Wed  7 Feb 23:18:42 GMT 2018
-# Last Change       - Thu  8 Feb 00:00:11 GMT 2018
+# Project Name      - $HOME/.flout/storagecount
+# Started On        - Wed  7 Feb 23:49:11 GMT 2018
+# Last Change       - Wed  7 Feb 23:58:58 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Output the total number of TERMINAL processes.
+# Output how many storage devices are detected, per /proc/partitions.
 #----------------------------------------------------------------------------------
 
-TERMINAL="terminology"
-
-read -a X <<< `/bin/pidof "$TERMINAL"`
-printf "%2d" "${#X[@]}"
+readarray X < /proc/partitions
+printf "%2d" "$((${#X[@]}-2))"
 
 unset X
