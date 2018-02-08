@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/netstatus
+# Started On        - Wed  7 Feb 23:54:06 GMT 2018
+# Last Change       - Wed  7 Feb 23:58:13 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Indicate the status of the provided network interface.
+#----------------------------------------------------------------------------------
+
+IFACE="enp3s0"
+
+while read -a X; do
+	if [ "${X[1]%:}${X[7]}" == "${IFACE}state" ]; then
+		printf -v Z "${X[8]}"
+		break
+	fi
+done <<< "$(/bin/ip link)"
+
+[ "$Z" == "UP" ] && printf "[0]" || printf "[1]"
+
+unset X Z
