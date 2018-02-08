@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.flout/countdown
+# Started On        - Thu  8 Feb 00:09:41 GMT 2018
+# Last Change       - Thu  8 Feb 00:11:01 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+printf -v NOW "%(%F)T\n" "-1"
+RESULT=$((`/bin/date -d "$CD_TARGET" +%s` - `printf '%(%s)T'`))
+printf "%'${CD_PAD}d" "$RESULT"
+
+unset NOW CD_TARGET RESULT CD_PAD
