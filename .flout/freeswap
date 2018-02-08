@@ -3,11 +3,13 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/.flout/freeswap
 # Started On        - Sun  4 Feb 20:00:09 GMT 2018
-# Last Change       - Sun  4 Feb 20:41:57 GMT 2018
+# Last Change       - Thu  8 Feb 00:48:45 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 # Display the currently available swap space, in MB/MiB.
+#
+# SYNTAX:             freeswap
 #----------------------------------------------------------------------------------
 
 while read -a X; do
