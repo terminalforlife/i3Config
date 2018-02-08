@@ -3,11 +3,13 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/.flout/freeram
 # Started On        - Sun  4 Feb 20:00:09 GMT 2018
-# Last Change       - Sun  4 Feb 20:42:11 GMT 2018
+# Last Change       - Thu  8 Feb 00:47:22 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 # Display the currently available RAM, in MB/MiB.
+#
+# SYNTAX:             freeram
 #----------------------------------------------------------------------------------
 
 while read -a X; do
