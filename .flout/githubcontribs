@@ -3,20 +3,20 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.flout/githubfollows
 # Started On        - Wed  7 Feb 23:17:11 GMT 2018
-# Last Change       - Wed  7 Feb 23:57:10 GMT 2018
+# Last Change       - Thu  8 Feb 00:51:39 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 # Display the amount of follows the GH_URL account currently has.
+#
+# SYNTAX:             githubfollows [URL]
 #----------------------------------------------------------------------------------
-
-GH_URL="https://github.com/terminalforlife"
 
 while read -a X; do
 	if [[ "${X[0]}${X[1]}" =~ ^[0-9,]+contributions$ ]]; then
 		printf "%'6d\n" "${X[0]//,}"
 		break
 	fi
-done <<< "$(/usr/bin/wget -q "$GH_URL" -O -)"
+done <<< "$(/usr/bin/wget -q "$1" -O -)"
 
-unset X GH_URL
+unset X
