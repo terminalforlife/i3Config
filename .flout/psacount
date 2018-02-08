@@ -3,9 +3,11 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.flout/psacount
 # Started On        - Wed  7 Feb 23:23:17 GMT 2018
-# Last Change       - Wed  7 Feb 23:23:32 GMT 2018
+# Last Change       - Wed  7 Feb 23:58:41 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Output the total number of processes under the current user.
 #----------------------------------------------------------------------------------
 
 read -a PIDS <<< `/bin/ps --user ichy -ax -o pid=`
