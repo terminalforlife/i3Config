@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Wed  7 Feb 23:51:32 GMT 2018
+# Last Change       - Thu  8 Feb 21:20:53 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -171,12 +171,29 @@ session_uptime(){
 
 #-----------------------------------------------------------------AVERAGE CPU USAGE
 
-avg_cpu_idle(){
+avg_cpu_usage(){
 	while read -a X; do
-		[ ${L:-1} -eq 0 ] && Y="${X[5]}"
-		[ "${X[0]}" == "avg-cpu:" ] && L=0
+		if [ "$A" == "true" ]; then
+			declare -i S=0
+			for V in ${X[0]} ${X[1]} ${X[2]} ${X[3]} ${X[4]}; {
+				P="${V/.}"
+				S+=$P
+			}
+	
+			B=${S/*.}
+	
+			if [ $B -gt 50 ]; then
+				S=$((${S%??}+1))
+			elif [ $B -lt 50 ]; then
+				S=$((${S%??}-1))
+			fi
+	
+			printf "%3d%%\n" "$S"
+			break
+		else
+			[ "${X[0]}" == "avg-cpu:" ] && A="true"
+		fi
 	done <<< "$(/usr/bin/iostat -c)"
-	printf "%3d%%\n" "${Y%.*}"
 }
 
 #------------------------------------------------------------KERNEL VERSION DISPLAY
@@ -437,7 +454,7 @@ case "$1" in
 	26) output_volume_pacmd & ;;
 	27) cpu_freq & ;;
 	28) kernel_check & ;;
-	29) avg_cpu_idle & ;;
+	29) avg_cpu_usage & ;;
 	30) session_uptime & ;;
 	32) max_proc_usage & ;;
 	33) net_status & ;;
