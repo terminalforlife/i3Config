@@ -3,13 +3,17 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.flout/downloadttl
 # Started On        - Thu  8 Feb 00:15:56 GMT 2018
-# Last Change       - Thu  8 Feb 00:16:09 GMT 2018
+# Last Change       - Thu  8 Feb 00:47:05 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
+# Display the total amount of data downloaded in the current session, in MB/MiB.
+#
+# SYNTAX:             downloadttl [IFACE]
+#----------------------------------------------------------------------------------
 
 while read -a X; do
-	if [ "${X[0]}" == "$IFACE:" ]; then
+	if [ "${X[0]}" == "$1:" ]; then
 		printf "%'5dM" "$((${X[9]}/1024/1024))"
 	fi
 done < /proc/net/dev
