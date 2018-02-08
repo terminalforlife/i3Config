@@ -3,9 +3,11 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.flout/githubfollows
 # Started On        - Wed  7 Feb 23:17:11 GMT 2018
-# Last Change       - Wed  7 Feb 23:17:25 GMT 2018
+# Last Change       - Wed  7 Feb 23:57:10 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Display the amount of follows the GH_URL account currently has.
 #----------------------------------------------------------------------------------
 
 GH_URL="https://github.com/terminalforlife"
