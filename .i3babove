@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Thu  8 Feb 21:23:47 GMT 2018
+# Last Change       - Fri  9 Feb 11:11:23 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -33,16 +33,23 @@ color=#ffffff
 separator=false
 interval=1800
 
+[yttotalviews]
+label= YTV:
+command=/bin/bash $HOME/.libi3bview 46
+color=#ffffff
+separator=false
+interval=1800
+
+[upgradecount]
+label= APT:
+command=/bin/bash $HOME/.libi3bview 42
+color=#ffffff
+separator=false
+interval=3600
+
 [psacount]
 label= PS:
 command=/bin/bash $HOME/.libi3bview 38
-color=#ffffff
-separator=false
-interval=1
-
-[mocpinfo]
-label= Terms:
-command=/bin/bash $HOME/.libi3bview 01
 color=#ffffff
 separator=false
 interval=1
@@ -61,7 +68,7 @@ color=#ffffff
 separator=false
 interval=1
 
-[user_count]
+[usercount]
 label= Users:
 command=/bin/bash $HOME/.libi3bview 35
 color=#ffffff
@@ -78,13 +85,6 @@ interval=1
 [cpu_temp]
 label= CPU:
 command=/bin/bash $HOME/.libi3bview 10
-color=#ffffff
-separator=false
-interval=1
-
-[avgcpuusage]
-label= AVG:
-command=/bin/bash $HOME/.libi3bview 29
 color=#ffffff
 separator=false
 interval=1
