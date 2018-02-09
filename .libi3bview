@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Thu  8 Feb 23:32:24 GMT 2018
+# Last Change       - Fri  9 Feb 11:31:26 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -17,10 +17,10 @@
 
 #---------------------------------------------------------------------YOUR SETTINGS
 
-# Your full YouTube URL goes here, in order to parse it to count the subscribers.
-YT_URL="https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg"
+# Your YouTube 'about' page URL goes here.
+YT_URL="https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg/about"
 
-# Your full GitHub URL goes here, in order to parse it to count the followers.
+# Your GitHub URL goes here.
 GH_URL="https://github.com/terminalforlife"
 
 YT_PAD=3                          # Spaces to pad for the YouTube subscriber count.
@@ -41,10 +41,23 @@ ytsubcount(){
 		if [[ "${X[@]}" =~ \"[0-9]+\ subscribers\"\>[0-9,]+\< ]]; then
 			for N in `eval printf "%s\\\\\n" {0..${#X[@]}}`; {
 				if [[ "${X[0+${N}]}" =~ subscribers ]]; then
-					printf "%s\n" "${X[$N]//[!0-9]}"
+					printf "%'3d" "${X[$N]//[!0-9]}"
 					break 2
 				fi
 			}
+		fi
+	done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
+}
+
+#----------------------------------------------------------YOUTUBE TOTAL VIEW COUNT
+
+ytviewcount(){
+	MATCH='<span class="about-stat"> &bull; <b>[0-9,]+</b> views</span>'
+
+	while read -a X; do
+		if [[ "${X[@]}" =~ $MATCH ]]; then
+			printf "%'6d" "${X[3]//[!0-9]}"
+			break
 		fi
 	done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
 }
@@ -164,18 +177,19 @@ avg_cpu_usage(){
 		if [ "$A" == "true" ]; then
 			declare -i S=0
 			for V in ${X[0]} ${X[1]} ${X[2]} ${X[3]} ${X[4]}; {
-				P="${V/.}"
-				S+=$P
+				S+=${V/.}
 			}
-	
+
 			B=${S/*.}
-	
 			if [ $B -gt 50 ]; then
 				S=$((${S%??}+1))
+				[ 0$S == 0 ] && S=0
 			elif [ $B -lt 50 ]; then
 				S=$((${S%??}-1))
 			fi
-	
+
+			#TODO - This is a bit buggy. Doesn't like displaying <10%.
+			#       Doesn't also seem to add up to the actual output.
 			printf "%3d%%\n" "$S"
 			break
 		else
@@ -456,4 +470,5 @@ case "$1" in
 	43) ytsubcount & ;;
 	44) github_follows & ;;
 	45) github_contribs & ;;
+	46) ytviewcount & ;;
 esac
