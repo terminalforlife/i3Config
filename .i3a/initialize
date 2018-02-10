@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sun  4 Feb 15:39:27 GMT 2018
+# Last Change       - Sat 10 Feb 17:49:45 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -16,6 +16,7 @@ BELLSND="/usr/share/sounds/freedesktop/stereo/message.oga"
 ALERTSND="/usr/share/sounds/freedesktop/stereo/window-attention.oga"
 VOLCHSND="/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga"
 SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
+SWW="$HOME/Documents/TT/seweawarn"
 COMPCONF="$HOME/.config/compton.conf"
 
 # Set background (wallpaper) using feh or nitrogen; whichever is available.
@@ -101,7 +102,16 @@ fi
 [ -x /usr/bin/keynav ] && { /usr/bin/keynav & disown; }
 
 # Redshift sets the gamma to the neutral; default.
-[ -x /usr/bin/redshift ] && { /usr/bin/redshift -O 6500K & disown; }
+if [ -x /usr/bin/redshift ]; then
+	FILE="/tmp/redshifter.tmp"
+
+	if [ -f "$FILE" -a -r "$FILE" ]; then
+		read VALUE < "$FILE"
+		/usr/bin/redshift -O ${VALUE}K & disown
+	else
+		/usr/bin/redshift -O 6500K & disown
+	fi
+fi
 
 # Play a little sound upon login. Uses a path at the start of this script.
 if [ -f "$SOUND04" -a -r "$SOUND04" -a -x /usr/bin/paplay ]; then
@@ -142,3 +152,6 @@ fi
 
 # Download & install this with: sudo insit -C miscellaneous mfw /usr/bin/mfw 755 0
 #[ -x /usr/bin/mfw ] && { /usr/bin/mfw 60 & disown; }
+
+# Load up a personal, weather-warning shell program, if found.
+[ -f "$SWW" -a -r "$SWW" ] && { /bin/bash "$SWW" 30 & disown; }
