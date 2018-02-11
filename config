@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue  6 Feb 16:46:59 GMT 2018
+# Last Change       - Sun 11 Feb 13:04:19 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -380,6 +380,7 @@ bindsym XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/sink_mute
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_raise
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_lower
 bindsym Shift+XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/source_mute
+bindsym Shift+Mod1+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/hush_the_mic
 bindsym XF86Calculator exec --no-startup-id /usr/bin/xcalc
 bindsym Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_take
 bindsym Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_sel_take
