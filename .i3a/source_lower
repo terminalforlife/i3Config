@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_lower
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue  6 Feb 16:20:30 GMT 2018
+# Last Change       - Sun 11 Feb 13:07:53 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -20,9 +20,7 @@ if [ -x /usr/bin/pacmd ]; then
 				continue
 			fi
 
-			if [ ${X[2]} -eq 0 ]; then
-				exit 0
-			fi
+			[ ${X[2]} -eq 0 ] && exit 0
 		fi
 
 	done <<< "$(/usr/bin/pacmd list-sources)"
