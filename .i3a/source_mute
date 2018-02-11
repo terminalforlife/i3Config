@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Wed  1 Nov 00:49:43 GMT 2017
+# Last Change       - Sun 11 Feb 13:08:13 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
 
 [ -f "$SOUND05" ] || exit 1
 
-[ -x /usr/bin/pactl ] && {
+if [ -x /usr/bin/pactl ]; then
 	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
 	/usr/bin/pactl set-source-mute "$MASTER" toggle
-}
+fi
