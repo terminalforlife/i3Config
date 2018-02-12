@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/key_autorepeat
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Sun 31 Dec 00:20:44 GMT 2017
+# Last Change       - Sun 11 Feb 21:11:28 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ TOGFILE="$HOME/.config/key_auto"
 
 [ -d "${TOGFILE/%\/*}" ] || /bin/mkdir "${TOGFILE/%\/*}"
 
-[ -f "$SOUND05" -a -r "$SOUND05" ] && {
+if [ -f "$SOUND05" -a -r "$SOUND05" ]; then
 	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
 
 	if [ -f "$TOGFILE" -a -r "$TOGFILE" ]; then
@@ -33,4 +33,4 @@ TOGFILE="$HOME/.config/key_auto"
 		> "$TOGFILE"
 		/usr/bin/xset r on
 	fi
-}
+fi
