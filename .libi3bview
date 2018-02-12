@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Mon 12 Feb 18:41:23 GMT 2018
+# Last Change       - Mon 12 Feb 23:21:53 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -64,12 +64,12 @@ ytviewcount(){
 
 #-----------------------------------------------------------UPGRADE COUNT (apt-get)
 
-upgrade_count(){
-	OPT='APT::Get::Show-User-Simulation-Note=false'
+apt_pkg_changes(){
+	OPT='APT::Get::Show-User-Simulation-Note=0'
 
 	while read -a X; do
 		if [[ "${X[*]}" == *not\ to\ upgrade. ]]; then
-			SUM="$((${X[0]}+${X[3]}))"
+			SUM="$((${X[0]}+${X[3]}+${X[7]}+${X[11]}))"
 			printf "%2d" "$SUM"
 			break
 		fi
@@ -467,7 +467,7 @@ case "$1" in
 	37) mocp_info & ;;
 	38) psa_count & ;;
 	40) usb_count & ;;
-	42) upgrade_count & ;;
+	42) apt_pkg_changes & ;;
 	43) ytsubcount & ;;
 	44) github_follows & ;;
 	45) github_contribs & ;;
