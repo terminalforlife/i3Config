@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/feh_slides
+# Started On        - Sun  5 Nov 12:04:09 GMT 2017
+# Last Change       - Thu 15 Feb 03:43:14 GMT 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Because of the very excessive amount of permission errors muddying up, -
+# $HOME/.xsession_errors, this function will erase the file at login, if it detects
+# the errors. This should be quick and painless, with only a minor chance to remove
+# important logged information. A quick workaround to a frustrating issue that is
+# better than allowing dmesg to be a free-for-all!
+#----------------------------------------------------------------------------------
+
+[ ! $UID -eq 0 -a -x /bin/rm ] || exit 2
+
+MSG='dmesg: read kernel buffer failed: Operation not permitted'
+FILE="$HOME/.xsession-errors"
+
+if [ -f "$FILE" -a -r "$FILE" ]; then
+	while read LINE; do
+		if [[ "$LINE" == $MSG ]]; then
+			[ -w "$FILE" ] && /bin/rm -f "$FILE"
+			break
+		fi
+	done < "$FILE"
+fi
