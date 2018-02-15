@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 10 Feb 17:49:45 GMT 2018
+# Last Change       - Thu 15 Feb 03:46:08 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -11,7 +11,7 @@
 [ $UID -eq 0 ] && exit 1
 
 #BACKGROUND="$HOME/Pictures/Wallpapers/minimalism_texture_black_55242_1920x1080.jpg"
-FEH_SLIDES="$HOME/Pictures/Wallpapers/Steampunk Wallpapers"
+FEH_SLIDES="$HOME/Pictures/Wallpapers/Vignette B&W Scenery Wallpapers"
 BELLSND="/usr/share/sounds/freedesktop/stereo/message.oga"
 ALERTSND="/usr/share/sounds/freedesktop/stereo/window-attention.oga"
 VOLCHSND="/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga"
@@ -77,7 +77,7 @@ fi
 # Begin a slideshow of wallpapers. The feh_slides script takes arguments like so:
 # i N           - The interval N at which images will change. (/bin/sleep format)
 # d PATH        - Where PATH is the directory with images to use in slideshow.
-/bin/bash $HOME/.i3a/feh_slides -i 5s -d "$FEH_SLIDES" & disown
+/bin/bash $HOME/.i3a/feh_slides -i 7s -d "$FEH_SLIDES" & disown
 
 # Enable the use of Ctrl + Alt + Backspace to kill X.
 if [ -x /usr/bin/setxkbmap ]; then
@@ -155,3 +155,7 @@ fi
 
 # Load up a personal, weather-warning shell program, if found.
 [ -f "$SWW" -a -r "$SWW" ] && { /bin/bash "$SWW" 30 & disown; }
+
+# Because of the very excessive amount of permission errors muddying up the user's
+# .xsession_errors file, this will remove it at login, if the bug is detected.
+/bin/bash $HOME/.i3a/dmesg_overflow & disown
