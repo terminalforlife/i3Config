@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun 11 Feb 13:04:19 GMT 2018
+# Last Change       - Thu 15 Feb 20:52:52 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -178,12 +178,13 @@ bar {
 	status_command /usr/bin/i3blocks -c $HOME/.i3bbelow
 
 	colors {
-		background #000000
-		separator #000000
-		#                  border   bckgrnd  text
-		focused_workspace  #000000  #000000  #ffffff
-		inactive_workspace #000000  #000000  #ffffff
-		urgent_workspace   #000000  #000000  #ffffff
+		background               #000000
+		separator                #000000
+
+		#                        border   bckgrnd  text
+		focused_workspace        #000000  #000000  #ffffff
+		inactive_workspace       #000000  #000000  #ffffff
+		urgent_workspace         #000000  #000000  #ffffff
 	}
 }
 
@@ -197,12 +198,13 @@ bar {
 	status_command /usr/bin/i3blocks -c $HOME/.i3babove
 
 	colors {
-		background #000000
-		separator #000000
-		#                  border   bckgrnd  text
-		focused_workspace  #000000  #333333  #ffffff
-		inactive_workspace #000000  #000000  #ffffff
-		urgent_workspace   #000000  #ff0000  #000000
+		background               #000000
+		separator                #000000
+
+		#                        border   bckgrnd  text
+		focused_workspace        #000000  #333333  #ffffff
+		inactive_workspace       #000000  #000000  #ffffff
+		urgent_workspace         #000000  #ff0000  #000000
 	}
 }
 
@@ -409,3 +411,5 @@ bindsym XF86AudioPrev exec --no-startup-id /usr/bin/mocp --previous
 #------------------------------------------------------------SESSION INITIALIZATION
 
 exec --no-startup-id /bin/bash $HOME/.i3a/initialize
+
+# vim: noexpandtab colorcolumn=80 tabstop=8 noswapfile nobackup
