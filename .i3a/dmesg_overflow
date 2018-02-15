@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/feh_slides
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Thu 15 Feb 03:53:10 GMT 2018
+# Last Change       - Thu 15 Feb 03:56:16 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ if [ -e "$KERNSET" ] && [ `< "$KERNSET"` -eq 1 ]; then
 
 	if [ -f "$LOGFILE" -a -r "$LOGFILE" ]; then
 		while read LINE; do
-			if [[ "$LINE" == $MSG ]]; then
+			if [[ "$LINE" == $MESSAGE ]]; then
 				[ -w "$LOGFILE" ] && /bin/rm -f "$LOGFILE"
 				break
 			fi
