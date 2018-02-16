@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Thu  8 Feb 21:29:15 GMT 2018
+# Last Change       - Fri 16 Feb 20:01:50 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -95,3 +95,5 @@ color=#ffffff
 command=/bin/bash $HOME/.libi3bview 08
 separator=false
 interval=1
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

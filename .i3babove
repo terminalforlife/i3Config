@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Fri  9 Feb 11:11:23 GMT 2018
+# Last Change       - Fri 16 Feb 20:01:45 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -95,3 +95,5 @@ command=/bin/bash $HOME/.libi3bview 28
 color=#ffffff
 separator=false
 interval=3600
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
