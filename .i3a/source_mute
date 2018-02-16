@@ -19,3 +19,5 @@ if [ -x /usr/bin/pactl ]; then
 	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
 	/usr/bin/pactl set-source-mute "$MASTER" toggle
 fi
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

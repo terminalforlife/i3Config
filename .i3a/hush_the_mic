@@ -42,3 +42,5 @@ while :; do
 	/usr/bin/pactl set-source-volume "$MASTER" -150
 	/bin/sleep 0.2
 done
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

@@ -29,3 +29,5 @@ SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
 	/usr/bin/dmenu_run -b -fn "Nimbus Mono L":style=Bold:size=16 -nb \#000000\
 		-nf \#ffffff -sb \#333333 -sf \#ffffff
 }
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

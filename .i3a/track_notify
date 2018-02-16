@@ -25,3 +25,5 @@
 
 	/usr/bin/notify-send "$TR      $AL      $AR"
 }
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

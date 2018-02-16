@@ -29,3 +29,5 @@ if [ -x /usr/bin/pactl ]; then
 	/usr/bin/pactl play-sample x11-volume-change & disown
 	/usr/bin/pactl set-source-volume "$MASTER" +500
 fi
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

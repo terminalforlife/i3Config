@@ -159,3 +159,5 @@ fi
 # Because of the very excessive amount of permission errors muddying up the user's
 # .xsession_errors file, this will remove it at login, if the bug is detected.
 /bin/bash $HOME/.i3a/dmesg_overflow & disown
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

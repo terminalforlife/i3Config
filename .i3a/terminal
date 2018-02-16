@@ -29,3 +29,5 @@ T /usr/bin/xfce4-terminal
 T /usr/bin/xfce4-terminal -x /bin/sh
 T /usr/bin/xfce4-terminal -x /usr/bin/vim -T "xterm-256color"
 T /usr/bin/xfce4-terminal -x /usr/bin/vim -E -T "xterm-256color"
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

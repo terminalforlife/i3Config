@@ -32,3 +32,5 @@ elif [ "$1" == "-l" ]; then
 	/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW-1))/" "$FILE"
 	[ /usr/bin/pactl ] && /usr/bin/paplay --volume 40000 "$SOUND05"
 fi
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

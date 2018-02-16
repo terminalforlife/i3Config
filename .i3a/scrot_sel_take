@@ -33,3 +33,5 @@
 		/usr/bin/paplay --volume 40000 "$SOUND03"
 	}
 }
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

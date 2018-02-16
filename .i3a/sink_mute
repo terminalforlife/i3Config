@@ -12,3 +12,5 @@
 
 MASTER="alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 [ /usr/bin/pactl ] && /usr/bin/pactl set-sink-mute "$MASTER" toggle
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
