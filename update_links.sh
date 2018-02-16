@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/update_links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Tue  6 Feb 17:37:50 GMT 2018
+# Last Change       - Fri 16 Feb 20:00:46 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -52,3 +52,5 @@ CFILE="$HOME/.i3babove"
 CFILE="$HOME/.libi3bview"
 /bin/rm -v "$CFILE" 2> /dev/null
 /bin/ln -v .libi3bview "$CFILE" 2> /dev/null
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
