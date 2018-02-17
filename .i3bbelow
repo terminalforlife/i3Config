@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Fri 16 Feb 20:01:50 GMT 2018
+# Last Change       - Sat 17 Feb 01:55:47 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -11,59 +11,52 @@
 
 separator_block_width=37
 markup=none
+color=#ffffff
 
 [source]
 label= OP:
 command=/bin/bash $HOME/.libi3bview 24
-color=#ffffff
 separator=false
 interval=1
 
 [sink]
 label= IP:
 command=/bin/bash $HOME/.libi3bview 26
-color=#ffffff
 separator=false
 interval=1
 
 [cpufreq]
 label= Freq:
 command=/bin/bash $HOME/.libi3bview 27
-color=#ffffff
 separator=false
 interval=1
 
 [usedram]
 label= RAM:
 command=/bin/bash $HOME/.libi3bview 21
-color=#ffffff
 separator=false
 interval=1
 
 [disk]
 label= Home:
-color=#ffffff
 separator=false
 command=/bin/bash $HOME/.libi3bview 17
 interval=1
 
 [disk]
 label= Root:
-color=#ffffff
 separator=false
 command=/bin/bash $HOME/.libi3bview 15
 interval=1
 
 [download_total]
 label= DL: 
-color=#ffffff
 command=/bin/bash $HOME/.libi3bview 14
 separator=false
 interval=1
 
 [upload_total]
 label= UL:
-color=#ffffff
 command=/bin/bash $HOME/.libi3bview 13
 separator=false
 interval=1
@@ -71,27 +64,23 @@ interval=1
 [active_tcp_connection_count]
 label= TCPA:
 command=/bin/bash $HOME/.libi3bview 12
-color=#ffffff
 separator=false
 interval=1
 
 [listening_tcp_count]
 label= TCPL:
 command=/bin/bash $HOME/.libi3bview 11
-color=#ffffff
 separator=false
 interval=1
 
 [date]
 label= 
-color=#ffffff
 command=/bin/bash $HOME/.libi3bview 09
 separator=false
 interval=1
 
 [time]
 label= 
-color=#ffffff
 command=/bin/bash $HOME/.libi3bview 08
 separator=false
 interval=1
