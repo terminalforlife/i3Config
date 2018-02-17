@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Fri 16 Feb 20:01:45 GMT 2018
+# Last Change       - Sat 17 Feb 01:55:44 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -11,88 +11,77 @@
 
 separator_block_width=37
 markup=none
+color=#ffffff
 
 [githubfollows]
 label= GHF:
 command=/bin/bash $HOME/.libi3bview 44
-color=#ffffff
 separator=false
 interval=1800
 
 [githubcontribs]
 label= GHC:
 command=/bin/bash $HOME/.libi3bview 45
-color=#ffffff
 separator=false
 interval=1800
 
 [ytsubcount]
 label= YTS:
 command=/bin/bash $HOME/.libi3bview 43
-color=#ffffff
 separator=false
 interval=1800
 
 [yttotalviews]
 label= YTV:
 command=/bin/bash $HOME/.libi3bview 46
-color=#ffffff
 separator=false
 interval=1800
 
 [upgradecount]
 label= APT:
 command=/bin/bash $HOME/.libi3bview 42
-color=#ffffff
 separator=false
 interval=3600
 
 [psacount]
 label= PS:
 command=/bin/bash $HOME/.libi3bview 38
-color=#ffffff
 separator=false
 interval=1
 
 [mocpinfo]
 label= MOCP:
 command=/bin/bash $HOME/.libi3bview 37
-color=#ffffff
 separator=false
 interval=1
 
 [usbcount]
 label= USBs:
 command=/bin/bash $HOME/.libi3bview 40
-color=#ffffff
 separator=false
 interval=1
 
 [usercount]
 label= Users:
 command=/bin/bash $HOME/.libi3bview 35
-color=#ffffff
 separator=false
 interval=1
 
 [mountcount]
 label= Mounts:
 command=/bin/bash $HOME/.libi3bview 34
-color=#ffffff
 separator=false
 interval=1
 
 [cpu_temp]
 label= CPU:
 command=/bin/bash $HOME/.libi3bview 10
-color=#ffffff
 separator=false
 interval=1
 
 [kernel_version]
 label= Kernel:
 command=/bin/bash $HOME/.libi3bview 28
-color=#ffffff
 separator=false
 interval=3600
 
