@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu 15 Feb 23:43:28 GMT 2018
+# Last Change       - Sat 17 Feb 01:58:19 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -174,17 +174,11 @@ bar {
 	tray_output none
 	workspace_buttons no
 	binding_mode_indicator no
-	strip_workspace_numbers yes
 	status_command /usr/bin/i3blocks -c $HOME/.i3bbelow
 
 	colors {
-		background               #000000
-		separator                #000000
-
-		#                        border   bckgrnd  text
-		focused_workspace        #000000  #000000  #ffffff
-		inactive_workspace       #000000  #000000  #ffffff
-		urgent_workspace         #000000  #000000  #ffffff
+		background    #000000
+		separator     #000000
 	}
 }
 
@@ -193,18 +187,12 @@ bar {
 	position top
 	tray_output none
 	workspace_buttons no
-	binding_mode_indicator yes
-	strip_workspace_numbers yes
+	binding_mode_indicator no
 	status_command /usr/bin/i3blocks -c $HOME/.i3babove
 
 	colors {
-		background               #000000
-		separator                #000000
-
-		#                        border   bckgrnd  text
-		focused_workspace        #000000  #333333  #ffffff
-		inactive_workspace       #000000  #000000  #ffffff
-		urgent_workspace         #000000  #ff0000  #000000
+		background    #000000
+		separator     #000000
 	}
 }
 
