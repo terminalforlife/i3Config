@@ -27,6 +27,7 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 * A nice wallpaper slideshow using feh. See program "dlspwalls" in miscellaneous repository.
 * Simple feature to enable and disable keyboard autorepeat at the press of a button.
 * Extensive i3blocks support, now featuring 2 satistically-rich bars. These can be disabled if desired.
+* Subtle black and grey window borders, ideal for dark wallpapers and terminals.
 
 ...and probably other things I'm missing.
 
@@ -37,14 +38,34 @@ To get the most out of this setup, or to even have it working at all like it doe
 ```
 i3-wm - improved dynamic tiling window manager
 moc - ncurses based console audio player
+compton - compositor for X11, based on xcompmgr
 pulseaudio-utils - Command line tools for the PulseAudio sound server
 scrot - command line screen capture utility
 suckless-tools - simple commands for minimalistic window managers
-xfce4-terminal - Xfce terminal emulator
-libnotify4 - sends desktop notifications to a notification daemon
+terminology - Enlightenment efl based terminal emulator
+libnotify-bin - sends desktop notifications to a notification daemon (Utilities)
 i3blocks - highly flexible status line for the i3 window manager
+dunst - dmenu-ish notification-daemon
 feh - imlib2 based image viewer
 xorg - X.Org X Window System
+```
+
+You may also want to try my compton.conf settings file. Install with insit:
+
+```bash
+insit -C miscellaneous compton.conf $HOME/.config/compton.conf 644 $UID $UID
+```
+
+If you use MOC, you might find mplay useful. Install with insit:
+
+```bash
+sudo insit -C miscellaneous mplay /usr/bin/mplay 755 0 0
+```
+
+If you use dunst, I have a feeling you'll enjoy my settings. Install with insit:
+
+```bash
+insit -C miscellaneous dunstrc $HOME/.config/dunst/dunstrc 644 $UID $UID
 ```
 
 ## INSTALLATION
