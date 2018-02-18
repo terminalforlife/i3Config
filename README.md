@@ -31,7 +31,7 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 
 ...and probably other things I'm missing.
 
-## REQUIREMENTS
+## REQUIREMENTS & SUGGESTIONS
 
 To get the most out of this setup, or to even have it working at all like it does for me, you'll need the following Ubuntu and/or Debian based packages, and their dependencies:
 
