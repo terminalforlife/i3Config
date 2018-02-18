@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 17 Feb 01:51:53 GMT 2018
+# Last Change       - Sat 17 Feb 02:34:40 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -74,6 +74,9 @@ if [ -x /usr/bin/pactl -a -x /usr/bin/pulseaudio ]; then
 	fi
 fi
 
+# Set bar transparency.
+/bin/bash $HOME/.i3a/i3bar_trans 0.4 & disown
+
 # Begin a slideshow of wallpapers. The feh_slides script takes arguments like so:
 # i N           - The interval N at which images will change. (/bin/sleep format)
 # d PATH        - Where PATH is the directory with images to use in slideshow.
@@ -123,9 +126,6 @@ fi
 
 # Check for kernel version changes; see kernelchk repository.
 [ -x /usr/bin/kernelchk ] && { /usr/bin/kernelchk & disown; }
-
-# Set bar transparency.
-/bin/bash $HOME/.i3a/i3bar_trans 0.4 & disown
 
 # Launches mocp in the background, ready for music.
 [ -x /usr/bin/mocp ] && /usr/bin/mocp -S & disown
