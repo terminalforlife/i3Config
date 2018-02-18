@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Sat 17 Feb 01:55:44 GMT 2018
+# Last Change       - Sat 17 Feb 19:54:59 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -9,78 +9,78 @@
 # screen resolution of 1920x1080, in order for the text to fit properly.
 #----------------------------------------------------------------------------------
 
-separator_block_width=37
+separator_block_width=31
 markup=none
 color=#ffffff
 
 [githubfollows]
-label= GHF:
+label= GHF:
 command=/bin/bash $HOME/.libi3bview 44
 separator=false
 interval=1800
 
 [githubcontribs]
-label= GHC:
+label= GHC:
 command=/bin/bash $HOME/.libi3bview 45
 separator=false
 interval=1800
 
 [ytsubcount]
-label= YTS:
+label= YTS:
 command=/bin/bash $HOME/.libi3bview 43
 separator=false
 interval=1800
 
 [yttotalviews]
-label= YTV:
+label= YTV:
 command=/bin/bash $HOME/.libi3bview 46
 separator=false
 interval=1800
 
 [upgradecount]
-label= APT:
+label= APT:
 command=/bin/bash $HOME/.libi3bview 42
 separator=false
 interval=3600
 
 [psacount]
-label= PS:
+label= PS:
 command=/bin/bash $HOME/.libi3bview 38
 separator=false
 interval=1
 
 [mocpinfo]
-label= MOCP:
+label= MOCP:
 command=/bin/bash $HOME/.libi3bview 37
 separator=false
 interval=1
 
 [usbcount]
-label= USBs:
+label= USBs:
 command=/bin/bash $HOME/.libi3bview 40
 separator=false
 interval=1
 
 [usercount]
-label= Users:
+label= Users:
 command=/bin/bash $HOME/.libi3bview 35
 separator=false
 interval=1
 
 [mountcount]
-label= Mounts:
+label= Mounts:
 command=/bin/bash $HOME/.libi3bview 34
 separator=false
 interval=1
 
 [cpu_temp]
-label= CPU:
+label= CPU:
 command=/bin/bash $HOME/.libi3bview 10
 separator=false
 interval=1
 
 [kernel_version]
-label= Kernel:
+label= Kernel:
 command=/bin/bash $HOME/.libi3bview 28
 separator=false
 interval=3600
