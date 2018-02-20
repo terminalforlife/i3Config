@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/scrot_win_take
 # Started On        - Fri 27 Oct 14:55:25 BST 2017
-# Last Change       - Sun 21 Jan 22:11:34 GMT 2018
+# Last Change       - Tue 20 Feb 17:43:08 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,15 +12,17 @@
 
 [ $UID -eq 0 ] && exit 1
 
-[ -x /usr/bin/scrot -a -x /usr/bin/paplay ] && {
+if [ -x /usr/bin/scrot -a -x /usr/bin/paplay ]; then
+	umask 0077
+
 	printf -v FILENAME "$HOME/Desktop/Windowshot_%(%F_%X)T.jpg"
 	SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
 
 	[ -f "$SOUND03" ] || exit 1
 
-	/usr/bin/scrot -u -zq 75 "$FILENAME" && {
+	if /usr/bin/scrot -u -zq 75 "$FILENAME"; then
 		/usr/bin/paplay --volume 40000 "$SOUND03"
-	}
-}
+	fi
+fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
