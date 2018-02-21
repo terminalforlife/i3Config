@@ -10,24 +10,26 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 
 ## WHAT'S ON OFFER?
 
-* Tidy, carefully-written configuration files.
-* Partmount; this allows you to easily toggle-mount filesystems via keyboard shortcuts.
-* Scripts which allow additional features and help keep the i3 "config" file nice and tidy.
-* For as long as I use i3-wm (I dunno how I could survive without it!), these will surely be updated and maintained.
-* The flag --no-startup-id is attached to all instanced of "exec", to avoid the endless busy cursor.
-* Support for various XF86 keys, as I use quite a few of those with various keyboards.
-* Support for taking full screenshots as well as "Selectshots", which make use of scrot with the -s flag.
-* Support for floating webcam window at the touch of a button(s) which allows for easier screencasting.
-* No indicator! My setup assumes you can i3-wm well, without the need for things like the indicator, borders, and title bars.
-* Standard i3-wm (touch-type) mapping scheme. I remap VIM to match i3-wm per traditional touch-typing.
-* No need to mess around with modes; cool as they are, they're inefficient. You can resize windows on-the-fly.
-* Various keyboard shortcuts to support my music editor of choice, moc (Music on Console).
-* Sink and source volume mute toggle and raise/lower support, using pactrl. Note: You'll have to specify your own devices!
-* Easy support for various event sound effects. I've not yet got mine up on GitHub. See below.
-* A nice wallpaper slideshow using feh. See program "dlspwalls" in miscellaneous repository.
-* Simple feature to enable and disable keyboard autorepeat at the press of a button.
-* Extensive i3blocks support, now featuring 2 satistically-rich bars. These can be disabled if desired.
-* Subtle black and grey window borders, ideal for dark wallpapers and terminals.
+* Tidy, carefully-written config and addons.
+* Useful shell script for further initializing.
+* Function library (libi3bview) with over 40 outputs.
+* Twin bars with extensive statistics, via libi3bview.
+* Transparent bars set by the i3bar_trans addon.
+* Partmount; easily (un)mount filesystems via shortcuts.
+* Repository updates for the foreseeable future.
+* Various special XF86 keys already set.
+* No endless busy cursor -- correct exec calls.
+* Shortcuts for taking various screenshot types.
+* Shortcut for webcam window at the touch of a button(s).
+* No indicator, for the more experienced.
+* Standard i3-wm (touch-type) mapping scheme.
+* No need to mess around with modes.
+* Various keyboard shortcuts for MOC.
+* Sink and source volume support, using pactrl.
+* Wallpaper slideshow using feh.
+* Many for_window corrections already set.
+* Shortcut to toggle keyboard autorepeat.
+* Subtle thin, black and grey window borders.
 
 ...and probably other things I'm missing.
 
