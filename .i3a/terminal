@@ -3,31 +3,49 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/terminal
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sun 28 Jan 18:40:15 GMT 2018
+# Last Change       - Wed 21 Feb 13:18:00 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Only the first T will be used if more than one is listed. Just add your T, like
-# below, with the first argument (field next to T) being the absolute (full) path
-# to the executable you wish to use as the terminal emulator.
-#
 # If your executable has spaces in the filename, or any other, non-standard
 # characters, be sure to write it "like this", 'like this', or\ like\ this. Special
 # characters include (but are not limited to), &, +, ?, and *.
 #
+# LIMIT is to set the maximum number of processes of your chosen terminal. This
+# helps avoid overloading your system with excessive numbers of terminals by
+# mistake, such as when you have a fast key autorepeat, a stuck key, or a troll.
+# A notication will be sent to notify the user, if /usr/bin/notify-send is found.
+#
 # NOTE: Arguments for your chosen terminal should work just fine.
 #----------------------------------------------------------------------------------
 
+T='/usr/bin/terminology'
+LIMIT=18
+
+#-------------------------------------------------------------------------MAIN CODE
+
 [ $UID -eq 0 ] && exit 1
 
-T(){ [ -x "$1" ] && { $@ & exit 0; } || exit 1; }
+if [ -x "$T" ]; then
+	if [ -x /bin/ps ]; then
+		read -a X <<< `/bin/ps --no-headers -C "${T//*\/}" -o pid`
 
-#------------------------------------------------------CHOOSE YOUR TERMINAL(S) HERE
-
-T /usr/bin/terminology
-T /usr/bin/xfce4-terminal
-T /usr/bin/xfce4-terminal -x /bin/sh
-T /usr/bin/xfce4-terminal -x /usr/bin/vim -T "xterm-256color"
-T /usr/bin/xfce4-terminal -x /usr/bin/vim -E -T "xterm-256color"
+		if [ ${#X[@]} -ge $LIMIT ]; then
+			if [ -x /usr/bin/notify-send ]; then
+				MSG="The maximum ${T//*\/} processes was reached."
+				/usr/bin/notify-send --urgency=normal "$MSG"
+				exit 2
+			else
+				exit 2
+			fi
+		else
+			$T & exit 0
+		fi
+	else
+		$T & exit 0
+	fi
+else
+	exit 1
+fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
