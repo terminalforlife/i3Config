@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/master_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Sun 11 Feb 13:09:08 GMT 2018
+# Last Change       - Thu 22 Feb 18:01:43 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -13,10 +13,10 @@
 MASTER="alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 
 if [ -x /usr/bin/pacmd ]; then
-	while read -ra X; do
-		if [[ "${X[*]}" == *volume\:\ front-left\:\ +([0-9])* ]]; then
-			printf -v VOL "%d" "${X[2]}" # "$(( X[2] + 1500 ))"
-			[ $VOL -ge 65550 ] && exit 0 || break
+	while read -a X; do
+		if [[ "${X[0]}" =~ volume: ]]; then
+			printf -v VOL "%d" "${X[4]%\%}"
+			[ $VOL -eq 100 ] && exit 0 || break
 		fi
 	done <<< "$(/usr/bin/pacmd list-sinks)"
 fi
