@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Tue 20 Feb 19:20:22 GMT 2018
+# Last Change       - Thu 22 Feb 18:01:24 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -50,6 +50,8 @@ ytsubcount(){
 }
 
 #----------------------------------------------------------YOUTUBE TOTAL VIEW COUNT
+
+#TODO - Sometimes this vanishes from the bar. Why?
 
 ytviewcount(){
 	MATCH='<span class="about-stat"> &bull; <b>[0-9,]+</b> views</span>'
@@ -224,7 +226,7 @@ cpu_freq(){
 output_volume_pacmd(){
 	while read -a X; do
 		if [ "${X[0]}" == volume: ]; then
-			printf "%3d%%" "$((${X[4]%\%}-1))"
+			printf "%3d%%" "${X[4]%\%}"
 			break
 		fi
 	done <<< "$(/usr/bin/pacmd list-sinks)"
