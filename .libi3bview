@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Thu 22 Feb 18:01:24 GMT 2018
+# Last Change       - Sun 25 Feb 21:30:47 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -317,10 +317,9 @@ session_ul_total(){
 
 #------------------------------------------------------------------ACTIVE TCP COUNT
 
-active_tcp_count(){
-	while read -a X; do
-		[ "${X[0]}" == "TCP:" ] && printf "%3d" "${X[3]%,}"
-	done <<< "$(/bin/ss -s -n)"
+estab_tcp_count(){
+	readarray X <<< "$(/bin/ss --tcp -n)"
+	printf "%3d" "$((${#X[@]}-1))"
 }
 
 #---------------------------------------------------------------LISTENING TCP COUNT
@@ -330,12 +329,23 @@ listening_tcp_count(){
 	printf "%3d" "$((${#X[@]}-1))"
 }
 
+#------------------------------------------------------LISTENING & ACTIVE TCP COUNT
+
+listening_estab_tcp_count(){
+	readarray X <<< "$(/bin/ss --tcp -n)"
+	printf "%3d " "$((${#X[@]}-1))"
+
+	#TODO - Combine these so as to avoid opening 2 processes.
+
+	readarray X <<< "$(/bin/ss --tcp -l -n)"
+	printf "%3d " "$((${#X[@]}-1))"
+}
+
 #-------------------------------------------------------------------CPU TEMPERATURE
 
 cpu_temp(){
 	while read -a X; do
 		[ "${X[0]}${X[2]}" == "Physical0:" ] && LINE="true"
-
 		if [ "${X[0]}" == "temp1_input:" -a "$LINE" == "true" ]; then
 			printf "%2d°C" "${X[1]%.*}"
 			break
@@ -450,7 +460,7 @@ case "$1" in
 	09) date_show & ;;
 	10) cpu_temp & ;;
 	11) listening_tcp_count & ;;
-	12) active_tcp_count & ;;
+	12) estab_tcp_count & ;;
 	13) session_ul_total & ;;
 	14) session_dl_total & ;;
 	15) root_space_used_mb & ;;
@@ -478,6 +488,7 @@ case "$1" in
 	45) github_contribs & ;;
 	46) ytviewcount & ;;
 	47) show_date_time & ;;
+	48) listening_estab_tcp_count & ;;
 esac
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
