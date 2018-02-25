@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sat 17 Feb 02:52:24 GMT 2018
+# Last Change       - Sat 24 Feb 21:43:12 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -359,6 +359,16 @@ for_window [title="^Cancel All Downloads\?$"] floating enable
 for_window [title="^Blender Error$"] floating enable
 for_window [title="^Importing FFmpeg-compatible files$"] floating enable
 for_window [title="^Error!$"] floating enable
+for_window [title="^Transition / Mask Properties$"] floating enable
+for_window [title="^Preferences: .*$"] floating enable
+for_window [title="^Noise Reduction$"] floating enable
+for_window [title="^Profiles Manager$"] floating enable
+for_window [title="^Kdenlive$"] floating enable
+for_window [title="^Import Image Sequence$"] floating enable
+for_window [title="^Select A Folder$"] floating enable
+for_window [title="^Validation Error!$"] floating enable
+for_window [title="^Select a File$"] floating enable
+for_window [title="^Export Video$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
