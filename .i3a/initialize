@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Tue 20 Feb 00:36:37 GMT 2018
+# Last Change       - Sun 25 Feb 01:12:13 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -102,7 +102,7 @@ fi
 [ -x /usr/bin/mesg ] && { /usr/bin/mesg n & disown; }
 
 # Load keynav to get mouse controls with a keyboard.
-[ -x /usr/bin/keynav ] && { /usr/bin/keynav & disown; }
+#[ -x /usr/bin/keynav ] && { /usr/bin/keynav & disown; }
 
 # Redshift sets the gamma to the neutral; default.
 if [ -x /usr/bin/redshift ]; then
@@ -122,13 +122,13 @@ if [ -f "$SOUND04" -a -r "$SOUND04" -a -x /usr/bin/paplay ]; then
 fi
 
 # Notify the user of NumLock and CapsLock state changes.
-[ -x /usr/bin/capnum ] && { /usr/bin/capnum 3 & disown; }
+#[ -x /usr/bin/capnum ] && { /usr/bin/capnum 3 & disown; }
 
 # Check for kernel version changes; see kernelchk repository.
-[ -x /usr/bin/kernelchk ] && { /usr/bin/kernelchk & disown; }
+#[ -x /usr/bin/kernelchk ] && { /usr/bin/kernelchk & disown; }
 
 # Launches mocp in the background, ready for music.
-[ -x /usr/bin/mocp ] && /usr/bin/mocp -S & disown
+#[ -x /usr/bin/mocp ] && /usr/bin/mocp -S & disown
 
 # Launches Audacious in the background, ready for music.
 #[ -x /usr/bin/audacious ] && { /usr/bin/audacious & disown; }
@@ -148,7 +148,7 @@ fi
 
 # Run notify-upgrade and have it check for updates in the background. To get this
 # small shell script, you can find it in the notify-upgrade repository.
-[ -x /usr/bin/notify-upgrade ] && { /usr/bin/notify-upgrade -i 60 & disown; }
+#[ -x /usr/bin/notify-upgrade ] && { /usr/bin/notify-upgrade -i 60 & disown; }
 
 # Give it a bit of random time before starting mfw, to save being so bombarded.
 #/bin/sleep ${RANDOM%???}s
