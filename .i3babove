@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Sat 17 Feb 19:54:59 GMT 2018
+# Last Change       - Sun 25 Feb 21:32:42 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -44,31 +44,31 @@ separator=false
 interval=3600
 
 [psacount]
-label= PS:
+label= PROC:
 command=/bin/bash $HOME/.libi3bview 38
 separator=false
 interval=1
 
 [mocpinfo]
-label= MOCP:
+label= MOC:
 command=/bin/bash $HOME/.libi3bview 37
 separator=false
 interval=1
 
 [usbcount]
-label= USBs:
+label= USB:
 command=/bin/bash $HOME/.libi3bview 40
 separator=false
 interval=1
 
 [usercount]
-label= Users:
+label= USERS:
 command=/bin/bash $HOME/.libi3bview 35
 separator=false
 interval=1
 
 [mountcount]
-label= Mounts:
+label= MOUNTS:
 command=/bin/bash $HOME/.libi3bview 34
 separator=false
 interval=1
@@ -80,7 +80,7 @@ separator=false
 interval=1
 
 [kernel_version]
-label= Kernel:
+label= KERNEL:
 command=/bin/bash $HOME/.libi3bview 28
 separator=false
 interval=3600
