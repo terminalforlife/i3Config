@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Sun 25 Feb 21:31:40 GMT 2018
+# Last Change       - Mon 26 Feb 23:55:25 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -26,8 +26,8 @@ separator=false
 interval=1
 
 [cpufreq]
-label= FREQ:
-command=/bin/bash $HOME/.libi3bview 27
+label= USAGE:
+command=/bin/bash $HOME/.libi3bview 49
 separator=false
 interval=1
 
@@ -50,13 +50,13 @@ command=/bin/bash $HOME/.libi3bview 15
 interval=1
 
 [download_total]
-label= DL: 
+label= DOWN:
 command=/bin/bash $HOME/.libi3bview 14
 separator=false
 interval=1
 
 [upload_total]
-label= UL:
+label= UP:
 command=/bin/bash $HOME/.libi3bview 13
 separator=false
 interval=1
