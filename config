@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sat 24 Feb 21:43:12 GMT 2018
+# Last Change       - Sun 25 Feb 22:06:42 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -217,6 +217,7 @@ for_window [class="Mplayer"] floating disabled; sticky enable
 for_window [class="Openshot"] floating disabled
 for_window [class="Evince"] floating disabled
 for_window [class="Audacious"] floating disabled
+for_window [class="smtube"] floating disabled
 
 #-----------------------------------------------------------------FOR WINDOW TITLES
 
@@ -369,6 +370,8 @@ for_window [title="^Select A Folder$"] floating enable
 for_window [title="^Validation Error!$"] floating enable
 for_window [title="^Select a File$"] floating enable
 for_window [title="^Export Video$"] floating enable
+for_window [title="^No video found$"] floating enable
+for_window [title="^Settings$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
