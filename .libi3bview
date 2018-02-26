@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Sun 25 Feb 21:30:47 GMT 2018
+# Last Change       - Mon 26 Feb 23:54:12 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -178,8 +178,8 @@ avg_cpu_usage(){
 	while read -a X; do
 		if [ "$A" == "true" ]; then
 			declare -i S=0
-			for V in ${X[0]} ${X[1]} ${X[2]} ${X[3]} ${X[4]}; {
-				S+=${V/.}
+			for L in {0..4}; {
+				S+=${V[L]/.}
 			}
 
 			B=${S/*.}
@@ -198,6 +198,18 @@ avg_cpu_usage(){
 			[ "${X[0]}" == "avg-cpu:" ] && A="true"
 		fi
 	done <<< "$(/usr/bin/iostat -c)"
+}
+
+#----------------------------------------------------ROUGH CPU USAGE (EXPERIMENTAL)
+
+rough_cpu_usage(){
+	# Requires the sysstat package in Ubuntu- and Debian-based systems.
+	while read -a X; do
+		if [ "${X[1]}" == "all" ]; then
+			printf "%3d%%\n" "$((100-${X[11]%.*}))"
+			break
+		fi
+	done <<< "$(/usr/bin/mpstat 1 1)"
 }
 
 #------------------------------------------------------------KERNEL VERSION DISPLAY
@@ -489,6 +501,7 @@ case "$1" in
 	46) ytviewcount & ;;
 	47) show_date_time & ;;
 	48) listening_estab_tcp_count & ;;
+	49) rough_cpu_usage & ;;
 esac
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
