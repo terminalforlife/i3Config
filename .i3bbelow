@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Mon 26 Feb 23:55:25 GMT 2018
+# Last Change       - Wed 28 Feb 22:30:26 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -14,13 +14,13 @@ markup=none
 color=#ffffff
 
 [source]
-label= INPUT:
+label= V-IN:
 command=/bin/bash $HOME/.libi3bview 24
 separator=false
 interval=1
 
 [sink]
-label= OUTPUT:
+label= V-OUT:
 command=/bin/bash $HOME/.libi3bview 26
 separator=false
 interval=1
@@ -38,26 +38,20 @@ separator=false
 interval=1
 
 [disk]
-label= HOME:
+label= HDD-HOME:
 separator=false
 command=/bin/bash $HOME/.libi3bview 17
 interval=1
 
 [disk]
-label= ROOT:
+label= SSD-ROOT:
 separator=false
 command=/bin/bash $HOME/.libi3bview 15
 interval=1
 
-[download_total]
-label= DOWN:
-command=/bin/bash $HOME/.libi3bview 14
-separator=false
-interval=1
-
-[upload_total]
-label= UP:
-command=/bin/bash $HOME/.libi3bview 13
+[download_upload_total]
+label= NET-DU:
+command=/bin/bash $HOME/.libi3bview 50
 separator=false
 interval=1
 
@@ -68,7 +62,7 @@ separator=false
 interval=1
 
 [date]
-label= D/T:
+label= DT:
 command=/bin/bash $HOME/.libi3bview 47
 separator=false
 interval=1
