@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Mon 26 Feb 23:54:12 GMT 2018
+# Last Change       - Wed 28 Feb 22:28:26 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -175,29 +175,9 @@ session_uptime(){
 #-----------------------------------------------------------------AVERAGE CPU USAGE
 
 avg_cpu_usage(){
-	while read -a X; do
-		if [ "$A" == "true" ]; then
-			declare -i S=0
-			for L in {0..4}; {
-				S+=${V[L]/.}
-			}
-
-			B=${S/*.}
-			if [ $B -gt 50 ]; then
-				S=$((${S%??}+1))
-				[ 0$S == 0 ] && S=0
-			elif [ $B -lt 50 ]; then
-				S=$((${S%??}-1))
-			fi
-
-			#TODO - This is a bit buggy. Doesn't like displaying <10%.
-			#       Doesn't also seem to add up to the actual output.
-			printf "%3d%%\n" "$S"
-			break
-		else
-			[ "${X[0]}" == "avg-cpu:" ] && A="true"
-		fi
-	done <<< "$(/usr/bin/iostat -c)"
+	#TODO - Improve this. Should work properly now, but using awk and iostat.
+	AWK='{if($3~"^[0-9.]+$")printf("%6.2f%%\n", 100-$6)}'
+	/usr/bin/iostat -c | /usr/bin/awk -S "$AWK"
 }
 
 #----------------------------------------------------ROUGH CPU USAGE (EXPERIMENTAL)
@@ -275,7 +255,10 @@ countdown(){
 
 ram_used_mb(){
 	while read -a X; do
-		[ "${X[0]}" == "Mem:" ] && printf "%'6dM\n" "${X[2]}"
+		if [ "${X[0]}" == "Mem:" ]; then
+			printf "%'6dM\n" "${X[2]}"
+			break
+		fi
 	done <<< "$(/usr/bin/free -m)"
 }
 
@@ -283,7 +266,10 @@ ram_used_mb(){
 
 swap_used_mb(){
 	while read -a X; do
-		[ "${X[0]}" == "Swap:" ] && printf "%'6dM\n" "${X[2]}"
+		if [ "${X[0]}" == "Swap:" ]; then
+			printf "%'6dM\n" "${X[2]}"
+			break
+		fi
 	done <<< "$(/usr/bin/free -m)"
 }
 
@@ -293,6 +279,7 @@ home_space_used_mb(){
 	while read -a X; do
 		if [ "${X[0]}" == "$HOME_DEV" ]; then
 			printf "%'${HOME_DEV_PAD}dM\n" "${X[2]}"
+			break
 		fi
 	done <<< "$(/bin/df -m)"
 }
@@ -303,6 +290,7 @@ root_space_used_mb(){
 	while read -a X; do
 		if [ "${X[0]}" == "$ROOT_DEV" ]; then
 			printf "%'${ROOT_DEV_PAD}dM\n" "${X[2]}"
+			break
 		fi
 	done <<< "$(/bin/df -m)"
 }
@@ -312,7 +300,8 @@ root_space_used_mb(){
 session_dl_total(){
 	while read -a X; do
 		if [ "${X[0]}" == "$IFACE:" ]; then
-			printf "%'5dM" "$((${X[1]}/1024/1024))"
+			printf "%'6dM" "$((${X[1]}/1024/1024))"
+			break
 		fi
 	done < /proc/net/dev
 }
@@ -322,7 +311,20 @@ session_dl_total(){
 session_ul_total(){
 	while read -a X; do
 		if [ "${X[0]}" == "$IFACE:" ]; then
-			printf "%'5dM" "$((${X[9]}/1024/1024))"
+			printf "%'6dM" "$((${X[9]}/1024/1024))"
+			break
+		fi
+	done < /proc/net/dev
+}
+
+#---------------------------------------------------SESSION UPLOAD & DOWNLOAD TOTAL
+
+session_ul_dl_total(){
+	while read -a X; do
+		if [ "${X[0]}" == "$IFACE:" ]; then
+			printf "%'6dM " "$((${X[1]}/1024/1024))"
+			printf "%'6dM" "$((${X[9]}/1024/1024))"
+			break
 		fi
 	done < /proc/net/dev
 }
@@ -398,7 +400,6 @@ latest_stable_kernel(){
 
 	while read -a LINE; do
 		[ "${LINE[0]}" == \<td\>stable:\</td\> ] && CORRECT="true"
-
 		if [[ "$CORRECT" == "true" && "${LINE[@]}" =~ $RE ]]; then
 			IFS="<" read -a SUB <<< "${LINE[@]}"
 			printf "%s\n" "${SUB[2]/*>}"
@@ -421,9 +422,9 @@ official_repo_pkg_sup_status(){
 		<<< "$(/usr/bin/ubuntu-support-status)"
 }
 
-#---------------------------------------------------NUMBER OF FILES MODIFIED IN <1m
+#--------------------------------------------------NUMBER OF FILES MODIFIED IN <=1m
 
-ltonemin_userfiles_modtime(){
+user_modified_files(){
 	readarray X <<< "$(/usr/bin/find $HOME/ -mmin -1 2> /dev/null)"
 	printf "%2d" "${#X[@]}"
 }
@@ -462,7 +463,7 @@ github_contribs(){
 
 case "$1" in
 	01) open_terms & ;;
-	02) ltonemin_userfiles_modtime & ;;
+	02) user_modified_files & ;;
 	03) official_repo_pkg_sup_status & ;;
 	04) official_repo_pkg_dl_status & ;;
 	05) latest_stable_kernel & ;;
@@ -502,6 +503,7 @@ case "$1" in
 	47) show_date_time & ;;
 	48) listening_estab_tcp_count & ;;
 	49) rough_cpu_usage & ;;
+	50) session_ul_dl_total & ;;
 esac
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
