@@ -59,9 +59,6 @@ ytviewcount(){
 		if [[ "${X[@]}" =~ $MATCH ]]; then
 			printf "%'6d" "${X[3]//[!0-9]}"
 			break
-		else
-			printf "      "
-			break
 		fi
 	done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
 }
