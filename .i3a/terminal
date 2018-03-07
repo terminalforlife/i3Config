@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/terminal
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed 21 Feb 13:18:00 GMT 2018
+# Last Change       - Wed  7 Mar 14:28:34 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -19,8 +19,10 @@
 # NOTE: Arguments for your chosen terminal should work just fine.
 #----------------------------------------------------------------------------------
 
-T='/usr/bin/terminology'
-LIMIT=18
+#TODO - The LIMIT doesn't work with xfce4-terminal,as it uses just the one process.
+
+T='/usr/bin/xfce4-terminal'
+LIMIT=3
 
 #-------------------------------------------------------------------------MAIN CODE
 
