@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Sun 25 Feb 21:32:42 GMT 2018
+# Last Change       - Sun 11 Mar 08:08:59 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,6 +12,12 @@
 separator_block_width=31
 markup=none
 color=#ffffff
+
+[githubtodos]
+label= GHTODO:
+command=/bin/bash $HOME/.libi3bview 51
+separator=false
+interval=60
 
 [githubfollows]
 label= GHF:
@@ -49,12 +55,6 @@ command=/bin/bash $HOME/.libi3bview 38
 separator=false
 interval=1
 
-[mocpinfo]
-label= MOC:
-command=/bin/bash $HOME/.libi3bview 37
-separator=false
-interval=1
-
 [usbcount]
 label= USB:
 command=/bin/bash $HOME/.libi3bview 40
@@ -74,7 +74,7 @@ separator=false
 interval=1
 
 [cpu_temp]
-label= CPU:
+label= CPU-TEMP:
 command=/bin/bash $HOME/.libi3bview 10
 separator=false
 interval=1
