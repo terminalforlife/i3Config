@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Mon 12 Feb 20:48:29 GMT 2018
+# Last Change       - Wed 14 Mar 12:20:29 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,34 +18,18 @@
 # NOTE:      NAME is the block device name, for example: /dev/sda1
 #----------------------------------------------------------------------------------
 
-XERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; exit 1; }
-ERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; }
-
-declare -i DEPCOUNT=0
-for DEP in /usr/bin/{notify-send,udisksctl}; {
-	[ -x "$DEP" ] || {
-		ERR "$LINENO" "Dependency '$DEP' not met."
-		DEPCOUNT+=1
-	}
-}
-
-[ $DEPCOUNT -eq 0 ] || exit 1
-
 while [ "$1" ]; do
 	case "$1" in
 		--uuid|-U)
 			shift; UUID="$1"
-			[ -z "$UUID" ] && XERR "$LINENO" "Empty UUID." ;;
+			[ -z "$UUID" ] && exit 1 ;;
 		--label|-L)
 			shift; LABEL="${1// /\\x20}"
-			[ -z "$LABEL" ] && XERR "$LINENO" "Empty LABEL." ;;
+			[ -z "$LABEL" ] && exit 1 ;;
 		--name|-N)
 			shift; NAME="$1"
-			[ -z "$NAME" ] && XERR "$LINENO" "Empty NAME." ;;
-		*)
-			XERR "$LINENO" "Incorrect argument(s) specified." ;;
+			[ -z "$NAME" ] && exit 1 ;;
 	esac
-
 	shift
 done
 
@@ -60,7 +44,6 @@ if [ "$UUID" ]; then
 	else
 		/usr/bin/notify-send --urgency=critical\
 			"PARTMOUNT: Chosen UUID is invalid or unavailable."
-		XERR "$LINENO" "Chosen UUID is invalid or unavailable."
 	fi
 elif [ "$LABEL" ]; then
 	if [ -e /dev/disk/by-label/"$LABEL" ]; then
@@ -73,7 +56,6 @@ elif [ "$LABEL" ]; then
 	else
 		/usr/bin/notify-send --urgency=critical\
 			"PARTMOUNT: Chosen LABEL is invalid or unavailable."
-		XERR "$LINENO" "Chosen LABEL is invalid or unavailable."
 	fi
 elif [ "$NAME" ]; then
 	if [ -e /dev/disk/by-name/"$NAME" ]; then
@@ -86,10 +68,7 @@ elif [ "$NAME" ]; then
 	else
 		/usr/bin/notify-send --urgency=critical\
 			"PARTMOUNT: Chosen NAME is invalid or unavailable."
-		XERR "$LINENO" "Chosen NAME is invalid or unavailable."
 	fi
 fi
-
-[ $UID -eq 0 ] && XERR "$LINENO" "Root access isn't required."
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
