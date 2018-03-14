@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/drop_terminal
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed  7 Mar 14:40:00 GMT 2018
+# Last Change       - Wed 14 Mar 12:13:49 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -11,13 +11,10 @@
 # xfce4-terminal's own built-in drop-down feature.
 #------------------------------------------------------------------------DMENU HERE
 
-[ $UID -eq 0 ] && exit 1
-
 TERMINAL_ARGS="--fullscreen --drop-down"
 TERMINAL_PATH="/usr/bin/xfce4-terminal"
 MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-
 if [ -x "$TERMINAL_PATH" -a -x /usr/bin/pactl -a -f "$SOUND05" ]; then
 	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
 	$TERMINAL_PATH $TERMINAL_ARGS
