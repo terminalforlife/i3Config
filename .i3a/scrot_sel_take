@@ -3,37 +3,26 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/scrot_sel_take
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Tue 20 Feb 17:42:45 GMT 2018
+# Last Change       - Wed 14 Mar 12:21:58 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 # Take a screenshot of the user-selected square region, using scrot.
 #----------------------------------------------------------------------------------
 
-[ $UID -eq 0 ] && exit 1
+umask 0077
 
-if [ -x /usr/bin/scrot -a -x /usr/bin/paplay ]; then
-	umask 0077
+if [ "$1" == "--lite" ]; then
+	printf -v FILENAME "$HOME/Desktop/.lmscrot.jpg"
+else
+	printf -v FILENAME "$HOME/Desktop/Selectshot_%(%F_%X)T.jpg"
+fi
 
-	if [ "$1" == "--lite" ]; then
-		printf -v FILENAME "$HOME/Desktop/.lmscrot.jpg"
-	else
-		printf -v FILENAME "$HOME/Desktop/Selectshot_%(%F_%X)T.jpg"
-	fi
-
-	SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
-	TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
-
-	for FILE in "$SOUND03" "$TEMPSOUND"; { [ -f "$FILE" ] || exit 1; }
-
-	# This just lets you know you pressed the button and that it's waiting for
-	# you to select with the mouse the area of the screen to capture.
-	/usr/bin/paplay --volume 30000 "$TEMPSOUND"
-
-	# Image will be highest quality in PNG format, saved to: $HOME/Desktop
-	if /usr/bin/scrot -zsq 75 -d 1 "$FILENAME"; then
-		/usr/bin/paplay --volume 40000 "$SOUND03"
-	fi
+SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
+TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
+/usr/bin/paplay --volume 30000 "$TEMPSOUND"
+if /usr/bin/scrot -zsq 75 -d 1 "$FILENAME"; then
+	/usr/bin/paplay --volume 40000 "$SOUND03"
 fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
