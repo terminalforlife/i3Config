@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/use_dmenu
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sun 28 Jan 02:14:05 GMT 2018
+# Last Change       - Wed 14 Mar 12:29:31 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,16 +18,12 @@
 # rest I took from various places online, because they seemed cool.
 #------------------------------------------------------------------------DMENU HERE
 
-[ $UID -eq 0 ] && exit 1
-
 MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-	
-[ -x /usr/bin/dmenu_run -a -x /usr/bin/pactl -a -f "$SOUND05" ] && {
+if [ -x /usr/bin/dmenu_run ]; then
 	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
-
-	/usr/bin/dmenu_run -b -fn "Nimbus Mono L":style=Bold:size=16 -nb \#000000\
-		-nf \#ffffff -sb \#333333 -sf \#ffffff
-}
+	/usr/bin/dmenu_run -b -fn "Nimbus Mono L":style=Bold:size=16\
+		-nb \#000000 -nf \#ffffff -sb \#333333 -sf \#ffffff
+fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
