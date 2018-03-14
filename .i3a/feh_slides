@@ -3,12 +3,10 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/feh_slides
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Mon 13 Nov 11:06:21 GMT 2017
+# Last Change       - Wed 14 Mar 12:17:54 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-
-{ [ $UID -eq 0 ] || ! [ -x /usr/bin/feh -a -x /bin/sleep ]; } && exit 2
 
 while [ -n "$1" ]; do
 	case "$1" in
