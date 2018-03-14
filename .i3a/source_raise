@@ -3,12 +3,10 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue  6 Feb 16:21:31 GMT 2018
+# Last Change       - Wed 14 Mar 12:25:36 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-
-[ $UID -eq 0 ] && exit 1
 
 MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 
@@ -23,11 +21,11 @@ if [ -x /usr/bin/pacmd ]; then
 			[ ${X[2]} -ge 98000 ] && exit 0
 		fi
 	done <<< "$(/usr/bin/pacmd list-sources)"
-fi
 
-if [ -x /usr/bin/pactl ]; then
-	/usr/bin/pactl play-sample x11-volume-change & disown
-	/usr/bin/pactl set-source-volume "$MASTER" +500
+	if [ -x /usr/bin/pactl ]; then
+		/usr/bin/pactl play-sample x11-volume-change & disown
+		/usr/bin/pactl set-source-volume "$MASTER" +500
+	fi
 fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
