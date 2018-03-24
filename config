@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Wed  7 Mar 14:37:35 GMT 2018
+# Last Change       - Sat 24 Mar 19:13:50 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -373,6 +373,7 @@ for_window [title="^Select a File$"] floating enable
 for_window [title="^Export Video$"] floating enable
 for_window [title="^No video found$"] floating enable
 for_window [title="^Settings$"] floating enable
+for_window [title="^Change Pitch$"] floating enable
 #for_window [title="^ghostscript$"] floating disabled
 
 #--------------------------------------------------------------------EXTRA BINDINGS
