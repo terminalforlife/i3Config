@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Sun 11 Mar 08:08:59 GMT 2018
+# Last Change       - Sat 24 Mar 23:18:02 GMT 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -73,14 +73,14 @@ command=/bin/bash $HOME/.libi3bview 34
 separator=false
 interval=1
 
-[cpu_temp]
+[cpu_temp_alt]
 label= CPU-TEMP:
-command=/bin/bash $HOME/.libi3bview 10
+command=/bin/bash $HOME/.libi3bview 52
 separator=false
 interval=1
 
 [kernel_version]
-label= KERNEL:
+label= KERNL:
 command=/bin/bash $HOME/.libi3bview 28
 separator=false
 interval=3600
