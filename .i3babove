@@ -9,7 +9,8 @@
 # screen resolution of 1920x1080, in order for the text to fit properly.
 #----------------------------------------------------------------------------------
 
-separator_block_width=31
+separator_block_width=47
+#separator_block_width=31
 markup=none
 color=#ffffff
 
