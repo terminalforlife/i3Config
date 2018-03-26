@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Sat 24 Mar 23:18:13 GMT 2018
+# Last Change       - Mon 26 Mar 20:35:28 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ ROOT_DEV="/dev/sda1"
 declare -i ROOT_DEV_PAD=7
 
 # From /sys/devices/platform onwards.
-CPUPATH="coretemp.0/hwmon/hwmon2/temp1_input"
+CPUPATH="coretemp.0/hwmon/hwmon3/temp1_input"
 
 # What is the name of your home file system?*1
 HOME_DEV="/dev/sdb1"
@@ -494,6 +494,13 @@ github_contribs(){
 	done <<< "$(/usr/bin/wget -q "$GH_URL" -O -)"
 }
 
+#----------------------------------------------------------------REDSHIFT(ER) VALUE
+
+redshifter_value(){
+	read < "$HOME/.config/redshifter.tmp"
+	printf "%'6dK" "$REPLY"
+}
+
 #--------------------------------------------------------------------CALL FUNCTIONS
 
 case "$1" in
@@ -541,6 +548,7 @@ case "$1" in
 	50) session_ul_dl_total & ;;
 	51) github_todos & ;;
 	52) cpu_temp_alt & ;;
+	53) redshifter_value & ;;
 esac
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
