@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3babove
 # Started On        - Sun  4 Feb 22:00:25 GMT 2018
-# Last Change       - Sat 24 Mar 23:18:02 GMT 2018
+# Last Change       - Mon 26 Mar 20:35:50 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -9,7 +9,7 @@
 # screen resolution of 1920x1080, in order for the text to fit properly.
 #----------------------------------------------------------------------------------
 
-separator_block_width=47
+separator_block_width=45
 #separator_block_width=31
 markup=none
 color=#ffffff
@@ -51,8 +51,8 @@ separator=false
 interval=3600
 
 [psacount]
-label= PROC:
-command=/bin/bash $HOME/.libi3bview 38
+label= RS:
+command=/bin/bash $HOME/.libi3bview 53
 separator=false
 interval=1
 
