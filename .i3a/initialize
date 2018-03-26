@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri 23 Mar 23:49:33 GMT 2018
+# Last Change       - Mon 26 Mar 19:58:59 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
 DUNSTRC="$HOME/.config/dunst/dunstrc"
 COMPCONF="$HOME/.config/compton.conf"
 SWW="$HOME/Documents/TT/seweawarn"
-REDSHIFTER="/tmp/redshifter.tmp"
+REDSHIFTER="$HOME/.config/redshifter.tmp"
 
 # Set background (wallpaper) using feh or nitrogen; whichever is available.
 if [ -x /usr/bin/feh ]; then
@@ -90,10 +90,8 @@ fi
 
 # Redshift sets the gamma to the neutral; default.
 if [ -x /usr/bin/redshift ]; then
-	FILE="/tmp/redshifter.tmp"
-
-	if [ -f "$FILE" -a -r "$FILE" ]; then
-		read VALUE < "$FILE"
+	if [ -f "$REDSHIFTER" -a -r "$REDSHIFTER" ]; then
+		read VALUE < "$REDSHIFTER"
 		/usr/bin/redshift -O ${VALUE}K & disown
 	else
 		/usr/bin/redshift -O 6500K & disown
