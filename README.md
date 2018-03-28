@@ -50,6 +50,7 @@ moc - ncurses based console audio player
 pulseaudio-utils - Command line tools for the PulseAudio sound server
 scrot - command line screen capture utility
 suckless-tools - simple commands for minimalistic window managers
+x11-apps - X applications
 xfce4-terminal - Xfce terminal emulator
 xorg - X.Org X Window System
 ```
