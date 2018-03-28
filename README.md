@@ -14,7 +14,7 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 * Useful shell script for further initializing.
 * Function library (libi3bview) with over 40 outputs.
 * Twin bars with extensive statistics, via libi3bview.
-* Transparent bars set by the i3bar_trans addon.
+* Transparent bars set by the i3bar\_trans addon.
 * Partmount; easily (un)mount filesystems via shortcuts.
 * Repository updates for the foreseeable future.
 * Various special XF86 keys already set.
@@ -27,7 +27,7 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 * Various keyboard shortcuts for MOC.
 * Sink and source volume support, using pactrl.
 * Wallpaper slideshow using feh.
-* Many for_window corrections already set.
+* Many for\_window corrections already set.
 * Shortcut to toggle keyboard autorepeat.
 * Subtle thin, black and grey window borders.
 
@@ -38,17 +38,19 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 To get the most out of this setup, or to even have it working at all like it does for me, you'll need the following Ubuntu and/or Debian based packages, and their dependencies:
 
 ```
-i3-wm - improved dynamic tiling window manager
-moc - ncurses based console audio player
+alsa-utils - Utilities for configuring and using ALSA
 compton - compositor for X11, based on xcompmgr
+dunst - dmenu-ish notification-daemon
+feh - imlib2 based image viewer
+fonts-opensymbol - OpenSymbol TrueType font
+i3-wm - improved dynamic tiling window manager
+i3blocks - highly flexible status line for the i3 window manager
+libnotify-bin - sends desktop notifications to a notification daemon (Utilities)
+moc - ncurses based console audio player
 pulseaudio-utils - Command line tools for the PulseAudio sound server
 scrot - command line screen capture utility
 suckless-tools - simple commands for minimalistic window managers
-terminology - Enlightenment efl based terminal emulator
-libnotify-bin - sends desktop notifications to a notification daemon (Utilities)
-i3blocks - highly flexible status line for the i3 window manager
-dunst - dmenu-ish notification-daemon
-feh - imlib2 based image viewer
+xfce4-terminal - Xfce terminal emulator
 xorg - X.Org X Window System
 ```
 
