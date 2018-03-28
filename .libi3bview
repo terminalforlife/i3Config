@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Mon 26 Mar 20:35:28 BST 2018
+# Last Change       - Tue 27 Mar 12:12:14 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ ROOT_DEV="/dev/sda1"
 declare -i ROOT_DEV_PAD=7
 
 # From /sys/devices/platform onwards.
-CPUPATH="coretemp.0/hwmon/hwmon3/temp1_input"
+CPUPATH="coretemp.0/hwmon/hwmon2/temp1_input"
 
 # What is the name of your home file system?*1
 HOME_DEV="/dev/sdb1"
@@ -51,7 +51,7 @@ HOME_DEV="/dev/sdb1"
 HOME_DEV_PAD=7
 
 # What is the target of your countdown?
-CD_TARGET="2018-12-25"
+CD_TARGET="2018-04-16"
 
 # Spaces to pad for the in-seconds countdown.
 declare -i CD_PAD=10
