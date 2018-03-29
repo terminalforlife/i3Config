@@ -130,17 +130,3 @@ fi
 # Because of the very excessive amount of permission errors muddying up the user's
 # .xsession_errors file, this will remove it at login, if the bug is detected.
 /bin/bash $HOME/.i3a/dmesg_overflow & disown
-
-#----------------------------------------------------------------------------------
-
-
-# Enable use of the desktop, via the lightweight and portable PCManFM.
-/usr/bin/pcmanfm --desktop & disown
-
-# Load up the simple dock.
-if [ -x /usr/bin/plank ]; then
-	/usr/bin/plank & disown
-elif [ -x /usr/bin/cairo-dock ]; then
-	/usr/bin/cairo-dock & disown
-fi
-
