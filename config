@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Mon 26 Mar 16:35:57 BST 2018
+# Last Change       - Thu 29 Mar 15:51:31 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -391,6 +391,9 @@ for_window [title="^Welcome to Kdenlive$"] floating enable
 for_window [title="^imgpsh_fullsize (.*)$"] floating enable
 for_window [title="^moz-extension:.*$"] floating enable
 for_window [title="^Warning$"] floating enable
+for_window [title="^Automatic Crash Recovery$"] floating enable
+for_window [title="^Warning: Problems in Automatic Recovery$"] floating enable
+for_window [title="^Disallowed$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
