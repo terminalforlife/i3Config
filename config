@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu 29 Mar 15:51:31 BST 2018
+# Last Change       - Sat 31 Mar 16:03:26 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -394,6 +394,9 @@ for_window [title="^Warning$"] floating enable
 for_window [title="^Automatic Crash Recovery$"] floating enable
 for_window [title="^Warning: Problems in Automatic Recovery$"] floating enable
 for_window [title="^Disallowed$"] floating enable
+for_window [title="^GIMP Startup$"] floating enable
+for_window [title="^Colourise$"] floating enable
+for_window [title="^Levels$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
