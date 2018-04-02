@@ -42,7 +42,7 @@ ROOT_DEV="/dev/sda1"
 declare -i ROOT_DEV_PAD=7
 
 # From /sys/devices/platform onwards.
-CPUPATH="coretemp.0/hwmon/hwmon2/temp1_input"
+CPUPATH="coretemp.0/hwmon/hwmon3/temp1_input"
 
 # What is the name of your home file system?*1
 HOME_DEV="/dev/sdb1"
