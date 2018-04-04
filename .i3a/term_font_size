@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Wed  4 Apr 06:58:21 BST 2018
+# Last Change       - Wed  4 Apr 07:18:32 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,6 +18,7 @@
 #             --version|-v            - Output only the version datestamp.
 #             --raise|-r N            - Raise the font size by N.
 #             --lower|-r N            - lower the font size by N.
+#             --set|-s N              - Just set the font size to N.
 #----------------------------------------------------------------------------------
 
 _VERSION_="2018-04-04"
@@ -43,26 +44,43 @@ if [ -x /bin/sed ]; then
 			fi
 		}
 
+		CHKVAL(){
+			if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+				printf "ERROR: Invalid expression.\n"
+				exit 1
+			fi
+		}
+
 		while [ "$1" ]; do
 			case "$1" in
 				--version|-v)
 					printf "%s\n" "$_VERSION_"
 					exit 0 ;;
 				--raise|-r)
-					shift; declare -i RAISE=$1 ;;
+					shift; CHKVAL "$1"
+					declare -i RAISE=$1 ;;
 				--lower|-l)
-					shift; declare -i LOWER=$1 ;;
-				*)
+					shift; CHKVAL "$1"
+					declare -i LOWER=$1 ;;
+				--set|-s)
+					shift; CHKVAL "$1"
+					declare -i SETTO=$1 ;;
+				-*)
 					printf "ERROR: Incorrect argument(s) specified.\n"
 					exit 1 ;;
+				*)
+					break ;;
 			esac
 		done
 
 		if [ "$RAISE" ]; then
-			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW+1))/"\
+			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW+RAISE))/"\
 				"$FILE" && PLAYSND "$SOUND"
 		elif [ "$LOWER" ]; then
-			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW-1))/"\
+			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW-LOWER))/"\
+				"$FILE" && PLAYSND "$SOUND"
+		elif [ "$SETTO" ]; then
+			/bin/sed -i "/^FontName=/s/${NOW}$/$SETTO/"\
 				"$FILE" && PLAYSND "$SOUND"
 		fi
 	fi
