@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Wed  4 Apr 07:18:32 BST 2018
+# Last Change       - Wed  4 Apr 07:49:59 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -65,12 +65,11 @@ if [ -x /bin/sed ]; then
 				--set|-s)
 					shift; CHKVAL "$1"
 					declare -i SETTO=$1 ;;
-				-*)
+				*)
 					printf "ERROR: Incorrect argument(s) specified.\n"
 					exit 1 ;;
-				*)
-					break ;;
 			esac
+			shift
 		done
 
 		if [ "$RAISE" ]; then
