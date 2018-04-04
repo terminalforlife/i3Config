@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun  1 Apr 13:04:03 BST 2018
+# Last Change       - Wed  4 Apr 07:33:45 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -47,8 +47,10 @@ bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
 bindsym Mod1+Return exec --no-startup-id /bin/bash $HOME/.i3a/terminal
-bindsym Shift+Ctrl+Up exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -r
-bindsym Shift+Ctrl+Down exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -l
+bindsym Shift+Ctrl+Up exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -r 1
+bindsym Shift+Ctrl+Down exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -l 1
+bindsym Shift+Ctrl+Left exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 11
+bindsym Shift+Ctrl+Right exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 25
 bindsym Mod1+Tab exec --no-startup-id /bin/bash $HOME/.i3a/drop_terminal
 bindsym Mod4+w exec --no-startup-id /usr/bin/mpv tv://
 #bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
