@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3config/.flout/active_i3_workspace
+# Started On        - Wed  4 Apr 12:43:23 BST 2018
+# Last Change       - Wed  4 Apr 13:05:28 BST 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+IFS="," read -a X <<< `/usr/bin/i3-msg -t get_workspaces`
+for F in ${X[@]}; {
+	if [[ "${F//['{"']}" =~ ^num:[0-9]+$ ]]; then
+		declare -i W="${F//[!0-9]}"
+	elif [[ "${F//['{"']}" =~ ^focused:true ]]; then
+		printf "%3d" "$W"
+		break
+	fi
+}
