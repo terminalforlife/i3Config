@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Sun 25 Mar 19:30:25 BST 2018
+# Last Change       - Wed  4 Apr 13:25:49 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -9,8 +9,8 @@
 # screen resolution of 1920x1080, in order for the text to fit properly.
 #----------------------------------------------------------------------------------
 
-separator_block_width=54
-#separator_block_width=30
+separator_block_width=39
+#separator_block_width=54
 markup=none
 color=#ffffff
 
@@ -23,6 +23,12 @@ interval=1
 [sink]
 label= V-OUT:
 command=/bin/bash $HOME/.libi3bview 26
+separator=false
+interval=1
+
+[sink]
+label= WS:
+command=/bin/bash $HOME/.libi3bview 54
 separator=false
 interval=1
 
