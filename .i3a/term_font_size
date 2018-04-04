@@ -3,29 +3,72 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Wed 14 Mar 12:27:23 GMT 2018
+# Last Change       - Wed  4 Apr 06:58:21 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
+# Raise or lower the xfce4-terminal font size. Due to the nature of the way in
+# which this terminal checks for and processes the changes to its configuration
+# file, this approach is sluggish to respond, but still works nicely, for those
+# running an older version which doesn't support font size changes via shortcuts.
+#
+# SYNTAX:     term_font_size [OPT]
+#
+# OPTS:       --help|-h|-?            - Displays this help information.
+#             --version|-v            - Output only the version datestamp.
+#             --raise|-r N            - Raise the font size by N.
+#             --lower|-r N            - lower the font size by N.
+#----------------------------------------------------------------------------------
+
+_VERSION_="2018-04-04"
 
 if [ -x /bin/sed ]; then
-	SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
+	SOUND="$HOME/.config/i3/Sounds/SND03.wav"
 	FILE="$HOME/.config/xfce4/terminal/terminalrc"
-	[ -f "$FILE" ] || exit 1
+	if ! [ -f "$FILE" ]; then
+		printf "ERROR: The configuration file is missing.\n"
+		exit 1
+	else
+		while IFS="=" read -a X; do
+			if [ "${X[0]}" == FontName ]; then
+				printf -v NOW "%d" "${X[1]//[!0-9]/}"
+			fi
+		done < "$FILE"
 
-	while IFS="=" read -a X; do
-		if [ "${X[0]}" == FontName ]; then
-			printf -v NOW "%d" "${X[1]//[!0-9]/}"
+		PLAYSND(){
+			if [ /usr/bin/pactl ]; then
+				/usr/bin/paplay --volume 40000 "$1"
+			else
+				printf "ERROR: Dependency '/usr/bin/paplay' not met.\n"
+			fi
+		}
+
+		while [ "$1" ]; do
+			case "$1" in
+				--version|-v)
+					printf "%s\n" "$_VERSION_"
+					exit 0 ;;
+				--raise|-r)
+					shift; declare -i RAISE=$1 ;;
+				--lower|-l)
+					shift; declare -i LOWER=$1 ;;
+				*)
+					printf "ERROR: Incorrect argument(s) specified.\n"
+					exit 1 ;;
+			esac
+		done
+
+		if [ "$RAISE" ]; then
+			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW+1))/"\
+				"$FILE" && PLAYSND "$SOUND"
+		elif [ "$LOWER" ]; then
+			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW-1))/"\
+				"$FILE" && PLAYSND "$SOUND"
 		fi
-	done < "$FILE"
-
-	if [ "$1" == "-r" ]; then
-		/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW+1))/" "$FILE"
-		[ /usr/bin/pactl ] && /usr/bin/paplay --volume 40000 "$SOUND05"
-	elif [ "$1" == "-l" ]; then
-		/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW-1))/" "$FILE"
-		[ /usr/bin/pactl ] && /usr/bin/paplay --volume 40000 "$SOUND05"
 	fi
+else
+	printf "ERROR: Dependency '/bin/sed' not met.\n"
+	exit 1
 fi
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
