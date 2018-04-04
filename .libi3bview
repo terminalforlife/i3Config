@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Fri 30 Mar 17:41:02 BST 2018
+# Last Change       - Wed  4 Apr 13:09:49 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -504,6 +504,20 @@ redshifter_value(){
 
 #--------------------------------------------------------------------CALL FUNCTIONS
 
+active_i3_workspace(){
+	IFS="," read -a X <<< `/usr/bin/i3-msg -t get_workspaces`
+	for F in ${X[@]}; {
+		if [[ "${F//['{"']}" =~ ^num:[0-9]+$ ]]; then
+			declare -i W="${F//[!0-9]}"
+		elif [[ "${F//['{"']}" =~ ^focused:true ]]; then
+			printf "%3d" "$W"
+			break
+		fi
+	}
+}
+
+#----------------------------------------------------------------------------------
+
 case "$1" in
 	01) open_terms & ;;
 	02) user_modified_files & ;;
@@ -550,6 +564,7 @@ case "$1" in
 	51) github_todos & ;;
 	52) cpu_temp_alt & ;;
 	53) redshifter_value & ;;
+	54) active_i3_workspace & ;;
 esac
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
