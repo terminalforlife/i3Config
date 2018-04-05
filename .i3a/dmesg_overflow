@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/dmesg_overflow
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Wed 14 Mar 12:16:25 GMT 2018
+# Last Change       - Thu  5 Apr 22:56:48 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,6 +12,8 @@
 # the errors. This should be quick and painless, with only a minor chance to remove
 # important logged information. A quick workaround to a frustrating issue that is
 # better than allowing dmesg to be a free-for-all!
+#
+# If this issue is something you've never experienced, you needn't use this script.
 #----------------------------------------------------------------------------------
 
 if [ `< /proc/sys/kernel/dmesg_restrict` -eq 1 -a -x /bin/rm ]; then
