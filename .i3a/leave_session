@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/leave_session
+# Started On        - Wed  1 Nov 00:50:35 GMT 2017
+# Last Change       - Thu  5 Apr 22:47:05 BST 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# Log out of your system with this simple interactive graphical prompt, using yad.
+#----------------------------------------------------------------------------------
+
+/usr/bin/yad --center --title="Session Logout" --borders=7\
+	--on-top --text="Log out of the current session?"
+
+if [ $? -eq 0 ]; then
+	/usr/bin/pkill -u $USER
+fi
+
+# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
