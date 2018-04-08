@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_lower
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Wed 14 Mar 12:24:03 GMT 2018
+# Last Change       - Mon  9 Apr 00:20:41 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -26,6 +26,12 @@ if [ -x /usr/bin/pacmd ]; then
 		/usr/bin/pactl play-sample x11-volume-change & disown
 		/usr/bin/pactl set-source-volume "$MASTER" -500
 	fi
+
+	if [ -x /usr/bin/pkill ]; then
+		# Use 'signal=1' and 'interval=once' in the i3blocks configuration
+		# file, in order to have this update only when needed.
+		/usr/bin/pkill -RTMIN+1 i3blocks
+	fi
 fi
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
