@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3bbelow
 # Started On        - Sun  4 Feb 22:01:05 GMT 2018
-# Last Change       - Wed  4 Apr 13:25:49 BST 2018
+# Last Change       - Mon  9 Apr 00:16:12 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,13 +18,15 @@ color=#ffffff
 label= V-IN:
 command=/bin/bash $HOME/.libi3bview 24
 separator=false
-interval=1
+signal=1
+interval=once
 
 [sink]
 label= V-OUT:
 command=/bin/bash $HOME/.libi3bview 26
 separator=false
-interval=1
+signal=1
+interval=once
 
 [sink]
 label= WS:
