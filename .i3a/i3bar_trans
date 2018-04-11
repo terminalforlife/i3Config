@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/i3bar_trans
 # Started On        - Sat 17 Feb 01:34:23 GMT 2018
-# Last Change       - Sat 17 Feb 01:46:51 GMT 2018
+# Last Change       - Wed 11 Apr 10:08:21 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -19,8 +19,12 @@
 
 while read -a X; do
 	if [ "${X[1]/\"}${X[2]}${X[3]}" == "i3barforoutput" ]; then
-		/usr/bin/transset $1 -i "${X[0]}"
+		if [ -x /usr/bin/transset ]; then
+			/usr/bin/transset $1 -i "${X[0]}"
+		elif [ -x /usr/bin/transset-df ]; then
+			/usr/bin/transset-df $1 -i "${X[0]}"
+		fi
 	fi
 done <<< "$(/usr/bin/xwininfo -root -all)"
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
