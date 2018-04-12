@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 10 Apr 21:37:33 BST 2018
+# Last Change       - Thu 12 Apr 02:25:38 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -211,212 +211,126 @@ bar {
 
 bindsym Mod4+k [class="^Xfce4-terminal$"] kill
 
-#---------------------------------------------------------MISCELLANEOUS FOR WINDOWS
+#-------------------------------------------------------------MISCELLANEOUS WINDOWS
 
 for_window [window_role="popup"] floating enable
 for_window [class=".*"] floating enable
+for_window [class="^Links$" title="^Links$"] floating disabled
+for_window [title="^Event Tester$" id="0x1000001"] floating enable
 
-#----------------------------------------------------------------FOR WINDOW CLASSES
+#------------------------------------------------------------XFCE4-TERMINAL WINDOWS
 
-for_window [class="Links"] floating disabled
-for_window [class="Thunderbird"] floating enable
-for_window [class="kdenlive"] floating disabled
-for_window [class="Audacity"] floating disabled
-for_window [class="skypeforlinux"] floating disabled
-for_window [class="Xfce4-terminal"] floating disabled
-for_window [class="Firefox"] floating disabled
-for_window [class="Gimp"] floating disabled
-for_window [class="Org.gnome.Maps"] floating disabled
-for_window [class="TuxGuitar"] floating disabled
-for_window [class="Mplayer"] floating disabled; sticky enable
-for_window [class="Openshot"] floating disabled
-for_window [class="Evince"] floating disabled
-for_window [class="Audacious"] floating disabled
-for_window [class="smtube"] floating disabled
-for_window [class="Dialog"] floating enabled
+for_window [class="^Xfce4-terminal$" title="^Terminal$"] floating disabled
+for_window [class="^Xfce4-terminal$" title="^Choose Terminal Font$"] floating enable
+for_window [class="^Xfce4-terminal$" title="^Online Documentation$"] floating enable
+for_window [class="^Xfce4-terminal$" title="^Select Background Image File$"] floating enable
+for_window [class="^Xfce4-terminal$" title="^Terminal Preferences$"] floating enable
 
-#-----------------------------------------------------------------FOR WINDOW TITLES
+#-------------------------------------------------------------------FIREFOX WINDOWS
 
-for_window [title=" ? Mozilla Thunderbird$"] floating disabled
-for_window [title="Account Settings"] floating enable
-for_window [title="Choose Terminal Font"] floating enable
-for_window [title="Confirm"] floating enable
-for_window [title="Facebook call - Mozilla Firefox"] floating enable
-for_window [title="File Upload"] floating enable
-for_window [title="GIMP Message"] floating enable
-for_window [title="GIMP Tip of the Day"] floating enable
-for_window [title="Items for Offline Use"] floating enable
-for_window [title="Launch Application"] floating enable
-for_window [title="NoScript Options"] floating enable
-for_window [title="Open Image"] floating enable
-for_window [title="Opening *"] floating enable
-for_window [title="Page Info - .*"] floating enable
-for_window [title="Save Image"] floating enable
-for_window [title="Save Message"] floating enable
-for_window [title="Select Background Image File"] floating enable
-for_window [title="Send Message Error"] floating enable
-for_window [title="Sending Message - Re:.*$"] floating enable
-for_window [title="Terminal Preferences"] floating enable
-for_window [title="Write: "] floating disabled
-for_window [title="^(Clip|File) Properties$"] floating enable
-for_window [title="^.* - Oracle VM VirtualBox$"] border pixel 0
-for_window [title="^.* - Oracle VM VirtualBox$"] floating disabled
-for_window [title="^About .*$"] floating enable
-for_window [title="^About me . Mozilla Firefox.*$"] floating disabled
-for_window [title="^Adblock Plus.*"] floating enable
-for_window [title="^Add Effect$"] floating enable
-for_window [title="^Add Files$"] floating enable
-for_window [title="^Add URL$"] floating enable
-for_window [title="^Allowed Web Sites . Pop.ups$"] floating enable
-for_window [title="^Amplify$"] floating enable
-for_window [title="^Apply Chain$"] floating enable
-for_window [title="^Archive Project . Kdenlive$"] floating enable
-for_window [title="^Audacious Settings$"] floating enable
-for_window [title="^Audacity Mixer Board$"] floating enable
-for_window [title="^Auto Duck$"] floating enable
-for_window [title="^Bass and Treble$"] floating enable
-for_window [title="^Blender Error$"] floating enable
-for_window [title="^Brightness-Contrast$"] floating enabled
-for_window [title="^Cancel All Downloads\?$"] floating enable
-for_window [title="^Change Background Col(o|ou)r$"] floating enable
-for_window [title="^Change Foreground Col(o|ou)r$"] floating enable
-for_window [title="^Change Pitch$"] floating enable
-for_window [title="^Change Speed$"] floating enable
-for_window [title="^Chirp$"] floating enable
-for_window [title="^Clear All History$"] floating enable
-for_window [title="^Clear all cookies and site data$"] floating enable
-for_window [title="^Click Removal$"] floating enable
-for_window [title="^Close ..*.$"] floating enable
-for_window [title="^Close Firefox$"] floating enable
-for_window [title="^Compressor$"] floating enable
-for_window [title="^Configure.* . Kdenlive$"] floating enable
-for_window [title="^Create Profile Wizard$"] floating enable
-for_window [title="^Create a New Image$"] floating enable
-for_window [title="^Crossfade Settings$"] floating enable
-for_window [title="^DTMF Tones$"] floating enable
-for_window [title="^DVD Wizard . Kdenlive$"] floating enable
-for_window [title="^Delete Profile$"] floating enable
-for_window [title="^Dependency Check$"] floating enable
-for_window [title="^Desktop Notifications Settings$"] floating enable
-for_window [title="^Echo$"] floating enable
-for_window [title="^Edit Chains$"] floating enable
-for_window [title="^Edit Labels$"] floating enable
-for_window [title="^Edit Metadata Tags$"] floating enable
-for_window [title="^Edit Metadata$"] floating enable
-for_window [title="^Enter Name$"] floating enable
-for_window [title="^Enter Title Text$"] floating enable
-for_window [title="^Enter name of file to save to…$"] floating enable
-for_window [title="^Enter name of the file to save to...$"] floating enable
-for_window [title="^Enter string value$"] floating enable
-for_window [title="^Equaliser$"] floating enable
-for_window [title="^Equalization$"] floating enable
-for_window [title="^Error!$"] floating enable
-for_window [title="^Error$"] floating enable
-for_window [title="^Export Audio$"] floating enable
-for_window [title="^Export Complete$"] floating enable
-for_window [title="^Export Image.*$"] floating enable
-for_window [title="^Export Video$"] floating enable
-for_window [title="^Export Video$"] floating enable
-for_window [title="^Files to transcode . Kdenlive$"] floating enable
-for_window [title="^Firefox . Choose User Profile$"] floating enable
-for_window [title="^Firefox Safe Mode$"] floating enable
-for_window [title="^Font Properties$"] floating enable
-for_window [title="^GIMP Text Editor$"] floating enable
-for_window [title="^GIMPressionist$"] floating enable
-for_window [title="^Get Hot New Stuff . Kdenlive$"] floating enable
-for_window [title="^Import Files$"] floating enable
-for_window [title="^Import Image Sequence$"] floating enable
-for_window [title="^Importing FFmpeg-compatible files$"] floating enable
-for_window [title="^Kdenlive$"] floating enable
-for_window [title="^Latency problem$"] floating enable
-for_window [title="^Layer Attributes$"] floating enable
-for_window [title="^Leveller$"] floating enable
-for_window [title="^Library$"] floating enabled
-for_window [title="^Module Manager$"] floating enable
-for_window [title="^NINJA.IDE .Ninja.IDE Is Not Just Another IDE.$"] floating disabled
-for_window [title="^No video found$"] floating enable
-for_window [title="^Noise Reduction$"] floating enable
-for_window [title="^Noise$"] floating enable
-for_window [title="^Normalize$"] floating enable
-for_window [title="^Open . Kdenlive$"] floating enable
-for_window [title="^Open Document$"] floating enable
-for_window [title="^Open Files$"] floating enable
-for_window [title="^Open Project$"] floating enable
-for_window [title="^Open[Ss]hot Error(|!)$"] floating enable
-for_window [title="^Openshot Preferences$"] floating enable
-for_window [title="^Openshot$"] floating enable
-for_window [title="^Phaser$"] floating enable
-for_window [title="^Pick a Colour$"] floating enable
-for_window [title="^Playback Speed$"] floating enable
-for_window [title="^Pluck$"] floating enable
-for_window [title="^Plug-in Manager: .*$"] floating enable
-for_window [title="^Preferences$"] floating enable
-for_window [title="^Preferences: .*$"] floating enable
-for_window [title="^Preferences: Quality$"] floating enable
-for_window [title="^Print$"] floating enable
-for_window [title="^Problem loading page . Mozilla Firefox$"] floating disabled
-for_window [title="^Profiles Manager$"] floating enable
-for_window [title="^Project Settings . Kdenlive$"] floating enable
-for_window [title="^Properties for .*$"] floating enable
-for_window [title="^Properties for \".*\"$"] floating enable
-for_window [title="^Quit GIMP$"] floating enable
-for_window [title="^Remove Playlist$"] floating enable
-for_window [title="^Rename Profile$"] floating enable
-for_window [title="^Rendering . Kdenlive$"] floating enable
-for_window [title="^Restart Firefox$"] floating enable
-for_window [title="^Restart with Add-ons Disabled$"] floating enable
-for_window [title="^Reverb$"] floating enable
-for_window [title="^Risset Drum$"] floating enable
-for_window [title="^Rotate$"] floating enabled
-for_window [title="^Sample Rate Converter Settings$"] floating enable
-for_window [title="^Save As . Kdenlive$"] floating enable
-for_window [title="^Save As$"] floating enable
-for_window [title="^Save Compressed Project \".*\" As...$"] floating enable
-for_window [title="^Save Project.*"] floating enable
-for_window [title="^Save changed?"] floating enable
-for_window [title="^Script-Fu: .*"] floating enable
-for_window [title="^Select A Folder$"] floating enable
-for_window [title="^Select Helper Application$"] floating enable
-for_window [title="^Select a File$"] floating enable
-for_window [title="^Select main player window font:$"] floating enable
-for_window [title="^Select one or more audio files...$"] floating enable
-for_window [title="^Select playlist font:$"] floating enable
-for_window [title="^Settings$"] floating enable
-for_window [title="^Silence Removal Settings$"] floating enable
-for_window [title="^Silence$"] floating enable
-for_window [title="^Sliding Time Scale/Pitch Shift$"] floating enable
-for_window [title="^Song Change Settings$"] floating enable
-for_window [title="^Sound Activated Record$"] floating enable
-for_window [title="^Spectrum Analyzer$"] floating disabled
-for_window [title="^Submit Bug Report . Kdenlive$"] floating enable
-for_window [title="^Terminology$"] floating disabled
-for_window [title="^Threshold$"] floating enabled
-for_window [title="^Title Editor$"] floating enable
-for_window [title="^Tone$"] floating enable
-for_window [title="^Transition / Mask Properties$"] floating enable
-for_window [title="^Truncate Silence$"] floating enable
-for_window [title="^Unit Editor$"] floating enable
-for_window [title="^Unsupported File Type$"] floating enable
-for_window [title="^Validation Error!$"] floating enable
-for_window [title="^Van Gogh .LIC.$"] floating enable
-for_window [title="^Wahwah$"] floating enable
-for_window [title="^Welcome to Kdenlive$"] floating enable
-for_window [title="^imgpsh_fullsize (.*)$"] floating enable
-for_window [title="^moz-extension:.*$"] floating enable
-for_window [title="^Warning$"] floating enable
-for_window [title="^Automatic Crash Recovery$"] floating enable
-for_window [title="^Warning: Problems in Automatic Recovery$"] floating enable
-for_window [title="^Disallowed$"] floating enable
-for_window [title="^GIMP Startup$"] floating enable
-for_window [title="^Colourise$"] floating enable
-for_window [title="^Levels$"] floating enable
-for_window [title="^Save Preset$"] floating enable
-for_window [title="^Audacity is starting up...$"] floating enable
-for_window [title="^Import Transitions$"] floating enable
-for_window [title="^Low Pass Filter$"] floating enable
-for_window [title="^High Pass Filter$"] floating enable
-for_window [title="^Nyquist$"] floating enable
-for_window [title="^Change Tempo$"] floating enable
+for_window [class="^Firefox$" title="^Mozilla Firefox$"] floating disabled
+for_window [class="^Firefox$" title=".* - Mozilla Firefox"] floating disabled
+for_window [class="^Firefox$" title="Facebook call - Mozilla Firefox"] floating enable
+for_window [class="^Firefox$" title="NoScript Options"] floating enable
+for_window [class="^Firefox$" title="^About me . Mozilla Firefox.*$"] floating disabled
+for_window [class="^Firefox$" title="^Adblock Plus.*"] floating enable
+for_window [class="^Firefox$" title="^Allowed Web Sites . Pop.ups$"] floating enable
+for_window [class="^Firefox$" title="^Cancel All Downloads\?$"] floating enable
+for_window [class="^Firefox$" title="^Clear All History$"] floating enable
+for_window [class="^Firefox$" title="^Clear all cookies and site data$"] floating enable
+for_window [class="^Firefox$" title="^Close Firefox$"] floating enable
+for_window [class="^Firefox$" title="^Create Profile Wizard$"] floating enable
+for_window [class="^Firefox$" title="^Firefox . Choose User Profile$"] floating enable
+for_window [class="^Firefox$" title="^Firefox Safe Mode$"] floating enable
+for_window [class="^Firefox$" title="^Problem loading page . Mozilla Firefox$"] floating disabled
+for_window [class="^Firefox$" title="^Profiles Manager$"] floating enable
+for_window [class="^Firefox$" title="^Rename Profile$"] floating enable
+for_window [class="^Firefox$" title="^Restart Firefox$"] floating enable
+for_window [class="^Firefox$" title="^Restart with Add-ons Disabled$"] floating enable
+
+#---------------------------------------------------------------THUNDERBIRD WINDOWS
+
+for_window [class="^Thunderbird$" title=" ? Mozilla Thunderbird$"] floating disabled
+for_window [class="^Thunderbird$" title="Sending Message - Re:.*$"] floating enable
+
+#---------------------------------------------------------------TERMINOLOGY WINDOWS
+
+for_window [class="^Terminology$" title="^Terminology$"] floating disabled
+
+#------------------------------------------------------------------KDENLIVE WINDOWS
+
+for_window [class="^kdenlive$"] floating disabled
+for_window [class="^kdenlive$" title="^Archive Project . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Configure.* . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^DVD Wizard . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Files to transcode . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Get Hot New Stuff . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Open . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Project Settings . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Rendering . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Save As . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Submit Bug Report . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Welcome to Kdenlive$"] floating enable
+
+#----------------------------------------------------------------------GIMP WINDOWS
+
+for_window [class="^Gimp$" title="^GNU Image Manipulation Program$"] floating disabled
+for_window [class="^Gimp$" title=" ? GIMP$"] floating disabled
+
+#------------------------------------------------------------------OPENSHOT WINDOWS
+
+for_window [class="^Openshot$" title="^OpenShot ? "] floating disabled
+
+#------------------------------------------------------------------AUDACITY WINDOWS
+
+for_window [class="^Audacity$"] floating disabled
+for_window [class="^Audacity$" title="^Aliasing$"] floating enable
+for_window [class="^Audacity$" title="^Amplify$"] floating enable
+for_window [class="^Audacity$" title="^Apply Chain$"] floating enable
+for_window [class="^Audacity$" title="^Audacity Mixer Board$"] floating enable
+for_window [class="^Audacity$" title="^Audacity is starting up...$"] floating enable
+for_window [class="^Audacity$" title="^Auto Duck$"] floating enable
+for_window [class="^Audacity$" title="^Bass and Treble$"] floating enable
+for_window [class="^Audacity$" title="^Change Tempo$"] floating enable
+for_window [class="^Audacity$" title="^Choose a location to place the temporary directory$"] floating enable
+for_window [class="^Audacity$" title="^Choose an EQ curve file$"] floating enable
+for_window [class="^Audacity$" title="^Click Track$"] floating enable
+for_window [class="^Audacity$" title="^Compressor$"] floating enable
+for_window [class="^Audacity$" title="^Crossfade Settings$"] floating enable
+for_window [class="^Audacity$" title="^DTMF Tones$"] floating enable
+for_window [class="^Audacity$" title="^Equaliser$"] floating enable
+for_window [class="^Audacity$" title="^Equalization$"] floating enable
+for_window [class="^Audacity$" title="^Export Keyboard Shortcuts As:$"] floating enable
+for_window [class="^Audacity$" title="^High Pass Filter$"] floating enable
+for_window [class="^Audacity$" title="^Low Pass Filter$"] floating enable
+for_window [class="^Audacity$" title="^Manage Curves$"] floating enable
+for_window [class="^Audacity$" title="^Noise Reduction$"] floating enable
+for_window [class="^Audacity$" title="^Noise$"] floating enable
+for_window [class="^Audacity$" title="^Normalize$"] floating enable
+for_window [class="^Audacity$" title="^Nyquist$"] floating enable
+for_window [class="^Audacity$" title="^Phaser$"] floating enable
+for_window [class="^Audacity$" title="^Playback Speed$"] floating enable
+for_window [class="^Audacity$" title="^Pluck$"] floating enable
+for_window [class="^Audacity$" title="^Plug-in Manager: .*$"] floating enable
+for_window [class="^Audacity$" title="^Preferences: "] floating enable
+for_window [class="^Audacity$" title="^Reverb$"] floating enable
+for_window [class="^Audacity$" title="^Risset Drum$"] floating enable
+for_window [class="^Audacity$" title="^Rule deletion confirmation$"] floating enable
+for_window [class="^Audacity$" title="^Sample Rate Converter Settings$"] floating enable
+for_window [class="^Audacity$" title="^Save Compressed Project \".*\" As...$"] floating enable
+for_window [class="^Audacity$" title="^Save Project \".*\" As...$"] floating enable
+for_window [class="^Audacity$" title="^Save changes?"] floating enable
+for_window [class="^Audacity$" title="^Select an XML file containing Audacity keyboard shortcuts...$"] floating enable
+for_window [class="^Audacity$" title="^Select one or more audio files...$"] floating enable
+for_window [class="^Audacity$" title="^Silence Removal Settings$"] floating enable
+for_window [class="^Audacity$" title="^Silence$"] floating enable
+for_window [class="^Audacity$" title="^Sliding Time Scale/Pitch Shift$"] floating enable
+for_window [class="^Audacity$" title="^Sound Activated Record$"] floating enable
+for_window [class="^Audacity$" title="^Spectrum Analyzer$"] floating disabled
+for_window [class="^Audacity$" title="^Tone$"] floating enable
+for_window [class="^Audacity$" title="^Truncate Silence$"] floating enable
+for_window [class="^Audacity$" title="^Wahwah$"] floating enable
 
 #--------------------------------------------------------------------EXTRA BINDINGS
 
