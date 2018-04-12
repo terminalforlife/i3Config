@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu 12 Apr 02:35:08 BST 2018
+# Last Change       - Thu 12 Apr 17:42:40 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -22,8 +22,8 @@
 # have a few bindings which use that key, so they will need to be changed.
 #----------------------------------------------------------------------INITIAL SETS
 
-new_float pixel 3
-new_window pixel 3
+new_float pixel 0
+new_window pixel 0
 workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
@@ -39,7 +39,7 @@ focus_on_window_activation urgent
 #---------------------------------------------------------------------MAIN BINDINGS
 
 bindsym Mod1+i border normal
-bindsym Mod1+u border pixel 3
+bindsym Mod1+u border pixel 0
 bindsym Mod1+Shift+space floating toggle
 bindsym Mod1+space focus mode_toggle
 bindsym Mod1+Shift+c reload
@@ -50,7 +50,7 @@ bindsym Mod1+Return exec --no-startup-id /bin/bash $HOME/.i3a/terminal
 bindsym Shift+Ctrl+Up exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -l 1
 bindsym Shift+Ctrl+Left exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 11
-bindsym Shift+Ctrl+Right exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 24
+bindsym Shift+Ctrl+Right exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 21
 bindsym Mod1+Tab exec --no-startup-id /bin/bash $HOME/.i3a/drop_terminal
 bindsym Mod4+w exec --no-startup-id /usr/bin/mpv tv://
 #bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
@@ -287,6 +287,16 @@ for_window [class="^Openshot$" title="^OpenShot ? "] floating disabled
 #------------------------------------------------------------------AUDACITY WINDOWS
 
 for_window [class="^Audacity$"] floating disabled
+for_window [class="^Audacity$" title="^Dependency Check$"] floating enable
+for_window [class="^Audacity$" title="^Print$"] floating enable
+for_window [class="^Audacity$" title="^Page Setup$"] floating enable
+for_window [class="^Audacity$" title="^Edit Chains$"] floating enable
+for_window [class="^Audacity$" title="^Cannot Export Multiple$"] floating enable
+for_window [class="^Audacity$" title="^Select a text file containing labels...$"] floating enable
+for_window [class="^Audacity$" title="^Edit Metadata Tags$"] floating enable
+for_window [class="^Audacity$" title="^Export Selected Audio$"] floating enable
+for_window [class="^Audacity$" title="^Export Audio$"] floating enable
+for_window [class="^Audacity$" title="^Edit Metadata$"] floating enable
 for_window [class="^Audacity$" title="^Aliasing$"] floating enable
 for_window [class="^Audacity$" title="^Amplify$"] floating enable
 for_window [class="^Audacity$" title="^Apply Chain$"] floating enable
