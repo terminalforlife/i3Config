@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu 12 Apr 17:42:40 BST 2018
+# Last Change       - Fri 13 Apr 17:11:55 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -287,6 +287,10 @@ for_window [class="^Openshot$" title="^OpenShot ? "] floating disabled
 #------------------------------------------------------------------AUDACITY WINDOWS
 
 for_window [class="^Audacity$"] floating disabled
+for_window [class="^Audacity$" title="^Change Pitch$"] floating enable
+for_window [class="^Audacity$" title="^Paulstretch$"] floating enable
+for_window [class="^Audacity$" title="^Automatic Crash Recovery$"] floating enable
+for_window [class="^Audacity$" title="^Warning: Problems in Automatic Recovery$"] floating enable
 for_window [class="^Audacity$" title="^Dependency Check$"] floating enable
 for_window [class="^Audacity$" title="^Print$"] floating enable
 for_window [class="^Audacity$" title="^Page Setup$"] floating enable
