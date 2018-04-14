@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/terminal
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed 14 Mar 12:27:56 GMT 2018
+# Last Change       - Sat 14 Apr 19:57:38 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -21,6 +21,7 @@
 #----------------------------------------------------------------------------------
 
 #TODO - The LIMIT doesn't work with xfce4-terminal,as it uses just the one process.
+#       It does, however, work with terminology. YMMV? This should be addressed.
 
 T='/usr/bin/xfce4-terminal'
 LIMIT=0
@@ -49,4 +50,4 @@ else
 	exit 1
 fi
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
