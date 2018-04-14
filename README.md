@@ -10,26 +10,25 @@ If you're an i3-wm (i3 Window Manager) user like me, you'll probably be interest
 
 ## WHAT'S ON OFFER?
 
-* Tidy, carefully-written config and addons.
+* Tidy, carefully-written `config` and addons.
 * Useful shell script for further initializing.
-* Function library (libi3bview) with over 40 outputs.
-* Twin bars with extensive statistics, via libi3bview.
-* Transparent bars set by the i3bar\_trans addon.
-* Partmount; easily (un)mount filesystems via shortcuts.
+* Function library (`.libi3bview`) with over 40 outputs.
+* Optional twin bars with extensive statistics, via libi3bview.
+* Optional transparency for i3bar. (`i3bar_trans`)
+* The `partmount` addon for quick, easy filesystem mounting.
 * Repository updates for the foreseeable future.
 * Various special XF86 keys already set.
 * No endless busy cursor -- correct exec calls.
 * Shortcuts for taking various screenshot types.
-* Shortcut for webcam window at the touch of a button(s).
-* No indicator, for the more experienced.
+* Shortcut for a webcam window at the touch of a button(s).
+* No indicator, for the more experienced users.
 * Standard i3-wm (touch-type) mapping scheme.
 * No need to mess around with modes.
 * Various keyboard shortcuts for MOC.
-* Sink and source volume support, using pactrl.
-* Wallpaper slideshow using feh.
-* Many for\_window corrections already set.
+* Sink and source volume support, using PulseAudio.
+* Wallpaper slideshow using feh. (`feh_slides`)
+* Many `for_window` corrections already set.
 * Shortcut to toggle keyboard autorepeat.
-* Subtle thin, black and grey window borders.
 
 ...and probably other things I'm missing.
 
