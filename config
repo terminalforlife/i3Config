@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sat 14 Apr 13:43:15 BST 2018
+# Last Change       - Sun 22 Apr 16:13:17 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -220,6 +220,10 @@ for_window [class=".*"] floating enable
 for_window [class="^Links$" title="^Links$"] floating disabled
 for_window [title="^Event Tester$" id="0x1000001"] floating enable
 
+#--------------------------------------------------------------------PITIVI WINDOWS
+
+for_window [class="^Pitivi$" title=" — Pitivi$"] floating disabled
+
 #------------------------------------------------------------XFCE4-TERMINAL WINDOWS
 
 for_window [class="^Xfce4-terminal$" title="^Terminal$"] floating disabled
@@ -279,6 +283,8 @@ for_window [class="^kdenlive$" title="^Welcome to Kdenlive$"] floating enable
 
 for_window [class="^Gimp$" title="^GNU Image Manipulation Program$"] floating disabled
 for_window [class="^Gimp$" title=" ? GIMP$"] floating disabled
+for_window [class="^Gimp$" title="Tool Options$"] floating enable
+for_window [class="^Gimp$" title="^Quit GIMP$"] floating enable
 
 #------------------------------------------------------------------OPENSHOT WINDOWS
 
