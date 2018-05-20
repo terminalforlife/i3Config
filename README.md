@@ -44,6 +44,7 @@ feh - imlib2 based image viewer
 fonts-opensymbol - OpenSymbol TrueType font
 i3-wm - improved dynamic tiling window manager
 i3blocks - highly flexible status line for the i3 window manager
+i3lock - improved screen locker
 libnotify-bin - sends desktop notifications to a notification daemon (Utilities)
 moc - ncurses based console audio player
 pulseaudio-utils - Command line tools for the PulseAudio sound server
