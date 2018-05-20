@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/lockscreen
+# Started On        - Sat 23 Sep 14:47:51 BST 2017
+# Last Change       - Sun 20 May 03:48:07 BST 2018
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+IMAGE="$HOME/Pictures/Wallpapers/Spyro Wall - Snuggle in Blanket.png"
+MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
+SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
+if [ -x /usr/bin/i3lock ]; then
+	if /usr/bin/i3lock -i "$IMAGE"; then
+		/usr/bin/paplay --volume 40000 "$SOUND05" & disown
+	fi
+fi
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
