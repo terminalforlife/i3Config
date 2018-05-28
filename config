@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun 20 May 04:46:38 BST 2018
+# Last Change       - Fri 25 May 15:41:18 BST 2018
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -294,6 +294,9 @@ for_window [class="^Openshot$" title="^OpenShot ? "] floating disabled
 #------------------------------------------------------------------AUDACITY WINDOWS
 
 for_window [class="^Audacity$"] floating disabled
+for_window [class="^Audacity$" title="^Error$"] floating enable
+for_window [class="^Audacity$" title="^Progress$"] floating enable
+for_window [class="^Audacity$" title="^Importing Ogg Vorbis files$"] floating enable
 for_window [class="^Audacity$" title="^Warning - Orphan Block File\(s\)$"] floating enable
 for_window [class="^Audacity$" title="^Change Pitch$"] floating enable
 for_window [class="^Audacity$" title="^Paulstretch$"] floating enable
