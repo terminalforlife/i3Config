@@ -294,6 +294,7 @@ for_window [class="^Openshot$" title="^OpenShot ? "] floating disabled
 #------------------------------------------------------------------AUDACITY WINDOWS
 
 for_window [class="^Audacity$"] floating disabled
+for_window [class="^Audacity$" title="^Importing FFmpeg-compatible files$"] floating enable
 for_window [class="^Audacity$" title="^Error$"] floating enable
 for_window [class="^Audacity$" title="^Progress$"] floating enable
 for_window [class="^Audacity$" title="^Importing Ogg Vorbis files$"] floating enable
