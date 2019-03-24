@@ -19,14 +19,14 @@ label= V-IN:
 command=/bin/bash $HOME/.libi3bview 24
 separator=false
 signal=1
-interval=once
+interval=1
 
 [sink]
 label= V-OUT:
 command=/bin/bash $HOME/.libi3bview 26
 separator=false
 signal=1
-interval=once
+interval=1
 
 [sink]
 label= WS:
