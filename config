@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 25 May 15:41:18 BST 2018
+# Last Change       - Sun 24 Mar 00:58:38 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -178,37 +178,37 @@ bindsym Mod4+8 exec --no-startup-id /usr/bin/redshifter -r
 # are still in place and accessible.
 #----------------------------------------------------------------------------------
 
-#bar {
-#	id 1
-#	position bottom
-#	tray_output none
-#	mode hide
-#	modifier Mod4
-#	workspace_buttons no
-#	binding_mode_indicator no
-#	status_command /usr/bin/i3blocks -c $HOME/.i3bbelow
-#
-#	colors {
-#		background    #000000
-#		separator     #000000
-#	}
-#}
-#
-#bar {
-#	id 2
-#	position top
-#	tray_output none
-#	mode hide
-#	modifier Mod4
-#	workspace_buttons no
-#	binding_mode_indicator no
-#	status_command /usr/bin/i3blocks -c $HOME/.i3babove
-#
-#	colors {
-#		background    #000000
-#		separator     #000000
-#	}
-#}
+bar {
+	id 1
+	position bottom
+	tray_output none
+	#mode hide
+	#modifier Mod4
+	workspace_buttons no
+	binding_mode_indicator no
+	status_command /usr/bin/i3blocks -c $HOME/.i3bbelow
+
+	colors {
+		background    #000000
+		separator     #000000
+	}
+}
+
+bar {
+	id 2
+	position top
+	tray_output none
+	#mode hide
+	#modifier Mod4
+	workspace_buttons no
+	binding_mode_indicator no
+	status_command /usr/bin/i3blocks -c $HOME/.i3babove
+
+	colors {
+		background    #000000
+		separator     #000000
+	}
+}
 
 #---------------------------------------------------------------------GROUP ACTIONS
 
