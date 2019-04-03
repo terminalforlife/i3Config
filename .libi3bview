@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Sun 24 Mar 00:52:22 GMT 2019
+# Last Change       - Tue  2 Apr 14:22:34 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -524,52 +524,52 @@ active_i3_workspace(){
 #----------------------------------------------------------------------------------
 
 case "$1" in
-	01) open_terms & ;;
-	02) user_modified_files & ;;
-	03) official_repo_pkg_sup_status & ;;
-	04) official_repo_pkg_dl_status & ;;
-	05) latest_stable_kernel & ;;
-	06) io_condition & ;;
-	07) storage_device_count & ;;
-	08) time_show & ;;
-	09) date_show & ;;
-	10) cpu_temp & ;;
-	11) listening_tcp_count & ;;
-	12) estab_tcp_count & ;;
-	13) session_ul_total & ;;
-	14) session_dl_total & ;;
-	15) root_space_used_mb & ;;
-	17) home_space_used_mb & ;;
-	19) swap_used_mb & ;;
-	21) ram_used_mb & ;;
-	23) countdown & ;;
-	24) input_volume_pacmd & ;;
-	26) output_volume_pacmd & ;;
-	27) cpu_freq & ;;
-	28) kernel_check & ;;
-	29) avg_cpu_usage & ;;
-	30) session_uptime & ;;
-	32) max_proc_usage & ;;
-	33) net_status & ;;
-	34) mount_count & ;;
-	35) user_count & ;;
-	36) open_files_count & ;;
-	37) mocp_info & ;;
-	38) psa_count & ;;
-	40) usb_count & ;;
-	42) apt_pkg_changes & ;;
-	43) ytsubcount & ;;
-	44) github_follows & ;;
-	45) github_contribs & ;;
-	46) ytviewcount & ;;
-	47) show_date_time & ;;
-	48) listening_estab_tcp_count & ;;
-	49) rough_cpu_usage & ;;
-	50) session_ul_dl_total & ;;
-	51) github_todos & ;;
-	52) cpu_temp_alt & ;;
-	53) redshifter_value & ;;
-	54) active_i3_workspace & ;;
+	open_terms) open_terms & ;;
+	user_modified_files) user_modified_files & ;;
+	official_repo_pkg_sup_status) official_repo_pkg_sup_status & ;;
+	official_repo_pkg_dl_status) official_repo_pkg_dl_status & ;;
+	latest_stable_kernel) latest_stable_kernel & ;;
+	io_condition) io_condition & ;;
+	storage_device_count) storage_device_count & ;;
+	time_show) time_show & ;;
+	date_show) date_show & ;;
+	cpu_temp) cpu_temp & ;;
+	listening_tcp_count) listening_tcp_count & ;;
+	estab_tcp_count) estab_tcp_count & ;;
+	session_ul_total) session_ul_total & ;;
+	session_dl_total) session_dl_total & ;;
+	root_space_used_mb) root_space_used_mb & ;;
+	home_space_used_mb) home_space_used_mb & ;;
+	swap_used_mb) swap_used_mb & ;;
+	ram_used_mb) ram_used_mb & ;;
+	countdown) countdown & ;;
+	input_volume_pacmd) input_volume_pacmd & ;;
+	output_volume_pacmd) output_volume_pacmd & ;;
+	cpu_freq) cpu_freq & ;;
+	kernel_check) kernel_check & ;;
+	avg_cpu_usage) avg_cpu_usage & ;;
+	session_uptime) session_uptime & ;;
+	max_proc_usage) max_proc_usage & ;;
+	net_status) net_status & ;;
+	mount_count) mount_count & ;;
+	user_count) user_count & ;;
+	open_files_count) open_files_count & ;;
+	mocp_info) mocp_info & ;;
+	psa_count) psa_count & ;;
+	usb_count) usb_count & ;;
+	apt_pkg_changes) apt_pkg_changes & ;;
+	ytsubcount) ytsubcount & ;;
+	github_follows) github_follows & ;;
+	github_contribs) github_contribs & ;;
+	ytviewcount) ytviewcount & ;;
+	show_date_time) show_date_time & ;;
+	listening_estab_tcp_count) listening_estab_tcp_count & ;;
+	rough_cpu_usage) rough_cpu_usage & ;;
+	session_ul_dl_total) session_ul_dl_total & ;;
+	github_todos) github_todos & ;;
+	cpu_temp_alt) cpu_temp_alt & ;;
+	redshifter_value) redshifter_value & ;;
+	active_i3_workspace) active_i3_workspace & ;;
 esac
 
 # vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
