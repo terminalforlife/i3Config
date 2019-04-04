@@ -13,7 +13,7 @@ if [ -x /usr/bin/pacmd ]; then
 	while read -a X; do
 		if [[ "${X[0]}" =~ volume: ]]; then
 			printf -v VOL "%d" "${X[4]%\%}"
-			[ $VOL -eq 0 ] && exit 0 || break
+			[ $VOL -le 0 ] && exit 0 || break
 		fi
 	done <<< "$(/usr/bin/pacmd list-sinks)"
 
