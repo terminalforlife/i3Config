@@ -3,29 +3,20 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/lockscreen
 # Started On        - Thu  4 Apr 12:38:37 BST 2019
-# Last Change       - Thu  4 Apr 14:13:00 BST 2019
+# Last Change       - Thu  4 Apr 14:20:59 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 set -o errexit
 
-FILE="$(/bin/mktemp -u --suffix='.png')"
-SOUND03="/usr/share/sounds/freedesktop/stereo/service-logout.oga"
-SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
+FILE="$(/bin/mktemp -u --suffix='_lock.png')"
+SOUND03="/usr/share/sounds/freedesktop/stereo/network-connectivity-lost.oga"
+SOUND04="/usr/share/sounds/freedesktop/stereo/network-connectivity-established.oga"
 
 trap "/bin/rm -f $FILE" EXIT
 
 TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
-
-# Just in-case a temporary file would be overwritten.
-while :; do
-	if [ -f "$FILE" ]; then
-		FILE="$(/bin/mktemp -u --suffix='.png')"
-	else
-		break
-	fi
-done
 
 /usr/bin/scrot -z "$FILE"
 /usr/bin/convert "$FILE" -gaussian-blur 8x8 "$FILE"
