@@ -2,19 +2,33 @@
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/lockscreen
-# Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sun 20 May 12:44:37 BST 2018
+# Started On        - Thu  4 Apr 12:38:37 BST 2019
+# Last Change       - Thu  4 Apr 14:13:00 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-IMAGE="$HOME/Pictures/Wallpapers/Spyro Wall - Snuggle in Blanket.png"
-MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
-SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-if [ -x /usr/bin/i3lock ]; then
-	if /usr/bin/i3lock -b -i "$IMAGE"; then
-		/usr/bin/paplay --volume 40000 "$SOUND05" & disown
-	fi
-fi
+set -o errexit
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+FILE="$(/bin/mktemp -u --suffix='.png')"
+SOUND03="/usr/share/sounds/freedesktop/stereo/service-logout.oga"
+SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
+
+trap "/bin/rm -f $FILE" EXIT
+
+TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
+
+# Just in-case a temporary file would be overwritten.
+while :; do
+	if [ -f "$FILE" ]; then
+		FILE="$(/bin/mktemp -u --suffix='.png')"
+	else
+		break
+	fi
+done
+
+/usr/bin/scrot -z "$FILE"
+/usr/bin/convert "$FILE" -gaussian-blur 8x8 "$FILE"
+/usr/bin/paplay --volume 40000 "$SOUND03" &
+/usr/bin/i3lock -n -i "$FILE"
+/usr/bin/paplay --volume 40000 "$SOUND04" &
