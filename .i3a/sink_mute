@@ -1,14 +1,19 @@
 #!/bin/bash
 
 #----------------------------------------------------------------------------------
-# Project Name      - $HOME/.i3a/master_mute
+# Project Name      - $HOME/.i3a/sink_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Wed 14 Mar 12:24:41 GMT 2018
+# Last Change       - Thu 11 Apr 11:31:04 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-MASTER="alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
-/usr/bin/pactl set-sink-mute "$MASTER" toggle
+if [ -x /usr/bin/pactl ] && [ -x /usr/bin/pacmd ]; then
+	while IFS=":" read -a X; do
+		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
+	done <<< "$(/usr/bin/pacmd info)"
+
+	/usr/bin/pactl set-sink-mute "$MASTER" toggle
+fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup

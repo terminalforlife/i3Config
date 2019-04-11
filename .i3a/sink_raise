@@ -3,13 +3,16 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Sun  7 Apr 14:58:30 BST 2019
+# Last Change       - Thu 11 Apr 11:28:12 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-MASTER="alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 if [ -x /usr/bin/pacmd ]; then
+	while IFS=":" read -a X; do
+		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
+	done <<< "$(/usr/bin/pacmd info)"
+
 	# Compensate for output change in Ubuntu 16.04 to 18.04. If the file isn't
 	# found or improperly parsed, it should still work, without the 100% limit.
 	declare -i LINE=2

@@ -3,14 +3,16 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon  9 Apr 00:20:31 BST 2018
+# Last Change       - Thu 11 Apr 11:29:39 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
-
 if [ -x /usr/bin/pacmd ]; then
+	while IFS=":" read -a X; do
+		[ "${X[0]}" == "Default source name" ] && MASTER="${X[1]## }"
+	done <<< "$(/usr/bin/pacmd info)"
+
 	while read -a X; do
 		if [ "${X[0]}" == volume: ]; then
 			if ! [ "$FIRST" == "true" ]; then
