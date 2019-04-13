@@ -3,20 +3,18 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Mon  1 Apr 17:18:04 BST 2019
+# Last Change       - Fri 12 Apr 10:32:24 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-BACKGROUND="/home/ichy/Pictures/Wallpapers/trees_asphalt_path_gray_55415_1920x1080.jpg"
+BACKGROUND="$HOME/Pictures/Wallpapers/trees_asphalt_path_gray_55415_1920x1080.jpg"
 FEH_SLIDES="$HOME/Pictures/Wallpapers"
 BELLSND="/usr/share/sounds/freedesktop/stereo/message.oga"
 ALERTSND="/usr/share/sounds/freedesktop/stereo/window-attention.oga"
-VOLCHSND="/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga"
 SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
 DUNSTRC="$HOME/.config/dunst/dunstrc"
 COMPCONF="$HOME/.config/compton.conf"
-SWW="$HOME/Documents/TT/seweawarn"
 REDSHIFTER="$HOME/.config/redshifter.tmp"
 
 # Redshift sets the gamma to the previous value, per REDSHIFTER file. You will
@@ -44,9 +42,10 @@ fi
 #/usr/bin/syswatch & disown
 
 # Be sure pulseaudio is enabled. Don't try to start unless inactive, just in-case.
-if ! /usr/bin/pulseaudio --check; then
-	/usr/bin/pulseaudio --start & disown
-fi
+/usr/bin/pulseaudio --check || /usr/bin/pulseaudio --start & disown
+
+# Enable the bell sound.
+/usr/bin/pacmd load-module module-x11-bell
 
 # Also load up an alert sound to be used by shell programs.
 /usr/bin/pactl upload-sample $ALERTSND x11-alert & disown
@@ -87,45 +86,8 @@ fi
 # Play a little sound upon login. Uses a path at the start of this script.
 /usr/bin/paplay --volume 40000 "$SOUND04" & disown
 
-# Notify the user of NumLock and CapsLock state changes.
-#/usr/bin/capnum 3 & disown
-
 # Check for kernel version changes; see kernelchk repository.
 /usr/bin/kernelchk -N -b & disown
 
 # Launches mocp in the background, ready for music.
 /usr/bin/mocp -S & disown
-
-# Launches Audacious in the background, ready for music.
-#/usr/bin/audacious & disown
-
-# Launch Firefox, to ensure I get notifications from Facebook and YouTube.
-#/usr/bin/firefox & disown
-
-# Launch Thunderbird. I often forget, so this helps me.
-#/usr/bin/thunderbird & disown
-
-# Log medication taken; see miscellaneous repository.
-/usr/bin/medlogip & disown
-
-# Give things enough time to load up before continuing. Make this longer if you're
-# not using an SSD or have an older machine.
-#/bin/sleep 10s
-
-# Run notify-upgrade and have it check for updates in the background. To get this
-# small shell script, you can find it in the notify-upgrade repository.
-#/usr/bin/notify-upgrade -i 60 & disown
-
-# Give it a bit of random time before starting mfw, to save being so bombarded.
-#/bin/sleep ${RANDOM%???}s
-
-# Download & install this with: sudo insit -C miscellaneous mfw /usr/bin/mfw 755 0
-#/usr/bin/mfw 60 & disown
-
-# Load up a personal, weather-warning shell program, if found.
-#/bin/bash "$SWW" 30 & disown
-
-#TODO - Looks like this is down to syswatch -- fix!
-# Because of the very excessive amount of permission errors muddying up the user's
-# .xsession_errors file, this will remove it at login, if the bug is detected.
-#/bin/bash $HOME/.i3a/dmesg_overflow & disown
