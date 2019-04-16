@@ -3,10 +3,12 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/lockscreen
 # Started On        - Thu  4 Apr 12:38:37 BST 2019
-# Last Change       - Thu  4 Apr 14:25:27 BST 2019
+# Last Change       - Wed 17 Apr 00:04:50 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
+
+#TODO - If the lock key is held, multiple instances of this script are executed.
 
 set -o errexit
 
