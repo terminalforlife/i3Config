@@ -60,7 +60,10 @@ bindsym Mod4+m exec --no-startup-id /bin/sleep 1s && /usr/bin/xset dpms force of
 bindsym Mod4+Shift+0 exec --no-startup-id /usr/bin/transset -a 1
 bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/transset -a 0.2
 bindsym Ctrl+Mod1+L exec --no-startup-id /bin/bash $HOME/.i3a/leave_session
-bindsym Mod4+L exec --no-startup-id /bin/bash $HOME/.i3a/lockscreen
+
+# Enable whichever applies to your keyboard or preference.
+#bindsym Mod4+L exec --no-startup-id /bin/bash $HOME/.i3a/lockscreen
+bindsym Menu exec --no-startup-id /bin/bash $HOME/.i3a/lockscreen
 
 #-----------------------------------------------------------------------SOME COLORS
 
