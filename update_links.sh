@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/update_links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Fri 16 Feb 20:00:46 GMT 2018
+# Last Change       - Wed 17 Apr 22:52:49 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -28,11 +28,6 @@ for DEP in /bin/{ln,rm}; {
 }
 
 for FILE in .i3a/* ; {
-	/bin/rm -v "$HOME/$FILE" 2> /dev/null
-	/bin/ln -v "$FILE" "$HOME/$FILE" 2> /dev/null
-}
-
-for FILE in .flout/* ; {
 	/bin/rm -v "$HOME/$FILE" 2> /dev/null
 	/bin/ln -v "$FILE" "$HOME/$FILE" 2> /dev/null
 }
