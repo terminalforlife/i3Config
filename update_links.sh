@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/update_links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Wed 17 Apr 22:52:49 BST 2019
+# Last Change       - Fri 26 Apr 14:16:12 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -28,24 +28,24 @@ for DEP in /bin/{ln,rm}; {
 }
 
 for FILE in .i3a/* ; {
-	/bin/rm -v "$HOME/$FILE" 2> /dev/null
-	/bin/ln -v "$FILE" "$HOME/$FILE" 2> /dev/null
+	/bin/rm -v "$HOME/$FILE" 2>&-
+	/bin/ln -v "$FILE" "$HOME/$FILE" 2>&-
 }
 
 CFILE="$HOME/.config/i3/config"
-/bin/rm -v "$CFILE" 2> /dev/null
-/bin/ln -v config "$CFILE" 2> /dev/null
+/bin/rm -v "$CFILE" 2>&-
+/bin/ln -v config "$CFILE" 2>&-
 
 CFILE="$HOME/.i3bbelow"
-/bin/rm -v "$CFILE" 2> /dev/null
-/bin/ln -v .i3bbelow "$CFILE" 2> /dev/null
+/bin/rm -v "$CFILE" 2>&-
+/bin/ln -v .i3bbelow "$CFILE" 2>&-
 
 CFILE="$HOME/.i3babove"
-/bin/rm -v "$CFILE" 2> /dev/null
-/bin/ln -v .i3babove "$CFILE" 2> /dev/null
+/bin/rm -v "$CFILE" 2>&-
+/bin/ln -v .i3babove "$CFILE" 2>&-
 
 CFILE="$HOME/.libi3bview"
-/bin/rm -v "$CFILE" 2> /dev/null
-/bin/ln -v .libi3bview "$CFILE" 2> /dev/null
+/bin/rm -v "$CFILE" 2>&-
+/bin/ln -v .libi3bview "$CFILE" 2>&-
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
