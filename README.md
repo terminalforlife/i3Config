@@ -36,3 +36,11 @@ x11-xkb-utils\
 x11-xserver-utils\
 xfce4-terminal \
 yad
+
+To install these packages, run the following one-liner in a terminal:
+
+```bash
+/usr/bin/wget -q 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_packages' -O - | sudo /bin/bash -
+```
+
+If you don't have `sudo` available, just omit it from the above line.
