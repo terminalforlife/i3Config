@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sat 11 May 16:35:55 BST 2019
+# Last Change       - Sat 11 May 18:09:30 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -78,11 +78,13 @@ client.background        #000000
 
 #--------------------------------------------------------------WORKSPACE ASSIGNMENT
 
+assign [class="Audacious"] 10
 assign [class="Firefox"] 4
 assign [class="Skype"] 3
-assign [title="Facebook call . Mozilla Firefox"] 3 #TODO - Fix?
 assign [class="Thunderbird"] 7
-assign [class="Audacious"] 10
+assign [class="^Audacity$"] 2
+assign [class="^Openshot$"] 2
+assign [title="Facebook call . Mozilla Firefox"] 3 #TODO - Fix?
 
 #----------------------------------------------------------------------WINDOW FOCUS
 
@@ -338,6 +340,17 @@ bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id /bin/bash $HOME/.i3a/sou
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_lower
 bindsym Shift+XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/source_mute
 bindsym Shift+Mod1+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/hush_the_mic
+
+# For keyboards without XF86 media controls. (just comment out to disable)
+bindsym Shift+F2 exec --no-startup-id /bin/bash $HOME/.i3a/sink_mute
+bindsym Shift+F3 exec --no-startup-id /bin/bash $HOME/.i3a/sink_lower
+bindsym Shift+F4 exec --no-startup-id /bin/bash $HOME/.i3a/sink_raise
+bindsym Shift+Ctrl+F2 exec --no-startup-id /bin/bash $HOME/.i3a/source_mute
+bindsym Shift+Ctrl+F3 exec --no-startup-id /bin/bash $HOME/.i3a/source_lower
+bindsym Shift+Ctrl+F4 exec --no-startup-id /bin/bash $HOME/.i3a/source_raise
+bindsym Shift+F5 exec --no-startup-id /bin/bash $HOME/.i3a/hush_the_mic
+bindsym Shift+F6 exec --no-startup-id /bin/bash $HOME/.i3a/sink_switch
+
 bindsym XF86Calculator exec --no-startup-id /usr/bin/xcalc
 bindsym Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_take
 bindsym Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_sel_take
