@@ -1,0 +1,85 @@
+#!/usr/bin/perl
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3Config/dev_setup
+# Started On        - Fri 10 May 23:28:31 BST 2019
+# Last Change       - Sat 11 May 13:39:01 BST 2019
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# This Perl script will set up my development environment, effectively using the
+# terminal layout I usually always want. And yes, it addresses the split problem.
+#
+# Eventually, I'll probably come up with something like this which isn't just for
+# me, but can be used by anyone; perhaps my own take on a layout save/restore.
+#
+# That said, as long as you follow the syntax you already see, you could probably
+# set things up the way you want to, easily enough, using I3_CMD().
+#----------------------------------------------------------------------------------
+
+use strict;
+use warnings;
+use autodie;
+use File::Basename 'basename';
+use Time::HiRes 'usleep';
+use AnyEvent::I3 qw{TYPE_COMMAND i3}; # <-- libanyevent-i3-perl
+use TFL; # <-- libtfl-perl (>= 2019-05-07)
+
+my $_VERSION_ = "2019-05-11";
+my $_PROJECT_ = basename($0);
+
+my %EXECS = (
+	'TERMINAL' => '/usr/bin/xfce4-terminal',
+	'BROWSER' => '/usr/bin/firefox',
+	'CHAT' => '/usr/bin/skypeforlinux',
+	'EMAIL' => '/usr/bin/thunderbird'
+);
+
+TFL::DepChk($EXECS{$_}) foreach keys(%EXECS);
+
+my $I3 = AnyEvent::I3->new();
+
+{
+	my $VERSION = i3->get_version->recv;
+	my $MAJMIN = "$VERSION->{major}.$VERSION->{minor}";
+
+	# This version is currently what's available on Ubuntu 16.04.6 (LTS).
+	TFL::FAIL(1, __LINE__, "Version >= 4.11 of i3-wm not found.")
+		if $MAJMIN =~ tr/.//dr < 411;
+}
+
+TFL::FAIL(1, __LINE__, "") if not $I3->connect->recv;
+
+# $_[0] = Optional. Microseconds pause before the command.
+sub I3_CMD{
+	if($_[0] =~ /^[0-9]+$/){
+		my $MS = shift(@_);
+		usleep($MS)
+	}
+
+	$I3->message(TYPE_COMMAND, $_[0])
+}
+
+I3_CMD('workspace 1');
+my $GH_REPOS = $ENV{HOME} . '/GitHub/terminalforlife/Personal';
+my $WD = "--working-directory='$GH_REPOS'";
+I3_CMD("exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
+I3_CMD(75000, "split v"); # <-- YMMV, regarding the integer.
+I3_CMD("exec --no-startup-id $EXECS{TERMINAL}");
+
+I3_CMD('workspace 3');
+I3_CMD("exec --no-startup-id $EXECS{CHAT}");
+
+I3_CMD('workspace 4');
+I3_CMD("exec --no-startup-id $EXECS{BROWSER}");
+
+I3_CMD('workspace 7');
+I3_CMD("exec --no-startup-id $EXECS{EMAIL}");
+
+I3_CMD('workspace 10');
+if(basename($EXECS{TERMINAL}) eq 'xfce4-terminal'){
+	TFL::DepChk('/usr/bin/mplay'); TFL::DepChk('/usr/bin/mocp');
+	I3_CMD("exec --no-startup-id $EXECS{TERMINAL} -x '/usr/bin/mplay'")
+}else{
+	I3_CMD("exec --no-startup-id $EXECS{TERMINAL}")
+}
