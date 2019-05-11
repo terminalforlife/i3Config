@@ -1,41 +1,41 @@
 **MASTER** - _Hopefully stable branch._\
 **DEV** - _Development Branch (latest changes)_
 
-### REQUIREMENTS (2019-05-11)
+#### REQUIREMENTS (2019-05-11)
 
 An Ubuntu base greater than or equal to version 16.04 is recommended.
 
 Some DEB packages I use or are needed with this i3-wm setup:
 
-libanyevent-i3-perl\
-libnotify-bin\
-libnotify4\
-libtfl-perl ([get](https://github.com/terminalforlife/DEB-Packages))
+_libanyevent-i3-perl_\
+_libnotify-bin_\
+_libnotify4_\
+_libtfl-perl_ ([get](https://github.com/terminalforlife/DEB-Packages))
 
-compton\
-dunst\
-feh\
-firefox\
-i3-wm\
-i3lock\
-imagemagick\
-keynav\
-moc\
-mplay ([get](https://github.com/terminalforlife/DEB-Packages))\
-procps\
-pulseaudio\
-pulseaudio-utils\
-redshift\
-redshifter ([get](https://github.com/terminalforlife/DEB-Packages))\
-scrot\
-skypeforlinux ([get](https://www.skype.com/en/get-skype))\
-sound-theme-freedesktop\
-suckless-tools\
-x11-utils\
-x11-xkb-utils\
-x11-xserver-utils\
-xfce4-terminal \
-yad
+_compton_\
+_dunst_\
+_feh_\
+_firefox_\
+_i3-wm_\
+_i3lock_\
+_imagemagick_\
+_keynav_\
+_moc_\
+_mplay_ ([get](https://github.com/terminalforlife/DEB-Packages))\
+_procps_\
+_pulseaudio_\
+_pulseaudio-utils_\
+_redshift_\
+_redshifter_ ([get](https://github.com/terminalforlife/DEB-Packages))\
+_scrot_\
+_skypeforlinux_ ([get](https://www.skype.com/en/get-skype))\
+_sound-theme-freedesktop_\
+_suckless-tools_\
+_x11-utils_\
+_x11-xkb-utils_\
+_x11-xserver-utils_\
+_xfce4-terminal_\
+_yad_
 
 To install these packages, run the following one-liner in a terminal:
 
