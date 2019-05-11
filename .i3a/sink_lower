@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/sink_lower
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Thu 11 Apr 11:27:35 BST 2019
+# Last Change       - Sat 11 May 19:28:14 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -14,9 +14,11 @@ if [ -x /usr/bin/pacmd ]; then
 	done <<< "$(/usr/bin/pacmd info)"
 
 	while read -a X; do
-		if [[ "${X[0]}" =~ volume: ]]; then
+		if [ "$IS_MASTER" == "True" ] && [[ "${X[0]}" =~ volume: ]]; then
 			printf -v VOL "%d" "${X[4]%\%}"
 			[ $VOL -le 0 ] && exit 0 || break
+		elif [ "${X[0]}" == 'name:' -a "${X[1]//[<>]/}" == "$MASTER" ]; then
+			IS_MASTER="True"
 		fi
 	done <<< "$(/usr/bin/pacmd list-sinks)"
 
@@ -32,4 +34,4 @@ if [ -x /usr/bin/pacmd ]; then
 	fi
 fi
 
-# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
