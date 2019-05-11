@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Sat 11 May 13:46:44 BST 2019
+# Last Change       - Sat 11 May 13:57:30 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -67,12 +67,13 @@ my $WD = "--working-directory='$GH_REPOS'";
 
 I3_CMD(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
 I3_CMD(100000, 'split v'); # <-- YMMV, regarding the integer.
-I3_CMD(100000, "exec --no-startup-id $EXECS{TERMINAL}");
+I3_CMD(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
 I3_CMD(100000, 'focus left');
 
-I3_CMD(100000, "exec --no-startup-id $EXECS{CHAT}");
-I3_CMD(100000, "exec --no-startup-id $EXECS{BROWSER}");
-I3_CMD(100000, "exec --no-startup-id $EXECS{EMAIL}");
+# Assumes appropriate for_windows have been set.
+I3_CMD(100000, "exec --no-startup-id $EXECS{CHAT}"); # <-- WS 3.
+I3_CMD(100000, "exec --no-startup-id $EXECS{BROWSER}"); # <-- WS 4.
+I3_CMD(100000, "exec --no-startup-id $EXECS{EMAIL}"); # <-- WS 7.
 
 I3_CMD(100000, 'workspace 10');
 
