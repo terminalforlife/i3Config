@@ -3,17 +3,19 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/get_packages
 # Started On        - Sat 11 May 14:57:13 BST 2019
-# Last Change       - Sat 11 May 17:10:11 BST 2019
+# Last Change       - Sat 11 May 17:39:57 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
 XERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; exit 1; }
+ERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; }
 
-#[ $UID -eq 0 ] || XERR "$LINENO" "Root access is required."
+[ $UID -eq 0 ] || XERR "$LINENO" "Root access is required."
 
 [ -x '/usr/bin/dpkg' ] || XERR "$LINENO" "Dependency '/usr/bin/dpkg' not met."
 [ -x '/usr/bin/apt-get' ] || XERR "$LINENO" "Dependency '/usr/bin/apt-get' not met."
+[ -x '/usr/bin/wget' ] || XERR "$LINENO" "Dependency '/usr/bin/wget' not met."
 
 PKGS=(
 	libanyevent-i3-perl:"Used|in|Perl|script|'dev_setup',|for|i3-wm."
@@ -55,4 +57,42 @@ for I in ${PKGS[@]}; {
 	/usr/bin/apt-get $APT_OPTS install "${I%%:*}"
 	read -n 1 -s -p 'Press any key to continue... '
 	printf "\n"
+}
+
+GH_URL='https://github.com/terminalforlife/DEB-Packages/raw/master'
+
+EXTRA_PKGS=(
+	'skypeforlinux@https://repo.skype.com/latest/skypeforlinux-64.deb'
+	"libtfl-perl@$GH_URL/libtfl-perl_2019-05-09_all.deb"
+	"mplay@$GH_URL/mplay_2019-05-09_all.deb"
+	"redshifter@$GH_URL/redshifter_2019-05-09_all.deb"
+)
+
+for I in ${EXTRA_PKGS[@]}; {
+	while :; do
+		read -n 1 -p "Install ${I%%@*}? (Y/N) "
+		printf "\n"
+
+		case "$REPLY" in
+			[yY])
+				/usr/bin/wget -q --show-progress "${I#*@}" \
+					-O "/tmp/${I%%@*}-deb.tmp"
+
+				if [ $? -eq 0 ]; then
+					if ! /usr/bin/dpkg -i "/tmp/${I%%@*}-deb.tmp"; then
+						ERR "$LINENO" "Failed to install chosen DEB package."
+					else
+						/bin/rm -v "/tmp/${I%%@*}-deb.tmp"
+					fi
+				else
+					ERR "$LINENO" "Failed to download chosen DEB package."
+				fi
+
+				break ;;
+			[nN])
+				break ;;
+			*)
+				ERR "$LINENO" "Invalid response."
+		esac
+	done
 }
