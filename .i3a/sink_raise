@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Thu 11 Apr 11:28:12 BST 2019
+# Last Change       - Sat 11 May 19:25:51 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -21,13 +21,15 @@ if [ -x /usr/bin/pacmd ]; then
 
 	declare -i N=0
 	while read -a X; do
-		if [[ "${X[0]}" == *volume:* ]]; then
+		if [ "$IS_MASTER" == "True" ] && [[ "${X[0]}" == volume: ]]; then
 			N+=1
 
 			if [ $N -eq $LINE ]; then
 				printf -v VOL "%d" "${X[4]%\%}"
 				[ $VOL -ge 100 ] && exit 0 || break
 			fi
+		elif [ "${X[0]}" == 'name:' -a "${X[1]//[<>]/}" == "$MASTER" ]; then
+			IS_MASTER="True"
 		fi
 	done <<< "$(/usr/bin/pacmd list-sinks)"
 
@@ -36,11 +38,12 @@ if [ -x /usr/bin/pacmd ]; then
 		/usr/bin/pactl set-sink-volume "$MASTER" +500
 	fi
 
-	if [ -x /usr/bin/pkill ]; then
-		# Use 'signal=1' and 'interval=once' in the i3blocks configuration
-		# file, in order to have this update only when needed.
-		/usr/bin/pkill -RTMIN+1 i3blocks
-	fi
+	# Uncomment if you use i3blocks with a volume indicator.
+	#if [ -x /usr/bin/pkill ]; then
+	#	# Use 'signal=1' and 'interval=once' in the i3blocks configuration
+	#	# file, in order to have this update only when needed.
+	#	/usr/bin/pkill -RTMIN+1 i3blocks
+	#fi
 fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
