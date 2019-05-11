@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#----------------------------------------------------------------------------------
+# Project Name      - $HOME/.i3a/sink_raise
+# Started On        - Sun 24 Sep 00:30:17 BST 2017
+# Last Change       - Sat 11 May 18:42:18 BST 2019
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# This script is more of a personal one than any of the others. I have two devices
+# I switch between the mixer and the monitor's speakers. Headphones on the former.
+#----------------------------------------------------------------------------------
+
+DEV_1='alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo'
+DEV_2='alsa_card.pci-0000_01_00.1.hdmi-stereo-extra1'
+
+if [ -x /usr/bin/pacmd ]; then
+	while IFS=":" read -a X; do
+		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
+	done <<< "$(/usr/bin/pacmd info)"
+
+	echo "$MASTER"
+
+	if [ -x /usr/bin/pactl ]; then
+		/usr/bin/pactl play-sample x11-volume-change & disown
+
+		if [ "$MASTER" == "$DEV_1" ]; then
+			/usr/bin/pactl set-card-profile "${DEV_2%.*}" output:hdmi-stereo-extra1
+		else
+			/usr/bin/pactl set-card-profile "${DEV_2%.*}" off
+		fi
+	fi
+fi
+
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
