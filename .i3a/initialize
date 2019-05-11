@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed  1 May 23:12:25 BST 2019
+# Last Change       - Sat 11 May 13:41:20 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -99,3 +99,6 @@ fi
 
 # Start watching the network and the Internet connectivity thereof.
 /usr/bin/nwchk -b -i 10 -l -I "$IFACE" & disown
+
+# Handle the layout and other programs launched.
+/usr/bin/perl $HOME/.i3a/dev_setup
