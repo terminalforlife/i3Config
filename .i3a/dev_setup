@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Sat 11 May 13:39:01 BST 2019
+# Last Change       - Sat 11 May 13:46:44 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -60,26 +60,27 @@ sub I3_CMD{
 	$I3->message(TYPE_COMMAND, $_[0])
 }
 
-I3_CMD('workspace 1');
+I3_CMD(100000, 'workspace 1'); # <-- Just in-case.
+
 my $GH_REPOS = $ENV{HOME} . '/GitHub/terminalforlife/Personal';
 my $WD = "--working-directory='$GH_REPOS'";
-I3_CMD("exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
-I3_CMD(75000, "split v"); # <-- YMMV, regarding the integer.
-I3_CMD("exec --no-startup-id $EXECS{TERMINAL}");
 
-I3_CMD('workspace 3');
-I3_CMD("exec --no-startup-id $EXECS{CHAT}");
+I3_CMD(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
+I3_CMD(100000, 'split v'); # <-- YMMV, regarding the integer.
+I3_CMD(100000, "exec --no-startup-id $EXECS{TERMINAL}");
+I3_CMD(100000, 'focus left');
 
-I3_CMD('workspace 4');
-I3_CMD("exec --no-startup-id $EXECS{BROWSER}");
+I3_CMD(100000, "exec --no-startup-id $EXECS{CHAT}");
+I3_CMD(100000, "exec --no-startup-id $EXECS{BROWSER}");
+I3_CMD(100000, "exec --no-startup-id $EXECS{EMAIL}");
 
-I3_CMD('workspace 7');
-I3_CMD("exec --no-startup-id $EXECS{EMAIL}");
+I3_CMD(100000, 'workspace 10');
 
-I3_CMD('workspace 10');
 if(basename($EXECS{TERMINAL}) eq 'xfce4-terminal'){
 	TFL::DepChk('/usr/bin/mplay'); TFL::DepChk('/usr/bin/mocp');
 	I3_CMD("exec --no-startup-id $EXECS{TERMINAL} -x '/usr/bin/mplay'")
 }else{
 	I3_CMD("exec --no-startup-id $EXECS{TERMINAL}")
 }
+
+I3_CMD(100000, 'workspace 1');
