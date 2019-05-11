@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 26 Apr 11:42:31 BST 2019
+# Last Change       - Sat 11 May 16:35:55 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -172,46 +172,6 @@ bindsym Shift+Mod4+5 exec --no-startup-id\
 bindsym Mod4+0 exec --no-startup-id /usr/bin/redshifter -i 100
 bindsym Mod4+9 exec --no-startup-id /usr/bin/redshifter -d 100
 bindsym Mod4+8 exec --no-startup-id /usr/bin/redshifter -r
-
-#-------------------------------------------------------------------------------BAR
-# This repository used to not use any bars, so with this in mind, you're more than
-# welcome to comment out both of these bar blocks to ensure no bars are loaded.
-# If you did want to use these, ensure i3blocks is installed, and the configuration
-# files which were downloaded and installed during insit installation of i3config
-# are still in place and accessible.
-#----------------------------------------------------------------------------------
-
-#bar {
-#	id 1
-#	position bottom
-#	tray_output none
-#	#mode hide
-#	#modifier Mod4
-#	workspace_buttons no
-#	binding_mode_indicator no
-#	status_command /usr/bin/i3blocks -c $HOME/.i3bbelow
-#
-#	colors {
-#		background    #000000
-#		separator     #000000
-#	}
-#}
-#
-#bar {
-#	id 2
-#	position top
-#	tray_output none
-#	#mode hide
-#	#modifier Mod4
-#	workspace_buttons no
-#	binding_mode_indicator no
-#	status_command /usr/bin/i3blocks -c $HOME/.i3babove
-#
-#	colors {
-#		background    #000000
-#		separator     #000000
-#	}
-#}
 
 #---------------------------------------------------------------------GROUP ACTIONS
 
