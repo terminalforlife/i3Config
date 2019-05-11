@@ -28,7 +28,7 @@ Some DEB packages I use or are needed with this i3-wm setup:
 * redshift
 * redshifter ([get](https://github.com/terminalforlife/DEB-Packages))
 * scrot
-* skypeforlinux ((get)[https://www.skype.com/en/get-skype])
+* skypeforlinux ([get](https://www.skype.com/en/get-skype))
 * sound-theme-freedesktop
 * suckless-tools
 * x11-apps
