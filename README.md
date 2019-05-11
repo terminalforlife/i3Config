@@ -1,8 +1,6 @@
 **MASTER** - _Hopefully stable branch._\
 **DEV** - _Development Branch (latest changes)_
 
-#### REQUIREMENTS (2019-05-11)
-
 An Ubuntu base greater than or equal to version 16.04 is recommended.
 
 Some DEB packages I use or are needed with this i3-wm setup:
@@ -44,3 +42,5 @@ To install these packages, run the following one-liner in a terminal:
 ```
 
 If you don't have `sudo` available, just omit it from the above line.
+
+The above was last updated on: 2019-05-11
