@@ -10,7 +10,7 @@ Some DEB packages I use or are needed with this i3-wm setup:
 libanyevent-i3-perl\
 libnotify-bin\
 libnotify4\
-libtfl-perl ([get](https://github.com/terminalforlife/DEB-Packages))\
+libtfl-perl ([get](https://github.com/terminalforlife/DEB-Packages))
 
 compton\
 dunst\
