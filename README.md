@@ -31,7 +31,6 @@ scrot\
 skypeforlinux ([get](https://www.skype.com/en/get-skype))\
 sound-theme-freedesktop\
 suckless-tools\
-x11-apps\
 x11-utils\
 x11-xkb-utils\
 x11-xserver-utils\
