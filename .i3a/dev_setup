@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Sat 11 May 13:57:30 BST 2019
+# Last Change       - Sun 12 May 17:26:16 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -14,18 +14,16 @@
 # me, but can be used by anyone; perhaps my own take on a layout save/restore.
 #
 # That said, as long as you follow the syntax you already see, you could probably
-# set things up the way you want to, easily enough, using I3_CMD().
+# set things up the way you want to, easily enough, using TFL::i3Do().
 #----------------------------------------------------------------------------------
 
 use strict;
 use warnings;
 use autodie;
 use File::Basename 'basename';
-use Time::HiRes 'usleep';
-use AnyEvent::I3 qw{TYPE_COMMAND i3}; # <-- libanyevent-i3-perl
 use TFL; # <-- libtfl-perl (>= 2019-05-07)
 
-my $_VERSION_ = "2019-05-11";
+my $_VERSION_ = "2019-05-12";
 my $_PROJECT_ = basename($0);
 
 my %EXECS = (
@@ -37,51 +35,31 @@ my %EXECS = (
 
 TFL::DepChk($EXECS{$_}) foreach keys(%EXECS);
 
-my $I3 = AnyEvent::I3->new();
-
-{
-	my $VERSION = i3->get_version->recv;
-	my $MAJMIN = "$VERSION->{major}.$VERSION->{minor}";
-
-	# This version is currently what's available on Ubuntu 16.04.6 (LTS).
-	TFL::FAIL(1, __LINE__, "Version >= 4.11 of i3-wm not found.")
-		if $MAJMIN =~ tr/.//dr < 411;
-}
-
-TFL::FAIL(1, __LINE__, "") if not $I3->connect->recv;
-
-# $_[0] = Optional. Microseconds pause before the command.
-sub I3_CMD{
-	if($_[0] =~ /^[0-9]+$/){
-		my $MS = shift(@_);
-		usleep($MS)
-	}
-
-	$I3->message(TYPE_COMMAND, $_[0])
-}
-
-I3_CMD(100000, 'workspace 1'); # <-- Just in-case.
+TFL::i3Do(100000, 'workspace 1'); # <-- In-case the user doesn't starts here.
 
 my $GH_REPOS = $ENV{HOME} . '/GitHub/terminalforlife/Personal';
 my $WD = "--working-directory='$GH_REPOS'";
 
-I3_CMD(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
-I3_CMD(100000, 'split v'); # <-- YMMV, regarding the integer.
-I3_CMD(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
-I3_CMD(100000, 'focus left');
+TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
+TFL::i3Do(100000, 'split v'); # <-- YMMV, regarding the integer.
+TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
+TFL::i3Do(100000, 'focus left');
 
 # Assumes appropriate for_windows have been set.
-I3_CMD(100000, "exec --no-startup-id $EXECS{CHAT}"); # <-- WS 3.
-I3_CMD(100000, "exec --no-startup-id $EXECS{BROWSER}"); # <-- WS 4.
-I3_CMD(100000, "exec --no-startup-id $EXECS{EMAIL}"); # <-- WS 7.
+TFL::i3Do(100000, "exec --no-startup-id $EXECS{CHAT}"); # <-- WS 3.
+TFL::i3Do(100000, "exec --no-startup-id $EXECS{BROWSER}"); # <-- WS 4.
+TFL::i3Do(100000, "exec --no-startup-id $EXECS{EMAIL}"); # <-- WS 7.
 
-I3_CMD(100000, 'workspace 10');
+TFL::i3Do(100000, 'workspace 10');
 
 if(basename($EXECS{TERMINAL}) eq 'xfce4-terminal'){
 	TFL::DepChk('/usr/bin/mplay'); TFL::DepChk('/usr/bin/mocp');
-	I3_CMD("exec --no-startup-id $EXECS{TERMINAL} -x '/usr/bin/mplay'")
+
+	my $FILE = $ENV{HOME} . '/.i3a/partmount';
+	TFL::i3Do(100000, "/bin/bash $FILE -L 'Media 3'") if -f $FILE and -r $FILE;
+	TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} -x '/usr/bin/mplay'")
 }else{
-	I3_CMD("exec --no-startup-id $EXECS{TERMINAL}")
+	TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL}")
 }
 
-I3_CMD(100000, 'workspace 1');
+TFL::i3Do(100000, 'workspace 1');
