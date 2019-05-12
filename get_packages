@@ -3,19 +3,27 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/get_packages
 # Started On        - Sat 11 May 14:57:13 BST 2019
-# Last Change       - Sat 11 May 17:39:57 BST 2019
+# Last Change       - Sun 12 May 23:59:43 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-XERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; exit 1; }
-ERR(){ printf "[L%0.4d] ERROR: %s\n" "$1" "$2" 1>&2; }
+FAIL(){
+	printf "[L%0.4d] ERROR: %s\n" "$2" "$3" 1>&2
+	[ $1 -eq 1 ] && exit 1
+}
 
-[ $UID -eq 0 ] || XERR "$LINENO" "Root access is required."
+[ $UID -eq 0 ] || FAIL 1 "$LINENO" "Root access is required."
 
-[ -x '/usr/bin/dpkg' ] || XERR "$LINENO" "Dependency '/usr/bin/dpkg' not met."
-[ -x '/usr/bin/apt-get' ] || XERR "$LINENO" "Dependency '/usr/bin/apt-get' not met."
-[ -x '/usr/bin/wget' ] || XERR "$LINENO" "Dependency '/usr/bin/wget' not met."
+declare -i DEPCOUNT=0
+for DEP in dpkg apt-get wget rm; {
+	if ! type -fP "$DEP" > /dev/null 2>&1; then
+		FAIL 0 "$LINENO" "Dependency '$DEP' not met."
+		DEPCOUNT+=1
+	fi
+}
+
+[ $DEPCOUNT -eq 0 ] || exit 1
 
 PKGS=(
 	libanyevent-i3-perl:"Used|in|Perl|script|'dev_setup',|for|i3-wm."
@@ -54,7 +62,7 @@ APT_OPTS+='APT::Get::AutomaticRemove=true -o APT::Get::Purge=true'
 for I in ${PKGS[@]}; {
 	read I <<< "${I//|/ }"
 	INFO "${I%%:*}" "${I#*:}"
-	/usr/bin/apt-get $APT_OPTS install "${I%%:*}"
+	apt-get $APT_OPTS install "${I%%:*}"
 	read -n 1 -s -p 'Press any key to continue... '
 	printf "\n"
 }
@@ -75,24 +83,23 @@ for I in ${EXTRA_PKGS[@]}; {
 
 		case "$REPLY" in
 			[yY])
-				/usr/bin/wget -q --show-progress "${I#*@}" \
-					-O "/tmp/${I%%@*}-deb.tmp"
+				wget -q --show-progress "${I#*@}" -O "/tmp/${I%%@*}-deb.tmp"
 
 				if [ $? -eq 0 ]; then
-					if ! /usr/bin/dpkg -i "/tmp/${I%%@*}-deb.tmp"; then
-						ERR "$LINENO" "Failed to install chosen DEB package."
+					if ! dpkg -i "/tmp/${I%%@*}-deb.tmp"; then
+						FAIL 0 "$LINENO" "Failed to install chosen DEB package."
 					else
-						/bin/rm -v "/tmp/${I%%@*}-deb.tmp"
+						rm -v "/tmp/${I%%@*}-deb.tmp"
 					fi
 				else
-					ERR "$LINENO" "Failed to download chosen DEB package."
+					FAIL 0 "$LINENO" "Failed to download chosen DEB package."
 				fi
 
 				break ;;
 			[nN])
 				break ;;
 			*)
-				ERR "$LINENO" "Invalid response."
+				FAIL 0 "$LINENO" "Invalid response."
 		esac
 	done
 }
