@@ -1,18 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/track_notify
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat 14 Apr 20:10:56 BST 2018
+# Last Change       - Mon 13 May 01:23:48 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-if [ -x /usr/bin/notify-send -a -x /usr/bin/mocp ]; then
+if type -fP notify-send mocp > /dev/null 2>&1; then
 	shopt -s extglob
-	BUF=`/usr/bin/mocp --format="%file"`
+	BUF=`mocp --format="%file"`
 	DATA="${BUF%.@(ogg|mp3|wma|flac|wav)}"
-	/usr/bin/notify-send "${DATA##*/Music/}"
+	notify-send "${DATA##*/Music/}"
 fi
 
-# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
