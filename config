@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.config/i3/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sat 11 May 18:09:30 BST 2019
+# Last Change       - Mon 13 May 01:04:02 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -46,24 +46,24 @@ bindsym Mod1+Shift+c reload
 bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
-bindsym Mod1+Return exec --no-startup-id /bin/bash $HOME/.i3a/terminal
-bindsym Shift+Ctrl+Up exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -r 1
-bindsym Shift+Ctrl+Down exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -l 1
-bindsym Shift+Ctrl+Left exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 11
-bindsym Shift+Ctrl+Right exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 21
-bindsym Mod1+Tab exec --no-startup-id /bin/bash $HOME/.i3a/drop_terminal
-#bindsym Mod4+w exec --no-startup-id /usr/bin/mpv tv://
-bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
-bindsym Mod4+b exec --no-startup-id /bin/bash $HOME/.i3a/i3bar_trans 0.5
-bindsym Shift+Mod1+b bar mode toggle; exec --no-startup-id /bin/bash $HOME/.i3a/i3bar_trans 0.5
-bindsym Mod4+m exec --no-startup-id /bin/sleep 1s && /usr/bin/xset dpms force off
-bindsym Mod4+Shift+0 exec --no-startup-id /usr/bin/transset -a 1
-bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/transset -a 0.2
-bindsym Ctrl+Mod1+L exec --no-startup-id /bin/bash $HOME/.i3a/leave_session
+bindsym Mod1+Return exec --no-startup-id bash $HOME/.i3a/terminal
+bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r 1
+bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l 1
+bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 11
+bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 21
+bindsym Mod1+Tab exec --no-startup-id bash $HOME/.i3a/drop_terminal
+#bindsym Mod4+w exec --no-startup-id mpv tv://
+bindsym Mod4+w exec --no-startup-id mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
+bindsym Mod4+b exec --no-startup-id bash $HOME/.i3a/i3bar_trans 0.5
+bindsym Shift+Mod1+b bar mode toggle; exec --no-startup-id bash $HOME/.i3a/i3bar_trans 0.5
+bindsym Mod4+m exec --no-startup-id sleep 1s && xset dpms force off
+bindsym Mod4+Shift+0 exec --no-startup-id transset -a 1
+bindsym Mod4+Shift+9 exec --no-startup-id transset -a 0.2
+bindsym Ctrl+Mod1+L exec --no-startup-id bash $HOME/.i3a/leave_session
 
 # Enable whichever applies to your keyboard or preference.
-#bindsym Mod4+L exec --no-startup-id /bin/bash $HOME/.i3a/lockscreen
-bindsym Menu exec --no-startup-id /bin/bash $HOME/.i3a/lockscreen
+#bindsym Mod4+L exec --no-startup-id bash $HOME/.i3a/lockscreen
+bindsym Menu exec --no-startup-id bash $HOME/.i3a/lockscreen
 
 #-----------------------------------------------------------------------SOME COLORS
 
@@ -155,25 +155,25 @@ bindsym shift+Mod4+Left resize grow width 1 px or 1 ppt
 #---------------------------------------------------------------FILESYSTEM MOUNTING
 
 bindsym Shift+Mod4+1 exec --no-startup-id\
-	/bin/bash $HOME/.i3a/partmount -L "Main Data"
+	bash $HOME/.i3a/partmount -L "Main Data"
 
 bindsym Shift+Mod4+2 exec --no-startup-id\
-	/bin/bash $HOME/.i3a/partmount -L "Media 1"
+	bash $HOME/.i3a/partmount -L "Media 1"
 
 bindsym Shift+Mod4+3 exec --no-startup-id\
-	/bin/bash $HOME/.i3a/partmount -L "Media 2"
+	bash $HOME/.i3a/partmount -L "Media 2"
 
 bindsym Shift+Mod4+4 exec --no-startup-id\
-	/bin/bash $HOME/.i3a/partmount -L "Media 3"
+	bash $HOME/.i3a/partmount -L "Media 3"
 
 bindsym Shift+Mod4+5 exec --no-startup-id\
-	/bin/bash $HOME/.i3a/partmount -L "CloneZilla"
+	bash $HOME/.i3a/partmount -L "CloneZilla"
 
 #--------------------------------------------------------------REDSHIFT ADJUSTMENTS
 
-bindsym Mod4+0 exec --no-startup-id /usr/bin/redshifter -i 100
-bindsym Mod4+9 exec --no-startup-id /usr/bin/redshifter -d 100
-bindsym Mod4+8 exec --no-startup-id /usr/bin/redshifter -r
+bindsym Mod4+0 exec --no-startup-id redshifter -i 100
+bindsym Mod4+9 exec --no-startup-id redshifter -d 100
+bindsym Mod4+8 exec --no-startup-id redshifter -r
 
 #---------------------------------------------------------------------GROUP ACTIONS
 
@@ -333,51 +333,50 @@ for_window [class="^Audacity$" title="^Wahwah$"] floating enable
 #--------------------------------------------------------------------EXTRA BINDINGS
 
 # XF86MyComputer XF86AudioMedia
-bindsym XF86AudioRaiseVolume exec --no-startup-id /bin/bash $HOME/.i3a/sink_raise
-bindsym XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/sink_lower
-bindsym XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/sink_mute
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_raise
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/source_lower
-bindsym Shift+XF86AudioMute exec --no-startup-id /bin/bash $HOME/.i3a/source_mute
-bindsym Shift+Mod1+XF86AudioLowerVolume exec --no-startup-id /bin/bash $HOME/.i3a/hush_the_mic
+bindsym XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/sink_raise
+bindsym XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/sink_lower
+bindsym XF86AudioMute exec --no-startup-id bash $HOME/.i3a/sink_mute
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/source_raise
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/source_lower
+bindsym Shift+XF86AudioMute exec --no-startup-id bash $HOME/.i3a/source_mute
+bindsym Shift+Mod1+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/hush_the_mic
 
 # For keyboards without XF86 media controls. (just comment out to disable)
-bindsym Shift+F2 exec --no-startup-id /bin/bash $HOME/.i3a/sink_mute
-bindsym Shift+F3 exec --no-startup-id /bin/bash $HOME/.i3a/sink_lower
-bindsym Shift+F4 exec --no-startup-id /bin/bash $HOME/.i3a/sink_raise
-bindsym Shift+Ctrl+F2 exec --no-startup-id /bin/bash $HOME/.i3a/source_mute
-bindsym Shift+Ctrl+F3 exec --no-startup-id /bin/bash $HOME/.i3a/source_lower
-bindsym Shift+Ctrl+F4 exec --no-startup-id /bin/bash $HOME/.i3a/source_raise
-bindsym Shift+F5 exec --no-startup-id /bin/bash $HOME/.i3a/hush_the_mic
-bindsym Shift+F6 exec --no-startup-id /bin/bash $HOME/.i3a/sink_switch
+bindsym Shift+F2 exec --no-startup-id bash $HOME/.i3a/sink_mute
+bindsym Shift+F3 exec --no-startup-id bash $HOME/.i3a/sink_lower
+bindsym Shift+F4 exec --no-startup-id bash $HOME/.i3a/sink_raise
+bindsym Shift+Ctrl+F2 exec --no-startup-id bash $HOME/.i3a/source_mute
+bindsym Shift+Ctrl+F3 exec --no-startup-id bash $HOME/.i3a/source_lower
+bindsym Shift+Ctrl+F4 exec --no-startup-id bash $HOME/.i3a/source_raise
+bindsym Shift+F5 exec --no-startup-id bash $HOME/.i3a/hush_the_mic
+bindsym Shift+F6 exec --no-startup-id bash $HOME/.i3a/sink_switch
 
-bindsym XF86Calculator exec --no-startup-id /usr/bin/xcalc
-bindsym Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_take
-bindsym Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_sel_take
-bindsym Mod4+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_sel_take --lite
-bindsym Ctrl+Shift+Print exec --no-startup-id /bin/bash $HOME/.i3a/scrot_win_take
-bindsym Mod1+d exec --no-startup-id /bin/bash $HOME/.i3a/use_dmenu
-bindsym Mod1+shift+num exec --no-startup-id /bin/bash $HOME/bin/telldate
+bindsym XF86Calculator exec --no-startup-id xcalc
+bindsym Print exec --no-startup-id bash $HOME/.i3a/scrot_take
+bindsym Shift+Print exec --no-startup-id bash $HOME/.i3a/scrot_sel_take
+bindsym Mod4+Print exec --no-startup-id bash $HOME/.i3a/scrot_sel_take --lite
+bindsym Ctrl+Shift+Print exec --no-startup-id bash $HOME/.i3a/scrot_win_take
+bindsym Mod1+d exec --no-startup-id bash $HOME/.i3a/use_dmenu
 
 #------------------------------------------------------MEDIA PLAYBACK CONTROL (MOC)
 
-bindsym Mod4+p exec --no-startup-id /bin/bash $HOME/.i3a/track_notify
-bindsym Mod4+XF86AudioNext exec --no-startup-id /usr/bin/mocp --seek +3
-bindsym Mod4+XF86AudioPrev exec --no-startup-id /usr/bin/mocp --seek -3
-bindsym XF86AudioPlay exec --no-startup-id /usr/bin/mocp -G
-bindsym XF86AudioNext exec --no-startup-id /usr/bin/mocp --next
-bindsym XF86AudioPrev exec --no-startup-id /usr/bin/mocp --previous
+bindsym Mod4+p exec --no-startup-id bash $HOME/.i3a/track_notify
+bindsym Mod4+XF86AudioNext exec --no-startup-id mocp --seek +3
+bindsym Mod4+XF86AudioPrev exec --no-startup-id mocp --seek -3
+bindsym XF86AudioPlay exec --no-startup-id mocp -G
+bindsym XF86AudioNext exec --no-startup-id mocp --next
+bindsym XF86AudioPrev exec --no-startup-id mocp --previous
 
 #------------------------------------------------MEDIA PLAYBACK CONTROL (AUDACIOUS)
 
-#bindsym XF86AudioNext exec --no-startup-id /usr/bin/audtool --playlist-advance
-#bindsym XF86AudioPrev exec --no-startup-id /usr/bin/audtool --playlist-reverse
-#bindsym Mod4+XF86AudioNext exec --no-startup-id /usr/bin/audtool --playback-seek-relative +10
-#bindsym Mod4+XF86AudioPrev exec --no-startup-id /usr/bin/audtool --playback-seek-relative -10
-#bindsym XF86AudioPlay exec --no-startup-id /usr/bin/audtool --playback-playpause
+#bindsym XF86AudioNext exec --no-startup-id audtool --playlist-advance
+#bindsym XF86AudioPrev exec --no-startup-id audtool --playlist-reverse
+#bindsym Mod4+XF86AudioNext exec --no-startup-id audtool --playback-seek-relative +10
+#bindsym Mod4+XF86AudioPrev exec --no-startup-id audtool --playback-seek-relative -10
+#bindsym XF86AudioPlay exec --no-startup-id audtool --playback-playpause
 
 #------------------------------------------------------------SESSION INITIALIZATION
 
-exec --no-startup-id /bin/bash $HOME/.i3a/initialize
+exec --no-startup-id bash $HOME/.i3a/initialize
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
