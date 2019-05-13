@@ -1,21 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Thu 11 Apr 11:31:39 BST 2019
+# Last Change       - Mon 13 May 01:17:45 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-if [ -x /usr/bin/pactl ] && [ -x /usr/bin/pacmd ]; then
+if type -fP pactl pacmd > /dev/null 2>&1; then
 	while IFS=":" read -a X; do
 		[ "${X[0]}" == "Default source name" ] && MASTER="${X[1]## }"
-	done <<< "$(/usr/bin/pacmd info)"
+	done <<< "$(pacmd info)"
 
 	SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
-	/usr/bin/pactl set-source-mute "$MASTER" toggle
+	paplay --volume 40000 "$SOUND05" & disown
+	pactl set-source-mute "$MASTER" toggle
 fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
