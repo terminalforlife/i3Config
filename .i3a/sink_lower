@@ -1,17 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/sink_lower
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Sat 11 May 19:28:14 BST 2019
+# Last Change       - Mon 13 May 01:14:36 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-if [ -x /usr/bin/pacmd ]; then
+if type -fP pacmd > /dev/null 2>&1; then
 	while IFS=":" read -a X; do
 		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
-	done <<< "$(/usr/bin/pacmd info)"
+	done <<< "$(pacmd info)"
 
 	while read -a X; do
 		if [ "$IS_MASTER" == "True" ] && [[ "${X[0]}" =~ volume: ]]; then
@@ -20,17 +20,17 @@ if [ -x /usr/bin/pacmd ]; then
 		elif [ "${X[0]}" == 'name:' -a "${X[1]//[<>]/}" == "$MASTER" ]; then
 			IS_MASTER="True"
 		fi
-	done <<< "$(/usr/bin/pacmd list-sinks)"
+	done <<< "$(pacmd list-sinks)"
 
-	if [ -x /usr/bin/pactl ]; then
-		/usr/bin/pactl play-sample x11-volume-change & disown
-		/usr/bin/pactl set-sink-volume "$MASTER" -500
+	if type -fP pactl > /dev/null 2>&1; then
+		pactl play-sample x11-volume-change & disown
+		pactl set-sink-volume "$MASTER" -500
 	fi
 
-	if [ -x /usr/bin/pkill ]; then
+	if type -fP pkill > /dev/null 2>&1; then
 		# Use 'signal=1' and 'interval=once' in the i3blocks configuration
 		# file, in order to have this update only when needed.
-		/usr/bin/pkill -RTMIN+1 i3blocks
+		pkill -RTMIN+1 i3blocks
 	fi
 fi
 
