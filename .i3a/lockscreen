@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/lockscreen
 # Started On        - Thu  4 Apr 12:38:37 BST 2019
-# Last Change       - Wed 17 Apr 00:04:50 BST 2019
+# Last Change       - Mon 13 May 01:11:43 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,16 +12,16 @@
 
 set -o errexit
 
-FILE="$(/bin/mktemp -u --suffix='_lock.png')"
+FILE="$(mktemp -u --suffix='_lock.png')"
 SOUND03="/usr/share/sounds/freedesktop/stereo/network-connectivity-lost.oga"
 SOUND04="/usr/share/sounds/freedesktop/stereo/network-connectivity-established.oga"
 
-trap "/bin/rm -f $FILE" EXIT
+trap "rm -f $FILE" EXIT
 
 TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
 
-/usr/bin/scrot -z "$FILE"
-/usr/bin/convert "$FILE" -gaussian-blur 8x8 "$FILE"
-/usr/bin/paplay --volume 40000 "$SOUND03" &
-/usr/bin/i3lock -u -n -i "$FILE"
-/usr/bin/paplay --volume 40000 "$SOUND04" &
+scrot -z "$FILE"
+convert "$FILE" -gaussian-blur 8x8 "$FILE"
+paplay --volume 40000 "$SOUND03" &
+i3lock -u -n -i "$FILE"
+paplay --volume 40000 "$SOUND04" &
