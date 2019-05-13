@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Wed  4 Apr 07:49:59 BST 2018
+# Last Change       - Mon 13 May 01:21:45 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -21,13 +21,13 @@
 #             --set|-s N              - Just set the font size to N.
 #----------------------------------------------------------------------------------
 
-_VERSION_="2018-04-04"
+_VERSION_="2019-05-13"
 
-if [ -x /bin/sed ]; then
+if type -fP sed > /dev/null 2>&1; then
 	SOUND="$HOME/.config/i3/Sounds/SND03.wav"
 	FILE="$HOME/.config/xfce4/terminal/terminalrc"
 	if ! [ -f "$FILE" ]; then
-		printf "ERROR: The configuration file is missing.\n"
+		printf "ERROR: The configuration file is missing.\n" >&1
 		exit 1
 	else
 		while IFS="=" read -a X; do
@@ -37,16 +37,16 @@ if [ -x /bin/sed ]; then
 		done < "$FILE"
 
 		PLAYSND(){
-			if [ /usr/bin/pactl ]; then
-				/usr/bin/paplay --volume 40000 "$1"
+			if type -fP pactl > /dev/null 2>&1; then
+				paplay --volume 40000 "$1"
 			else
-				printf "ERROR: Dependency '/usr/bin/paplay' not met.\n"
+				printf "ERROR: Dependency 'paplay' not met.\n" >&1
 			fi
 		}
 
 		CHKVAL(){
 			if ! [[ "$1" =~ ^[0-9]+$ ]]; then
-				printf "ERROR: Invalid expression.\n"
+				printf "ERROR: Invalid expression.\n" >&1
 				exit 1
 			fi
 		}
@@ -54,8 +54,7 @@ if [ -x /bin/sed ]; then
 		while [ "$1" ]; do
 			case "$1" in
 				--version|-v)
-					printf "%s\n" "$_VERSION_"
-					exit 0 ;;
+					printf "%s\n" "$_VERSION_"; exit 0 ;;
 				--raise|-r)
 					shift; CHKVAL "$1"
 					declare -i RAISE=$1 ;;
@@ -73,19 +72,20 @@ if [ -x /bin/sed ]; then
 		done
 
 		if [ "$RAISE" ]; then
-			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW+RAISE))/"\
+			sed -i "/^FontName=/s/${NOW}$/$((NOW+RAISE))/"\
 				"$FILE" && PLAYSND "$SOUND"
 		elif [ "$LOWER" ]; then
-			/bin/sed -i "/^FontName=/s/${NOW}$/$((NOW-LOWER))/"\
+			sed -i "/^FontName=/s/${NOW}$/$((NOW-LOWER))/"\
 				"$FILE" && PLAYSND "$SOUND"
 		elif [ "$SETTO" ]; then
-			/bin/sed -i "/^FontName=/s/${NOW}$/$SETTO/"\
-				"$FILE" && PLAYSND "$SOUND"
+			if sed -i "/^FontName=/s/${NOW}$/$SETTO/" "$FILE"; then
+				PLAYSND "$SOUND"
+			fi
 		fi
 	fi
 else
-	printf "ERROR: Dependency '/bin/sed' not met.\n"
+	printf "ERROR: Dependency 'sed' not met.\n" >&1
 	exit 1
 fi
 
-# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
