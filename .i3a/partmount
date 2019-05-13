@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Wed 14 Mar 12:20:29 GMT 2018
+# Last Change       - Mon 13 May 01:13:21 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -35,38 +35,38 @@ done
 
 if [ "$UUID" ]; then
 	if [ -e /dev/disk/by-uuid/"$UUID" ]; then
-		if ! /usr/bin/udisksctl mount -b /dev/disk/by-uuid/"$UUID"; then
-			if /usr/bin/udisksctl unmount -b /dev/disk/by-uuid/"$UUID"; then
-				/usr/bin/notify-send --urgency=critical\
+		if ! udisksctl mount -b /dev/disk/by-uuid/"$UUID"; then
+			if udisksctl unmount -b /dev/disk/by-uuid/"$UUID"; then
+				notify-send --urgency=critical\
 					"PARTMOUNT: Unable to unmount file system."
 			fi
 		fi
 	else
-		/usr/bin/notify-send --urgency=critical\
+		notify-send --urgency=critical\
 			"PARTMOUNT: Chosen UUID is invalid or unavailable."
 	fi
 elif [ "$LABEL" ]; then
 	if [ -e /dev/disk/by-label/"$LABEL" ]; then
-		if ! /usr/bin/udisksctl mount -b /dev/disk/by-label/"$LABEL"; then
-			if ! /usr/bin/udisksctl unmount -b /dev/disk/by-label/"$LABEL"; then
-				/usr/bin/notify-send --urgency=critical\
+		if ! udisksctl mount -b /dev/disk/by-label/"$LABEL"; then
+			if ! udisksctl unmount -b /dev/disk/by-label/"$LABEL"; then
+				notify-send --urgency=critical\
 					"PARTMOUNT: Unable to unmount file system."
 			fi
 		fi
 	else
-		/usr/bin/notify-send --urgency=critical\
+		notify-send --urgency=critical\
 			"PARTMOUNT: Chosen LABEL is invalid or unavailable."
 	fi
 elif [ "$NAME" ]; then
 	if [ -e /dev/disk/by-name/"$NAME" ]; then
-		if ! /usr/bin/udisksctl mount -b "$NAME"; then
-			if ! /usr/bin/udisksctl unmount -b "$NAME"; then
-				/usr/bin/notify-send --urgency=critical\
+		if ! udisksctl mount -b "$NAME"; then
+			if ! udisksctl unmount -b "$NAME"; then
+				notify-send --urgency=critical\
 					"PARTMOUNT: Unable to unmount file system."
 			fi
 		fi
 	else
-		/usr/bin/notify-send --urgency=critical\
+		notify-send --urgency=critical\
 			"PARTMOUNT: Chosen NAME is invalid or unavailable."
 	fi
 fi
