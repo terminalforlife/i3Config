@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/dmesg_overflow
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Thu  5 Apr 22:56:48 BST 2018
+# Last Change       - Mon 13 May 01:10:58 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
