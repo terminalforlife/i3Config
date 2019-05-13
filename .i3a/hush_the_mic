@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3config/.i3a/hush_the_mic
 # Started On        - Sun 11 Feb 12:38:53 GMT 2018
-# Last Change       - Wed 14 Mar 12:17:25 GMT 2018
+# Last Change       - Mon 13 May 01:11:06 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 # Gradually decrease the microphone volume. This small script will make use of
-# PulseAudio, via /usr/bin/pactl. Steals code from: i3config/.i3a/source_lower
+# PulseAudio, via pactl. Steals code from: i3config/.i3a/source_lower
 #----------------------------------------------------------------------------------
 
 MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
@@ -24,9 +24,9 @@ while :; do
 			[ ${X[2]} -eq 0 ] && exit 0
 		fi
 
-	done <<< "$(/usr/bin/pacmd list-sources)"
-	/usr/bin/pactl set-source-volume "$MASTER" -150
-	/bin/sleep 0.2
+	done <<< "$(pacmd list-sources)"
+	pactl set-source-volume "$MASTER" -150
+	sleep 0.2
 done
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
