@@ -1,17 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/source_lower
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Thu 11 Apr 11:28:52 BST 2019
+# Last Change       - Mon 13 May 01:16:57 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-if [ -x /usr/bin/pacmd ]; then
+if type -fP pacmd > /dev/null 2>&1; then
 	while IFS=":" read -a X; do
 		[ "${X[0]}" == "Default source name" ] && MASTER="${X[1]## }"
-	done <<< "$(/usr/bin/pacmd info)"
+	done <<< "$(pacmd info)"
 
 	while read -a X; do
 		if [ "${X[0]}" == volume: ]; then
@@ -23,18 +23,18 @@ if [ -x /usr/bin/pacmd ]; then
 			[ ${X[2]} -eq 0 ] && exit 0
 		fi
 
-	done <<< "$(/usr/bin/pacmd list-sources)"
+	done <<< "$(pacmd list-sources)"
 
-	if [ -x /usr/bin/pactl ]; then
-		/usr/bin/pactl play-sample x11-volume-change & disown
-		/usr/bin/pactl set-source-volume "$MASTER" -500
+	if type -fP pactl > /dev/null 2>&1; then
+		pactl play-sample x11-volume-change & disown
+		pactl set-source-volume "$MASTER" -500
 	fi
 
-	if [ -x /usr/bin/pkill ]; then
+	if type -fP pkill > /dev/null 2>&1; then
 		# Use 'signal=1' and 'interval=once' in the i3blocks configuration
 		# file, in order to have this update only when needed.
-		/usr/bin/pkill -RTMIN+1 i3blocks
+		pkill -RTMIN+1 i3blocks
 	fi
 fi
 
-# vim: ft=sh noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
+# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
