@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/key_autorepeat
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Wed 14 Mar 14:32:29 GMT 2018
+# Last Change       - Mon 13 May 01:09:24 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -14,13 +14,13 @@ MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
 TOGFILE="$HOME/.config/key_auto"
 [ -d "${TOGFILE/%\/*}" ] || /bin/mkdir "${TOGFILE/%\/*}"
-/usr/bin/paplay --volume 40000 "$SOUND05" & disown
+paplay --volume 40000 "$SOUND05" & disown
 if [ -f "$TOGFILE" -a -r "$TOGFILE" ]; then
-	/bin/rm "$TOGFILE"
-	/usr/bin/xset r off
+	rm "$TOGFILE"
+	xset r off
 else
 	> "$TOGFILE"
-	/usr/bin/xset r on
+	xset r on
 fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
