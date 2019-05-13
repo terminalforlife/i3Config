@@ -1,19 +1,19 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/sink_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Thu 11 Apr 11:31:04 BST 2019
+# Last Change       - Mon 13 May 01:14:57 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-if [ -x /usr/bin/pactl ] && [ -x /usr/bin/pacmd ]; then
+if type -fP pactl pacmd > /dev/null 2>&1; then
 	while IFS=":" read -a X; do
 		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
-	done <<< "$(/usr/bin/pacmd info)"
+	done <<< "$(pacmd info)"
 
-	/usr/bin/pactl set-sink-mute "$MASTER" toggle
+	pactl set-sink-mute "$MASTER" toggle
 fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
