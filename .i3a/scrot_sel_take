@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/scrot_sel_take
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed 14 Mar 12:21:58 GMT 2018
+# Last Change       - Mon 13 May 01:13:35 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -20,9 +20,9 @@ fi
 
 SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
 TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
-/usr/bin/paplay --volume 30000 "$TEMPSOUND"
-if /usr/bin/scrot -zsq 75 -d 1 "$FILENAME"; then
-	/usr/bin/paplay --volume 40000 "$SOUND03"
+paplay --volume 30000 "$TEMPSOUND"
+if scrot -zsq 75 -d 1 "$FILENAME"; then
+	paplay --volume 40000 "$SOUND03"
 fi
 
 # vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
