@@ -1,9 +1,9 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Sun 12 May 17:26:16 BST 2019
+# Last Change       - Mon 13 May 01:05:18 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -23,14 +23,14 @@ use autodie;
 use File::Basename 'basename';
 use TFL; # <-- libtfl-perl (>= 2019-05-07)
 
-my $_VERSION_ = "2019-05-12";
+my $_VERSION_ = "2019-05-13";
 my $_PROJECT_ = basename($0);
 
 my %EXECS = (
-	'TERMINAL' => '/usr/bin/xfce4-terminal',
-	'BROWSER' => '/usr/bin/firefox',
-	'CHAT' => '/usr/bin/skypeforlinux',
-	'EMAIL' => '/usr/bin/thunderbird'
+	'TERMINAL' => 'xfce4-terminal',
+	'BROWSER' => 'firefox',
+	'CHAT' => 'skypeforlinux',
+	'EMAIL' => 'thunderbird'
 );
 
 TFL::DepChk($EXECS{$_}) foreach keys(%EXECS);
@@ -53,11 +53,11 @@ TFL::i3Do(100000, "exec --no-startup-id $EXECS{EMAIL}"); # <-- WS 7.
 TFL::i3Do(100000, 'workspace 10');
 
 if(basename($EXECS{TERMINAL}) eq 'xfce4-terminal'){
-	TFL::DepChk('/usr/bin/mplay'); TFL::DepChk('/usr/bin/mocp');
+	TFL::DepChk('mplay'); TFL::DepChk('mocp');
 
 	my $FILE = $ENV{HOME} . '/.i3a/partmount';
-	TFL::i3Do(100000, "/bin/bash $FILE -L 'Media 3'") if -f $FILE and -r $FILE;
-	TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} -x '/usr/bin/mplay'")
+	TFL::i3Do(100000, "bash $FILE -L 'Media 3'") if -f $FILE and -r $FILE;
+	TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} -x 'mplay'")
 }else{
 	TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL}")
 }
