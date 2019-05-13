@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/use_dmenu
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Thu  4 Apr 09:41:25 BST 2019
+# Last Change       - Mon 13 May 01:24:21 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -22,18 +22,18 @@ ALT=""
 
 MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
 SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-if [ -x /usr/bin/dmenu_run ]; then
-	/usr/bin/paplay --volume 40000 "$SOUND05" & disown
+if type -fP dmenu_run > /dev/null 2>&1; then
+	paplay --volume 40000 "$SOUND05" & disown
 	if [ "$ALT" == "baskerville" ]; then
 		# https://github.com/baskerville/bin/blob/master/dmenu_launch-dark
-		/usr/bin/dmenu_run -i -fn "sans-serif:pixelsize=11" -nb \#2D2C28\
+		dmenu_run -i -fn "sans-serif:pixelsize=11" -nb \#2D2C28\
 			-nf \#A4A6AB -sb \#5B5955 -sf \#DBDDE2 -p '>'
 	else
 		# Font on Ubuntu requires the ttf-aenigma package.
-		/usr/bin/dmenu_run -b -fn "Rambling BRK":style=Bold:size=13\
+		dmenu_run -b -fn "Rambling BRK":style=Bold:size=13\
 			-nb \#000000 -nf \#ffffff -sb \#550000 -sf \#ffffff
 
-		#/usr/bin/dmenu_run -b -fn "Nimbus Mono L":style=Bold:size=16\
+		#dmenu_run -b -fn "Nimbus Mono L":style=Bold:size=16\
 		#	-nb \#000000 -nf \#ffffff -sb \#333333 -sf \#ffffff
 	fi
 fi
