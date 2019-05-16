@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Mon 13 May 01:05:18 BST 2019
+# Last Change       - Mon 13 May 01:49:18 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -33,33 +33,33 @@ my %EXECS = (
 	'EMAIL' => 'thunderbird'
 );
 
-TFL::DepChk($EXECS{$_}) foreach keys(%EXECS);
+TFL::DepChk('/usr/bin/' . $EXECS{$_}) foreach keys(%EXECS);
 
-TFL::i3Do(100000, 'workspace 1'); # <-- In-case the user doesn't starts here.
+TFL::i3Do(200000, 'workspace 1'); # <-- In-case the user doesn't starts here.
 
 my $GH_REPOS = $ENV{HOME} . '/GitHub/terminalforlife/Personal';
 my $WD = "--working-directory='$GH_REPOS'";
 
-TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
-TFL::i3Do(100000, 'split v'); # <-- YMMV, regarding the integer.
-TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
-TFL::i3Do(100000, 'focus left');
+TFL::i3Do(200000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
+TFL::i3Do(200000, 'split v'); # <-- YMMV, regarding the integer.
+TFL::i3Do(200000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
+TFL::i3Do(200000, 'focus left');
 
 # Assumes appropriate for_windows have been set.
-TFL::i3Do(100000, "exec --no-startup-id $EXECS{CHAT}"); # <-- WS 3.
-TFL::i3Do(100000, "exec --no-startup-id $EXECS{BROWSER}"); # <-- WS 4.
-TFL::i3Do(100000, "exec --no-startup-id $EXECS{EMAIL}"); # <-- WS 7.
+TFL::i3Do(200000, "exec --no-startup-id $EXECS{CHAT}"); # <-- WS 3.
+TFL::i3Do(200000, "exec --no-startup-id $EXECS{BROWSER}"); # <-- WS 4.
+TFL::i3Do(200000, "exec --no-startup-id $EXECS{EMAIL}"); # <-- WS 7.
 
-TFL::i3Do(100000, 'workspace 10');
+TFL::i3Do(200000, 'workspace 10');
 
 if(basename($EXECS{TERMINAL}) eq 'xfce4-terminal'){
-	TFL::DepChk('mplay'); TFL::DepChk('mocp');
+	TFL::DepChk('/usr/bin/mplay'); TFL::DepChk('/usr/bin/mocp');
 
 	my $FILE = $ENV{HOME} . '/.i3a/partmount';
-	TFL::i3Do(100000, "bash $FILE -L 'Media 3'") if -f $FILE and -r $FILE;
-	TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL} -x 'mplay'")
+	TFL::i3Do(200000, "bash $FILE -L 'Media 3'") if -f $FILE and -r $FILE;
+	TFL::i3Do(200000, "exec --no-startup-id $EXECS{TERMINAL} -x 'mplay'")
 }else{
-	TFL::i3Do(100000, "exec --no-startup-id $EXECS{TERMINAL}")
+	TFL::i3Do(200000, "exec --no-startup-id $EXECS{TERMINAL}")
 }
 
-TFL::i3Do(100000, 'workspace 1');
+TFL::i3Do(200000, 'workspace 1');
