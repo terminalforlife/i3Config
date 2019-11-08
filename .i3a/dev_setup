@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Sun 26 May 11:49:36 BST 2019
+# Last Change       - Fri  8 Nov 00:24:12 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ use autodie;
 use File::Basename 'basename';
 use TFL; # <-- libtfl-perl (>= 2019-05-07)
 
-my $_VERSION_ = "2019-05-26";
+my $_VERSION_ = "2019-11-08";
 
 my %EXECS = (
 	'TERMINAL' => 'xfce4-terminal',
@@ -38,10 +38,14 @@ TFL::i3Do(400000, 'workspace 1'); # <-- In-case the user doesn't start here.
 my $GH_REPOS = $ENV{HOME} . '/GitHub/terminalforlife/Personal';
 my $WD = "--working-directory='$GH_REPOS'";
 
-TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
-TFL::i3Do(400000, 'split v'); # <-- YMMV, regarding the integer.
+# New, 1-terminal development layout.
 TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
-TFL::i3Do(400000, 'focus left');
+
+# Previous, 3-terminal development layout.
+#TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
+#TFL::i3Do(400000, 'split v'); # <-- YMMV, regarding the integer.
+#TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
+#TFL::i3Do(400000, 'focus left');
 
 # Assumes appropriate for_windows have been set.
 TFL::i3Do(400000, "exec --no-startup-id $EXECS{CHAT}"); # <-- WS 3.
