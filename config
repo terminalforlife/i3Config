@@ -50,7 +50,7 @@ bindsym Mod1+Return exec --no-startup-id bash $HOME/.i3a/terminal
 bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l 1
 bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 11
-bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 21
+bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 17
 bindsym Mod1+Tab exec --no-startup-id bash $HOME/.i3a/drop_terminal
 #bindsym Mod4+w exec --no-startup-id mpv tv://
 bindsym Mod4+w exec --no-startup-id mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
