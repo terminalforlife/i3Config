@@ -15,4 +15,3 @@ if type -fP notify-send mocp > /dev/null 2>&1; then
 	notify-send "${DATA##*/Music/}"
 fi
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
