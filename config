@@ -380,4 +380,3 @@ bindsym XF86AudioPrev exec --no-startup-id mocp --previous
 
 exec --no-startup-id bash $HOME/.i3a/initialize
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
