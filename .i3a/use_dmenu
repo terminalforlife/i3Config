@@ -38,4 +38,3 @@ if type -fP dmenu_run > /dev/null 2>&1; then
 	fi
 fi
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
