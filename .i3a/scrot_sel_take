@@ -25,4 +25,3 @@ if scrot -zsq 75 -d 1 "$FILENAME"; then
 	paplay --volume 40000 "$SOUND03"
 fi
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
