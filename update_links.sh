@@ -50,4 +50,3 @@ CFILE="$HOME/.libi3bview"
 rm -v "$CFILE" 2>&-
 ln -v .libi3bview "$CFILE" 2>&-
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
