@@ -29,4 +29,3 @@ if [ `< /proc/sys/kernel/dmesg_restrict` -eq 1 -a -x /bin/rm ]; then
 	fi
 fi
 
-# vim: noexpandtab colorcolumn=84 tabstop=8 noswapfile nobackup
