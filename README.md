@@ -3,7 +3,7 @@
 
 Installation instructions below were written with **Linux** in mind.
 
-Aside from the packages below, the list of which I cannot guarantee is up-to-date, there are a number of steps you'll need to talk before installing my i3-wm and associated files. Open a terminal or start a new session, then enter the following commands to first back up any files these steps would have you overwrite.
+Aside from the packages below, the list of which I cannot guarantee is up-to-date, there are a number of steps you'll need to take before installing my i3-wm and associated files. Open a terminal or start a new session, then enter the following commands to first back up any files these steps would have you overwrite.
 
 ```bash
 \printf -v Archive '%s/.B4-I3C_%(%F_%X)T.tgz' "$HOME" -1
@@ -18,33 +18,32 @@ Now that your files are (hopefully) backed up, you can begin installing the ones
 
 An Ubuntu base greater than or equal to version 16.04 is recommended. Some DEB packages I use or are needed with this i3-wm setup, are as follows:
 
-_libanyevent-i3-perl_\
-_libnotify-bin_\
-_libnotify4_\
-_libtfl-perl_ ([get](https://github.com/terminalforlife/DEB-Packages))
-
-_compton_\
-_dunst_\
-_feh_\
-_firefox_\
-_i3-wm_\
-_i3lock_\
-_imagemagick_\
-_keynav_\
-_moc_\
-_mplay_ ([get](https://github.com/terminalforlife/DEB-Packages))\
-_procps_\
-_pulseaudio_\
-_pulseaudio-utils_\
-_redshift_\
-_redshifter_ ([get](https://github.com/terminalforlife/DEB-Packages))\
-_scrot_\
-_sound-theme-freedesktop_\
-_suckless-tools_\
-_x11-utils_\
-_x11-xkb-utils_\
-_x11-xserver-utils_\
-_xfce4-terminal_
+  * compton - compositor for X11, based on xcompmgr
+  * dunst - dmenu-ish notification-daemon
+  * feh - imlib2 based image viewer
+  * firefox - Safe and easy web browser from Mozilla
+  * i3-wm - improved dynamic tiling window manager
+  * i3lock - improved screen locker
+  * imagemagick - image manipulation programs -- binaries
+  * keynav - keyboard-driven mouse cursor mover
+  * libanyevent-i3-perl - Perl module to communicate with the i3 window manager
+  * libnotify-bin - sends desktop notifications to a notification daemon (Utilities)
+  * libnotify4 - sends desktop notifications to a notification daemon
+  * [libtfl-perl](https://github.com/terminalforlife/DEB-Packages) - Functionality for TFL Perl programs and general scripts.
+  * moc - ncurses based console audio player
+  * [mplay](https://github.com/terminalforlife/DEB-Packages) - MOC Wrapper for a clean layout with a subtle transparent theme.
+  * procps - /proc file system utilities
+  * pulseaudio - PulseAudio sound server
+  * pulseaudio-utils - Command line tools for the PulseAudio sound server
+  * redshift - Adjusts the color temperature of your screen
+  * [redshifter](https://github.com/terminalforlife/DEB-Packages) - View your internal and/or external IP address.
+  * scrot - command line screen capture utility
+  * sound-theme-freedesktop - freedesktop.org sound theme
+  * suckless-tools - simple commands for minimalistic window managers
+  * x11-utils - X11 utilities
+  * x11-xkb-utils - X11 XKB utilities
+  * x11-xserver-utils - X server utilities
+  * xfce4-terminal - Xfce terminal emulator
 
 To install these packages, run the following one-liner in a terminal:
 
@@ -55,7 +54,7 @@ wget -q 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_p
 If you don't have `wget`, but you have `curl`, try this:
 
 ```bash
-curl -s 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_packages' -O - | sudo bash -
+curl -s 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_packages' | sudo bash -
 ```
 
 If you don't have `sudo` available, just omit it from the above line, but ensure you otherwise have root privileges..
