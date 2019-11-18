@@ -38,7 +38,7 @@ _yad_
 To install these packages, run the following one-liner in a terminal:
 
 ```bash
-/usr/bin/wget -q 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_packages' -O - | sudo /bin/bash -
+wget -q 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_packages' -O - | sudo bash -
 ```
 
 If you don't have `sudo` available, just omit it from the above line.
