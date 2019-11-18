@@ -14,7 +14,7 @@
 # LIMIT is to set the maximum number of processes of your chosen terminal. This
 # helps avoid overloading your system with excessive numbers of terminals by
 # mistake, such as when you have a fast key autorepeat, a stuck key, or a troll.
-# A notication will be sent to notify the user, if /usr/bin/notify-send is found.
+# A notication will be sent to notify the user, if notify-send is found.
 #
 # NOTE: Arguments for your chosen terminal should work just fine. You can also set
 #       the LIMIT parameter to 0 if you wish to ignore the limiting functionality.
