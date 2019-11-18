@@ -11,7 +11,7 @@
 if type -fP pacmd > /dev/null 2>&1; then
 	while IFS=":" read -a X; do
 		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
-	done <<< "$(/usr/bin/pacmd info)"
+	done <<< "$(pacmd info)"
 
 	# Compensate for output change in Ubuntu 16.04 to 18.04. If the file isn't
 	# found or improperly parsed, it should still work, without the 100% limit.
@@ -42,7 +42,7 @@ if type -fP pacmd > /dev/null 2>&1; then
 	#if type -fP pkill > /dev/null 2>&1; then
 	#	# Use 'signal=1' and 'interval=once' in the i3blocks configuration
 	#	# file, in order to have this update only when needed.
-	#	/usr/bin/pkill -RTMIN+1 i3blocks
+	#	pkill -RTMIN+1 i3blocks
 	#fi
 fi
 
