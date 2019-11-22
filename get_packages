@@ -26,22 +26,23 @@ for DEP in dpkg apt-get wget rm; {
 [ $DEPCOUNT -eq 0 ] || exit 1
 
 PKGS=(
-	libanyevent-i3-perl:"Used|in|Perl|script|'dev_setup',|for|i3-wm."
-	libnotify-bin:"Contains|the|'notify-send'|notification|binary."
-	libnotify4:"Shared|library|for|sending|notifications|to|a|daemon."
 	compton:"For|excellent|X11|compositing,|based|on|'xcompmgr'."
 	dunst:"A|lightweight|and|highly-configurable|notifications|daemon."
 	feh:"Terminal|program|to|display|images|and|set|the|background|image."
 	firefox:"A|standard|of|a|web|browser;|old,|but|wise|and|evolved."
+	fonts-ricty-diminished:"font|based|on|Inconsolata|and|Circle|M+|1m|for|programming"
 	i3-wm:"Window|manager|on|which|the|TFL|'i3Config'|repository|is|based."
 	i3lock:"Simple,|configurable|screen|locker,|used|by|'~/.i3a/lockscreen'."
 	imagemagick:"A|full|suite|of|image|manipulation|programs."
 	keynav:"Keynav|makes|your|keyboard|a|fast|mouse|cursor|mover."
+	libanyevent-i3-perl:"Used|in|Perl|script|'dev_setup',|for|i3-wm."
+	libnotify-bin:"Contains|the|'notify-send'|notification|binary."
+	libnotify4:"Shared|library|for|sending|notifications|to|a|daemon."
 	moc:"MOC|(Music|on|Console)|is|a|full-screen|audio|player."
 	mplay:"MOC|Wrapper|for|a|clean|layout|with|a|subtle|transparent|theme."
 	procps:"A|set|of|utilities|for|the|'/proc'|FS;|mainly|used|for|'pkill'."
-	pulseaudio:"PulseAudio|is|a|sound|server|for|POSIX|and|WIN32|systems."
 	pulseaudio-utils:"Command|line|tools|for|the|PulseAudio|sound|server."
+	pulseaudio:"PulseAudio|is|a|sound|server|for|POSIX|and|WIN32|systems."
 	redshift:"Adjusts|the|color|temperature|of|your|screen;|used|by|redshifter."
 	scrot:"Command|line|screen-|window-|or|selection-shooter."
 	sound-theme-freedesktop:"Various|audio|files|used|in|this|i3-wm|setup."
@@ -50,7 +51,6 @@ PKGS=(
 	x11-xkb-utils:"Tools|in|this|package|are|needed|in|'~/.i3a/initialise'."
 	x11-xserver-utils:"Tools|in|this|package|are|needed|in|'~/.i3a/initialise'."
 	xfce4-terminal:"The|terminal|used|in|this|setup,|in|a|few|ways."
-	yad:"Used|to|display|a|simple|logout|GUI|which|runs|'pkill|-u|\$USER'."
 )
 
 INFO(){ printf "\n%s: %s\n" "$1" "$2"; }
