@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Mon 13 May 01:21:45 BST 2019
+# Last Change       - Fri 22 Nov 22:28:08 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -21,13 +21,13 @@
 #             --set|-s N              - Just set the font size to N.
 #----------------------------------------------------------------------------------
 
-_VERSION_="2019-05-13"
+_VERSION_="2019-11-22"
 
 if type -fP sed > /dev/null 2>&1; then
 	SOUND="$HOME/.config/i3/Sounds/SND03.wav"
 	FILE="$HOME/.config/xfce4/terminal/terminalrc"
 	if ! [ -f "$FILE" ]; then
-		printf "ERROR: The configuration file is missing.\n" >&1
+		printf "ERROR: The configuration file is missing.\n" >&2
 		exit 1
 	else
 		while IFS="=" read -a X; do
@@ -40,13 +40,13 @@ if type -fP sed > /dev/null 2>&1; then
 			if type -fP pactl > /dev/null 2>&1; then
 				paplay --volume 40000 "$1"
 			else
-				printf "ERROR: Dependency 'paplay' not met.\n" >&1
+				printf "ERROR: Dependency 'paplay' not met.\n" >&2
 			fi
 		}
 
 		CHKVAL(){
 			if ! [[ "$1" =~ ^[0-9]+$ ]]; then
-				printf "ERROR: Invalid expression.\n" >&1
+				printf "ERROR: Invalid expression.\n" >&2
 				exit 1
 			fi
 		}
@@ -84,7 +84,7 @@ if type -fP sed > /dev/null 2>&1; then
 		fi
 	fi
 else
-	printf "ERROR: Dependency 'sed' not met.\n" >&1
+	printf "ERROR: Dependency 'sed' not met.\n" >&2
 	exit 1
 fi
 
