@@ -28,7 +28,7 @@ workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
 force_focus_wrapping no
-font pango: Oxygen Mono Bold 10
+font pango: Ricty Diminished 14
 #font pango: Nimbus Mono L Bold 13
 #floating_maximum_size 1280 x 760
 floating_minimum_size 10 x 10
