@@ -30,23 +30,23 @@ if ! [ "${PWD//*\/}" == "i3Config" ]; then
 fi
 
 for FILE in .i3a/* ; {
-	rm -v "$HOME/$FILE" 2>&-
-	ln -v "$FILE" "$HOME/$FILE" 2>&-
+	rm -v "$HOME/$FILE" 2> /dev/null
+	ln -v "$FILE" "$HOME/$FILE" 2> /dev/null
 }
 
 CFILE="$HOME/.config/i3/config"
-rm -v "$CFILE" 2>&-
-ln -v config "$CFILE" 2>&-
+rm -v "$CFILE" 2> /dev/null
+ln -v config "$CFILE" 2> /dev/null
 
 CFILE="$HOME/.i3bbelow"
-rm -v "$CFILE" 2>&-
-ln -v .i3bbelow "$CFILE" 2>&-
+rm -v "$CFILE" 2> /dev/null
+ln -v .i3bbelow "$CFILE" 2> /dev/null
 
 CFILE="$HOME/.i3babove"
-rm -v "$CFILE" 2>&-
-ln -v .i3babove "$CFILE" 2>&-
+rm -v "$CFILE" 2> /dev/null
+ln -v .i3babove "$CFILE" 2> /dev/null
 
 CFILE="$HOME/.libi3bview"
-rm -v "$CFILE" 2>&-
-ln -v .libi3bview "$CFILE" 2>&-
+rm -v "$CFILE" 2> /dev/null
+ln -v .libi3bview "$CFILE" 2> /dev/null
 
