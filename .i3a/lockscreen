@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/lockscreen
 # Started On        - Thu  4 Apr 12:38:37 BST 2019
-# Last Change       - Mon 13 May 01:11:43 BST 2019
+# Last Change       - Wed 27 Nov 00:21:09 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -16,7 +16,9 @@ FILE="$(mktemp -u --suffix='_lock.png')"
 SOUND03="/usr/share/sounds/freedesktop/stereo/network-connectivity-lost.oga"
 SOUND04="/usr/share/sounds/freedesktop/stereo/network-connectivity-established.oga"
 
-trap "rm -f $FILE" EXIT
+DoTrap(){ rm -f "$FILE"; }
+
+trap DoTrap EXIT
 
 TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
 
