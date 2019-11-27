@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #----------------------------------------------------------------------------------
 # Project Name      - $HOME/.i3a/dmesg_overflow
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Mon 13 May 01:10:58 BST 2019
+# Last Change       - Wed 27 Nov 00:33:34 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -16,16 +16,22 @@
 # If this issue is something you've never experienced, you needn't use this script.
 #----------------------------------------------------------------------------------
 
-if [ `< /proc/sys/kernel/dmesg_restrict` -eq 1 -a -x rm ]; then
-	MESSAGE='dmesg: read kernel buffer failed: Operation not permitted'
-	LOGFILE="$HOME/.xsession-errors"
-	if [ -f "$LOGFILE" -a -r "$LOGFILE" ]; then
-		while read LINE; do
-			if [[ "$LINE" == $MESSAGE ]]; then
-				[ -w "$LOGFILE" ] && rm -f "$LOGFILE"
-				break
-			fi
-		done < "$LOGFILE"
+ProcFile='/proc/sys/kernel/dmesg_restrict'
+
+if [ -f "$ProcFile" ]; then
+	read Result < "$ProcFile"
+
+	if [ $Result -eq 1 ]; then
+		ErrMSG='dmesg: read kernel buffer failed: Operation not permitted'
+		LogFile="$HOME/.xsession-errors"
+
+		if [ -f "$LogFile" ] && [ -r "$LogFile" ]; then
+			while read CurLine; do
+				if [ "$CurLine" = "$ErrMSG" ] && [ -w "$LogFile" ]; then
+					rm -f "$LogFile"
+					break
+				fi
+			done < "$LogFile"
+		fi
 	fi
 fi
-
