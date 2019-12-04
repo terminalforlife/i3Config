@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/update_links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Wed  4 Dec 22:39:21 GMT 2019
+# Last Change       - Wed  4 Dec 23:26:42 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,7 +12,7 @@
 
 Err(){
 	printf "ERROR: %s\n" "$2" 1>&2
-	[ $1 -gt 1 ] && exit $1
+	[ $1 -gt 0 ] && exit $1
 }
 
 DepCount=0
