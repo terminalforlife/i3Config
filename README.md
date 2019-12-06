@@ -68,9 +68,7 @@ You might have some questions, so here, I'll attempt a pre-emptive strike:
 
 # Installation Instructions (UNFINISHED)
 
-To make things go smoothly and for an easier time in the future, I recommend that you use Cito, the install instructions for which can be found [here](https://github.com/terminalforlife/Extra).
-
-Once you have Cito, you need only follow this short guide to have it do most of the leg work for you.
+To make things go smoothly and for an easier time in the future, I recommend that you use Cito, the install instructions for which can be found [here](https://github.com/terminalforlife/Extra). Once you have Cito, you need only follow the short guide below, to have Cito do most of the leg work for you.
 
   1. Open up a terminal.
   2. Run: `sudo cito `
