@@ -1,29 +1,21 @@
 #!/bin/sh
 
 #----------------------------------------------------------------------------------
-# Project Name      - i3Config/get_packages.sh
+# Project Name      - i3Config/devutils/packages.sh
 # Started On        - Sat 11 May 14:57:13 BST 2019
-# Last Change       - Wed  4 Dec 22:31:01 GMT 2019
+# Last Change       - Fri  6 Dec 15:57:15 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Written for Bourne, and to be POSIX-ly correct.
+# Written for a Bourne, POSIX-compliant shell, and requires `libtflbp-sh`.
 #----------------------------------------------------------------------------------
 
-DepCount=0
-for CurDep in mktemp id dpkg apt-get wget rm; do
-	if ! command -v "$CurDep" 1> /dev/null 2>&1; then
-		printf "ERROR: Dependency '$CurDep' not met.\n" 1>&2
-		DepCount=$((DepCount + 1))
-	fi
-done
+. /usr/lib/tflbp-sh/Err
+. /usr/lib/tflbp-sh/ChkDep
 
-[ $DepCount -eq 0 ] || exit 1
+ChkDep mktemp id dpkg apt-get wget rm
 
-if ! [ `id -u` -eq 0 ]; then
-	printf "ERROR: Root access required for system-wide changes." 1>&2
-	exit 1
-fi
+[ `id -u` -eq 0 ] || Err 1 "Root access required for system-wide changes."
 
 Packages='
 	compton dunst feh fonts-oxygen i3-wm i3lock imagemagick perl x11-apps
@@ -34,7 +26,9 @@ Packages='
 
 AptOpts='-q -o Dpkg::Progress=true -o Dpkg::Progress-Fancy=true -o '
 AptOpts="$AptOpts APT::Get::AutomaticRemove=true -o APT::Get::Purge=true"
-apt-get $AptOpts install $Packages
+if ! apt-get $AptOpts install $Packages; then
+	Err 1 "Packages failed to install with 'apt-get'."
+fi
 
 GitHubURL='https://github.com/terminalforlife/DEB-Packages/raw/master'
 
@@ -57,7 +51,9 @@ ExtraPkgs='
 	mplay_2019-05-09_all.deb
 '
 
-TempDir=`mktemp -d`
+if ! TempDir=`mktemp -d`; then
+	Err 1 'Failed to create temporary directory.'
+fi
 
 SigHandler(){
 	rm -rf "$TempDir"
@@ -67,6 +63,11 @@ SigHandler(){
 trap SigHandler INT EXIT
 
 for CurDeb in $ExtraPkgs; do
-	wget -qO "$TempDir/$CurDeb" "$GitHubURL/$CurDeb"
-	dpkg -i "$TempDir/$CurDeb"
+	if wget -qO "$TempDir/$CurDeb" "$GitHubURL/$CurDeb"; then
+		if ! dpkg -i "$TempDir/$CurDeb"; then
+			Err 0 "Package '$CurDeb' failed to install."
+		fi
+	else
+		Err 0 "Package '$CurDeb' failed to download with 'wget'."
+	fi
 done
