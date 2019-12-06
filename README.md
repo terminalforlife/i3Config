@@ -24,13 +24,16 @@ You might have some questions, so here, I'll attempt a pre-emptive strike:
   **Q: Why float by default?**
   A: New, non-configured windows are useable, instead of a huge mess.
 
-  **Q: Why no bars?**
-  A: As said above, they're distracting and take up screen space.
-
   **Q: What's wrong with modes?**
   A: To be frank, I consider them to be inefficient and annoying.
 
-  **Q: Will you bring bars back?**
+  **Q: Why are you using 'jkl;' keys instead of vim-like keys?**
+  A: Because I type _properly_ and don't want to butcher the keyboard.
+
+  **Q: Why no bars?**
+  A: As said above, they're distracting and take up screen space.
+
+  **Q: Will you bring them back?**
   A: Maybe some day, but I doubt it. You can still add your own, though.
 
   **Q: How do I install this setup?**
