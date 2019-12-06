@@ -1,60 +1,73 @@
 **MASTER** - _Hopefully stable branch._\
 **DEV** - _Development Branch (latest changes)_
 
-Installation instructions below were written with **Linux** in mind.
+# Introduction to i3Config
 
-Aside from the packages below, the list of which I cannot guarantee is up-to-date, there are a number of steps you'll need to take before installing my i3-wm and associated files. Open a terminal or start a new session, then enter the following commands to first back up any files these steps would have you overwrite.
+My dedicated i3-wm setup, which I've used and tweaked for a few years now, is part of the pride and joy of my Linux installation. You download and install this setup. There will some things you'll want to manually change to fit _your_ needs, but eventually I hope to have this be done via interactive prompts.
 
-```bash
-\printf -v Archive '%s/.B4-I3C_%(%F_%X)T.tgz' "$HOME" -1
-\tar -C "$HOME" -czpf "$Archive" .config/i3/config .i3a
-```
+What you'll get out of this setup is a very clean, minimalistic layout, without the hand-holding of the default i3-wm configuration. You are assumed to be familiar with this tiling window manager. The following is a light of features I'd like to highlight:
 
-Now that your files are (hopefully) backed up, you can begin installing the ones from this repository. I'll assume you've already downloaded this repository and have access to the files. So, change directory (`cd`) into the directory in which these files are present, then run the following, which will also **restart i3-wm**:
+  * Not just a `config` -- you also get various shell script plugins.
 
-```bash
-\cp -rt "$HOME" .config/i3/config .i3a && \i3-msg restart
-```
+  * Border-less, indicator-less design, with only subtle transparency hints.
 
-An Ubuntu base greater than or equal to version 16.04 is recommended. Some DEB packages I use or are needed with this i3-wm setup, are as follows:
+  * No bars invading screen real estate and distracting you from your work.
 
-  * compton - compositor for X11, based on xcompmgr
-  * dunst - dmenu-ish notification-daemon
-  * feh - imlib2 based image viewer
-  * firefox - Safe and easy web browser from Mozilla
-  * i3-wm - improved dynamic tiling window manager
-  * i3lock - improved screen locker
-  * imagemagick - image manipulation programs -- binaries
-  * keynav - keyboard-driven mouse cursor mover
-  * libanyevent-i3-perl - Perl module to communicate with the i3 window manager
-  * libnotify-bin - sends desktop notifications to a notification daemon (Utilities)
-  * libnotify4 - sends desktop notifications to a notification daemon
-  * [libtfl-perl](https://github.com/terminalforlife/DEB-Packages) - Functionality for TFL Perl programs and general scripts.
-  * moc - ncurses based console audio player
-  * [mplay](https://github.com/terminalforlife/DEB-Packages) - MOC Wrapper for a clean layout with a subtle transparent theme.
-  * procps - /proc file system utilities
-  * pulseaudio - PulseAudio sound server
-  * pulseaudio-utils - Command line tools for the PulseAudio sound server
-  * redshift - Adjusts the color temperature of your screen
-  * [redshifter](https://github.com/terminalforlife/DEB-Packages) - View your internal and/or external IP address.
-  * scrot - command line screen capture utility
-  * sound-theme-freedesktop - freedesktop.org sound theme
-  * suckless-tools - simple commands for minimalistic window managers
-  * x11-utils - X11 utilities
-  * x11-xkb-utils - X11 XKB utilities
-  * x11-xserver-utils - X server utilities
-  * xfce4-terminal - Xfce terminal emulator
+  * No more inconvenient toggling of modes to manage your windows.
 
-To install these packages, run the following one-liner in a terminal:
+  * Your windows are floating by default, unless configured otherwise.
 
-```bash
-wget -q 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_packages' -O - | sudo bash -
-```
+# Have Some Questions?
 
-If you don't have `wget`, but you have `curl`, try this:
+You might have some questions, so here, I'll attempt a pre-emptive strike:
 
-```bash
-curl -s 'https://raw.githubusercontent.com/terminalforlife/i3Config/master/get_packages' | sudo bash -
-```
+  **Q: Why float by default?**
+  A: New, non-configured windows are useable, instead of a huge mess.
 
-If you don't have `sudo` available, just omit it from the above line, but ensure you otherwise have root privileges..
+  **Q: Why no bars?**
+  A: As said above, they're distracting and take up screen space.
+
+  **Q: What's wrong with modes?**
+  A: To be frank, I consider them to be inefficient and annoying.
+
+  **Q: Will you bring bars back?**
+  A: Maybe some day, but I doubt it. You can still add your own, though.
+
+  **Q: How do I install this setup?**
+  A: I'm getting to that -- keep reading! ;)
+
+  **Q: How can I contribute?**
+  A: Pull requests are welcome, but failing that, sharing is caring!
+
+  **Q: I have this horrible bug -- what can I do?**
+  A: Post an issue report on GitHub, or E-Mail: terminalforlife@yahoo.com
+
+  **Q: How portable is this setup?**
+  A: You may have some issues here, but I'll address this when possible.
+
+  **Q: I wrote a cool plugin, can I add it to your repository?**
+  A: Possibly...
+
+  **Q: How do you manage without borders and indicators?**
+  A: Besides long-term experience with i3-wm, transparency hints help.
+
+  **Q: Why don't you use Airblader's i3-gaps?**
+  A: Because it's not available in Ubuntu 16.04's repositories.
+
+  **Q: Why not just compile it, then?**
+  A: Because I don't trust the process and feel like it'd make a mess.
+
+  **Q: Why not just use Arch Linux?**
+  A: Because of many reasons I tend to rant about on my [YouTube](https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg) channel.
+
+  **Q: Have you tried other tiling window managers?**
+  A: Yes, but always came back to i3-wm; it just appeals to me the most.
+
+# Installation Instructions (UNFINISHED)
+
+To make things go smoothly and for an easier time in the future, I recommend that you use Cito, the install instructions for which can be found [here](https://github.com/terminalforlife/Extra).
+
+Once you have Cito, you need only follow this short guide to have it do most of the leg work for you.
+
+  1. Open up a terminal.
+  2. Run: `sudo cito `
