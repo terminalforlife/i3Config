@@ -5,7 +5,7 @@
 
 My dedicated i3-wm setup, which I've used and tweaked for a few years now, is part of the pride and joy of my Linux installation. You download and install this setup. There will some things you'll want to manually change to fit _your_ needs, but eventually I hope to have this be done via interactive prompts.
 
-What you'll get out of this setup is a very clean, minimalistic layout, without the hand-holding of the default i3-wm configuration. You are assumed to be familiar with this tiling window manager. The following is a light of features I'd like to highlight:
+What you'll get out of this setup is a very clean, minimalistic layout, without the hand-holding of the default i3-wm configuration. You are assumed to be familiar with this tiling window manager. The following is brief list of some features I'd like to highlight:
 
   * Not just a `config` -- you also get various shell script plugins.
 
