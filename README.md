@@ -3,7 +3,7 @@
 
 # Introduction to i3Config
 
-My dedicated i3-wm setup, which I've used and tweaked for a few years now, is part of the pride and joy of my Linux installation. You download and install this setup. There will some things you'll want to manually change to fit _your_ needs, but eventually I hope to have this be done via interactive prompts.
+My dedicated i3-wm setup, which I've used and tweaked for a few years now, is part of the pride and joy of any of my Linux installations. There will some things you'll want to manually change to fit _your_ needs, if you use this setup.
 
 What you'll get out of this setup is a very clean, minimalistic layout, without the hand-holding of the default i3-wm configuration. You are assumed to be familiar with this tiling window manager. The following is brief list of some features I'd like to highlight:
 
@@ -36,9 +36,6 @@ You might have some questions, so here, I'll attempt a pre-emptive strike:
   **Q: Will you bring them back?**\
   A: Maybe some day, but I doubt it. You can still add your own, though.
 
-  **Q: How do I install this setup?**\
-  A: I'm getting to that -- keep reading! ;)
-
   **Q: How can I contribute?**\
   A: Pull requests are welcome, but failing that, sharing is caring!
 
@@ -65,10 +62,3 @@ You might have some questions, so here, I'll attempt a pre-emptive strike:
 
   **Q: Have you tried other tiling window managers?**\
   A: Yes, but always came back to i3-wm; it just appeals to me the most.
-
-# Installation Instructions (UNFINISHED)
-
-To make things go smoothly and for an easier time in the future, I recommend that you use Cito, the install instructions for which can be found [here](https://github.com/terminalforlife/Extra). Once you have Cito, you need only follow the short guide below, to have Cito do most of the leg work for you.
-
-  1. Open up a terminal.
-  2. Run: `sudo cito `
