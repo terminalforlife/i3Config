@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/devutils/links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Fri  6 Dec 17:00:56 GMT 2019
+# Last Change       - Tue 10 Dec 00:11:50 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,13 +12,15 @@
 
 . /usr/lib/tflbp-sh/ChkDep
 
-ChkDep ln rm
+ChkDep ln rm mkdir
 
 cd "$HOME/GitHub/terminalforlife/Personal/i3Config"
 
 {
 	rm -v "$HOME/.config/i3/config"
 	ln -v source/config "$HOME/.config/i3/config"
+
+	[ -d "$HOME/.i3a" ] || mkdir "$HOME/.i3a"
 
 	cd source/.i3a
 	for CurFile in *; do
