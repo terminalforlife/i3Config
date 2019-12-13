@@ -1,19 +1,25 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/leave_session
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Mon 13 May 01:09:44 BST 2019
+# Last Change       - Thu 12 Dec 03:17:50 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Log out of your system with this simple interactive graphical prompt, using yad.
-#----------------------------------------------------------------------------------
 
-yad --center --title="Session Logout" --borders=7\
-	--on-top --text="Log out of the current session?"
+. /usr/lib/tflbp-sh/ChkDep
 
-if [ $? -eq 0 ]; then
-	pkill -u $USER
-fi
+ChkDep notify-send id pkill hostname sleep sync
 
+HOSTNAME=`hostname`
+USER=`id -un`
+
+sync
+
+Message="ALERT: Logging out user '$USER' from '$HOSTNAME' in 10s..."
+notify-send --urgency=critical "$Message"
+
+sleep 10s
+
+pkill -u "$USER"
