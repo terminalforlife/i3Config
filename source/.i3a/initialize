@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Wed  4 Dec 22:18:56 GMT 2019
+# Last Change       - Thu 12 Dec 03:03:45 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -60,11 +60,7 @@ xsetroot -solid "#000000" & disown
 xset -dpms r rate 170 70 & disown
 
 # Remap F1 to Esc, and disable Caps Lock.
-xmodmap\
-	-e "keysym F1 = Escape"\
-	-e "keysym Caps_Lock = "\
-	-e "keysym Mod3 = "\
-	& disown
+xmodmap -e "keysym F1 = Escape" -e "keysym Caps_Lock = " -e "keysym Mod3 = " & disown
 
 # Load keynav to get mouse controls with a keyboard.
 keynav & disown
@@ -85,4 +81,4 @@ notify-upgrade & disown
 nwchk -b -i 10 -l -I "$IFACE" & disown
 
 # Handle the layout and other programs launched.
-perl $HOME/.i3a/dev_setup & disown
+#perl $HOME/.i3a/dev_setup & disown
