@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Fri  8 Nov 00:24:12 GMT 2019
+# Last Change       - Sat 14 Dec 18:55:23 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -22,46 +22,64 @@ use warnings;
 use autodie;
 use File::Basename 'basename';
 use TFL; # <-- libtfl-perl (>= 2019-05-07)
+use Time::HiRes 'usleep';
+use AnyEvent::I3 qw{TYPE_COMMAND i3}; # <-- libanyevent-i3-perl (>= 0.16-1)
 
-my $_VERSION_ = "2019-11-08";
+my $CurVer = "2019-12-14";
 
-my %EXECS = (
+my %Execs = (
 	'TERMINAL' => 'xfce4-terminal',
 	'BROWSER' => 'firefox',
 	'EMAIL' => 'thunderbird'
 );
 
-TFL::DepChk('/usr/bin/' . $EXECS{$_}) foreach keys(%EXECS);
+TFL::DepChk($Execs{$_}) foreach keys(%Execs);
+
+# Example: TFL::i3Do(100000, 'workspace 1')
+# $_[0] = Microseconds pause before the command.
+# $_[1] = The 'TYPE_COMMAND' (akin to i3-msg) for i3-wm to execute.
+sub i3Do{
+	my $I3 = AnyEvent::I3->new();
+	die "Unable to estalish a connection to i3-wm"
+		if not $I3->connect->recv;
+
+	die "Invalid usleep() argument -- integer required."
+		if $_[0] !~ /^[0-9]+$/;
+
+	usleep($_[0]);
+
+	$I3->message(TYPE_COMMAND, $_[1])
+}
 
 TFL::i3Do(400000, 'workspace 1'); # <-- In-case the user doesn't start here.
 
-my $GH_REPOS = $ENV{HOME} . '/GitHub/terminalforlife/Personal';
-my $WD = "--working-directory='$GH_REPOS'";
+my $GHRepos = $ENV{HOME} . '/GitHub/terminalforlife/Personal';
+my $WorkingDir = "--working-directory='$GHRepos'";
 
 # New, 1-terminal development layout.
-TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
+TFL::i3Do(400000, "exec --no-startup-id $Execs{TERMINAL} $WorkingDir");
 
 # Previous, 3-terminal development layout.
-#TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} $WD") foreach (1..2);
+#TFL::i3Do(400000, "exec --no-startup-id $Execs{TERMINAL} $WorkingDir") foreach (1..2);
 #TFL::i3Do(400000, 'split v'); # <-- YMMV, regarding the integer.
-#TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} $WD");
+#TFL::i3Do(400000, "exec --no-startup-id $Execs{TERMINAL} $WorkingDir");
 #TFL::i3Do(400000, 'focus left');
 
 # Assumes appropriate for_windows have been set.
-TFL::i3Do(400000, "exec --no-startup-id $EXECS{CHAT}"); # <-- WS 3.
-TFL::i3Do(400000, "exec --no-startup-id $EXECS{BROWSER}"); # <-- WS 4.
-TFL::i3Do(400000, "exec --no-startup-id $EXECS{EMAIL}"); # <-- WS 7.
+TFL::i3Do(400000, "exec --no-startup-id $Execs{CHAT}"); # <-- WS 3.
+TFL::i3Do(400000, "exec --no-startup-id $Execs{BROWSER}"); # <-- WS 4.
+TFL::i3Do(400000, "exec --no-startup-id $Execs{EMAIL}"); # <-- WS 7.
 
 TFL::i3Do(400000, 'workspace 10');
 
-if(basename($EXECS{TERMINAL}) eq 'xfce4-terminal'){
+if(basename($Execs{TERMINAL}) eq 'xfce4-terminal'){
 	TFL::DepChk('/usr/bin/mplay'); TFL::DepChk('/usr/bin/mocp');
 
 	my $FILE = $ENV{HOME} . '/.i3a/partmount';
 	TFL::i3Do(400000, "bash $FILE -L 'Media 3'") if -f $FILE and -r $FILE;
-	TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL} -x 'mplay'")
+	TFL::i3Do(400000, "exec --no-startup-id $Execs{TERMINAL} -x 'mplay'")
 }else{
-	TFL::i3Do(400000, "exec --no-startup-id $EXECS{TERMINAL}")
+	TFL::i3Do(400000, "exec --no-startup-id $Execs{TERMINAL}")
 }
 
 TFL::i3Do(400000, 'workspace 1');
