@@ -8,7 +8,7 @@
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-#TODO - If the lock key is held, multiple instances of this script are executed.
+#TODO: If the lock key is held, multiple instances of this script are executed.
 
 set -o errexit
 

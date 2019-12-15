@@ -87,7 +87,7 @@ assign [class="Skype"] 3
 assign [class="Thunderbird"] 7
 assign [class="^Audacity$"] 2
 assign [class="^Openshot$"] 2
-assign [title="Facebook call . Mozilla Firefox"] 3 #TODO - Fix?
+assign [title="Facebook call . Mozilla Firefox"] 3 #TODO: Fix?
 
 #----------------------------------------------------------------------WINDOW FOCUS
 
