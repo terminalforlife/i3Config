@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/lockscreen
 # Started On        - Thu  4 Apr 12:38:37 BST 2019
-# Last Change       - Wed 27 Nov 00:21:09 GMT 2019
+# Last Change       - Tue 17 Dec 23:47:47 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -12,18 +12,22 @@
 
 set -o errexit
 
-FILE="$(mktemp -u --suffix='_lock.png')"
-SOUND03="/usr/share/sounds/freedesktop/stereo/network-connectivity-lost.oga"
-SOUND04="/usr/share/sounds/freedesktop/stereo/network-connectivity-established.oga"
+File=`mktemp -u --suffix='_lock.png'`
+Sound3='/usr/share/sounds/freedesktop/stereo/network-connectivity-lost.oga'
+Sound4='/usr/share/sounds/freedesktop/stereo/network-connectivity-established.oga'
 
-DoTrap(){ rm -f "$FILE"; }
+DoTrap(){
+	Sig=$?
+	rm -f "$File"
+	exit $Sig
+}
 
-trap DoTrap EXIT
+trap DoTrap INT EXIT QUIT TERM ABRT
 
-TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
+TempSound="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
 
-scrot -z "$FILE"
-convert "$FILE" -gaussian-blur 8x8 "$FILE"
-paplay --volume 40000 "$SOUND03" &
-i3lock -u -n -i "$FILE"
-paplay --volume 40000 "$SOUND04" &
+scrot -z "$File"
+convert "$File" -gaussian-blur 8x8 "$File"
+paplay --volume 40000 "$Sound3" &
+i3lock -u -n -i "$File"
+paplay --volume 40000 "$Sound4" &
