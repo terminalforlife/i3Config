@@ -1,37 +1,59 @@
-#!/bin/sh
+#!/usr/bin/env perl
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/dmesg_overflow
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Wed 27 Nov 00:33:34 GMT 2019
+# Last Change       - Tue 17 Dec 23:50:58 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# Because of the very excessive amount of permission errors muddying up, -
-# $HOME/.xsession_errors, this addon will erase the file at login, if it detects
-# the errors. This should be quick and painless, with only a minor chance to remove
-# important logged information. A quick workaround to a frustrating issue that is
-# better than allowing dmesg to be a free-for-all!
-#
-# If this issue is something you've never experienced, you needn't use this script.
+# Puts a plaster on the issue of excessive and problematic `dmesg` errors sent to
+# `$HOME/.xsession_errors`, this Perl script will remove the file if they're found.
+# It's a dirty solution, but beats `dmesg` being a free-for-all.
 #----------------------------------------------------------------------------------
 
-ProcFile='/proc/sys/kernel/dmesg_restrict'
+use strict;
+use warnings;
+use autodie;
+use File::Basename 'basename';
+use TFL; # <-- libtfl-perl
 
-if [ -f "$ProcFile" ]; then
-	read Result < "$ProcFile"
+no warnings 'uninitialized';
 
-	if [ $Result -eq 1 ]; then
-		ErrMSG='dmesg: read kernel buffer failed: Operation not permitted'
-		LogFile="$HOME/.xsession-errors"
+my $CurVer = "2019-12-17";
+my $Progrm = basename($0);
 
-		if [ -f "$LogFile" ] && [ -r "$LogFile" ]; then
-			while read CurLine; do
-				if [ "$CurLine" = "$ErrMSG" ] && [ -w "$LogFile" ]; then
-					rm -f "$LogFile"
-					break
-				fi
-			done < "$LogFile"
-		fi
-	fi
-fi
+my $ProcFile = '/proc/sys/kernel/dmesg_restrict';
+
+if (not -f -r -w $ProcFile){
+	TFL::Err(1, "File '/proc/.../dmesg_restrict' missing or inaccessible.")
+}elsif ($< != 0){
+	TFL::Err(1, "Root privileges required for system-wide changes.")
+}
+
+open(my $FH, '<', $ProcFile);
+my $Result = <$FH>;
+close($FH);
+
+exit(0) if $Result == 1;
+
+my $ErrMSG = 'dmesg: read kernel buffer failed: Operation not permitted';
+my $LogFile = $ENV{HOME} . '/.xsession-errors';
+if (-f -r $LogFile){
+	open(my $FH, '<', $LogFile);
+
+	my $DoDelete;
+	while (<$FH>){
+		chomp($_);
+
+		if ($_ eq $ErrMSG and -w $LogFile){
+			$DoDelete = 'true';
+			last
+		}
+	}
+
+	if ($DoDelete eq 'true'){
+		close($FH);
+		unlink($LogFile)
+	}
+}
