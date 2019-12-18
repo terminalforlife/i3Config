@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Wed 18 Dec 00:24:51 GMT 2019
+# Last Change       - Wed 18 Dec 00:36:08 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -42,8 +42,8 @@ while [ "$1" ]; do
 		--uuid|-U)
 			shift; Mounter "/dev/disk/by-uuid/$1" 'UUID' ;;
 		--label|-L)
-			shift; LABEL=`printf '%s' "$1" | tr ' ' 'x20'`
-			Mounter "/dev/disk/by-label/$1" 'label' ;;
+			# All spaces must be replaced with literally '\x20'.
+			shift; Mounter "/dev/disk/by-label/$1" 'label' ;;
 		--name|-N)
 			shift; Mounter "/dev/${1#/dev/}" 'name' ;;
 	esac
