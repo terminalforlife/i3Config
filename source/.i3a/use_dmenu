@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/use_dmenu
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri 22 Nov 22:26:20 GMT 2019
+# Last Change       - Wed 18 Dec 00:58:04 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -18,22 +18,22 @@
 # name for the configuration I found online, or leave it blank to use my own.
 #------------------------------------------------------------------------DMENU HERE
 
-ALT=""
+Launcher(){
+	dmenu_run -b -fn "$1":style=Bold:size=12 -nb \#000000\
+		-nf \#ffffff -sb \#550000 -sf \#ffffff
 
-MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
-SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-if type -fP dmenu_run > /dev/null 2>&1; then
-	paplay --volume 40000 "$SOUND05" & disown
-	if [ "$ALT" == "baskerville" ]; then
-		# https://github.com/baskerville/bin/blob/master/dmenu_launch-dark
-		dmenu_run -i -fn "sans-serif:pixelsize=11" -nb \#2D2C28\
-			-nf \#A4A6AB -sb \#5B5955 -sf \#DBDDE2 -p '>'
-	else
-		# Font requires: fonts-ricty-diminished
-		dmenu_run -b -fn "Ricty Diminished":style=Regular:size=12\
-			-nb \#000000 -nf \#ffffff -sb \#550000 -sf \#ffffff
+	exit 0
+}
 
-		#dmenu_run -b -fn "Nimbus Mono L":style=Bold:size=16\
-		#	-nb \#000000 -nf \#ffffff -sb \#333333 -sf \#ffffff
-	fi
-fi
+fc-list : family | while read CurLine; do
+	case $CurLine in
+		'Ricty Diminished')
+			Launcher 'Ricty Diminished' ;;
+		'Oxygen Mono')
+			Launcher 'Oxygen Mono' ;;
+		'Ubuntu Mono')
+			Launcher 'Ubuntu Mono' ;;
+		'FreeMono')
+			Launcher 'FreeMono' ;;
+	esac
+done
