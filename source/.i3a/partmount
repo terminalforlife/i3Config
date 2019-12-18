@@ -1,73 +1,51 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Mon 13 May 01:13:21 BST 2019
+# Last Change       - Wed 18 Dec 00:24:51 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
-# A work in progress. Toggle-mount partitions with a simple keyboard shortcut.
-#
 # SYNTAX:    partmount [OPTS]
 #
 # ARGS:      --uuid|-U UUID       - Where UUID is one of the filesystem to mount.
 #            --label|-L LABEL     - Where LABEL is one of the filesystem to mount.
 #            --name|-N NAME       - Where NAME is one of the filesystem to mount.
 #
-# NOTE:      NAME is the block device name, for example: /dev/sda1
+# NOTE:      NAME is the block device name. (`/dev/sda1` | `sda1`)
 #----------------------------------------------------------------------------------
 
+set -e
+. /usr/lib/tflbp-sh/Err
+. /usr/lib/tflbp-sh/ChkDep
+set +e
+
+ChkDep notify-send udisksctl
+
+Mounter(){
+	Noti(){ notify-send --urgency=critical "$1"; }
+	if [ -e "$1" ]; then
+		udisksctl mount -b "$1" 2> /dev/null && exit 0
+		if ! udisksctl unmount -b "$1" 2> /dev/null; then
+			Err 1 'Unable to unmount file system.'
+			Noti 'Unable to unmount file system.'
+		fi
+	else
+		Err 1 "Chosen $2 invalid or unavailable."
+		Noti "Chosen $2 invalid or unavailable."
+	fi
+}
+
 while [ "$1" ]; do
-	case "$1" in
+	case $1 in
 		--uuid|-U)
-			shift; UUID="$1"
-			[ -z "$UUID" ] && exit 1 ;;
+			shift; Mounter "/dev/disk/by-uuid/$1" 'UUID' ;;
 		--label|-L)
-			shift; LABEL="${1// /\\x20}"
-			[ -z "$LABEL" ] && exit 1 ;;
+			shift; LABEL=`printf '%s' "$1" | tr ' ' 'x20'`
+			Mounter "/dev/disk/by-label/$1" 'label' ;;
 		--name|-N)
-			shift; NAME="$1"
-			[ -z "$NAME" ] && exit 1 ;;
+			shift; Mounter "/dev/${1#/dev/}" 'name' ;;
 	esac
 	shift
 done
-
-if [ "$UUID" ]; then
-	if [ -e /dev/disk/by-uuid/"$UUID" ]; then
-		if ! udisksctl mount -b /dev/disk/by-uuid/"$UUID"; then
-			if udisksctl unmount -b /dev/disk/by-uuid/"$UUID"; then
-				notify-send --urgency=critical\
-					"PARTMOUNT: Unable to unmount file system."
-			fi
-		fi
-	else
-		notify-send --urgency=critical\
-			"PARTMOUNT: Chosen UUID is invalid or unavailable."
-	fi
-elif [ "$LABEL" ]; then
-	if [ -e /dev/disk/by-label/"$LABEL" ]; then
-		if ! udisksctl mount -b /dev/disk/by-label/"$LABEL"; then
-			if ! udisksctl unmount -b /dev/disk/by-label/"$LABEL"; then
-				notify-send --urgency=critical\
-					"PARTMOUNT: Unable to unmount file system."
-			fi
-		fi
-	else
-		notify-send --urgency=critical\
-			"PARTMOUNT: Chosen LABEL is invalid or unavailable."
-	fi
-elif [ "$NAME" ]; then
-	if [ -e /dev/disk/by-name/"$NAME" ]; then
-		if ! udisksctl mount -b "$NAME"; then
-			if ! udisksctl unmount -b "$NAME"; then
-				notify-send --urgency=critical\
-					"PARTMOUNT: Unable to unmount file system."
-			fi
-		fi
-	else
-		notify-send --urgency=critical\
-			"PARTMOUNT: Chosen NAME is invalid or unavailable."
-	fi
-fi
-
