@@ -1,27 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/scrot_sel_take
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Mon 13 May 01:13:35 BST 2019
+# Last Change       - Wed 18 Dec 00:46:48 GMT 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 # Take a screenshot of the user-selected square region, using scrot.
 #----------------------------------------------------------------------------------
 
-umask 0077
-
-if [ "$1" == "--lite" ]; then
-	printf -v FILENAME "$HOME/Desktop/.lmscrot.jpg"
-else
-	printf -v FILENAME "$HOME/Desktop/Selectshot_%(%F_%X)T.jpg"
-fi
-
-SOUND03="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
-TEMPSOUND="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
-paplay --volume 30000 "$TEMPSOUND"
-if scrot -zsq 75 -d 1 "$FILENAME"; then
-	paplay --volume 40000 "$SOUND03"
-fi
-
+FileName="$HOME/Desktop/Selectshot_`date '+%F_%X'`.jpg"
+scrot -zsq 75 -d 1 "$FileName" && notify-send 'Selectshot taken and saved.'
