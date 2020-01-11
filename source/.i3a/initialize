@@ -3,48 +3,45 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Thu 12 Dec 03:03:45 GMT 2019
+# Last Change       - Fri 10 Jan 20:28:22 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-BACKGROUND="$HOME/Pictures/Wallpapers/landscape_blue_tree_black_92069_1920x1080.jpg"
-#BACKGROUND="$HOME/Pictures/Wallpapers/landscape_blue_tree_black_92069_1920x1080.jpg"
-FEH_SLIDES="$HOME/Pictures/Wallpapers/Slideshow"
-BELLSND="/usr/share/sounds/freedesktop/stereo/message.oga"
-ALERTSND="/usr/share/sounds/freedesktop/stereo/bell.oga"
-SOUND04="/usr/share/sounds/freedesktop/stereo/service-login.oga"
-DUNSTRC="$HOME/.config/dunst/dunstrc"
-COMPCONF="$HOME/.config/compton.conf"
-REDSHIFTER="$HOME/.config/redshifter.tmp"
-IFACE="enp3s0"
+BGImage="$HOME/Pictures/Wallpapers/landscape_blue_tree_black_92069_1920x1080.jpg"
+FehSlides="$HOME/Pictures/Wallpapers/Slideshow"
+BellSND='/usr/share/sounds/freedesktop/stereo/message.oga'
+AlertSND='/usr/share/sounds/freedesktop/stereo/bell.oga'
+Sound04='/usr/share/sounds/freedesktop/stereo/service-login.oga'
+DunstRC="$HOME/.config/dunst/dunstrc"
+CompConf="$HOME/.config/compton.conf"
+Redshifter="$HOME/.config/redshifter.tmp"
+Interface='enp3s0'
 
-# Redshift sets the gamma to the previous value, per REDSHIFTER file. You will
+# Redshift sets the gamma to the previous value, per Redshifter file. You will
 # probably want to install redshifter for this: sudo insit redshifter
-redshift -O `< "$REDSHIFTER"`K & disown
+redshift -O `< "$Redshifter"`K & disown
 
 # Load compton (lightweight compositing manager) and its config file. My config
 # file can be found in the miscellaneous repository. Or use your own. If you don't
 # want to use a config file, change the following compton command as applicable.
 if type -fP compton > /dev/null 2>&1; then
-	if [ -f "$COMPCONF" -a -r "$COMPCONF" ]; then
-		compton --config "$COMPCONF" -b & disown
-	fi
+	[ -f "$CompConf" -a -r "$CompConf" ] && compton --config "$CompConf" -b & disown
 elif type -fP xcompmgr > /dev/null 2>&1; then
 	xcompmgr -cCfFn
 fi
 
 # Load up dunst, a lightweight and feature-rich notification daemon.
-dunst -config "$DUNSTRC" & disown
+dunst -config "$DunstRC" & disown
 
 # Set the background image, using either feh, nitrogen, and/or feh-slides.
 if type -fP feh-slides > /dev/null 2>&1; then
-	feh-slides -i 7 "$FEH_SLIDES" & disown
+	feh-slides -i 7 "$FehSlides" & disown
 else
 	if type -fP feh > /dev/null 2>&1; then
-		feh --no-fehbg --bg-center $BACKGROUND & disown
+		feh --no-fehbg --bg-center $BGImage & disown
 	elif type -fP nitrogen > /dev/null 2>&1; then
-		nitrogen "$BACKGROUND" & disown
+		nitrogen "$BGImage" & disown
 	fi
 fi
 
@@ -54,19 +51,19 @@ if [ `< /proc/sys/kernel/ctrl-alt-del` -eq 0 ] && type -fP setxkbmap > /dev/null
 	setxkbmap -option terminate:ctrl_alt_bksp & disown
 fi
 
-xsetroot -solid "#000000" & disown
+xsetroot -solid '#000000' & disown
 
 # Disable DPMS, and set the keyboard repeat delay and rate.
 xset -dpms r rate 170 70 & disown
 
 # Remap F1 to Esc, and disable Caps Lock.
-xmodmap -e "keysym F1 = Escape" -e "keysym Caps_Lock = " -e "keysym Mod3 = " & disown
+xmodmap -e 'keysym F1 = Escape' -e 'keysym Caps_Lock = ' -e 'keysym Mod3 = ' & disown
 
 # Load keynav to get mouse controls with a keyboard.
 keynav & disown
 
 # Play a little sound upon login. Uses a path at the start of this script.
-paplay --volume 40000 "$SOUND04" & disown
+paplay --volume 40000 "$Sound04" & disown
 
 # Check for kernel version changes; see kernelchk repository.
 kernelchk -N -b & disown
@@ -78,7 +75,7 @@ mocp -S & disown
 notify-upgrade & disown
 
 # Start watching the network and the Internet connectivity thereof.
-nwchk -b -i 10 -l -I "$IFACE" & disown
+nwchk -b -i 10 -l -I "$Interface" & disown
 
 # Handle the layout and other programs launched.
 #perl $HOME/.i3a/dev_setup & disown

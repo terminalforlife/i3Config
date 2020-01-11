@@ -1,25 +1,42 @@
-#!/bin/sh
+#!/usr/bin/env perl
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/leave_session
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Thu 12 Dec 03:17:50 GMT 2019
+# Last Change       - Sat 11 Jan 00:37:03 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-. /usr/lib/tflbp-sh/ChkDep
+use strict;
+use warnings;
+use autodie;
+use TFL 'DepChk'; # <-- libtfl-perl (>= 2020-01-02)
+use File::Basename 'basename';
+use Gtk2::Notify -init, 'Quit Session'; # <-- libgtk2-notify-perl (>= 0.05-4build2)
 
-ChkDep notify-send id pkill hostname sleep sync
+my $User = $ENV{'USER'};
 
-HOSTNAME=`hostname`
-USER=`id -un`
+DepChk('sync');
+system('sync');
 
-sync
+my $Message = "Logging $ENV{'USER'} out in 3s...";
 
-Message="ALERT: Logging out user '$USER' from '$HOSTNAME' in 10s..."
-notify-send --urgency=critical "$Message"
+my @KillPids;
+foreach my $PidDir (glob('/proc/[0-9]*')){
+	next unless -d -r -x $PidDir and $PidDir =~ '^/proc/[0-9]+$';
 
-sleep 10s
+	open(my $FH, '<', "$PidDir/environ");
+	my $Data = <$FH>;
+	close($FH);
 
-pkill -u "$USER"
+	push(@KillPids, basename($PidDir)) if grep($Data, "USER=$User")
+}
+
+my $Noti = Gtk2::Notify->new($Message);
+$Noti->set_urgency('critical');
+$Noti->show();
+
+sleep(3);
+
+kill('SIGTERM', @KillPids)

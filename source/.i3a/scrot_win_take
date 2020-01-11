@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/scrot_win_take
 # Started On        - Fri 27 Oct 14:55:25 BST 2017
-# Last Change       - Wed 18 Dec 00:47:54 GMT 2019
+# Last Change       - Fri 10 Jan 20:11:27 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -11,4 +11,4 @@
 #----------------------------------------------------------------------------------
 
 FileName="$HOME/Desktop/Windowshot_`date '+%F_%X'`.jpg"
-scrot -u -zq 75 "$FILENAME" && notify-send 'Windowshot taken and saved.'
+scrot -zuq 75 "$FILENAME" && notify-send 'Windowshot taken and saved.'
