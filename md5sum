@@ -1,3 +1,4 @@
+6fece7c3a1ddf15b681a256da860de9e  source/config
 f4ed7687f801c2cd0de749a9b1db38c3  source/.i3a/dev_setup
 4861fe96060a8ff01507832fb36b3053  source/.i3a/dmesg_overflow
 9bb06d9a6f0950394aa91509aa555583  source/.i3a/hush_the_mic
@@ -6,9 +7,9 @@ e06c60085c1949a4440fc4e4ca220bb9  source/.i3a/key_autorepeat
 5d41678e6bb237071bec5742294f825c  source/.i3a/leave_session
 d85366939547b09637f6b2502a98907d  source/.i3a/lockscreen
 e1f742ef29ce82e69a689bb16dc814f6  source/.i3a/partmount
-6024ba684223b5a9ca91a4e961bc2021  source/.i3a/scrot_sel_take
-743b18e8a3bac207a136342b1119646e  source/.i3a/scrot_take
-70aab9279af2ea2de23051053ca904a5  source/.i3a/scrot_win_take
+d0d242964e69db8a180056091c34df25  source/.i3a/scrot_sel_take
+386e6d788a54e210bfff7a86e907e2b8  source/.i3a/scrot_take
+f68aa771e300db7b410671524cd4f15c  source/.i3a/scrot_win_take
 84d3a103071ef2514339929e9ebaf64e  source/.i3a/sink_lower
 7cd1f85fbb7619f6def88f84ed1712de  source/.i3a/sink_mute
 2f15e8f6a5ae0772df5c6e552fb1e0d2  source/.i3a/sink_raise
@@ -19,4 +20,3 @@ b5459b73d2c6318e0cecf4f01e1902e5  source/.i3a/source_raise
 73b58a732283a9efffb489580ac3ce06  source/.i3a/term_font_size
 e622719b2bb5259e8fef3fecfce5dfe0  source/.i3a/track_notify
 f1d44e36a4306c12dfa9af5482668939  source/.i3a/use_dmenu
-6fece7c3a1ddf15b681a256da860de9e  source/config
