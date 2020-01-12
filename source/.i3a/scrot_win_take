@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/scrot_win_take
 # Started On        - Fri 27 Oct 14:55:25 BST 2017
-# Last Change       - Fri 10 Jan 20:11:27 GMT 2020
+# Last Change       - Sun 12 Jan 22:43:34 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -11,4 +11,5 @@
 #----------------------------------------------------------------------------------
 
 FileName="$HOME/Desktop/Windowshot_`date '+%F_%X'`.jpg"
+sleep 0.1 # <-- So stupid, but need this because of `date` being too slow, I think.
 scrot -zuq 75 "$FILENAME" && notify-send 'Windowshot taken and saved.'
