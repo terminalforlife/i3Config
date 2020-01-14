@@ -22,9 +22,7 @@ What you'll get out of this setup is a very clean, minimalistic layout, without 
 A lot of the following dependencies can be omitted if you make changes to files in `~/.i3a`.
 
   * bash (>= 4.3-14)
-  * compton (>= 0.1~beta2-1)
   * coreutils (>= 8.25-2)
-  * dunst (>= 1.1.0-2)
   * feh (>= 2.14-1)
   * i3-wm (>= 4.11-1)
   * i3lock (>= 2.7-1)
@@ -36,17 +34,25 @@ A lot of the following dependencies can be omitted if you make changes to files 
   * mplayer (>= 2:1.2.1-1)
   * perl (>= 5.22.1-9)
   * pulseaudio-utils (>= 1:8.0-0)
-  * redshift (>= 1.10-5)
-  * redshifter (>= 2019-12-31)
   * scrot (>= 0.8-17)
   * sed (>= 4.2.2-7)
   * suckless-tools (>= 42-1)
-  * udisks2 (>= 2.1.7-1)
   * x11-apps (>= 7.7+5+nmu1)
   * x11-xserver-utils (>= 7.7+7)
   * xfce4-terminal (>= 0.6.3-2)
 
 Notice something missing or unneeded? Let me know!
+
+# Recommended Packages (2020-01-14)
+
+The following packages are not required, but recommended, for a fuller experience more akin to my own.
+
+  * compton (>= 0.1~beta2-1)
+  * dunst (>= 1.1.0-2)
+  * mplay (>= 2019-05-09)
+  * redshift (>= 1.10-5)
+  * redshifter (>= 2019-12-31)
+  * udisks2 (>= 2.1.7-1)
 
 # Have Some Questions?
 
