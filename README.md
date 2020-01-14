@@ -17,6 +17,37 @@ What you'll get out of this setup is a very clean, minimalistic layout, without 
 
   * Your windows are floating by default, unless configured otherwise.
 
+# Dependencies (2020-01-14)
+
+A lot of the following dependencies can be omitted if you make changes to files in `~/.i3a`.
+
+  * bash (>= 4.3-14)
+  * compton (>= 0.1~beta2-1)
+  * coreutils (>= 8.25-2)
+  * dunst (>= 1.1.0-2)
+  * feh (>= 2.14-1)
+  * i3-wm (>= 4.11-1)
+  * i3lock (>= 2.7-1)
+  * imagemagick (>= 8:6.8.9.9-7)
+  * libanyevent-i3-perl (>= 0.16-1)
+  * libnotify-bin (>= 0.7.6-2svn1)
+  * libtfl-perl (>= 2020-01-11)
+  * moc (>= 1:2.6.0~svn-r2788-1)
+  * mplayer (>= 2:1.2.1-1)
+  * perl (>= 5.22.1-9)
+  * pulseaudio-utils (>= 1:8.0-0)
+  * redshift (>= 1.10-5)
+  * redshifter (>= 2019-12-31)
+  * scrot (>= 0.8-17)
+  * sed (>= 4.2.2-7)
+  * suckless-tools (>= 42-1)
+  * udisks2 (>= 2.1.7-1)
+  * x11-apps (>= 7.7+5+nmu1)
+  * x11-xserver-utils (>= 7.7+7)
+  * xfce4-terminal (>= 0.6.3-2)
+
+Notice something missing or unneeded? Let me know!
+
 # Have Some Questions?
 
 You might have some questions, so here, I'll attempt a pre-emptive strike:
