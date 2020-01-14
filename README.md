@@ -7,7 +7,7 @@ My dedicated i3-wm setup, which I've used and tweaked for a few years now, is pa
 
 What you'll get out of this setup is a very clean, minimalistic layout, without the hand-holding of the default i3-wm configuration. You are assumed to be familiar with this tiling window manager. The following is brief list of some features I'd like to highlight:
 
-  * Not just a `config` -- you also get various shell script plugins.
+  * Not just a `config` -- you also get various Shell and Perl plugins.
 
   * Border-less, indicator-less design, with only subtle transparency hints.
 
