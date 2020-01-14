@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/leave_session
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Sat 11 Jan 00:37:03 GMT 2020
+# Last Change       - Tue 14 Jan 02:24:02 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -11,32 +11,35 @@
 use strict;
 use warnings;
 use autodie;
-use TFL 'DepChk'; # <-- libtfl-perl (>= 2020-01-02)
-use File::Basename 'basename';
-use Gtk2::Notify -init, 'Quit Session'; # <-- libgtk2-notify-perl (>= 0.05-4build2)
 
-my $User = $ENV{'USER'};
+my @CleanDirs = (
+	"$ENV{HOME}/.cache",
+	"$ENV{HOME}/.mozilla/firefox/Crash Reports",
+	"$ENV{HOME}/.mozilla/firefox/Pending Pings",
+	"$ENV{HOME}/.thumbnails"
+);
 
-DepChk('sync');
-system('sync');
-
-my $Message = "Logging $ENV{'USER'} out in 3s...";
+foreach (@CleanDirs){
+	next unless -d;
+	foreach (glob("$_/*")){
+		unlink($_) if -f
+	}
+}
 
 my @KillPids;
 foreach my $PidDir (glob('/proc/[0-9]*')){
 	next unless -d -r -x $PidDir and $PidDir =~ '^/proc/[0-9]+$';
 
-	open(my $FH, '<', "$PidDir/environ");
+	open(my $FH, '<', "$PidDir/environ")
+		or die("File '$PidDir/environ' missing or inaccessible");
+
 	my $Data = <$FH>;
 	close($FH);
 
-	push(@KillPids, basename($PidDir)) if grep($Data, "USER=$User")
+	push(@KillPids, $PidDir =~ m{(?:.*/)(.*)})
+		if grep($Data, "USER=$ENV{USER}")
 }
 
-my $Noti = Gtk2::Notify->new($Message);
-$Noti->set_urgency('critical');
-$Noti->show();
-
-sleep(3);
-
-kill('SIGTERM', @KillPids)
+system('sync');
+sleep(1); # <-- Minor safety measure.
+kill('SIGHUP', @KillPids)
