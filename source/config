@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 14 Jan 01:34:26 GMT 2020
+# Last Change       - Fri 17 Jan 21:59:56 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ bindsym Mod1+Shift+Right move right 10 px
 
 bindsym Mod1+h split h
 bindsym Mod1+v split v
-bindsym Mod1+f fullscreen
+bindsym Mod1+Ctrl+f fullscreen
 
 #----------------------------------------------------------------CONTAINER MOVEMENT
 
