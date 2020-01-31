@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 17 Jan 21:59:56 GMT 2020
+# Last Change       - Thu 30 Jan 15:27:58 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ force_focus_wrapping no
 font pango: Ricty Diminished 14
 #font pango: Nimbus Mono L Bold 13
 #floating_maximum_size 1280 x 760
-floating_minimum_size 10 x 10
+#floating_minimum_size 100 x 100
 popup_during_fullscreen smart
 force_display_urgency_hint 1000 ms
 focus_on_window_activation urgent
@@ -161,9 +161,9 @@ bindsym Shift+Mod4+5 exec --no-startup-id sh $HOME/.i3a/partmount -L 'CloneZilla
 
 #--------------------------------------------------------------REDSHIFT ADJUSTMENTS
 
-bindsym Mod4+0 exec --no-startup-id redshifter -i 100
-bindsym Mod4+9 exec --no-startup-id redshifter -d 100
-bindsym Mod4+8 exec --no-startup-id redshifter -r
+bindsym Mod4+0 exec --no-startup-id redshifter raise 100
+bindsym Mod4+9 exec --no-startup-id redshifter lower 100
+bindsym Mod4+8 exec --no-startup-id redshifter reset
 
 #---------------------------------------------------------------------GROUP ACTIONS
 

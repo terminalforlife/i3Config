@@ -3,79 +3,55 @@
 #----------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Tue 14 Jan 01:36:46 GMT 2020
+# Last Change       - Fri 31 Jan 02:08:36 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
 
-BGImage="$HOME/Pictures/Permanent Wall 2.jpg"
-FehSlides="$HOME/Pictures/Wallpapers/Slideshow"
-BellSND='/usr/share/sounds/freedesktop/stereo/message.oga'
-AlertSND='/usr/share/sounds/freedesktop/stereo/bell.oga'
-Sound04='/usr/share/sounds/freedesktop/stereo/service-login.oga'
-DunstRC="$HOME/.config/dunst/dunstrc"
-CompConf="$HOME/.config/compton.conf"
-Redshifter="$HOME/.config/redshifter.tmp"
-Interface='enp3s0'
+# Enable PulseAudio's built-in noise-cancelling feature.
+pactl load-module module-echo-cancel &
 
-# Redshift sets the gamma to the previous value, per Redshifter file. You will
-# probably want to install redshifter for this: sudo insit redshifter
-redshift -O `< "$Redshifter"`K & disown
+# Read the value previously-set by Redshifter.
+redshift -O `< "$HOME/.config/rs-gamma"`K &
 
-# Load compton (lightweight compositing manager) and its config file. My config
-# file can be found in the miscellaneous repository. Or use your own. If you don't
-# want to use a config file, change the following compton command as applicable.
-if type -fP compton > /dev/null 2>&1; then
-	[ -f "$CompConf" -a -r "$CompConf" ] && compton --config "$CompConf" -b & disown
-elif type -fP xcompmgr > /dev/null 2>&1; then
-	xcompmgr -cCfFn
-fi
+# Loads up the lightweight compositing manager.
+compton --config "$HOME/.config/compton.conf" -b &
 
-# Load up dunst, a lightweight and feature-rich notification daemon.
-dunst -config "$DunstRC" & disown
+dunst -config "$HOME/.config/dunst/dunstrc" &
 
-# Set the background image, using either feh, nitrogen, and/or feh-slides.
 if type -fP feh-slides > /dev/null 2>&1; then
-	feh-slides -i 7 "$FehSlides" & disown
+	feh-slides -i 7 "$HOME/Pictures/Wallpapers/Slideshow" &
 else
 	if type -fP feh > /dev/null 2>&1; then
-		feh --no-fehbg --bg-center "$BGImage" & disown
+		feh --no-fehbg --bg-center "$HOME/Pictures/Permanent Wall 2.jpg" &
 	elif type -fP nitrogen > /dev/null 2>&1; then
-		nitrogen "$BGImage" & disown
+		nitrogen "$BGImage" &
 	fi
 fi
 
-# Enable the use of Ctrl + Alt + Backspace to kill X. No point in setting this if
-# the below kernel parameter is set to 1, so test for that too.
-if [ `< /proc/sys/kernel/ctrl-alt-del` -eq 0 ] && type -fP setxkbmap > /dev/null 2>&1; then
-	setxkbmap -option terminate:ctrl_alt_bksp & disown
-fi
-
-xsetroot -solid '#000000' & disown
-
-# Disable DPMS, and set the keyboard repeat delay and rate.
-xset -dpms r rate 170 70 & disown
+# Faster keyboard autorepeat and faster delay. Disable the display's power
+# management if on the PC, otherwise I'm probably on the laptop, so need it.
+[ "$HOSTNAME" == 'Z11' ] && xset -dpms r rate 170 70 &
+[ "$HOSTNAME" == 'Sam' ] && xset r rate 140 90 &
 
 # Remap F1 to Esc, and disable Caps Lock.
-xmodmap -e 'keysym F1 = Escape' -e 'keysym Caps_Lock = ' -e 'keysym Mod3 = ' & disown
+xmodmap -e 'keysym F1 = Escape' -e 'keysym Caps_Lock = ' &
 
-# Load keynav to get mouse controls with a keyboard.
-keynav & disown
+# Allow flexible mouse control via the keyboard.
+keynav &
 
-# Play a little sound upon login. Uses a path at the start of this script.
-paplay --volume 40000 "$Sound04" & disown
+# Check for kernel version changes; see PerlProjects repository.
+kernelchk -q -N &
 
-# Check for kernel version changes; see kernelchk repository.
-kernelchk -N -b & disown
-
-# Launches mocp in the background, ready for music.
-mocp -S & disown
-
-# Check for upgrades.
-notify-upgrade & disown
+# Launch the MOC player's server, ready for music.
+mocp -S &
 
 # Start watching the network and the Internet connectivity thereof.
-nwchk -b -i 10 -l -I "$Interface" & disown
+[ "$HOSTNAME" == 'Z11' ] && Interface='enp3s0'
+nwchk -b -i 10 -l -I "${Interface:-wlp1s0}" &
 
-# Handle the layout and other programs launched.
-#perl $HOME/.i3a/dev_setup & disown
+# Check for upgrades -- see: DEB-Packages/notify-upgrade
+while :; do
+	notify-upgrade
+	sleep 10m
+done &
