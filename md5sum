@@ -1,7 +1,8 @@
+4b19e224bb824a6ccef755747528a669  source/config
 7a53d6b6f113497f91ffdd8d45a3a054  source/.i3a/dev_setup
 c78302e365d8a982f67de41f9de62f12  source/.i3a/dmesg_overflow
 0b99783021568d8c01917bf620aef5a8  source/.i3a/hush_the_mic
-df2c15a98577f677ff8c068e0f21b9e1  source/.i3a/initialize
+c742445750bf6b0cab6a9f76b0c90946  source/.i3a/initialize
 f808e7a1a29b9bc9af43ca37e65cf315  source/.i3a/key_autorepeat
 cbdbed24a6c0b085c64a5cfeb5bd3f03  source/.i3a/leave_session
 330fefbda45544383455abd22bb6adb2  source/.i3a/lockscreen
@@ -20,4 +21,3 @@ b5459b73d2c6318e0cecf4f01e1902e5  source/.i3a/source_raise
 9744767461f1f422bde23532f7ff1aed  source/.i3a/terminal
 e622719b2bb5259e8fef3fecfce5dfe0  source/.i3a/track_notify
 f1d44e36a4306c12dfa9af5482668939  source/.i3a/use_dmenu
-4b19e224bb824a6ccef755747528a669  source/config

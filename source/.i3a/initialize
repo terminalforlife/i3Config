@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sat  1 Feb 17:18:49 GMT 2020
+# Last Change       - Sat  1 Feb 20:08:49 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -11,16 +11,16 @@
 case `hostname` in
 	Z11)
 		Interface='enp3s0'
-		xset -dpms r rate 170 70 &
+		xset -dpms r rate 170 70 & ;;
 	Sam)
 		Interface='wlp1s0'
-		xset r rate 180 60 &
+		xset r rate 180 60 & ;;
 esac
 
 read Gamma < "$HOME/.config/rs-gamma"
 redshift -O ${Gamma}K &
 
-pactl load-module module-echo-cancel &
+pactl load-module module-echo-cancel aec_args='analog_gain_control=0' &
 compton --config "$HOME/.config/compton.conf" -b &
 dunst -config "$HOME/.config/dunst/dunstrc" &
 feh --bg-center "$HOME/Pictures/background.jpg" &
