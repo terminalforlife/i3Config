@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/key_autorepeat
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Sat  1 Feb 01:25:09 GMT 2020
+# Last Change       - Sat  1 Feb 15:05:20 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -13,9 +13,7 @@
 TogFile="$HOME/.config/key_auto"
 [ -d "${TogFile%/*}" ] || mkdir "${TogFile%/*}"
 if [ -f "$TogFile" ]; then
-	rm "$TogFile"
-	xset r off
+	rm "$TogFile" && xset r off
 else
-	1> "$TogFile"
-	xset r on
+	1> "$TogFile" && xset r on
 fi

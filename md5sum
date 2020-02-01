@@ -1,9 +1,8 @@
-a8b87af85428dd519c113397fcbc257b  source/config
 7a53d6b6f113497f91ffdd8d45a3a054  source/.i3a/dev_setup
 c78302e365d8a982f67de41f9de62f12  source/.i3a/dmesg_overflow
 0b99783021568d8c01917bf620aef5a8  source/.i3a/hush_the_mic
-1cc6f25523fdc5b6514d34bb43ff56f0  source/.i3a/initialize
-2e02e3249256b6d6f501ac6dcd69b69b  source/.i3a/key_autorepeat
+df2c15a98577f677ff8c068e0f21b9e1  source/.i3a/initialize
+f808e7a1a29b9bc9af43ca37e65cf315  source/.i3a/key_autorepeat
 cbdbed24a6c0b085c64a5cfeb5bd3f03  source/.i3a/leave_session
 330fefbda45544383455abd22bb6adb2  source/.i3a/lockscreen
 01f32f867cf913064b16f7a73ccdcd2c  source/.i3a/partmount
@@ -18,5 +17,7 @@ b621fae0fcf5e720d9313f812215d1bf  source/.i3a/source_lower
 0361eefa71d94f6768f62d09149c751f  source/.i3a/source_mute
 b5459b73d2c6318e0cecf4f01e1902e5  source/.i3a/source_raise
 73b58a732283a9efffb489580ac3ce06  source/.i3a/term_font_size
+9744767461f1f422bde23532f7ff1aed  source/.i3a/terminal
 e622719b2bb5259e8fef3fecfce5dfe0  source/.i3a/track_notify
 f1d44e36a4306c12dfa9af5482668939  source/.i3a/use_dmenu
+4b19e224bb824a6ccef755747528a669  source/config
