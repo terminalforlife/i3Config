@@ -1,90 +1,82 @@
 #!/usr/bin/env bash
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Fri 22 Nov 22:28:08 GMT 2019
+# Last Change       - Sat  1 Feb 20:43:38 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
-# Raise or lower the xfce4-terminal font size. Due to the nature of the way in
-# which this terminal checks for and processes the changes to its configuration
-# file, this approach is sluggish to respond, but still works nicely, for those
-# running an older version which doesn't support font size changes via shortcuts.
-#
-# SYNTAX:     term_font_size [OPT]
-#
-# OPTS:       --help|-h|-?            - Displays this help information.
-#             --version|-v            - Output only the version datestamp.
-#             --raise|-r N            - Raise the font size by N.
-#             --lower|-r N            - lower the font size by N.
-#             --set|-s N              - Just set the font size to N.
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-_VERSION_="2019-11-22"
+set -e
+. /usr/lib/tflbp-sh/Err
+. /usr/lib/tflbp-sh/ChkDep
+set +e
 
-if type -fP sed > /dev/null 2>&1; then
-	SOUND="$HOME/.config/i3/Sounds/SND03.wav"
-	FILE="$HOME/.config/xfce4/terminal/terminalrc"
-	if ! [ -f "$FILE" ]; then
-		printf "ERROR: The configuration file is missing.\n" >&2
-		exit 1
-	else
-		while IFS="=" read -a X; do
-			if [ "${X[0]}" == FontName ]; then
-				printf -v NOW "%d" "${X[1]//[!0-9]/}"
-			fi
-		done < "$FILE"
+CurVer='2020-02-01'
+Progrm=${0##*/}
 
-		PLAYSND(){
-			if type -fP pactl > /dev/null 2>&1; then
-				paplay --volume 40000 "$1"
-			else
-				printf "ERROR: Dependency 'paplay' not met.\n" >&2
-			fi
-		}
+Usage(){
+	while read -r CurLine; do
+		printf '%b\n' "$CurLine"
+	done <<-EOF
+		\r            ${Progrm^^} ($CurVer)
+		\r            Written by terminalforlife <terminalforlife@yahoo.com>
 
-		CHKVAL(){
-			if ! [[ "$1" =~ ^[0-9]+$ ]]; then
-				printf "ERROR: Invalid expression.\n" >&2
-				exit 1
-			fi
-		}
+		\r            Shortcut to raise or lower the xfce4-terminal font size.
 
-		while [ "$1" ]; do
-			case "$1" in
-				--version|-v)
-					printf "%s\n" "$_VERSION_"; exit 0 ;;
-				--raise|-r)
-					shift; CHKVAL "$1"
-					declare -i RAISE=$1 ;;
-				--lower|-l)
-					shift; CHKVAL "$1"
-					declare -i LOWER=$1 ;;
-				--set|-s)
-					shift; CHKVAL "$1"
-					declare -i SETTO=$1 ;;
-				*)
-					printf "ERROR: Incorrect argument(s) specified.\n"
-					exit 1 ;;
-			esac
-			shift
-		done
+		\rSYNTAX:     $Progrm [OPTS]
 
-		if [ "$RAISE" ]; then
-			sed -i "/^FontName=/s/${NOW}$/$((NOW+RAISE))/"\
-				"$FILE" && PLAYSND "$SOUND"
-		elif [ "$LOWER" ]; then
-			sed -i "/^FontName=/s/${NOW}$/$((NOW-LOWER))/"\
-				"$FILE" && PLAYSND "$SOUND"
-		elif [ "$SETTO" ]; then
-			if sed -i "/^FontName=/s/${NOW}$/$SETTO/" "$FILE"; then
-				PLAYSND "$SOUND"
-			fi
-		fi
-	fi
-else
-	printf "ERROR: Dependency 'sed' not met.\n" >&2
-	exit 1
+		\rOPTS:       --help|-h|-?            - Display this help information.
+		\r            --version|-v            - Output the version datestamp.
+		\r            --quiet|-q              - Quieter operation, with errors.
+		\r            --lower|-l N            - Lower font size by N.
+		\r            --raise|-r N            - Raise font size by N.
+		\r            --set|-s N              - Set font size to N.
+
+		\rNOTE:       Due to the nature of the way in which this terminal
+		\r            checks for and processes the changes to its configuration
+		\r            file, this approach is sluggish to respond, but still
+		\r            works nicely, for those running older versions.
+
+		\rFILE:       ~/.config/xfce4/terminal/terminalrc
+	EOF
+}
+
+CheckVal(){ [[ $1 =~ ^[0-9]+$ ]] || Err 1 'Invalid expression.'; }
+
+while [ "$1" ]; do
+	case $1 in
+		--help|-h|-\?)
+			Usage; exit 0 ;;
+		--version|-v)
+			printf '%s\n' "$CurVer"; exit 0 ;;
+		--raise|-r)
+			shift; CheckVal "$1"; declare -i Raise=$1 ;;
+		--lower|-l)
+			shift; CheckVal "$1"; declare -i Lower=$1 ;;
+		--set|-s)
+			shift; CheckVal "$1"; declare -i SetTo=$1 ;;
+		*)
+			Err 1 'Incorrect argument(s) specified' ;;
+	esac
+	shift
+done
+
+ChkDep sed
+
+Config="$HOME/.config/xfce4/terminal/terminalrc"
+
+[ -f "$Config" ] || Err 1 'The configuration file is missing.'
+
+while IFS='=' read -a X; do
+	[ "${X[0]}" == FontName ] && printf -v Now "%d" "${X[1]//[!0-9]/}"
+done < "$Config"
+
+if [ -n "$Raise" ]; then
+	sed -i "/^FontName=/s/${Now}$/$((Now+Raise))/" "$Config"
+elif [ -n "$Lower" ]; then
+	sed -i "/^FontName=/s/${Now}$/$((Now-Lower))/" "$Config"
+elif [ -n "$SetTo" ]; then
+	sed -i "/^FontName=/s/${Now}$/$SetTo/" "$Config"
 fi
-

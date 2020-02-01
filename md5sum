@@ -1,4 +1,3 @@
-4b19e224bb824a6ccef755747528a669  source/config
 7a53d6b6f113497f91ffdd8d45a3a054  source/.i3a/dev_setup
 c78302e365d8a982f67de41f9de62f12  source/.i3a/dmesg_overflow
 0b99783021568d8c01917bf620aef5a8  source/.i3a/hush_the_mic
@@ -17,7 +16,8 @@ e43d034065c198e8628fa5ca36bca592  source/.i3a/scrot_sel_take
 b621fae0fcf5e720d9313f812215d1bf  source/.i3a/source_lower
 0361eefa71d94f6768f62d09149c751f  source/.i3a/source_mute
 b5459b73d2c6318e0cecf4f01e1902e5  source/.i3a/source_raise
-73b58a732283a9efffb489580ac3ce06  source/.i3a/term_font_size
-9744767461f1f422bde23532f7ff1aed  source/.i3a/terminal
+7a659d699a9297a76768f06f1700d45e  source/.i3a/term_font_size
+56747beef802c28a6614cb5689f5271f  source/.i3a/terminal
 e622719b2bb5259e8fef3fecfce5dfe0  source/.i3a/track_notify
-f1d44e36a4306c12dfa9af5482668939  source/.i3a/use_dmenu
+105d7a56f16af4eea62011dff5082db4  source/.i3a/use_dmenu
+4b19e224bb824a6ccef755747528a669  source/config
