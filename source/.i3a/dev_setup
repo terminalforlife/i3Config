@@ -1,31 +1,38 @@
 #!/usr/bin/env perl
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Sat 14 Dec 18:55:23 GMT 2019
+# Last Change       - Sat  1 Feb 01:14:07 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
-# This Perl script will set up my development environment, effectively using the
-# terminal layout I usually always want. And yes, it addresses the split problem.
+#------------------------------------------------------------------------------
+# This Perl script will set up my development environment, effectively using
+# the terminal layout I usually always want. And yes, it addresses the split
+# problem.
 #
-# Eventually, I'll probably come up with something like this which isn't just for
-# me, but can be used by anyone; perhaps my own take on a layout save/restore.
+# Eventually, I'll probably come up with something like this which isn't just
+# for me, but can be used by anyone; perhaps my own take on a layout
+# save/restore.
 #
-# That said, as long as you follow the syntax you already see, you could probably
-# set things up the way you want to, easily enough, using TFL::i3Do().
-#----------------------------------------------------------------------------------
+# That said, as long as you follow the syntax you already see, you could
+# probably set things up the way you want to, easily enough, using TFL::i3Do().
+#
+# Dependencies:
+#
+#   libanyevent-i3-perl (>= 0.16-1)
+#   libtfl-perl (>= 2019-05-07)
+#------------------------------------------------------------------------------
 
 use strict;
 use warnings;
 use autodie;
 use File::Basename 'basename';
-use TFL; # <-- libtfl-perl (>= 2019-05-07)
+use TFL;
 use Time::HiRes 'usleep';
-use AnyEvent::I3 qw{TYPE_COMMAND i3}; # <-- libanyevent-i3-perl (>= 0.16-1)
+use AnyEvent::I3 qw{TYPE_COMMAND i3};
 
-my $CurVer = "2019-12-14";
+my $CurVer = "2020-02-01";
 
 my %Execs = (
 	'TERMINAL' => 'xfce4-terminal',

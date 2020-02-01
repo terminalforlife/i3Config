@@ -1,20 +1,20 @@
 #!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Wed 18 Dec 00:36:08 GMT 2019
+# Last Change       - Sat  1 Feb 01:29:06 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # SYNTAX:    partmount [OPTS]
 #
-# ARGS:      --uuid|-U UUID       - Where UUID is one of the filesystem to mount.
-#            --label|-L LABEL     - Where LABEL is one of the filesystem to mount.
-#            --name|-N NAME       - Where NAME is one of the filesystem to mount.
+# ARGS:      --uuid|-U UUID    - Where UUID is one of the filesystem to mount.
+#            --label|-L LABEL  - Where LABEL is one of the filesystem to mount.
+#            --name|-N NAME    - Where NAME is one of the filesystem to mount.
 #
 # NOTE:      NAME is the block device name. (`/dev/sda1` | `sda1`)
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 set -e
 . /usr/lib/tflbp-sh/Err

@@ -1,38 +1,39 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri 31 Jan 02:08:36 GMT 2020
+# Last Change       - Sat  1 Feb 01:23:11 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 # Enable PulseAudio's built-in noise-cancelling feature.
 pactl load-module module-echo-cancel &
 
 # Read the value previously-set by Redshifter.
-redshift -O `< "$HOME/.config/rs-gamma"`K &
+read Gamma < "$HOME/.config/rs-gamma"
+redshift -O ${Gamma}K &
 
 # Loads up the lightweight compositing manager.
 compton --config "$HOME/.config/compton.conf" -b &
 
 dunst -config "$HOME/.config/dunst/dunstrc" &
 
-if type -fP feh-slides > /dev/null 2>&1; then
+if command -v feh-slides 1> /dev/null 2>&1; then
 	feh-slides -i 7 "$HOME/Pictures/Wallpapers/Slideshow" &
 else
-	if type -fP feh > /dev/null 2>&1; then
+	if command -v feh 1> /dev/null 2>&1; then
 		feh --no-fehbg --bg-center "$HOME/Pictures/Permanent Wall 2.jpg" &
-	elif type -fP nitrogen > /dev/null 2>&1; then
+	elif command -v nitrogen 1> /dev/null 2>&1; then
 		nitrogen "$BGImage" &
 	fi
 fi
 
 # Faster keyboard autorepeat and faster delay. Disable the display's power
 # management if on the PC, otherwise I'm probably on the laptop, so need it.
-[ "$HOSTNAME" == 'Z11' ] && xset -dpms r rate 170 70 &
-[ "$HOSTNAME" == 'Sam' ] && xset r rate 140 90 &
+[ "$(hostname)" == 'Z11' ] && xset -dpms r rate 170 70 &
+[ "$(hostname)" == 'Sam' ] && xset r rate 140 90 &
 
 # Remap F1 to Esc, and disable Caps Lock.
 xmodmap -e 'keysym F1 = Escape' -e 'keysym Caps_Lock = ' &

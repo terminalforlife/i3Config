@@ -1,15 +1,18 @@
 #!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/scrot_win_take
 # Started On        - Fri 27 Oct 14:55:25 BST 2017
-# Last Change       - Sun 12 Jan 22:43:34 GMT 2020
+# Last Change       - Sat  1 Feb 01:30:30 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Take a screenshot of just the currently active window, with scrot.
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 FileName="$HOME/Desktop/Windowshot_`date '+%F_%X'`.jpg"
-sleep 0.1 # <-- So stupid, but need this because of `date` being too slow, I think.
+
+# So stupid, but need this because of `date` being too slow, I think.
+sleep 0.1
+
 scrot -zuq 75 "$FILENAME" && notify-send 'Windowshot taken and saved.'

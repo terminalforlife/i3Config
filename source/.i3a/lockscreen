@@ -1,33 +1,25 @@
 #!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/lockscreen
 # Started On        - Thu  4 Apr 12:38:37 BST 2019
-# Last Change       - Tue 17 Dec 23:47:47 GMT 2019
+# Last Change       - Sat  1 Feb 01:29:28 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 #TODO: If the lock key is held, multiple instances of this script are executed.
 
-set -o errexit
-
 File=`mktemp -u --suffix='_lock.png'`
-Sound3='/usr/share/sounds/freedesktop/stereo/network-connectivity-lost.oga'
-Sound4='/usr/share/sounds/freedesktop/stereo/network-connectivity-established.oga'
 
-DoTrap(){
+SigHandler(){
 	Sig=$?
 	rm -f "$File"
 	exit $Sig
 }
 
-trap DoTrap INT EXIT QUIT TERM ABRT
-
-TempSound="$HOME/Documents/Sound Files/Sound Effects/button-24.wav"
+trap SigHandler INT EXIT QUIT TERM ABRT
 
 scrot -z "$File"
 convert "$File" -gaussian-blur 8x8 "$File"
-paplay --volume 40000 "$Sound3" &
 i3lock -u -n -i "$File"
-paplay --volume 40000 "$Sound4" &

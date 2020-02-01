@@ -1,25 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/key_autorepeat
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Mon 13 May 01:09:24 BST 2019
+# Last Change       - Sat  1 Feb 01:25:09 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Toggle the key autorepeat feature on and off. Uses simple flag file.
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-MASTER="alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo"
-SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-TOGFILE="$HOME/.config/key_auto"
-[ -d "${TOGFILE/%\/*}" ] || mkdir "${TOGFILE/%\/*}"
-paplay --volume 40000 "$SOUND05" & disown
-if [ -f "$TOGFILE" -a -r "$TOGFILE" ]; then
-	rm "$TOGFILE"
+TogFile="$HOME/.config/key_auto"
+[ -d "${TogFile%/*}" ] || mkdir "${TogFile%/*}"
+if [ -f "$TogFile" ]; then
+	rm "$TogFile"
 	xset r off
 else
-	> "$TOGFILE"
+	1> "$TogFile"
 	xset r on
 fi
-

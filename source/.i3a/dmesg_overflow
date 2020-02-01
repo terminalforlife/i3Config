@@ -1,27 +1,27 @@
 #!/usr/bin/env perl
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/dmesg_overflow
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Tue 17 Dec 23:50:58 GMT 2019
+# Last Change       - Sat  1 Feb 01:17:02 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
-# Puts a plaster on the issue of excessive and problematic `dmesg` errors sent to
-# `$HOME/.xsession_errors`, this Perl script will remove the file if they're found.
-# It's a dirty solution, but beats `dmesg` being a free-for-all.
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# Puts a plaster on the issue of excessive and problematic `dmesg` errors sent
+# to `~/.xsession_errors`, this Perl script will remove the file if they're
+# found. It's a dirty solution, but beats `dmesg` being a free-for-all.
+#
+# Dependencies:
+#
+#    libtfl-perl (>= 2020-01-02)
+#------------------------------------------------------------------------------
 
 use strict;
 use warnings;
 use autodie;
-use File::Basename 'basename';
-use TFL; # <-- libtfl-perl
+use TFL 'Err';
 
 no warnings 'uninitialized';
-
-my $CurVer = "2019-12-17";
-my $Progrm = basename($0);
 
 my $ProcFile = '/proc/sys/kernel/dmesg_restrict';
 

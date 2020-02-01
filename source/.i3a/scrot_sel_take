@@ -1,15 +1,18 @@
 #!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/scrot_sel_take
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sun 12 Jan 22:43:14 GMT 2020
+# Last Change       - Sat  1 Feb 01:29:55 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Take a screenshot of the user-selected square region, using scrot.
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 FileName="$HOME/Desktop/Selectshot_`date '+%F_%X'`.jpg"
-sleep 0.1 # <-- So stupid, but need this because of `date` being too slow, I think.
+
+# So stupid, but need this because of `date` being too slow, I think.
+sleep 0.1
+
 scrot -zsq 75 -d 1 "$FileName" && notify-send 'Selectshot taken and saved.'

@@ -1,12 +1,12 @@
 #!/usr/bin/env perl
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/leave_session
 # Started On        - Wed  1 Nov 00:50:35 GMT 2017
-# Last Change       - Tue 14 Jan 02:24:02 GMT 2020
+# Last Change       - Sat  1 Feb 01:26:08 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 use strict;
 use warnings;
