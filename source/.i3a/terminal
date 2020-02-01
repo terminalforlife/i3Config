@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#----------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/terminal
+# Started On        - Sat  1 Feb 15:11:16 GMT 2020
+# Last Change       - Sat  1 Feb 17:16:35 GMT 2020
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+
+case `hostname` in
+	Z11) terminology ;;
+	Sam) xfce4-terminal ;;
+esac
