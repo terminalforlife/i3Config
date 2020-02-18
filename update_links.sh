@@ -23,7 +23,7 @@ for DEP in /bin/{ln,rm}; {
 
 [ $DEPCOUNT -eq 0 ] || exit 1
 
-[ "${PWD//*\/}" == "i3config" ] || {
+[ "${PWD//*\/}" == "i3Config" ] || {
 	XERR "$LINENO" "Not in the repository's root directory."
 }
 

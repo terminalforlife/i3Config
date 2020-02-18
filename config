@@ -49,8 +49,8 @@ bindsym Mod1+Shift+q kill
 bindsym Mod1+Return exec --no-startup-id /bin/bash $HOME/.i3a/terminal
 bindsym Shift+Ctrl+Up exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -l 1
-bindsym Shift+Ctrl+Left exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 11
-bindsym Shift+Ctrl+Right exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 21
+bindsym Shift+Ctrl+Left exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 16
+bindsym Shift+Ctrl+Right exec --no-startup-id /bin/bash $HOME/.i3a/term_font_size -s 32
 bindsym Mod1+Tab exec --no-startup-id /bin/bash $HOME/.i3a/drop_terminal
 #bindsym Mod4+w exec --no-startup-id /usr/bin/mpv tv://
 bindsym Mod4+w exec --no-startup-id /usr/bin/mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
@@ -181,37 +181,37 @@ bindsym Mod4+8 exec --no-startup-id /usr/bin/redshifter -r
 # are still in place and accessible.
 #----------------------------------------------------------------------------------
 
-#bar {
-#	id 1
-#	position bottom
-#	tray_output none
-#	#mode hide
-#	#modifier Mod4
-#	workspace_buttons no
-#	binding_mode_indicator no
-#	status_command /usr/bin/i3blocks -c $HOME/.i3bbelow
-#
-#	colors {
-#		background    #000000
-#		separator     #000000
-#	}
-#}
-#
-#bar {
-#	id 2
-#	position top
-#	tray_output none
-#	#mode hide
-#	#modifier Mod4
-#	workspace_buttons no
-#	binding_mode_indicator no
-#	status_command /usr/bin/i3blocks -c $HOME/.i3babove
-#
-#	colors {
-#		background    #000000
-#		separator     #000000
-#	}
-#}
+bar {
+	id 1
+	position bottom
+	tray_output none
+	#mode hide
+	#modifier Mod4
+	workspace_buttons no
+	binding_mode_indicator no
+	status_command /usr/bin/i3blocks -c $HOME/.i3bbelow
+
+	colors {
+		background    #000000
+		separator     #000000
+	}
+}
+
+bar {
+	id 2
+	position top
+	tray_output none
+	#mode hide
+	#modifier Mod4
+	workspace_buttons no
+	binding_mode_indicator no
+	status_command /usr/bin/i3blocks -c $HOME/.i3babove
+
+	colors {
+		background    #000000
+		separator     #000000
+	}
+}
 
 #---------------------------------------------------------------------GROUP ACTIONS
 
