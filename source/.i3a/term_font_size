@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-
+#cito M:600 O:0 G:0 T:$HOME/.i3a/term_font_size
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Sat  1 Feb 20:43:38 GMT 2020
+# Last Change       - Sun  1 Mar 21:55:46 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -13,33 +13,33 @@ set -e
 . /usr/lib/tflbp-sh/ChkDep
 set +e
 
-CurVer='2020-02-01'
+CurVer='2020-03-01'
 Progrm=${0##*/}
 
 Usage(){
-	while read -r CurLine; do
-		printf '%b\n' "$CurLine"
+	while read; do
+		printf '%s\n' "$REPLY"
 	done <<-EOF
-		\r            ${Progrm^^} ($CurVer)
-		\r            Written by terminalforlife <terminalforlife@yahoo.com>
+		            ${Progrm^^} ($CurVer)
+		            Written by terminalforlife <terminalforlife@yahoo.com>
 
-		\r            Shortcut to raise or lower the xfce4-terminal font size.
+		            Shortcut to raise or lower the xfce4-terminal font size.
 
-		\rSYNTAX:     $Progrm [OPTS]
+		SYNTAX:     $Progrm [OPTS]
 
-		\rOPTS:       --help|-h|-?            - Display this help information.
-		\r            --version|-v            - Output the version datestamp.
-		\r            --quiet|-q              - Quieter operation, with errors.
-		\r            --lower|-l N            - Lower font size by N.
-		\r            --raise|-r N            - Raise font size by N.
-		\r            --set|-s N              - Set font size to N.
+		OPTS:       --help|-h|-?            - Display this help information.
+		            --version|-v            - Output version datestamp.
+		            --lower|-l N            - Lower font size by N.
+		            --quiet|-q              - Quieter operation, with errors.
+		            --raise|-r N            - Raise font size by N.
+		            --set|-s N              - Set font size to N.
 
-		\rNOTE:       Due to the nature of the way in which this terminal
-		\r            checks for and processes the changes to its configuration
-		\r            file, this approach is sluggish to respond, but still
-		\r            works nicely, for those running older versions.
+		NOTE:       Due to the nature of the way in which this terminal
+		            checks for and processes the changes to its configuration
+		            file, this approach is sluggish to respond, but still
+		            works nicely, for those running older versions.
 
-		\rFILE:       ~/.config/xfce4/terminal/terminalrc
+		FILE:       ~/.config/xfce4/terminal/terminalrc
 	EOF
 }
 
@@ -52,11 +52,20 @@ while [ "$1" ]; do
 		--version|-v)
 			printf '%s\n' "$CurVer"; exit 0 ;;
 		--raise|-r)
-			shift; CheckVal "$1"; declare -i Raise=$1 ;;
+			CheckVal "$2"
+			declare -i Raise=$2
+
+			shift ;;
 		--lower|-l)
-			shift; CheckVal "$1"; declare -i Lower=$1 ;;
+			CheckVal "$2"
+			declare -i Lower=$2
+
+			shift ;;
 		--set|-s)
-			shift; CheckVal "$1"; declare -i SetTo=$1 ;;
+			CheckVal "$2"
+			declare -i SetTo=$2
+
+			shift ;;
 		*)
 			Err 1 'Incorrect argument(s) specified' ;;
 	esac
@@ -69,8 +78,12 @@ Config="$HOME/.config/xfce4/terminal/terminalrc"
 
 [ -f "$Config" ] || Err 1 'The configuration file is missing.'
 
-while IFS='=' read -a X; do
-	[ "${X[0]}" == FontName ] && printf -v Now "%d" "${X[1]//[!0-9]/}"
+while IFS='=' read Key Value; do
+	case $Key in
+		FontName)
+			Now=${Value##* }
+			break ;;
+	esac
 done < "$Config"
 
 if [ -n "$Raise" ]; then
