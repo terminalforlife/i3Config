@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#cito M:600 O:0 G:0 T:$HOME/.i3a/term_font_size
+#cito M:600 O:1000 G:1000 T:$HOME/.i3a/term_font_size
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Sun  1 Mar 21:55:46 GMT 2020
+# Last Change       - Sun  1 Mar 22:07:44 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
