@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/source_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 13 May 01:18:30 BST 2019
+# Last Change       - Tue  3 Mar 16:22:21 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 if type -fP pacmd > /dev/null 2>&1; then
 	while IFS=":" read -a X; do
@@ -29,10 +29,7 @@ if type -fP pacmd > /dev/null 2>&1; then
 		pactl set-source-volume "$MASTER" +500
 	fi
 
-	if type -fP pkill > /dev/null 2>&1; then
-		# Use 'signal=1' and 'interval=once' in the i3blocks configuration
-		# file, in order to have this update only when needed.
-		pkill -RTMIN+1 i3blocks
-	fi
+	# Use 'signal=1' and 'interval=once' in the i3blocks configuration file, in
+	# order to have this update only when needed.
+	type -fP pkill > /dev/null 2>&1 && pkill -RTMIN+1 i3blocks
 fi
-

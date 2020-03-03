@@ -1,20 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/source_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 13 May 01:17:45 BST 2019
+# Last Change       - Tue  3 Mar 15:15:15 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-if type -fP pactl pacmd > /dev/null 2>&1; then
-	while IFS=":" read -a X; do
-		[ "${X[0]}" == "Default source name" ] && MASTER="${X[1]## }"
-	done <<< "$(pacmd info)"
-
-	SOUND05="$HOME/.config/i3/Sounds/SND03.wav"
-	paplay --volume 40000 "$SOUND05" & disown
-	pactl set-source-mute "$MASTER" toggle
-fi
-
+pacmd info | while IFS=':' read Key Value; do
+	if [ "$Key" = 'Default source name' ]; then
+		pactl set-source-mute "${Value## }" toggle
+	fi
+done

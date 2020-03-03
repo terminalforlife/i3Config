@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 13 May 01:15:46 BST 2019
+# Last Change       - Tue  3 Mar 16:17:55 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 if type -fP pacmd > /dev/null 2>&1; then
 	while IFS=":" read -a X; do

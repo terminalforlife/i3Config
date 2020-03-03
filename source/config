@@ -1,25 +1,25 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun  1 Mar 22:05:23 GMT 2020
+# Last Change       - Tue  3 Mar 16:30:12 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # These are my main i3-wm settings.
 #
-# I use jkl; for movement, as in VIM; if you are not a fan of the traditional
+# I use 'jkl;' for movement, as in VIM; if you are not a fan of the traditional
 # touch-typing method which has been around for a very long time (totally not
 # bitter or anything), then feel free to change them!
 #
 # Certain features call scripts I've written to allow for additional
-# functionality. I love the i3-wm configuration file, but I long for shell
+# functionality. I love the `i3-wm` configuration file, but I long for shell
 # syntax and logic!
 #
 # The for_windows are biased towards tiling (duh!). It's not perfect, not that
 # i3 is inherently perfect, but it's pretty decent, at least for what I use.
 #
 # I don't use a variable for the "mod" key I want to use. If you want to change
-# to the other mod key, you can use sed or vim global substitution. Just know
+# to the other mod key, you can use `sed` or vim global substitution. Just know
 # that I have a few bindings which use that key, so they'll need to be changed.
 #------------------------------------------------------------------INITIAL SETS
 
@@ -29,10 +29,9 @@ workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
 force_focus_wrapping no
-font pango: Ricty Diminished 14
-#font pango: Nimbus Mono L Bold 13
-#floating_maximum_size 1280 x 760
-#floating_minimum_size 100 x 100
+font pango: IBM 3270 Medium 16
+floating_maximum_size 1920 x 1080
+floating_minimum_size 100 x 100
 popup_during_fullscreen smart
 force_display_urgency_hint 1000 ms
 focus_on_window_activation urgent
@@ -65,6 +64,7 @@ bindsym Ctrl+Mod1+B exec --no-startup-id blueman-manager
 bindsym Ctrl+Mod4+R exec --no-startup-id xrandr --output HDMI-1 --rotate right
 bindsym Ctrl+Mod4+L exec --no-startup-id xrandr --output HDMI-1 --rotate left
 bindsym Ctrl+Mod4+N exec --no-startup-id xrandr --output HDMI-1 --rotate normal
+bindsym Ctrl+Shift+K exec --no-startup-id sh $HOME/.i3a/key_autorepeat
 
 # Enable whichever applies to your keyboard or preference.
 bindsym Mod4+L exec --no-startup-id bash $HOME/.i3a/lockscreen
@@ -325,19 +325,19 @@ for_window [class="^Audacity$" title="^Wahwah$"] floating enable
 #----------------------------------------------------------------EXTRA BINDINGS
 
 # XF86MyComputer XF86AudioMedia
-bindsym XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/sink_raise
-bindsym XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/sink_lower
-bindsym XF86AudioMute exec --no-startup-id bash $HOME/.i3a/sink_mute
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/source_raise
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/source_lower
-bindsym Shift+XF86AudioMute exec --no-startup-id bash $HOME/.i3a/source_mute
-bindsym Shift+Mod1+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/hush_the_mic
+#bindsym XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/sink_raise
+#bindsym XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/sink_lower
+#bindsym XF86AudioMute exec --no-startup-id sh $HOME/.i3a/sink_mute
+#bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id bash $HOME/.i3a/source_raise
+#bindsym Shift+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/source_lower
+#bindsym Shift+XF86AudioMute exec --no-startup-id bash $HOME/.i3a/source_mute
+#bindsym Shift+Mod1+XF86AudioLowerVolume exec --no-startup-id bash $HOME/.i3a/hush_the_mic
 
 # For keyboards without XF86 media controls. (just comment out to disable)
-bindsym Shift+F2 exec --no-startup-id bash $HOME/.i3a/sink_mute
+bindsym Shift+F2 exec --no-startup-id sh $HOME/.i3a/sink_mute
 bindsym Shift+F3 exec --no-startup-id bash $HOME/.i3a/sink_lower
 bindsym Shift+F4 exec --no-startup-id bash $HOME/.i3a/sink_raise
-bindsym Shift+Ctrl+F2 exec --no-startup-id bash $HOME/.i3a/source_mute
+bindsym Shift+Ctrl+F2 exec --no-startup-id sh $HOME/.i3a/source_mute
 bindsym Shift+Ctrl+F3 exec --no-startup-id bash $HOME/.i3a/source_lower
 bindsym Shift+Ctrl+F4 exec --no-startup-id bash $HOME/.i3a/source_raise
 bindsym Shift+F5 exec --no-startup-id bash $HOME/.i3a/hush_the_mic
@@ -368,4 +368,4 @@ bindsym XF86AudioPrev exec --no-startup-id mocp --previous
 
 #--------------------------------------------------------SESSION INITIALIZATION
 
-exec --no-startup-id bash $HOME/.i3a/initialize
+exec --no-startup-id sh $HOME/.i3a/initialize

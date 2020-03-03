@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/dev_setup
 # Started On        - Fri 10 May 23:28:31 BST 2019
-# Last Change       - Sat  1 Feb 01:14:07 GMT 2020
+# Last Change       - Tue  3 Mar 16:12:34 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ use TFL;
 use Time::HiRes 'usleep';
 use AnyEvent::I3 qw{TYPE_COMMAND i3};
 
-my $CurVer = "2020-02-01";
+my $CurVer = "2020-03-03";
 
 my %Execs = (
 	'TERMINAL' => 'xfce4-terminal',

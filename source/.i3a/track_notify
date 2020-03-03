@@ -1,17 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/track_notify
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Mon 13 May 01:23:48 BST 2019
+# Last Change       - Tue  3 Mar 16:24:10 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
-#----------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-if type -fP notify-send mocp > /dev/null 2>&1; then
-	shopt -s extglob
-	BUF=`mocp --format="%file"`
-	DATA="${BUF%.@(ogg|mp3|wma|flac|wav)}"
-	notify-send "${DATA##*/Music/}"
-fi
-
+Buffer=`mocp --format='%file'`
+notify-send "${Buffer##*/}"

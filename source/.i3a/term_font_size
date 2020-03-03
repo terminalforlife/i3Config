@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#cito M:600 O:1000 G:1000 T:$HOME/.i3a/term_font_size
+
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Sun  1 Mar 22:07:44 GMT 2020
+# Last Change       - Tue  3 Mar 16:23:53 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ set -e
 . /usr/lib/tflbp-sh/ChkDep
 set +e
 
-CurVer='2020-03-01'
+CurVer='2020-03-03'
 Progrm=${0##*/}
 
 Usage(){
