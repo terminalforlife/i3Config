@@ -1,0 +1,43 @@
+#!/bin/sh
+
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/launcher
+# Started On        - Sat 23 Sep 14:47:51 BST 2017
+# Last Change       - Tue 10 Mar 19:09:28 GMT 2020
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+# You may need to install the Debian/Ubuntu `suckless-tools` or `rofi` package.
+#
+# #BBGGYY (B = blue, G = green, Y = yellow)
+# #FFFFFF = white  |  #000000 = black
+#
+# See man 1 dmenu for more information.
+#
+# Set the ALT variable to one of the "ALT" == "VAR" variables, where VAR is the
+# name for the configuration I found online, or leave it blank to use my own.
+#------------------------------------------------------------------------------
+
+Run(){
+	if command -v dmenu_run 1> /dev/null 2>&1; then
+		dmenu_run -b -fn "$1":style=$2:size=$3 -nb \#000000\
+			-nf \#ffffff -sb \#550000 -sf \#ffffff
+	elif command -v rofi 1> /dev/null 2>&1; then
+		rofi -q -show run -no-parse-known-hosts -bg '#000000' -fg '#FFFFFF'\
+			-padding 10 -width 90% -lines 7 -bw 0 -location 6 -hlbg '#000000'\
+			-opacity 94 -font "$1 $2 $3" -separator-style none\
+			-hide-scrollbar -columns 3 -line-margin 0
+	fi
+
+	exit 0
+}
+
+fc-list : family | while read CurLine; do
+	case $CurLine in
+		        'IBM 3270') Run 'IBM 3270' 'Medium' 16 ;;
+		     'Oxygen Mono') Run 'Oxygen Mono' 'Bold' 12 ;;
+		     'Ubuntu Mono') Run 'Ubuntu Mono' 'Bold' 12 ;;
+		        'FreeMono') Run 'FreeMono' 'Bold' 12 ;;
+		'Ricty Diminished') Run 'Ricty Diminished' 'Bold' 12 ;;
+	esac
+done
