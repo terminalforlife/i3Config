@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue 10 Mar 19:07:12 GMT 2020
+# Last Change       - Mon  2 Nov 14:56:48 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -83,9 +83,10 @@ client.background        #000000
 
 #----------------------------------------------------------WORKSPACE ASSIGNMENT
 
+assign [class="^Audacity$"] 2
+assign [class="^Skype$"] 3
 assign [class="Firefox"] 4
 assign [class="Thunderbird"] 7
-assign [class="^Audacity$"] 2
 
 #------------------------------------------------------------------WINDOW FOCUS
 
@@ -163,8 +164,8 @@ bindsym Shift+Mod4+5 exec --no-startup-id sh $HOME/.i3a/partmount -L 'CloneZilla
 
 #----------------------------------------------------------REDSHIFT ADJUSTMENTS
 
-bindsym Mod4+0 exec --no-startup-id redshifter raise 100
-bindsym Mod4+9 exec --no-startup-id redshifter lower 100
+bindsym Mod4+0 exec --no-startup-id redshifter raise 500
+bindsym Mod4+9 exec --no-startup-id redshifter lower 500
 bindsym Mod4+8 exec --no-startup-id redshifter reset
 
 #-----------------------------------------------------------------GROUP ACTIONS
@@ -180,7 +181,7 @@ for_window [title="^Event Tester$" id="0x1000001"] floating enable
 
 #-----------------------------------------------------------------SKYPE WINDOWS
 
-for_window [class="Skype"] floating disabled
+#for_window [class="^[Ss]kype$"] floating disabled
 
 #----------------------------------------------------------------PITIVI WINDOWS
 
@@ -251,6 +252,13 @@ for_window [class="^Gimp$" title="^Quit GIMP$"] floating enable
 #--------------------------------------------------------------OPENSHOT WINDOWS
 
 for_window [class="^Openshot$" title="^OpenShot ? "] floating disabled
+
+#-----------------------------------------------------------GNOME-PAINT WINDOWS
+
+for_window [class="^Gnome-paint$"] floating disabled
+for_window [class="^Gnome-paint$" title="^Flip and Rotate$"] floating enable
+for_window [class="^Gnome-paint$" title="^About gnome-paint$"] floating enable
+for_window [class="^Gnome-paint$" title="^(Load|Save) Image$"] floating enable
 
 #--------------------------------------------------------------AUDACITY WINDOWS
 
