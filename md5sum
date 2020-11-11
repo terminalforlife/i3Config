@@ -1,10 +1,10 @@
 15112e00a48c43d97dbc5e22e817d7da  devutils/links.sh
 04893afd312cbd52152f82e667eee55c  devutils/packages.sh
-e18db433e419a4bfcc32bd77157eafdb  source/config
-a8921c5d788e683cc2cb9bb8ab78339f  source/.i3a/dev_setup
+ba304fd0425b4a53f5137483b6a0c5a5  source/config
+0c3df0048d5914dcafa2f7e71ef6e5dc  source/.i3a/dev_setup
 c78302e365d8a982f67de41f9de62f12  source/.i3a/dmesg_overflow
 0b99783021568d8c01917bf620aef5a8  source/.i3a/hush_the_mic
-5a2cfc1ec4591d2710b121650aed19db  source/.i3a/initialize
+d463aee3e509474cfc804695cdc0aa0b  source/.i3a/initialize
 f808e7a1a29b9bc9af43ca37e65cf315  source/.i3a/key_autorepeat
 332606faa28fd917ebb80b030f442d4a  source/.i3a/launcher
 cbdbed24a6c0b085c64a5cfeb5bd3f03  source/.i3a/leave_session
@@ -20,6 +20,6 @@ a4e6bc5f4b6e66ca436a9bb005a05a9f  source/.i3a/sink_switch
 8ea3ede965fc558b57d2b0f74900a235  source/.i3a/source_lower
 1ea43e91188dd7968b1cb914f6efd710  source/.i3a/source_mute
 bf37076d7e259d240b7d9deb680d4dd6  source/.i3a/source_raise
-2c19df63128ff34f1cf9354046e56913  source/.i3a/term_font_size
+edfee7ffecb89a937df91b9b61abecec  source/.i3a/term_font_size
 2f52d504bd595cc63029ab868e83bc53  source/.i3a/terminal
 dd62b136cabe64b5de0c8baf876d89b5  source/.i3a/track_notify
