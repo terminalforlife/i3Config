@@ -3,44 +3,37 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Tue  3 Mar 16:23:53 GMT 2020
+# Last Change       - Wed 11 Nov 16:31:51 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-set -e
-. /usr/lib/tflbp-sh/Err
-. /usr/lib/tflbp-sh/ChkDep
-set +e
-
-CurVer='2020-03-03'
+CurVer='2020-11-11'
 Progrm=${0##*/}
 
 Usage(){
 	while read; do
 		printf '%s\n' "$REPLY"
 	done <<-EOF
-		            ${Progrm^^} ($CurVer)
-		            Written by terminalforlife <terminalforlife@yahoo.com>
+		Usage: $Progrm [OPTS]
 
-		            Shortcut to raise or lower the xfce4-terminal font size.
+		  -h, --help               - Displays this help information.
+		  -v, --version            - Output only the version datestamp.
+		  -l, --lower [N]          - Lower font size by N.
+		  -q, --quiet              - Quieter operation, with errors.
+		  -r, --raise [N]          - Raise font size by N.
+		  -s, --set [N]            - Set font size to N.
 
-		SYNTAX:     $Progrm [OPTS]
-
-		OPTS:       --help|-h|-?            - Display this help information.
-		            --version|-v            - Output version datestamp.
-		            --lower|-l N            - Lower font size by N.
-		            --quiet|-q              - Quieter operation, with errors.
-		            --raise|-r N            - Raise font size by N.
-		            --set|-s N              - Set font size to N.
-
-		NOTE:       Due to the nature of the way in which this terminal
-		            checks for and processes the changes to its configuration
-		            file, this approach is sluggish to respond, but still
-		            works nicely, for those running older versions.
-
-		FILE:       ~/.config/xfce4/terminal/terminalrc
+		NOTE:    Due to the nature of the way in which this terminal checks for
+		         and processes the changes to its configuration file, this
+		         approach is sluggish to respond, but still works nicely, for
+		         those running older versions.
 	EOF
+}
+
+Err(){
+	printf 'ERROR: %s\n' "$2" 1>&2
+	[ $1 -eq 1 ] && exit 1
 }
 
 CheckVal(){ [[ $1 =~ ^[0-9]+$ ]] || Err 1 'Invalid expression.'; }
