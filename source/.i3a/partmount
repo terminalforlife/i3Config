@@ -3,10 +3,14 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Sat  1 Feb 01:29:06 GMT 2020
+# Last Change       - Wed 11 Nov 16:54:21 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
+# This will not work on systems without open policies for udisksctl(1), such as
+# the default installation of Ubuntu 18.04. This can be solved by installing
+# the `policykit-desktop-privileges` package.
+#
 # SYNTAX:    partmount [OPTS]
 #
 # ARGS:      --uuid|-U UUID    - Where UUID is one of the filesystem to mount.
@@ -14,26 +18,24 @@
 #            --name|-N NAME    - Where NAME is one of the filesystem to mount.
 #
 # NOTE:      NAME is the block device name. (`/dev/sda1` | `sda1`)
+#
+# Dependencies:
+#
+#   notify-send(1)
+#   udisksctl(1)
 #------------------------------------------------------------------------------
-
-set -e
-. /usr/lib/tflbp-sh/Err
-. /usr/lib/tflbp-sh/ChkDep
-set +e
-
-ChkDep notify-send udisksctl
 
 Mounter(){
 	Noti(){ notify-send --urgency=critical "$1"; }
 	if [ -e "$1" ]; then
 		udisksctl mount -b "$1" 2> /dev/null && exit 0
 		if ! udisksctl unmount -b "$1" 2> /dev/null; then
-			Err 1 'Unable to unmount file system.'
 			Noti 'Unable to unmount file system.'
+			exit 1
 		fi
 	else
-		Err 1 "Chosen $2 invalid or unavailable."
 		Noti "Chosen $2 invalid or unavailable."
+		exit 1
 	fi
 }
 
