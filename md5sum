@@ -1,7 +1,7 @@
 15112e00a48c43d97dbc5e22e817d7da  devutils/links.sh
 04893afd312cbd52152f82e667eee55c  devutils/packages.sh
 ba304fd0425b4a53f5137483b6a0c5a5  source/config
-0c3df0048d5914dcafa2f7e71ef6e5dc  source/.i3a/dev_setup
+4fc29f50e0dd817e5b482f0d56cb76fd  source/.i3a/dev_setup
 c78302e365d8a982f67de41f9de62f12  source/.i3a/dmesg_overflow
 0b99783021568d8c01917bf620aef5a8  source/.i3a/hush_the_mic
 d463aee3e509474cfc804695cdc0aa0b  source/.i3a/initialize
