@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/dmesg_overflow
 # Started On        - Sun  5 Nov 12:04:09 GMT 2017
-# Last Change       - Sat  1 Feb 01:17:02 GMT 2020
+# Last Change       - Wed 11 Nov 16:49:22 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -19,16 +19,15 @@
 use strict;
 use warnings;
 use autodie;
-use TFL 'Err';
 
 no warnings 'uninitialized';
 
 my $ProcFile = '/proc/sys/kernel/dmesg_restrict';
 
 if (not -f -r -w $ProcFile){
-	TFL::Err(1, "File '/proc/.../dmesg_restrict' missing or inaccessible.")
+	die("File '/proc/.../dmesg_restrict' missing or inaccessible")
 }elsif ($< != 0){
-	TFL::Err(1, "Root privileges required for system-wide changes.")
+	die("Root privileges required for system-wide changes")
 }
 
 open(my $FH, '<', $ProcFile);
