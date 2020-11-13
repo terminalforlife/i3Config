@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Mon  2 Nov 14:56:48 GMT 2020
+# Last Change       - Fri 13 Nov 19:45:20 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -67,8 +67,8 @@ bindsym Ctrl+Mod4+N exec --no-startup-id xrandr --output HDMI-1 --rotate normal
 bindsym Ctrl+Shift+K exec --no-startup-id sh $HOME/.i3a/key_autorepeat
 
 # Enable whichever applies to your keyboard or preference.
-bindsym Mod4+L exec --no-startup-id bash $HOME/.i3a/lockscreen
-#bindsym Menu exec --no-startup-id bash $HOME/.i3a/lockscreen
+#bindsym Mod4+L exec --no-startup-id bash $HOME/.i3a/lockscreen
+bindsym Menu exec --no-startup-id bash $HOME/.i3a/lockscreen
 
 #-------------------------------------------------------------------SOME COLORS
 
