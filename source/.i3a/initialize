@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri 13 Nov 14:58:45 GMT 2020
+# Last Change       - Fri 13 Nov 19:34:29 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -23,6 +23,9 @@ case `hostname` in
 		Interface='enp3s0'
 
 		xset s off -dpms r rate 170 70 &
+
+		# Just use this for Skype.
+		export `gnome-keyring-daemon`
 
 		# Make sure bluetooth is available right out of the gate.
 		bluetoothctl <<-EOF
