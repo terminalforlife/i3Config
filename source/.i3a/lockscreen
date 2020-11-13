@@ -3,12 +3,18 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/lockscreen
 # Started On        - Thu  4 Apr 12:38:37 BST 2019
-# Last Change       - Sat  1 Feb 01:29:28 GMT 2020
+# Last Change       - Fri 13 Nov 19:55:28 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
-
+# Features:
+#
+# N/A
+#
+# Bugs:
+#
 #TODO: If the lock key is held, multiple instances of this script are executed.
+#------------------------------------------------------------------------------
 
 File=`mktemp -u --suffix='_lock.png'`
 
@@ -20,6 +26,8 @@ SigHandler(){
 
 trap SigHandler INT EXIT QUIT TERM ABRT
 
-scrot -z "$File"
-convert "$File" -gaussian-blur 8x8 "$File"
-i3lock -u -n -i "$File"
+if scrot -z "$File"; then
+	convert "$File" -colorspace Gray\
+		-gaussian-blur 4x4 -swirl 25x25 "$File"\
+		&& i3lock -u -n -i "$File"
+fi
