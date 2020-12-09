@@ -3,8 +3,8 @@
 4fc29f50e0dd817e5b482f0d56cb76fd  source/.i3a/dev_setup
 a1acd386338b94b7f90ee5e6a065777b  source/.i3a/dmesg_overflow
 0b99783021568d8c01917bf620aef5a8  source/.i3a/hush_the_mic
-ad0f77db099f3d9a520a3f42d13a2673  source/.i3a/i3b_above.conf
-d41d8cd98f00b204e9800998ecf8427e  source/.i3a/i3b_below.conf
+f332fcf5d36f9666456461f6192109af  source/.i3a/i3b_above.conf
+0e664dc7a5007271ba271f4d4449df4c  source/.i3a/i3b_below.conf
 862be1e9176427e859c2ffdb6337e0fa  source/.i3a/initialize
 f808e7a1a29b9bc9af43ca37e65cf315  source/.i3a/key_autorepeat
 332606faa28fd917ebb80b030f442d4a  source/.i3a/launcher
