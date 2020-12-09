@@ -1,20 +1,573 @@
 #!/usr/bin/env bash
 
 #------------------------------------------------------------------------------
-# Project Name      - i3Config/source/.i3a/stats
-# Started On        - Wed  9 Dec 03:51:15 GMT 2020
-# Last Change       - Wed  9 Dec 03:51:37 GMT 2020
+# Project Name      - $HOME/.libi3bview
+# Started On        - Wed  8 Mar 18:41:22 GMT 2017
+# Last Change       - Wed  9 Dec 04:59:26 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
+# This file was originally '.libi3bview' from way back in the day; about a year
+# ago, according to the Git log. I'm reviving and revising it.
+#-----------------------------------------------------------------YOUR SETTINGS
 
-RAM_Used_MB(){
-	while read; do
-		printf '%s\n' "$REPLY"
-	done <<< "$(free -m)"
+# Your YouTube 'about' page URL goes here.
+YT_URL="https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg/about"
+
+# Your GitHub URL goes here.
+GH_URL="https://github.com/terminalforlife"
+
+# Your GitHub base directory, for all your GitHub projects.
+GHDIR="$HOME/GitHub/terminalforlife/Personal"
+
+# The match for the way in which you mark TODOs in a file.
+GHDM='([#"]|//)TODO - '
+
+# Ignore this many TODOs, which aren't technically TODOs.
+declare -i GHDMO=1
+
+# Spaces to pad for the YouTube subscriber count.
+declare -i YT_PAD=3
+
+# What is your network interface name?
+IFACE="enp3s0"
+
+# How many cores does your CPU have?
+declare -i CORES=4
+
+# What is the name of your root file system?
+ROOT_DEV="/dev/sda1"
+
+# Spaces to pad the root's disk usage.
+declare -i ROOT_DEV_PAD=7
+
+# From /sys/devices/platform onwards.
+CPUPATH="coretemp.0/hwmon/hwmon3/temp1_input"
+
+# What is the name of your home file system?*1
+HOME_DEV="/dev/sdb1"
+
+# Spaces to pad the home's disk usage.
+HOME_DEV_PAD=7
+
+# What is the target of your countdown?
+CD_TARGET="2018-04-17"
+
+# Spaces to pad for the in-seconds countdown.
+declare -i CD_PAD=10
+
+# Which one terminal do you use? (file name)
+TERMINAL="xfce4-terminal"
+
+#------------------------------------------------------YOUTUBE SUBSCRIBER COUNT
+
+ytsubcount(){
+	while read -a X; do
+		if [[ "${X[@]}" =~ \"[0-9]+\ subscribers\"\>[0-9,]+\< ]]; then
+			for N in `eval printf "%s\\\\\n" {0..${#X[@]}}`; {
+				if [[ "${X[0+${N}]}" =~ subscribers ]]; then
+					printf "%'4d" "${X[$N]//[!0-9]}"
+					break 2
+				fi
+			}
+		fi
+	done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
 }
 
-case $1 in
-	RAM_Used_MB)
-		RAM_Used_MB ;;
+#------------------------------------------------------YOUTUBE TOTAL VIEW COUNT
+
+#TODO - Sometimes this vanishes from the bar. Why?
+
+ytviewcount(){
+	MATCH='<span class="about-stat"> &bull; <b>[0-9,]+</b> views</span>'
+	while read -a X; do
+		if [[ "${X[@]}" =~ $MATCH ]]; then
+			printf "%'6d" "${X[3]//[!0-9]}"
+			break
+		fi
+	done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
+}
+
+#-------------------------------------------------------UPGRADE COUNT (apt-get)
+
+apt_pkg_changes(){
+	OPT='APT::Get::Show-User-Simulation-Note=0'
+	while read -a X; do
+		if [[ "${X[*]}" == *not\ to\ upgrade. ]]; then
+			SUM="$((${X[0]}+${X[3]}+${X[7]}+${X[11]}))"
+			printf "%2d" "$SUM"
+			break
+		fi
+	done <<< "$(/usr/bin/apt-get -o $OPT -qs dist-upgrade)"
+}
+
+#----------------------------------------------------CONNECTED USB DEVICE COUNT
+
+usb_count(){
+	readarray X <<< "$(/usr/bin/lsusb)"
+	printf "%2d\n" "${#X[@]}"
+}
+
+#----------------------------------------------------COUNT OF PROCESSES (ps -a)
+
+psa_count(){
+	read -a PIDS <<< `/bin/ps --user ichy -ax -o pid=`
+	printf "%'3d\n" "${#PIDS[@]}"
+}
+
+#-------------------------------------------------------MOCP CURRENT TRACK INFO
+
+mocp_info(){
+	STATUS=`/usr/bin/mocp -i || printf "N/A"`
+	case "${STATUS/* }" in
+		STOP)
+			printf "00:00/00:00" ;;
+		N/A)
+			printf "??:??/??:??" ;;
+		*)
+			/usr/bin/mocp -Q %ct/%tt ;;
+	esac
+}
+
+#--------------------------------------------------------------OPEN FILES COUNT
+
+open_files_count(){
+	readarray X <<< "$(/usr/bin/lsof -t -u $UID 2> /dev/null)"
+	printf "%3d" "${#X[@]}"
+}
+
+#--------------------------------------------------------------------USER COUNT
+
+user_count(){
+	declare -i D=0
+	if [ -x /usr/bin/users ]; then
+		read -a X <<< "$(/usr/bin/users)"
+		printf "%2d" "${#X[@]}"
+	elif [ -x /usr/bin/uptime ]; then
+		while read -a X; do
+			if [[ "${X[3]}" =~ [0-9]+ ]]; then
+				printf "%s\n" "${X[3]}"
+				break
+			fi
+		done <<< "$(/usr/bin/uptime)"
+	else
+		printf "!"
+	fi
+}
+
+#----------------------------------------------------STORAGE DEVICE MOUNT COUNT
+
+mount_count(){
+	declare -i C=0
+	while read -a X; do
+		[[ "${X[0]}" == /dev/* ]] && C+=1
+	done < /proc/mounts
+
+	printf "%2d" "$C"
+}
+
+#-------------------------------------------------------INTERNET STATUS (iface)
+
+net_status(){
+	while read -a X; do
+		if [ "${X[1]%:}${X[7]}" == "${IFACE}state" ]; then
+			printf -v Z "${X[8]}"
+			break
+		fi
+	done <<< "$(/bin/ip link)"
+	[ "$Z" == "UP" ] && printf "[0]" || printf "[1]"
+}
+
+#----------------------------------------------------MOST CPU-DEMANDING PROCESS
+
+max_proc_usage(){
+	read -a X <<< "$(/bin/ps -aU "$USER" -o %cpu=,pid= -k -%cpu)"
+	printf "%3d (%.5d)\n" "${X[0]}" "${X[1]}"
+}
+
+#----------------------------------------------------------------SESSION UPTIME
+
+session_uptime(){
+	IFS="." read -a X < /proc/uptime
+	printf "%4d" "$((X[0]/60))"
+}
+
+#-------------------------------------------------------------AVERAGE CPU USAGE
+
+avg_cpu_usage(){
+	#TODO - Improve this. Should work properly now, but using awk and iostat.
+	AWK='{if($3~"^[0-9.]+$")printf("%6.2f%%\n", 100-$6)}'
+	/usr/bin/iostat -c | /usr/bin/awk -S "$AWK"
+}
+
+#------------------------------------------------ROUGH CPU USAGE (EXPERIMENTAL)
+
+rough_cpu_usage(){
+	# Requires the sysstat package in Ubuntu- and Debian-based systems.
+	while read -a X; do
+		if [ "${X[1]}" == "all" ]; then
+			printf "%3d%%\n" "$((100-${X[11]%.*}))"
+			break
+		fi
+	done <<< "$(/usr/bin/mpstat 1 1)"
+}
+
+#--------------------------------------------------------KERNEL VERSION DISPLAY
+
+kernel_check(){
+	K="/proc/sys/kernel/osrelease"
+	[ -f "$K" -a -r "$K" ] && printf "%19s" "`< $K`"
+}
+
+#-----------------------------------------------------CPU FREQUENCY (QUAD-CORE)
+
+cpu_freq(){
+	#TODO - Sometimes incorrect values are displayed. (still!)
+	declare -a B=()
+	for FILE in /sys/devices/system/cpu/cpufreq/policy*/scaling_cur_freq; {
+		read V < "$FILE" && B+=($V)
+	}
+
+	declare -i A=0
+	for FREQ in ${B[@]}; { A+=$FREQ; }
+	printf "%4.4sMHz\n" "$((A/CORES))"
+}
+
+#-------------------------------------------------------PLAYBACK VOLUME (pactl)
+
+#TODO - Both this and the below function are uncommonly vanishing, then displaying
+#       properly again if the volume is changed at all.
+
+output_volume_pacmd(){
+	while read -a X; do
+		if [ "${X[0]}" == volume: ]; then
+			printf "%3d%%" "${X[4]%\%}"
+			break
+		fi
+	done <<< "$(/usr/bin/pacmd list-sinks)"
+}
+
+#-----------------------------------------------------MICROPHONE STATUS (pacmd)
+
+input_volume_pacmd(){
+	# If you only have one mic device, you'll want to omit the check for the
+	# FIRST. I use this because I have an external mixer and the system's own
+	# mic port, but I don't use the first (system's), just the mixer's.
+	while read -a X; do
+		if [ "${X[0]}" == volume: ]; then
+			if ! [ "$FIRST" == "true" ]; then
+				FIRST="true"
+				continue
+			fi
+
+			printf "%3d%%" "${X[4]%\%}"
+			break
+		fi
+	done <<< "$(/usr/bin/pacmd list-sources)"
+}
+
+#-----------------------------------------------------COUNTDOWN UNTIL (SECONDS)
+
+countdown(){
+	printf -v NOW "%(%F)T\n" "-1"
+	RESULT=$((`/bin/date -d "$CD_TARGET" +%s` - `printf '%(%s)T'`))
+	printf "%'${CD_PAD}d" "$RESULT"
+}
+
+#----------------------------------------------------------------RAM USED IN MB
+
+ram_used_mb(){
+	while read -a X; do
+		if [ "${X[0]}" == "Mem:" ]; then
+			printf "%'6dM\n" "${X[2]}"
+			break
+		fi
+	done <<< "$(/usr/bin/free -m)"
+}
+
+#---------------------------------------------------------------SWAP USED IN MB
+
+swap_used_mb(){
+	while read -a X; do
+		if [ "${X[0]}" == "Swap:" ]; then
+			printf "%'6dM\n" "${X[2]}"
+			break
+		fi
+	done <<< "$(/usr/bin/free -m)"
+}
+
+#------------------------------------------------------USED SPACE IN HOME IN MB
+
+home_space_used_mb(){
+	while read -a X; do
+		if [ "${X[0]}" == "$HOME_DEV" ]; then
+			printf "%'${HOME_DEV_PAD}dM\n" "${X[2]}"
+			break
+		fi
+	done <<< "$(/bin/df -m)"
+}
+
+#------------------------------------------------------USED SPACE IN ROOT IN MB
+
+root_space_used_mb(){
+	while read -a X; do
+		if [ "${X[0]}" == "$ROOT_DEV" ]; then
+			printf "%'${ROOT_DEV_PAD}dM\n" "${X[2]}"
+			break
+		fi
+	done <<< "$(/bin/df -m)"
+}
+
+#--------------------------------------------------------SESSION DOWNLOAD TOTAL
+
+session_dl_total(){
+	while read -a X; do
+		if [ "${X[0]}" == "$IFACE:" ]; then
+			printf "%'6dM" "$((${X[1]}/1024/1024))"
+			break
+		fi
+	done < /proc/net/dev
+}
+
+#----------------------------------------------------------SESSION UPLOAD TOTAL
+
+session_ul_total(){
+	while read -a X; do
+		if [ "${X[0]}" == "$IFACE:" ]; then
+			printf "%'6dM" "$((${X[9]}/1024/1024))"
+			break
+		fi
+	done < /proc/net/dev
+}
+
+#-----------------------------------------------SESSION UPLOAD & DOWNLOAD TOTAL
+
+session_ul_dl_total(){
+	while read -a X; do
+		if [ "${X[0]}" == "$IFACE:" ]; then
+			printf "%'6dM " "$((${X[1]}/1024/1024))"
+			printf "%'6dM" "$((${X[9]}/1024/1024))"
+			break
+		fi
+	done < /proc/net/dev
+}
+
+#--------------------------------------------------------------ACTIVE TCP COUNT
+
+estab_tcp_count(){
+	readarray X <<< "$(/bin/ss --tcp -n)"
+	printf "%3d" "$((${#X[@]}-1))"
+}
+
+#-----------------------------------------------------------LISTENING TCP COUNT
+
+listening_tcp_count(){
+	readarray X <<< "$(/bin/ss --tcp -l -n)"
+	printf "%3d" "$((${#X[@]}-1))"
+}
+
+#--------------------------------------------------LISTENING & ACTIVE TCP COUNT
+
+listening_estab_tcp_count(){
+	readarray X <<< "$(/bin/ss --tcp -n)"
+	printf "%3d " "$((${#X[@]}-1))"
+
+	#TODO - Combine these so as to avoid opening 2 processes.
+
+	readarray X <<< "$(/bin/ss --tcp -l -n)"
+	printf "%3d " "$((${#X[@]}-1))"
+}
+
+#---------------------------------------------------------------CPU TEMPERATURE
+
+cpu_temp(){
+	#TODO - Shows 0 even though it's not valid to show at all.
+	while read -a X; do
+		[ "${X[0]}${X[2]}" == "Physical0:" ] && LINE="true"
+		if [ "${X[0]}" == "temp1_input:" -a "$LINE" == "true" ]; then
+			printf "%2d°C" "${X[1]%.*}"
+			break
+		fi
+	done <<< "$(/usr/bin/sensors -u)"
+}
+
+#---------------------------------------------------ALTERNATIVE CPU TEMPERATURE
+
+cpu_temp_alt(){
+	read < /sys/devices/platform/"$CPUPATH"
+	printf "%3d°C" "${REPLY%[0-9][0-9][0-9]}"
+}
+
+#---------------------------------------------------------------------SHOW DATE
+
+date_show(){
+	printf "%(%d/%m/%Y)T"
+}
+
+#---------------------------------------------------------------------SHOW TIME
+
+time_show(){
+	printf "%(%l:%M:%S%p)T "
+}
+
+#-----------------------------------------------------------------DATE AND TIME
+
+show_date_time(){
+	printf "%((%d/%m/%Y) %l:%M:%S%p)T "
+}
+
+#----------------------------------------------------------STORAGE DEVICE COUNT
+
+storage_device_count(){
+	readarray X < /proc/partitions
+	printf "%2d" "$((${#X[@]}-2))"
+}
+
+#--------------------------------------------------LATEST STABLE KERNEL VERSION
+
+latest_stable_kernel(){
+	KERN_URL="https://www.kernel.org/"
+	RE='<strong>[0-9]+.[0-9]+.[0-9]+</strong>'
+	while read -a LINE; do
+		[ "${LINE[0]}" == \<td\>stable:\</td\> ] && CORRECT="true"
+		if [[ "$CORRECT" == "true" && "${LINE[@]}" =~ $RE ]]; then
+			IFS="<" read -a SUB <<< "${LINE[@]}"
+			printf "%s\n" "${SUB[2]/*>}"
+			break
+		fi
+	done <<< "$(/usr/bin/wget -q "$KERN_URL" -O -)"
+}
+
+#----------------------------------------------PACKAGES UNABLE TO BE DOWNLOADED
+
+official_repo_pkg_dl_status(){
+	#TODO - Do away with as many instances of sed as possible.
+	/bin/sed -n '/no longer be downloaded/s/^.*\s\([0-9]\+\)\spackage.*$/\1/p'\
+		<<< "$(/usr/bin/ubuntu-support-status)"
+}
+
+#---------------------------------------------PACKAGES UNSUPPORTED BY CANONICAL
+
+official_repo_pkg_sup_status(){
+	/bin/sed -n '/that \w\+ unsupported/s/^.*\s\([0-9]\+\)\spackage.*$/\1/p'\
+		<<< "$(/usr/bin/ubuntu-support-status)"
+}
+
+#----------------------------------------------NUMBER OF FILES MODIFIED IN <=1m
+
+user_modified_files(){
+	readarray X <<< "$(/usr/bin/find $HOME/ -mmin -1 2> /dev/null)"
+	printf "%2d" "${#X[@]}"
+}
+
+#------------------------------------------------------NUMBER OF OPEN TERMINALS
+
+open_terms(){
+	read -a X <<< `/bin/pidof "$TERMINAL"`
+	printf "%2d" "${#X[@]}"
+}
+
+#--------------------------------------------------------------GITHUB FOLLOWERS
+
+github_follows(){
+	read -a FETCH <<< "$(
+		while read LINE; do
+			[[ "$LINE" =~ ^[0-9]+$ ]] && printf "%d " "${LINE//[!0-9]}"
+		done <<< "$(/usr/bin/wget -q "$GH_URL?tab=followers" -O -)"
+	)"
+
+	printf "%2d" "${FETCH[3]}"
+	# Fixed calling for the wrong index in the FETCH array. (was 2)
+}
+
+#----------------------------------------------------------GITHUB PROJECT TODOS
+
+github_todos(){
+	readarray X <<< "$(/bin/grep --exclude-dir=".git" -Erho "$GHDM" "$GHDIR")"
+	printf "%'3d" "$((${#X[@]}-${GHDMO:-0}))"
+
+}
+
+#----------------------------------------------------------GITHUB CONTRIBUTIONS
+
+github_contribs(){
+	while read -a X; do
+		if [[ "${X[0]}${X[1]}" =~ ^[0-9,]+contributions$ ]]; then
+			printf "%'6d\n" "${X[0]//,}"
+			break
+		fi
+	done <<< "$(/usr/bin/wget -q "$GH_URL" -O -)"
+}
+
+#------------------------------------------------------------REDSHIFT(ER) VALUE
+
+redshifter_value(){
+	read < "$HOME/.config/redshifter.tmp"
+	printf "%'6dK" "$REPLY"
+}
+
+#----------------------------------------------------------------CALL FUNCTIONS
+
+active_i3_workspace(){
+	# A little on the slow side, but seems to be down to i3.
+	IFS="," read -a X <<< `/usr/bin/i3-msg -t get_workspaces`
+	for F in ${X[@]}; {
+		if [[ "${F//['[{",']}" =~ ^num:[0-9]+$ ]]; then
+			declare -i W=${F//[!0-9]}
+		elif [[ "${F//['{"']}" =~ ^focused:true ]]; then
+			printf "%3d" "$W"
+			break
+		fi
+	}
+}
+
+#------------------------------------------------------------------------------
+
+case "$1" in
+	open_terms) open_terms ;;
+	user_modified_files) user_modified_files ;;
+	official_repo_pkg_sup_status) official_repo_pkg_sup_status ;;
+	official_repo_pkg_dl_status) official_repo_pkg_dl_status ;;
+	latest_stable_kernel) latest_stable_kernel ;;
+	io_condition) io_condition ;;
+	storage_device_count) storage_device_count ;;
+	time_show) time_show ;;
+	date_show) date_show ;;
+	cpu_temp) cpu_temp ;;
+	listening_tcp_count) listening_tcp_count ;;
+	estab_tcp_count) estab_tcp_count ;;
+	session_ul_total) session_ul_total ;;
+	session_dl_total) session_dl_total ;;
+	root_space_used_mb) root_space_used_mb ;;
+	home_space_used_mb) home_space_used_mb ;;
+	swap_used_mb) swap_used_mb ;;
+	ram_used_mb) ram_used_mb ;;
+	countdown) countdown ;;
+	input_volume_pacmd) input_volume_pacmd ;;
+	output_volume_pacmd) output_volume_pacmd ;;
+	cpu_freq) cpu_freq ;;
+	kernel_check) kernel_check ;;
+	avg_cpu_usage) avg_cpu_usage ;;
+	session_uptime) session_uptime ;;
+	max_proc_usage) max_proc_usage ;;
+	net_status) net_status ;;
+	mount_count) mount_count ;;
+	user_count) user_count ;;
+	open_files_count) open_files_count ;;
+	mocp_info) mocp_info ;;
+	psa_count) psa_count ;;
+	usb_count) usb_count ;;
+	apt_pkg_changes) apt_pkg_changes ;;
+	ytsubcount) ytsubcount ;;
+	github_follows) github_follows ;;
+	github_contribs) github_contribs ;;
+	ytviewcount) ytviewcount ;;
+	show_date_time) show_date_time ;;
+	listening_estab_tcp_count) listening_estab_tcp_count ;;
+	rough_cpu_usage) rough_cpu_usage ;;
+	session_ul_dl_total) session_ul_dl_total ;;
+	github_todos) github_todos ;;
+	cpu_temp_alt) cpu_temp_alt ;;
+	redshifter_value) redshifter_value ;;
+	active_i3_workspace) active_i3_workspace ;;
 esac
