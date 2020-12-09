@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Wed  9 Dec 04:48:03 GMT 2020
+# Last Change       - Wed  9 Dec 16:29:33 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -39,8 +39,8 @@ focus_on_window_activation urgent
 
 #-----------------------------------------------------------------MAIN BINDINGS
 
-gaps inner 12
-gaps outer 12
+gaps inner 24
+gaps outer 24
 
 #------------------------------------------------------------------BARS SECTION
 
@@ -49,7 +49,7 @@ bar {
 	position top
 	workspace_buttons no
 	font pango:IBM 3270 Medium 16
-	separator_symbol '*'
+	separator_symbol *
 	tray_output none
 
 	i3bar_command i3bar --transparency
@@ -90,8 +90,8 @@ bindsym Mod1+Shift+q kill
 bindsym Mod1+Return exec --no-startup-id sh $HOME/.i3a/terminal
 bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l 1
-bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 16
-bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 30
+bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 15
+bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 32
 bindsym Mod1+Tab exec --no-startup-id xfce4-terminal --fullscreen --drop-down
 bindsym Mod4+w exec --no-startup-id mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
 #bindsym Mod4+b exec --no-startup-id bash $HOME/.i3a/i3bar_trans 0.5
@@ -114,11 +114,11 @@ bindsym Menu exec --no-startup-id bash $HOME/.i3a/lockscreen
 #-------------------------------------------------------------------SOME COLORS
 
 # class                  border   backgr.  text     indic.   child_border
-client.focused           #331111  #000000  #999999  #331111  #331111
-client.focused_inactive  #000000  #000000  #888888  #000000  #000000
-client.unfocused         #000000  #000000  #555555  #000000  #000000
-client.urgent            #000000  #000000  #ff0000  #000000  #000000
-client.placeholder       #000000  #000000  #000000  #000000  #000000
+client.focused           #341111  #000000  #999999  #331111  #431111
+client.focused_inactive  #222222  #000000  #888888  #000000  #222222
+client.unfocused         #222222  #000000  #555555  #000000  #222222
+client.urgent            #222222  #000000  #ff0000  #000000  #222222
+client.placeholder       #222222  #000000  #000000  #000000  #222222
 
 client.background        #000000
 
