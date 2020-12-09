@@ -67,7 +67,7 @@ ytsubcount(){
 			for Field in "${Line[@]}"; {
 				if [[ "$Field" == *subscribers* ]]; then
 					StripLeft=${Field#*\"}
-					printf '%s\n' "${StripLeft%%\ *}"
+					printf '%s' "${StripLeft%%\ *}"
 
 					break 2
 				fi
