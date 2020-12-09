@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri 13 Nov 19:34:29 GMT 2020
+# Last Change       - Wed  9 Dec 04:28:52 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ case `hostname` in
 		#	aec_args='analog_gain_control=0' &
 
 		if ! command -V rudbgvid 1> /dev/null 2>&1; then
-			feh --bg-center "$HOME/Pictures/background-bw.jpg" &
+			feh --bg-center "$HOME/Pictures/background.jpg" &
 		else
 			rudbgvid -r -i 9 &
 		fi

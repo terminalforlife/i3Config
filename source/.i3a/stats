@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/stats
+# Started On        - Wed  9 Dec 03:51:15 GMT 2020
+# Last Change       - Wed  9 Dec 03:51:37 GMT 2020
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+
+RAM_Used_MB(){
+	while read; do
+		printf '%s\n' "$REPLY"
+	done <<< "$(free -m)"
+}
+
+case $1 in
+	RAM_Used_MB)
+		RAM_Used_MB ;;
+esac
