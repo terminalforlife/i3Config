@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Wed  9 Dec 05:11:48 GMT 2020
+# Last Change       - Wed  9 Dec 17:10:17 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -12,7 +12,7 @@
 #-----------------------------------------------------------------YOUR SETTINGS
 
 # Your YouTube 'about' page URL goes here.
-YT_URL="https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg/about"
+YT_URL='https://youtube.com/c/LearnLinux/about'
 
 # Your GitHub URL goes here.
 GH_URL="https://github.com/terminalforlife"
@@ -36,7 +36,7 @@ IFACE="enp3s0"
 declare -i CORES=4
 
 # What is the name of your root file system?
-ROOT_DEV="/dev/sda1"
+ROOT_DEV="/dev/sdb1"
 
 # Spaces to pad the root's disk usage.
 declare -i ROOT_DEV_PAD=7
@@ -45,7 +45,7 @@ declare -i ROOT_DEV_PAD=7
 CPUPATH="coretemp.0/hwmon/hwmon3/temp1_input"
 
 # What is the name of your home file system?*1
-HOME_DEV="/dev/sdb1"
+HOME_DEV="/dev/sdc1"
 
 # Spaces to pad the home's disk usage.
 HOME_DEV_PAD=7
@@ -62,16 +62,18 @@ TERMINAL="xfce4-terminal"
 #------------------------------------------------------YOUTUBE SUBSCRIBER COUNT
 
 ytsubcount(){
-	while read -a X; do
-		if [[ "${X[@]}" =~ \"[0-9]+\ subscribers\"\>[0-9,]+\< ]]; then
-			for N in `eval printf "%s\\\\\n" {0..${#X[@]}}`; {
-				if [[ "${X[0+${N}]}" =~ subscribers ]]; then
-					printf "%'4d" "${X[$N]//[!0-9]}"
+	while IFS=':' read -a Line; do
+		if [[ ${Line[*]} == *'{"simpleText"'* ]]; then
+			for Field in "${Line[@]}"; {
+				if [[ "$Field" == *subscribers* ]]; then
+					StripLeft=${Field#*\"}
+					printf '%s\n' "${StripLeft%%\ *}"
+
 					break 2
 				fi
 			}
 		fi
-	done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
+	done <<< "$(wget -qO - "$YT_URL")"
 }
 
 #------------------------------------------------------YOUTUBE TOTAL VIEW COUNT
@@ -85,7 +87,7 @@ ytviewcount(){
 			printf "%'6d" "${X[3]//[!0-9]}"
 			break
 		fi
-	done <<< "$(/usr/bin/wget -q "$YT_URL" -O -)"
+	done <<< "$(wget -qO - "$YT_URL")"
 }
 
 #-------------------------------------------------------UPGRADE COUNT (apt-get)
@@ -98,13 +100,13 @@ apt_pkg_changes(){
 			printf "%2d" "$SUM"
 			break
 		fi
-	done <<< "$(/usr/bin/apt-get -o $OPT -qs dist-upgrade)"
+	done <<< "$(apt-get -o $OPT -qs dist-upgrade)"
 }
 
 #----------------------------------------------------CONNECTED USB DEVICE COUNT
 
 usb_count(){
-	readarray X <<< "$(/usr/bin/lsusb)"
+	readarray X <<< "$(lsusb)"
 	printf "%2d\n" "${#X[@]}"
 }
 
@@ -118,21 +120,21 @@ psa_count(){
 #-------------------------------------------------------MOCP CURRENT TRACK INFO
 
 mocp_info(){
-	STATUS=`/usr/bin/mocp -i || printf "N/A"`
+	STATUS=`mocp -i || printf "N/A"`
 	case "${STATUS/* }" in
 		STOP)
 			printf "00:00/00:00" ;;
 		N/A)
 			printf "??:??/??:??" ;;
 		*)
-			/usr/bin/mocp -Q %ct/%tt ;;
+			mocp -Q %ct/%tt ;;
 	esac
 }
 
 #--------------------------------------------------------------OPEN FILES COUNT
 
 open_files_count(){
-	readarray X <<< "$(/usr/bin/lsof -t -u $UID 2> /dev/null)"
+	readarray X <<< "$(lsof -t -u $UID 2> /dev/null)"
 	printf "%3d" "${#X[@]}"
 }
 
@@ -140,16 +142,16 @@ open_files_count(){
 
 user_count(){
 	declare -i D=0
-	if [ -x /usr/bin/users ]; then
-		read -a X <<< "$(/usr/bin/users)"
+	if type -P users &> /dev/null; then
+		read -a X <<< "$(users)"
 		printf "%2d" "${#X[@]}"
-	elif [ -x /usr/bin/uptime ]; then
+	elif type -P uptime &> /dev/null; then
 		while read -a X; do
 			if [[ "${X[3]}" =~ [0-9]+ ]]; then
 				printf "%s\n" "${X[3]}"
 				break
 			fi
-		done <<< "$(/usr/bin/uptime)"
+		done <<< "$(uptime)"
 	else
 		printf "!"
 	fi
@@ -174,21 +176,21 @@ net_status(){
 			printf -v Z "${X[8]}"
 			break
 		fi
-	done <<< "$(/bin/ip link)"
+	done <<< "$(ip link)"
 	[ "$Z" == "UP" ] && printf "[0]" || printf "[1]"
 }
 
 #----------------------------------------------------MOST CPU-DEMANDING PROCESS
 
 max_proc_usage(){
-	read -a X <<< "$(/bin/ps -aU "$USER" -o %cpu=,pid= -k -%cpu)"
+	read -a X <<< "$(ps -aU "$USER" -o %cpu=,pid= -k -%cpu)"
 	printf "%3d (%.5d)\n" "${X[0]}" "${X[1]}"
 }
 
 #----------------------------------------------------------------SESSION UPTIME
 
 session_uptime(){
-	IFS="." read -a X < /proc/uptime
+	IFS="." read -a X < uptime
 	printf "%4d" "$((X[0]/60))"
 }
 
