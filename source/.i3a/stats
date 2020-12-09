@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Wed  9 Dec 04:59:26 GMT 2020
+# Last Change       - Wed  9 Dec 05:11:48 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -197,7 +197,7 @@ session_uptime(){
 avg_cpu_usage(){
 	#TODO - Improve this. Should work properly now, but using awk and iostat.
 	AWK='{if($3~"^[0-9.]+$")printf("%6.2f%%\n", 100-$6)}'
-	/usr/bin/iostat -c | /usr/bin/awk -S "$AWK"
+	iostat -c | awk -S "$AWK"
 }
 
 #------------------------------------------------ROUGH CPU USAGE (EXPERIMENTAL)
@@ -209,14 +209,16 @@ rough_cpu_usage(){
 			printf "%3d%%\n" "$((100-${X[11]%.*}))"
 			break
 		fi
-	done <<< "$(/usr/bin/mpstat 1 1)"
+	done <<< "$(mpstat 1 1)"
 }
 
 #--------------------------------------------------------KERNEL VERSION DISPLAY
 
 kernel_check(){
-	K="/proc/sys/kernel/osrelease"
-	[ -f "$K" -a -r "$K" ] && printf "%19s" "`< $K`"
+	KernFile="/proc/sys/kernel/osrelease"
+	if [ -f "$KernFile" -a -r "$KernFile" ]; then
+		printf "%19s" "$(< $KernFile)"
+	fi
 }
 
 #-----------------------------------------------------CPU FREQUENCY (QUAD-CORE)
@@ -244,7 +246,7 @@ output_volume_pacmd(){
 			printf "%3d%%" "${X[4]%\%}"
 			break
 		fi
-	done <<< "$(/usr/bin/pacmd list-sinks)"
+	done <<< "$(pacmd list-sinks)"
 }
 
 #-----------------------------------------------------MICROPHONE STATUS (pacmd)
@@ -263,14 +265,14 @@ input_volume_pacmd(){
 			printf "%3d%%" "${X[4]%\%}"
 			break
 		fi
-	done <<< "$(/usr/bin/pacmd list-sources)"
+	done <<< "$(pacmd list-sources)"
 }
 
 #-----------------------------------------------------COUNTDOWN UNTIL (SECONDS)
 
 countdown(){
 	printf -v NOW "%(%F)T\n" "-1"
-	RESULT=$((`/bin/date -d "$CD_TARGET" +%s` - `printf '%(%s)T'`))
+	RESULT=$((`date -d "$CD_TARGET" +%s` - `printf '%(%s)T'`))
 	printf "%'${CD_PAD}d" "$RESULT"
 }
 
@@ -282,7 +284,7 @@ ram_used_mb(){
 			printf "%'6dM\n" "${X[2]}"
 			break
 		fi
-	done <<< "$(/usr/bin/free -m)"
+	done <<< "$(free -m)"
 }
 
 #---------------------------------------------------------------SWAP USED IN MB
@@ -293,7 +295,7 @@ swap_used_mb(){
 			printf "%'6dM\n" "${X[2]}"
 			break
 		fi
-	done <<< "$(/usr/bin/free -m)"
+	done <<< "$(free -m)"
 }
 
 #------------------------------------------------------USED SPACE IN HOME IN MB
@@ -304,7 +306,7 @@ home_space_used_mb(){
 			printf "%'${HOME_DEV_PAD}dM\n" "${X[2]}"
 			break
 		fi
-	done <<< "$(/bin/df -m)"
+	done <<< "$(df -m)"
 }
 
 #------------------------------------------------------USED SPACE IN ROOT IN MB
@@ -315,7 +317,7 @@ root_space_used_mb(){
 			printf "%'${ROOT_DEV_PAD}dM\n" "${X[2]}"
 			break
 		fi
-	done <<< "$(/bin/df -m)"
+	done <<< "$(df -m)"
 }
 
 #--------------------------------------------------------SESSION DOWNLOAD TOTAL
@@ -355,26 +357,26 @@ session_ul_dl_total(){
 #--------------------------------------------------------------ACTIVE TCP COUNT
 
 estab_tcp_count(){
-	readarray X <<< "$(/bin/ss --tcp -n)"
+	readarray X <<< "$(ss --tcp -n)"
 	printf "%3d" "$((${#X[@]}-1))"
 }
 
 #-----------------------------------------------------------LISTENING TCP COUNT
 
 listening_tcp_count(){
-	readarray X <<< "$(/bin/ss --tcp -l -n)"
+	readarray X <<< "$(ss --tcp -l -n)"
 	printf "%3d" "$((${#X[@]}-1))"
 }
 
 #--------------------------------------------------LISTENING & ACTIVE TCP COUNT
 
 listening_estab_tcp_count(){
-	readarray X <<< "$(/bin/ss --tcp -n)"
+	readarray X <<< "$(ss --tcp -n)"
 	printf "%3d " "$((${#X[@]}-1))"
 
 	#TODO - Combine these so as to avoid opening 2 processes.
 
-	readarray X <<< "$(/bin/ss --tcp -l -n)"
+	readarray X <<< "$(ss --tcp -l -n)"
 	printf "%3d " "$((${#X[@]}-1))"
 }
 
@@ -388,7 +390,7 @@ cpu_temp(){
 			printf "%2d°C" "${X[1]%.*}"
 			break
 		fi
-	done <<< "$(/usr/bin/sensors -u)"
+	done <<< "$(sensors -u)"
 }
 
 #---------------------------------------------------ALTERNATIVE CPU TEMPERATURE
@@ -435,35 +437,35 @@ latest_stable_kernel(){
 			printf "%s\n" "${SUB[2]/*>}"
 			break
 		fi
-	done <<< "$(/usr/bin/wget -q "$KERN_URL" -O -)"
+	done <<< "$(wget -q "$KERN_URL" -O -)"
 }
 
 #----------------------------------------------PACKAGES UNABLE TO BE DOWNLOADED
 
 official_repo_pkg_dl_status(){
 	#TODO - Do away with as many instances of sed as possible.
-	/bin/sed -n '/no longer be downloaded/s/^.*\s\([0-9]\+\)\spackage.*$/\1/p'\
-		<<< "$(/usr/bin/ubuntu-support-status)"
+	sed -n '/no longer be downloaded/s/^.*\s\([0-9]\+\)\spackage.*$/\1/p'\
+		<<< "$(ubuntu-support-status)"
 }
 
 #---------------------------------------------PACKAGES UNSUPPORTED BY CANONICAL
 
 official_repo_pkg_sup_status(){
-	/bin/sed -n '/that \w\+ unsupported/s/^.*\s\([0-9]\+\)\spackage.*$/\1/p'\
-		<<< "$(/usr/bin/ubuntu-support-status)"
+	sed -n '/that \w\+ unsupported/s/^.*\s\([0-9]\+\)\spackage.*$/\1/p'\
+		<<< "$(ubuntu-support-status)"
 }
 
 #----------------------------------------------NUMBER OF FILES MODIFIED IN <=1m
 
 user_modified_files(){
-	readarray X <<< "$(/usr/bin/find $HOME/ -mmin -1 2> /dev/null)"
+	readarray X <<< "$(find $HOME/ -mmin -1 2> /dev/null)"
 	printf "%2d" "${#X[@]}"
 }
 
 #------------------------------------------------------NUMBER OF OPEN TERMINALS
 
 open_terms(){
-	read -a X <<< `/bin/pidof "$TERMINAL"`
+	read -a X <<< `pidof "$TERMINAL"`
 	printf "%2d" "${#X[@]}"
 }
 
@@ -473,7 +475,7 @@ github_follows(){
 	read -a FETCH <<< "$(
 		while read LINE; do
 			[[ "$LINE" =~ ^[0-9]+$ ]] && printf "%d " "${LINE//[!0-9]}"
-		done <<< "$(/usr/bin/wget -q "$GH_URL?tab=followers" -O -)"
+		done <<< "$(wget -q "$GH_URL?tab=followers" -O -)"
 	)"
 
 	printf "%2d" "${FETCH[3]}"
@@ -483,7 +485,7 @@ github_follows(){
 #----------------------------------------------------------GITHUB PROJECT TODOS
 
 github_todos(){
-	readarray X <<< "$(/bin/grep --exclude-dir=".git" -Erho "$GHDM" "$GHDIR")"
+	readarray X <<< "$(grep --exclude-dir=".git" -Erho "$GHDM" "$GHDIR")"
 	printf "%'3d" "$((${#X[@]}-${GHDMO:-0}))"
 
 }
@@ -496,7 +498,7 @@ github_contribs(){
 			printf "%'6d\n" "${X[0]//,}"
 			break
 		fi
-	done <<< "$(/usr/bin/wget -q "$GH_URL" -O -)"
+	done <<< "$(wget -q "$GH_URL" -O -)"
 }
 
 #------------------------------------------------------------REDSHIFT(ER) VALUE
@@ -510,7 +512,7 @@ redshifter_value(){
 
 active_i3_workspace(){
 	# A little on the slow side, but seems to be down to i3.
-	IFS="," read -a X <<< `/usr/bin/i3-msg -t get_workspaces`
+	IFS="," read -a X <<< `i3-msg -t get_workspaces`
 	for F in ${X[@]}; {
 		if [[ "${F//['[{",']}" =~ ^num:[0-9]+$ ]]; then
 			declare -i W=${F//[!0-9]}
