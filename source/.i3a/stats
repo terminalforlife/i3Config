@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Wed  9 Dec 17:10:17 GMT 2020
+# Last Change       - Wed  9 Dec 17:16:37 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -58,6 +58,9 @@ declare -i CD_PAD=10
 
 # Which one terminal do you use? (file name)
 TERMINAL="xfce4-terminal"
+
+# The padding used by the kernel version output.
+KernPadding=9
 
 #------------------------------------------------------YOUTUBE SUBSCRIBER COUNT
 
@@ -219,7 +222,7 @@ rough_cpu_usage(){
 kernel_check(){
 	KernFile="/proc/sys/kernel/osrelease"
 	if [ -f "$KernFile" -a -r "$KernFile" ]; then
-		printf "%19s" "$(< $KernFile)"
+		printf "%*s" $KernPadding "$(< $KernFile)"
 	fi
 }
 
