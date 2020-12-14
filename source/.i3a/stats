@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Mon 14 Dec 01:18:35 GMT 2020
+# Last Change       - Mon 14 Dec 16:40:35 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ mount_count(){
 kernel_check(){
 	KernFile="/proc/sys/kernel/osrelease"
 	if [ -f "$KernFile" -a -r "$KernFile" ]; then
-		printf "%*s" $KernPadding "$(< $KernFile)"
+		printf "%*s " $KernPadding "$(< $KernFile)"
 	fi
 }
 
@@ -301,12 +301,14 @@ storage_device_count(){
 
 #--------------------------------------------------LATEST STABLE KERNEL VERSION
 
+#TODO: This is broken as of 5.10.
 latest_stable_kernel(){
 	KERN_URL="https://www.kernel.org/"
-	RE='<strong>[0-9]+.[0-9]+.[0-9]+</strong>'
+	RE='<strong>[0-9\.]+</strong>'
 	while read -a LINE; do
-		[ "${LINE[0]}" == \<td\>stable:\</td\> ] && CORRECT="true"
-		if [[ "$CORRECT" == "true" && "${LINE[@]}" =~ $RE ]]; then
+		if [ "${LINE[0]}" == '<td>stable:</td>' ]; then
+			CORRECT='true'
+		elif [[ "$CORRECT" == "true" && "${LINE[@]}" =~ $RE ]]; then
 			IFS="<" read -a SUB <<< "${LINE[@]}"
 			printf "%s \n" "${SUB[2]/*>}"
 			break
