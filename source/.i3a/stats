@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Mon 14 Dec 16:40:35 GMT 2020
+# Last Change       - Mon 14 Dec 18:50:30 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -154,9 +154,14 @@ mount_count(){
 #--------------------------------------------------------KERNEL VERSION DISPLAY
 
 kernel_check(){
-	KernFile="/proc/sys/kernel/osrelease"
-	if [ -f "$KernFile" -a -r "$KernFile" ]; then
-		printf "%*s " $KernPadding "$(< $KernFile)"
+	# Needs version '2020-12-14' or later of GLKFU.
+	local Version=`glkfu -o current`
+	local Dots=${Version//[!.]/}
+
+	if [ ${#Dots} -gt 1 ]; then
+		printf "%*s " $KernPadding  "v$Version"
+	else
+		printf "%*s " "$KernPadding"  "v$Version.0"
 	fi
 }
 
@@ -301,19 +306,16 @@ storage_device_count(){
 
 #--------------------------------------------------LATEST STABLE KERNEL VERSION
 
-#TODO: This is broken as of 5.10.
 latest_stable_kernel(){
-	KERN_URL="https://www.kernel.org/"
-	RE='<strong>[0-9\.]+</strong>'
-	while read -a LINE; do
-		if [ "${LINE[0]}" == '<td>stable:</td>' ]; then
-			CORRECT='true'
-		elif [[ "$CORRECT" == "true" && "${LINE[@]}" =~ $RE ]]; then
-			IFS="<" read -a SUB <<< "${LINE[@]}"
-			printf "%s \n" "${SUB[2]/*>}"
-			break
-		fi
-	done <<< "$(wget -q "$KERN_URL" -O -)"
+	# Needs version '2020-12-14' or later of GLKFU.
+	local Version=`glkfu -o latest`
+	local Dots=${Version//[!.]/}
+
+	if [ ${#Dots} -gt 1 ]; then
+		printf "%*s " $KernPadding  "v$Version"
+	else
+		printf "%*s " "$KernPadding"  "v$Version.0"
+	fi
 }
 
 #----------------------------------------------PACKAGES UNABLE TO BE DOWNLOADED
