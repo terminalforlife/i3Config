@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Sun 13 Dec 23:41:19 GMT 2020
+# Last Change       - Mon 14 Dec 01:18:35 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -308,7 +308,7 @@ latest_stable_kernel(){
 		[ "${LINE[0]}" == \<td\>stable:\</td\> ] && CORRECT="true"
 		if [[ "$CORRECT" == "true" && "${LINE[@]}" =~ $RE ]]; then
 			IFS="<" read -a SUB <<< "${LINE[@]}"
-			printf "%s\n" "${SUB[2]/*>}"
+			printf "%s \n" "${SUB[2]/*>}"
 			break
 		fi
 	done <<< "$(wget -q "$KERN_URL" -O -)"
@@ -345,15 +345,15 @@ open_terms(){
 
 #--------------------------------------------------------------GITHUB FOLLOWERS
 
-github_follows(){
-	read -a FETCH <<< "$(
-		while read LINE; do
-			[[ "$LINE" =~ ^[0-9]+$ ]] && printf "%d " "${LINE//[!0-9]}"
-		done <<< "$(wget -q "$GH_URL?tab=followers" -O -)"
-	)"
-
-	printf "%2d" "${FETCH[3]}"
-	# Fixed calling for the wrong index in the FETCH array. (was 2)
+github_followers(){
+	while read; do
+		REGEX='<span class="text-bold text-gray-dark" >[0-9]+</span>'
+		if [[ $REPLY =~ $REGEX ]]; then
+			printf '%s\n' "${REPLY//[!0-9]/}"
+			break
+		fi
+	done <<< "$(wget -qO - "$GH_URL")"
+	unset REGEX
 }
 
 #----------------------------------------------------------GITHUB PROJECT TODOS
@@ -430,7 +430,7 @@ case "$1" in
 	mocp_info) mocp_info ;;
 	psa_count) psa_count ;;
 	ytsubcount) ytsubcount ;;
-	github_follows) github_follows ;;
+	github_followers) github_followers ;;
 	github_contribs) github_contribs ;;
 	ytviewcount) ytviewcount ;;
 	show_date_time) show_date_time ;;
