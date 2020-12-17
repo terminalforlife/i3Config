@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - $HOME/.libi3bview
 # Started On        - Wed  8 Mar 18:41:22 GMT 2017
-# Last Change       - Thu 17 Dec 02:20:58 GMT 2020
+# Last Change       - Thu 17 Dec 02:26:33 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -41,8 +41,11 @@ ROOT_DEV='/dev/sda1'
 # Spaces to pad the root's disk usage.
 declare -i ROOT_DEV_PAD=7
 
-# Path to CPU temperature via SYSFS.
+# Path to CPU (package) temperature via SYSFS.
 CPUPATH='/sys/class/hwmon/hwmon2/temp1_input'
+
+# Path to GPU (core) temperature via SYSFS.
+GPUPATH='/sys/class/hwmon/hwmon1/temp1_input'
 
 # What is the name of your home file system?*1
 HOME_DEV="/dev/sdb1"
@@ -274,8 +277,16 @@ listening_estab_tcp_count(){
 
 #---------------------------------------------------------------CPU TEMPERATURE
 
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/temp1_input
 cpu_temp(){
 	read < "$CPUPATH"
+	printf "%3d°C" "${REPLY%[0-9][0-9][0-9]}"
+}
+
+#---------------------------------------------------------------GPU TEMPERATURE
+
+gpu_temp(){
+	read < "$GPUPATH"
 	printf "%3d°C" "${REPLY%[0-9][0-9][0-9]}"
 }
 
@@ -414,6 +425,7 @@ case "$1" in
 	time_show) time_show ;;
 	date_show) date_show ;;
 	cpu_temp) cpu_temp ;;
+	gpu_temp) gpu_temp ;;
 	listening_tcp_count) listening_tcp_count ;;
 	estab_tcp_count) estab_tcp_count ;;
 	session_ul_total) session_ul_total ;;
