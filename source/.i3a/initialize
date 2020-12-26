@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Sun 13 Dec 22:29:10 GMT 2020
+# Last Change       - Sat 26 Dec 15:36:22 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -35,13 +35,8 @@ case `hostname` in
 			exit
 		EOF
 
-		# Disabled in favor of using the '/etc/pulse/default.pa' file.
-		# Enable Pulse Audio's live noise-cancelling feature.
-		#pactl load-module module-echo-cancel\
-		#	aec_args='analog_gain_control=0' &
-
 		if ! command -V rudbgvid 1> /dev/null 2>&1; then
-			feh --bg-center "$HOME/Pictures/background-bw-bright.jpg" &
+			feh --bg-center "$HOME/Pictures/background-tfl-simple.png" &
 		else
 			rudbgvid -r -i 9 &
 		fi
