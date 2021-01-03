@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Thu 31 Dec 01:03:37 GMT 2020
+# Last Change       - Sun  3 Jan 05:29:42 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -56,10 +56,6 @@ case `hostname` in
 		mocp -S &
 
 		#perl "$HOME/.i3a/dev_setup"
-
-		# Need this for when I'm using the proprietary nVidia driver, because
-		# it insists on automatically setting it to something far too small.
-		#xrandr --dpi 96 &
 
 		sleep 20s
 		if command -v notify-upgrade; then
