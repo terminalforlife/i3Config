@@ -12,7 +12,7 @@
 #-----------------------------------------------------------------YOUR SETTINGS
 
 # Your YouTube 'about' page URL goes here.
-YT_URL='https://youtube.com/c/TerminalforLife/about'
+YT_URL='https://youtube.com/c/LearnLinux/about'
 
 # Your GitHub URL goes here.
 GH_URL='https://github.com/terminalforlife'
