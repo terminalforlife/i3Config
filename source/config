@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu 24 Dec 03:11:00 GMT 2020
+# Last Change       - Sun  3 Jan 05:08:39 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -112,7 +112,7 @@ bindsym Menu exec --no-startup-id bash $HOME/.i3a/lockscreen
 #-------------------------------------------------------------------SOME COLORS
 
 # class                  border   backgr.  text     indic.   child_border
-client.focused           #999999  #000000  #FFFFFF  #999999  #999999
+client.focused           #555555  #000000  #FFFFFF  #555555  #555555
 client.focused_inactive  #222222  #000000  #888888  #222222  #222222
 client.unfocused         #222222  #000000  #555555  #222222  #222222
 client.urgent            #222222  #000000  #ff0000  #222222  #222222
@@ -396,6 +396,14 @@ bindsym Print exec --no-startup-id sh $HOME/.i3a/scrot_take
 bindsym Shift+Print exec --no-startup-id sh $HOME/.i3a/scrot_sel_take
 bindsym Ctrl+Print exec --no-startup-id sh $HOME/.i3a/scrot_win_take
 bindsym Mod1+d exec --no-startup-id bash $HOME/.i3a/launcher
+
+# Useful to run this now and then if I get any weirdness during games. This is
+# only applicable when using nVidia proprietary garbage drivers. This also sets
+# the DPI back to the usual 96, which nVidia obnoxiously keeps undoing!
+bindsym Mod1+n exec --no-startup-id nvidia-settings --assign "CurrentMetaMode=nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"; exec --no-startup-id xrandr --dpi 96;
+
+# Need this for use with gaming.
+bindsym Mod1+c exec --no-startup-id bash $HOME/.i3a/compton_toggle
 
 #--------------------------------------------------MEDIA PLAYBACK CONTROL (MOC)
 
