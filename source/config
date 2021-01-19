@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sun  3 Jan 17:11:44 GMT 2021
+# Last Change       - Mon 18 Jan 23:59:25 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -30,7 +30,8 @@ workspace_layout default
 focus_follows_mouse no
 floating_modifier Mod1
 force_focus_wrapping no
-font pango: IBM 3270 Medium 16
+#font pango: IBM 3270 Medium 14
+font pango: Mononoki 14
 floating_maximum_size 1920 x 1080
 floating_minimum_size 100 x 100
 popup_during_fullscreen smart
@@ -48,7 +49,7 @@ bar {
 	id above-bar
 	position top
 	workspace_buttons no
-	font pango:IBM 3270 Bold 12
+	font pango:Mononoki Regular 14
 	tray_output none
 
 	status_command i3blocks -c "$HOME"/.i3a/i3b_above.conf
@@ -63,7 +64,7 @@ bar {
 	id below-bar
 	position bottom
 	workspace_buttons no
-	font pango:IBM 3270 Bold 12
+	font pango:Mononoki Regular 14
 	tray_output none
 	separator_symbol '*'
 
@@ -88,8 +89,8 @@ bindsym Mod1+Shift+q kill
 bindsym Mod1+Return exec --no-startup-id sh $HOME/.i3a/terminal
 bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l 1
-bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 15
-bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 32
+bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 14
+bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 28
 bindsym Mod1+Tab exec --no-startup-id xfce4-terminal --fullscreen --drop-down
 bindsym Mod4+w exec --no-startup-id mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
 #bindsym Mod4+b exec --no-startup-id bash $HOME/.i3a/i3bar_trans 0.5
@@ -370,6 +371,11 @@ for_window [class="^Audacity$" title="^Tone$"] floating enable
 for_window [class="^Audacity$" title="^Truncate Silence$"] floating enable
 for_window [class="^Audacity$" title="^Wahwah$"] floating enable
 
+#---------------------------------------------------------------COOL-RETRO-TERM
+
+for_window [class="^Cool-Retro-Term-.*"] floating disabled
+for_window [class="^Cool-Retro-Term-.*" title="^Settings$"] floating enable
+
 #-------------------------------------------------------------------------SKYPE
 
 for_window [class="^Skype$"] floating disabled
@@ -377,6 +383,11 @@ for_window [class="^Skype$"] floating disabled
 #-------------------------------------------------------------------------STEAM
 
 for_window [class="^Steam$"] floating disabled
+
+#--------------------------------------------------------------------TERMINATOR
+
+for_window [class="^Terminator$"] floating disabled
+for_window [class="^Terminator$" title="^Terminator Preferences$"] floating enable
 
 #----------------------------------------------------------------EXTRA BINDINGS
 

@@ -1,5 +1,5 @@
 71ab0e95507433db4898cad4d37edb74  devutils/links.sh
-3c24f1c034f5c9a427fa1b9b8a5a985f  source/config
+5a290272f9b92fecb755fc7d49052184  source/config
 aa5dde250479b399f0d8179f2fe86aa0  source/.i3a/compton_toggle
 4fc29f50e0dd817e5b482f0d56cb76fd  source/.i3a/dev_setup
 a1acd386338b94b7f90ee5e6a065777b  source/.i3a/dmesg_overflow
@@ -24,5 +24,5 @@ a4e6bc5f4b6e66ca436a9bb005a05a9f  source/.i3a/sink_switch
 bf37076d7e259d240b7d9deb680d4dd6  source/.i3a/source_raise
 01b0411cd7305f95d72db39cbceda3be  source/.i3a/stats
 edfee7ffecb89a937df91b9b61abecec  source/.i3a/term_font_size
-2f52d504bd595cc63029ab868e83bc53  source/.i3a/terminal
+a777d5c00b93abdc7096a241cb1f02cc  source/.i3a/terminal
 dd62b136cabe64b5de0c8baf876d89b5  source/.i3a/track_notify
