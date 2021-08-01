@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Tue  9 Feb 16:00:15 GMT 2021
+# Last Change       - Sun  1 Aug 21:06:32 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -40,41 +40,8 @@ focus_on_window_activation urgent
 
 #-----------------------------------------------------------------MAIN BINDINGS
 
-gaps inner 20
-gaps outer 10
-
-#------------------------------------------------------------------BARS SECTION
-
-bar {
-	id above-bar
-	position top
-	workspace_buttons no
-	font pango:Mononoki Regular 14
-	tray_output none
-
-	status_command i3blocks -c "$HOME"/.i3a/i3b_above.conf
-
-	colors {
-		background #000000
-		statusline #FFFFFF
-	}
-}
-
-bar {
-	id below-bar
-	position bottom
-	workspace_buttons no
-	font pango:Mononoki Regular 14
-	tray_output none
-	separator_symbol '*'
-
-	status_command i3blocks -c "$HOME"/.i3a/i3b_below.conf
-
-	colors {
-		background #000000
-		statusline #FFFFFF
-	}
-}
+gaps inner 40
+gaps outer 0
 
 #------------------------------------------------------------------GAPS SECTION
 
@@ -86,15 +53,13 @@ bindsym Mod1+Shift+c reload
 bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
-bindsym Mod1+Return exec --no-startup-id sh $HOME/.i3a/terminal
+bindsym Mod1+Return exec --no-startup-id xfce4-terminal
 bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l 1
 bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 14
 bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 28
 bindsym Mod1+Tab exec --no-startup-id xfce4-terminal --fullscreen --drop-down
 bindsym Mod4+w exec --no-startup-id mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
-#bindsym Mod4+b exec --no-startup-id bash $HOME/.i3a/i3bar_trans 0.5
-bindsym Shift+Mod1+b bar mode toggle
 bindsym Mod4+m exec --no-startup-id sleep 1s && xset dpms force off
 bindsym Mod4+Shift+0 exec --no-startup-id transset -a 1
 bindsym Mod4+Shift+9 exec --no-startup-id transset -a 0.2
@@ -282,6 +247,8 @@ for_window [class="^kdenlive$" title="^Rendering . Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Save As . Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Submit Bug Report . Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Welcome to Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Delete Track — Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Warning — Kdenlive$"] floating enable
 
 #------------------------------------------------------------------GIMP WINDOWS
 
@@ -436,7 +403,7 @@ bindsym Mod1+d exec --no-startup-id bash $HOME/.i3a/launcher
 # Useful to run this now and then if I get any weirdness during games. This is
 # only applicable when using nVidia proprietary garbage drivers. This also sets
 # the DPI back to the usual 96, which nVidia obnoxiously keeps undoing!
-bindsym Mod1+n exec --no-startup-id nvidia-settings --assign "CurrentMetaMode=nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+#bindsym Mod1+n exec --no-startup-id nvidia-settings --assign "CurrentMetaMode=nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
 
 # Need this for use with gaming.
 bindsym Mod1+c exec --no-startup-id bash $HOME/.i3a/compton_toggle
