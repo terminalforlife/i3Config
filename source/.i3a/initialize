@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Thu 16 Sep 16:41:28 BST 2021
+# Last Change       - Thu  6 Jan 09:59:07 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -47,7 +47,8 @@ case `hostname` in
 		EOF
 
 		if ! command -V rudbgvid 1> /dev/null 2>&1; then
-			BG="$HOME/Pictures/TFL Wallpaper with Images/Full.png"
+			#BG="$HOME/Pictures/TFL Wallpaper with Images/Full.png"
+			BG="$HOME/Pictures/Surface Texture with Logo.jpg"
 			feh --no-fehbg --bg-scale "$BG" &
 		else
 			rudbgvid -r -i 9 &
