@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_switch
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue  3 Mar 16:18:14 GMT 2020
+# Last Change       - Mon 17 Jan 19:31:10 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -12,23 +12,21 @@
 # the former.
 #------------------------------------------------------------------------------
 
-DEV_1='alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo'
-DEV_2='alsa_card.pci-0000_01_00.1.hdmi-stereo-extra1'
+Dev_1='alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo'
+Dev_2='alsa_card.pci-0000_01_00.1.hdmi-stereo-extra1'
 
-if type -fP pacmd > /dev/null 2>&1; then
-	while IFS=":" read -a X; do
-		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
+if type -P pacmd &> /dev/null; then
+	while IFS=':' read -a Line; do
+		[[ ${Line[0]} == 'Default sink name' ]] && Master=${Line[1]## }
 	done <<< "$(pacmd info)"
 
-	echo "$MASTER"
-
-	if type -fP pactl > /dev/null 2>&1; then
+	if type -P pactl &> /dev/null; then
 		pactl play-sample x11-volume-change & disown
 
-		if [ "$MASTER" == "$DEV_1" ]; then
-			pactl set-card-profile "${DEV_2%.*}" output:hdmi-stereo-extra1
+		if [[ $Master == $Dev_1 ]]; then
+			pactl set-card-profile "${Dev_2%.*}" output:hdmi-stereo-extra1
 		else
-			pactl set-card-profile "${DEV_2%.*}" off
+			pactl set-card-profile "${Dev_2%.*}" off
 		fi
 	fi
 fi

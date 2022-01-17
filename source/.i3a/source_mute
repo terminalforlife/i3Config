@@ -3,13 +3,9 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/source_mute
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue  3 Mar 15:15:15 GMT 2020
+# Last Change       - Mon 17 Jan 19:26:34 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-pacmd info | while IFS=':' read Key Value; do
-	if [ "$Key" = 'Default source name' ]; then
-		pactl set-source-mute "${Value## }" toggle
-	fi
-done
+pactl set-source-mute '@DEFAULT_SOURCE@' toggle

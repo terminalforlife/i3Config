@@ -1,48 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue  3 Mar 16:17:55 GMT 2020
+# Last Change       - Mon 17 Jan 19:33:51 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
+# Get current volume and avoid pactl(1) going over 100%.
+#------------------------------------------------------------------------------
 
-if type -fP pacmd > /dev/null 2>&1; then
-	while IFS=":" read -a X; do
-		[ "${X[0]}" == "Default sink name" ] && MASTER="${X[1]## }"
-	done <<< "$(pacmd info)"
-
-	# Compensate for output change in Ubuntu 16.04 to 18.04. If the file isn't
-	# found or improperly parsed, it should still work, without the 100% limit.
-	declare -i LINE=2
-	readarray Y < /etc/lsb-release
-	[ "${Y[1]:16:5}" == "16.04" ] && LINE=1
-
-	declare -i N=0
-	while read -a X; do
-		if [ "$IS_MASTER" == "True" ] && [[ "${X[0]}" == volume: ]]; then
-			N+=1
-
-			if [ $N -eq $LINE ]; then
-				printf -v VOL "%d" "${X[4]%\%}"
-				[ $VOL -ge 100 ] && exit 0 || break
-			fi
-		elif [ "${X[0]}" == 'name:' -a "${X[1]//[<>]/}" == "$MASTER" ]; then
-			IS_MASTER="True"
-		fi
-	done <<< "$(pacmd list-sinks)"
-
-	if type -fP pactl > /dev/null 2>&1; then
-		pactl play-sample x11-volume-change & disown
-		pactl set-sink-volume "$MASTER" +500
-	fi
-
-	# Uncomment if you use i3blocks with a volume indicator.
-	#if type -fP pkill > /dev/null 2>&1; then
-	#	# Use 'signal=1' and 'interval=once' in the i3blocks configuration
-	#	# file, in order to have this update only when needed.
-	#	pkill -RTMIN+1 i3blocks
-	#fi
-fi
-
+pactl set-source-volume '@DEFAULT_SOURCE@' +500

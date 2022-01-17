@@ -1,35 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/source_lower
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue  3 Mar 16:22:01 GMT 2020
+# Last Change       - Mon 17 Jan 19:34:02 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-while IFS=':' read -a Line; do
-	[ "${Line[0]}" == 'Default source name' ] && Master=${Line[1]## }
-done <<< "$(pacmd info)"
-
-while read -a Line; do
-	if [ "${Line[0]}" == 'volume:' ]; then
-		if ! [ "$First" == 'true' ]; then
-			First="true"
-			continue
-		fi
-
-		[ ${Line[2]} -eq 0 ] && exit 0
-	fi
-done <<< "$(pacmd list-sources)"
-
-if type -fP pactl > /dev/null 2>&1; then
-	pactl play-sample x11-volume-change & disown
-	pactl set-source-volume "$Master" -500
-fi
-
-if type -fP pkill > /dev/null 2>&1; then
-	# Use 'signal=1' and 'interval=once' in the i3blocks configuration
-	# file, in order to have this update only when needed.
-	pkill -RTMIN+1 i3blocks
-fi
+pactl set-source-volume '@DEFAULT_SOURCE@' -500

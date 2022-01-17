@@ -1,35 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/source_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Tue  3 Mar 16:22:21 GMT 2020
+# Last Change       - Mon 17 Jan 19:34:08 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
+# Get current volume and avoid pactl(1) going over 100%.
+#------------------------------------------------------------------------------
 
-if type -fP pacmd > /dev/null 2>&1; then
-	while IFS=":" read -a X; do
-		[ "${X[0]}" == "Default source name" ] && MASTER="${X[1]## }"
-	done <<< "$(pacmd info)"
-
-	while read -a X; do
-		if [ "${X[0]}" == volume: ]; then
-			if ! [ "$FIRST" == "true" ]; then
-				FIRST="true"
-				continue
-			fi
-
-			[ ${X[2]} -ge 98000 ] && exit 0
-		fi
-	done <<< "$(pacmd list-sources)"
-
-	if type -fP pactl > /dev/null 2>&1; then
-		pactl play-sample x11-volume-change & disown
-		pactl set-source-volume "$MASTER" +500
-	fi
-
-	# Use 'signal=1' and 'interval=once' in the i3blocks configuration file, in
-	# order to have this update only when needed.
-	type -fP pkill > /dev/null 2>&1 && pkill -RTMIN+1 i3blocks
-fi
+pactl set-source-volume '@DEFAULT_SOURCE@' +500
