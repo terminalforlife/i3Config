@@ -3,11 +3,11 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 17 Jan 19:33:51 GMT 2022
+# Last Change       - Mon 17 Jan 19:41:34 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Get current volume and avoid pactl(1) going over 100%.
 #------------------------------------------------------------------------------
 
-pactl set-source-volume '@DEFAULT_SOURCE@' +500
+pactl set-sink-volume '@DEFAULT_SINK@' +500
