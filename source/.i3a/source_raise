@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/source_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Wed 19 Jan 13:16:55 GMT 2022
+# Last Change       - Wed 19 Jan 13:20:44 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -18,6 +18,8 @@ while read; do
 			# If it's less than 130%.
 			if (( Field < 85113 )); then
 				pactl set-source-volume '@DEFAULT_SOURCE@' +500
+
+				exit 0
 			fi
 		}
 	elif [[ $REPLY == *$TargetDev* ]]; then
