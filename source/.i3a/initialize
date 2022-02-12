@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Thu  6 Jan 09:59:07 GMT 2022
+# Last Change       - Sat  5 Feb 16:14:56 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -13,7 +13,13 @@
 xmodmap -e 'keysym F1 = Escape' -e 'keysym Caps_Lock = ' &
 
 dunst -config "$HOME/.config/dunst/dunstrc" &
-compton --config "$HOME/.config/compton.conf" -b &
+
+# I've switched over to `picom`, as of 2022-02-05.
+if command -v picom 1> /dev/null 2>&1; then
+	picom &
+elif command -v compton 1> /dev/null 2>&1; then
+	compton --config "$HOME/.config/compton.conf" -b &
+fi
 
 # Valid use of redshifter(1) as of version 2021-01-12.
 redshift -O `redshifter show`K &
