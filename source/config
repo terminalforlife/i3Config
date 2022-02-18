@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Mon 17 Jan 19:36:08 GMT 2022
+# Last Change       - Fri 18 Feb 01:22:42 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -173,11 +173,9 @@ bindsym shift+Mod4+Left resize grow width 1 px or 1 ppt
 
 #-----------------------------------------------------------FILESYSTEM MOUNTING
 
-bindsym Shift+Mod4+1 exec --no-startup-id sh $HOME/.i3a/partmount -L 'Main\x20Data'
-bindsym Shift+Mod4+2 exec --no-startup-id sh $HOME/.i3a/partmount -L 'Media\x201'
-bindsym Shift+Mod4+3 exec --no-startup-id sh $HOME/.i3a/partmount -L 'Media\x202'
-bindsym Shift+Mod4+4 exec --no-startup-id sh $HOME/.i3a/partmount -L 'Media\x203'
-bindsym Shift+Mod4+5 exec --no-startup-id sh $HOME/.i3a/partmount -L 'CloneZilla'
+bindsym Shift+Mod4+1 exec --no-startup-id bash $HOME/.i3a/partmount -L 'Main Data'
+bindsym Shift+Mod4+2 exec --no-startup-id bash $HOME/.i3a/partmount -L 'VBox'
+bindsym Shift+Mod4+3 exec --no-startup-id bash $HOME/.i3a/partmount -L 'ISOs'
 
 #----------------------------------------------------------REDSHIFT ADJUSTMENTS
 
