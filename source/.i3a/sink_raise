@@ -3,23 +3,26 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Wed 19 Jan 13:20:50 GMT 2022
+# Last Change       - Fri 18 Feb 19:13:25 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
 TargetDev='<bluez_sink.E8_07_BF_04_1C_08.a2dp_sink>'
+LimitInt=65536
 
 while read; do
 	if [[ $TargetFound == True && $REPLY =~ ^[[:space:]]+volume: ]]; then
 		for Field in $REPLY; {
 			(( ++FieldNr == 3 )) || continue
 
-			if (( Field < 65536 )); then
+			if (( (Field + 500) > LimitInt )); then
+				pactl set-sink-volume '@DEFAULT_SINK@' $LimitInt
+			elif (( Field < LimitInt )); then
 				pactl set-sink-volume '@DEFAULT_SINK@' +500
-
-				exit 0
 			fi
+
+			exit 0
 		}
 	elif [[ $REPLY == *$TargetDev* ]]; then
 		TargetFound='True'
