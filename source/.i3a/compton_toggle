@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/compton_toggle
 # Started On        - Sun  3 Jan 05:14:26 GMT 2021
-# Last Change       - Sun  3 Jan 05:16:50 GMT 2021
+# Last Change       - Thu 17 Feb 14:33:11 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -11,7 +11,7 @@
 type -P compton &> /dev/null || exit $?
 
 ps -C compton &> /dev/null && Result='Activated'
-if [ "$Result" == 'Activated' ]; then
+if [[ $Result == Activated ]]; then
 	pkill compton
 else
 	compton -b
