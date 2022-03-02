@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 18 Feb 19:07:50 GMT 2022
+# Last Change       - Wed 23 Feb 20:50:27 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -161,15 +161,15 @@ bindsym Mod1+0 workspace 10
 
 #---------------------------------------------------------------WINDOW RESIZING
 
-bindsym shift+Mod4+semicolon resize shrink width 100 px or 10 ppt
-bindsym shift+Mod4+k resize grow height 100 px or 10 ppt
-bindsym shift+Mod4+l resize shrink height 100 px or 10 ppt
-bindsym shift+Mod4+j resize grow width 100 px or 10 ppt
+bindsym shift+Mod4+semicolon resize shrink width 100 px
+bindsym shift+Mod4+k resize grow height 100 px
+bindsym shift+Mod4+l resize shrink height 100 px
+bindsym shift+Mod4+j resize grow width 100 px
 
-bindsym shift+Mod4+Right resize shrink width 1 px or 1 ppt
-bindsym shift+Mod4+Down resize grow height 1 px or 1 ppt
-bindsym shift+Mod4+Up resize shrink height 1 px or 1 ppt
-bindsym shift+Mod4+Left resize grow width 1 px or 1 ppt
+bindsym shift+Mod4+Right resize shrink width 1 px
+bindsym shift+Mod4+Down resize grow height 1 px
+bindsym shift+Mod4+Up resize shrink height 1 px
+bindsym shift+Mod4+Left resize grow width 1 px
 
 #-----------------------------------------------------------FILESYSTEM MOUNTING
 
@@ -261,6 +261,7 @@ for_window [class="^kdenlive$" title="^Rendering . Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Save As . Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Submit Bug Report . Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Welcome to Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Insert New Track — Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Delete Track — Kdenlive$"] floating enable
 for_window [class="^kdenlive$" title="^Warning — Kdenlive$"] floating enable
 
