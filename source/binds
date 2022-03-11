@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Fri 11 Mar 20:50:18 GMT 2022
+# Last Change       - Fri 11 Mar 20:57:10 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ bindsym Mod1+d exec --no-startup-id sh ~/.i3a/launcher
 bindsym Mod1+c exec --no-startup-id bash ~/.i3a/compton_toggle
 bindsym XF86Calculator exec --no-startup-id xcalc
 
-#------------------------------------------------------------TERMINAL FONT SIZE
+#------------------------------------------------------------Terminal Font Size
 
 bindsym Shift+Ctrl+Up exec --no-startup-id bash ~/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id bash ~/.i3a/term_font_size -l 1
@@ -40,19 +40,19 @@ bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 27
 #bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 15
 #bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 30
 
-#------------------------------------------------------------------TRANSPARENCY
+#------------------------------------------------------------------Transparency
 
 bindsym Mod4+Shift+0 exec --no-startup-id transset --inc -a 0.01
 bindsym Mod4+Shift+9 exec --no-startup-id transset --dec -a 0.01
 
-#-------------------------------------------------------------------X11 DISPLAY
+#-------------------------------------------------------------------X11 Display
 
 bindsym Mod4+m exec --no-startup-id sleep 1s && xset dpms force off
 #bindsym Ctrl+Mod4+R exec --no-startup-id xrandr --output HDMI-1 --rotate right
 #bindsym Ctrl+Mod4+L exec --no-startup-id xrandr --output HDMI-1 --rotate left
 #bindsym Ctrl+Mod4+N exec --no-startup-id xrandr --output HDMI-1 --rotate normal
 
-#------------------------------------------------------------------WINDOW FOCUS
+#------------------------------------------------------------------Window Focus
 
 bindsym Mod1+j focus left
 bindsym Mod1+k focus down
@@ -63,7 +63,7 @@ bindsym Mod1+Down focus down
 bindsym Mod1+Up focus up
 bindsym Mod1+Right focus right
 
-#---------------------------------------------------------------WINDOW MOVEMENT
+#---------------------------------------------------------------Window Movement
 
 bindsym Mod1+Shift+j move left 90 px
 bindsym Mod1+Shift+k move down 90 px
@@ -74,13 +74,13 @@ bindsym Mod1+Shift+Down move down 10 px
 bindsym Mod1+Shift+Up move up 10 px
 bindsym Mod1+Shift+Right move right 10 px
 
-#--------------------------------------------------------------WINDOW SPLITTING
+#--------------------------------------------------------------Window Splitting
 
 bindsym Mod1+h split h
 bindsym Mod1+v split v
 bindsym Mod1+Ctrl+f fullscreen
 
-#------------------------------------------------------------CONTAINER MOVEMENT
+#------------------------------------------------------------Container Movement
 
 bindsym Mod1+Shift+1 move container to workspace 1
 bindsym Mod1+Shift+2 move container to workspace 2
@@ -93,7 +93,7 @@ bindsym Mod1+Shift+8 move container to workspace 8
 bindsym Mod1+Shift+9 move container to workspace 9
 bindsym Mod1+Shift+0 move container to workspace 10
 
-#-----------------------------------------------------------WORKSPACE SWITCHING
+#-----------------------------------------------------------Workspace Switching
 
 bindsym Mod1+1 workspace 1
 bindsym Mod1+2 workspace 2
@@ -106,7 +106,7 @@ bindsym Mod1+8 workspace 8
 bindsym Mod1+9 workspace 9
 bindsym Mod1+0 workspace 10
 
-#---------------------------------------------------------------WINDOW RESIZING
+#---------------------------------------------------------------Window Resizing
 
 bindsym shift+Mod4+semicolon resize shrink width 100 px
 bindsym shift+Mod4+k resize grow height 100 px
@@ -118,23 +118,23 @@ bindsym shift+Mod4+Down resize grow height 1 px
 bindsym shift+Mod4+Up resize shrink height 1 px
 bindsym shift+Mod4+Left resize grow width 1 px
 
-#-----------------------------------------------------------FILESYSTEM MOUNTING
+#-----------------------------------------------------------Filesystem Mounting
 
 bindsym Shift+Mod4+1 exec --no-startup-id bash ~/.i3a/partmount -L 'Main Data'
 bindsym Shift+Mod4+2 exec --no-startup-id bash ~/.i3a/partmount -L 'VBox'
 bindsym Shift+Mod4+3 exec --no-startup-id bash ~/.i3a/partmount -L 'ISOs'
 
-#----------------------------------------------------------REDSHIFT ADJUSTMENTS
+#----------------------------------------------------------Redshift Adjustments
 
 bindsym Mod4+0 exec --no-startup-id redshifter raise 500
 bindsym Mod4+9 exec --no-startup-id redshifter lower 500
 bindsym Mod4+8 exec --no-startup-id redshifter reset
 
-#-----------------------------------------------------------------GROUP ACTIONS
+#-----------------------------------------------------------------Group Actions
 
 bindsym Mod4+k [class="^Xfce4-terminal$"] kill
 
-#----------------------------------------------------AUDIO CONTROL (PULSEAUDIO)
+#----------------------------------------------------Audio Control (PulseAudio)
 
 bindsym Shift+F2 exec --no-startup-id sh ~/.i3a/sink_mute
 bindsym Shift+F3 exec --no-startup-id sh ~/.i3a/sink_lower
@@ -145,13 +145,13 @@ bindsym Shift+Ctrl+F4 exec --no-startup-id bash ~/.i3a/source_raise
 bindsym Shift+F6 exec --no-startup-id bash ~/.i3a/sink_switch
 bindsym Ctrl+Mod4+Mod1+l exec --no-startup-id bash ~/.i3a/toggle_loopback
 
-#----------------------------------------------------------------SCREENSHOOTING
+#----------------------------------------------------------------Screenshooting
 
 bindsym Print exec --no-startup-id sh ~/.i3a/scrot_take
 bindsym Shift+Print exec --no-startup-id sh ~/.i3a/scrot_sel_take
 bindsym Ctrl+Print exec --no-startup-id sh ~/.i3a/scrot_win_take
 
-#--------------------------------------------------MEDIA PLAYBACK CONTROL (MOC)
+#--------------------------------------------------Media Playback Control (MoC)
 
 bindsym Mod4+p exec --no-startup-id sh ~/.i3a/track_notify
 bindsym Mod4+XF86AudioNext exec --no-startup-id mocp --seek +3
@@ -160,7 +160,7 @@ bindsym XF86AudioPlay exec --no-startup-id mocp -G
 bindsym XF86AudioNext exec --no-startup-id mocp --next
 bindsym XF86AudioPrev exec --no-startup-id mocp --previous
 
-#--------------------------------------------MEDIA PLAYBACK CONTROL (AUDACIOUS)
+#--------------------------------------------Media Playback Control (Audacious)
 
 #bindsym XF86AudioNext exec --no-startup-id audtool --playlist-advance
 #bindsym XF86AudioPrev exec --no-startup-id audtool --playlist-reverse

@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/rules
 # Started On        - Fri 11 Mar 20:31:25 GMT 2022
-# Last Change       - Fri 11 Mar 20:31:32 GMT 2022
+# Last Change       - Fri 11 Mar 20:59:30 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -19,19 +19,19 @@ for_window [class=".*"] floating enable
 for_window [class="^Links$" title="^Links$"] floating disable
 for_window [title="^Event Tester$" id="0x1000001"] floating enable
 
-#-----------------------------------------------------------------SKYPE WINDOWS
+#-------------------------------------------------------------------------Skype
 
 #for_window [class="^[Ss]kype$"] floating disable
 
-#---------------------------------------------------------------Discord Windows
+#-----------------------------------------------------------------------Discord
 
 for_window [class="^discord$"] floating disable
 
-#----------------------------------------------------------------PITIVI WINDOWS
+#------------------------------------------------------------------------Pitivi
 
 for_window [class="^Pitivi$" title=" — Pitivi$"] floating disable
 
-#------------------------------------------------------------------------LINKS2
+#------------------------------------------------------------------------Links2
 
 for_window [class="^Geany$"] floating disable
 for_window [class="^Geany$" title="^Colour Schemes$"] floating enable
@@ -41,7 +41,7 @@ for_window [class="^Geany$" title="^(Save|Open) File$"] floating enable
 for_window [class="^Geany$" title="^Keyboard Shortcuts$"] floating enable
 for_window [class="^Geany$" title="^(Find|Replace|Preferences)$"] floating enable
 
-#--------------------------------------------------------XFCE4-TERMINAL WINDOWS
+#----------------------------------------------------------------XFCE4-Terminal
 
 for_window [class="^Xfce4-terminal$"] floating disable
 for_window [class="^Xfce4-terminal$" title="^Choose Terminal Font$"] floating enable
@@ -50,7 +50,7 @@ for_window [class="^Xfce4-terminal$" title="^Select Background Image File$"] flo
 for_window [class="^Xfce4-terminal$" title="^Terminal Preferences$"] floating enable
 for_window [class="^Xfce4-terminal$" title="^Pick a Colour$"] floating enable
 
-#-----------------------------------------------------FIREFOX WINDOWS (>= 98.0)
+#-----------------------------------------------------Firefox Windows (>= 98.0)
 
 for_window [class="firefox$" title="^Mozilla Firefox$"] floating disable
 for_window [class="firefox$" title=".* - Mozilla Firefox"] floating disable
@@ -72,16 +72,16 @@ for_window [class="firefox$" title="^Rename Profile$"] floating enable
 for_window [class="firefox$" title="^Restart Firefox$"] floating enable
 for_window [class="firefox$" title="^Restart with Add-ons Disabled$"] floating enable
 
-#-----------------------------------------------------------THUNDERBIRD WINDOWS
+#-------------------------------------------------------------------Thunderbird
 
 for_window [class="^Thunderbird$" title=" ? Mozilla Thunderbird$"] floating disable
 for_window [class="^Thunderbird$" title="Sending Message - Re:.*$"] floating enable
 
-#-----------------------------------------------------------TERMINOLOGY WINDOWS
+#-------------------------------------------------------------------Terminology
 
 for_window [class="^terminology$"] floating disable
 
-#--------------------------------------------------------------KDENLIVE WINDOWS
+#----------------------------------------------------------------------Kdenlive
 
 for_window [class="^kdenlive$"] floating disable
 for_window [class="^kdenlive$" title="^Archive Project . Kdenlive$"] floating enable
@@ -118,7 +118,7 @@ for_window [class="^Gnome-paint$" title="^Flip and Rotate$"] floating enable
 for_window [class="^Gnome-paint$" title="^About gnome-paint$"] floating enable
 for_window [class="^Gnome-paint$" title="^(Load|Save) Image$"] floating enable
 
-#--------------------------------------------------------------AUDACITY WINDOWS
+#----------------------------------------------------------------------Audacity
 
 for_window [class="^Audacity$"] floating disable
 for_window [class="^Audacity$" title="^Change Speed$"] floating enable
@@ -192,16 +192,16 @@ for_window [class="^Audacity$" title="^Wahwah$"] floating enable
 
 for_window [class="^Alacritty$"] floating disable
 
-#---------------------------------------------------------------COOL-RETRO-TERM
+#-----------------------------------------------------------------CoolRetroTerm
 
 for_window [class="^Cool-Retro-Term-.*"] floating disable
 for_window [class="^Cool-Retro-Term-.*" title="^Settings$"] floating enable
 
-#-------------------------------------------------------------------------SKYPE
+#-------------------------------------------------------------------------Skype
 
 for_window [class="^Skype$"] floating disable
 
-#-------------------------------------------------------------------------STEAM
+#-------------------------------------------------------------------------Steam
 
 for_window [class="^Steam$"] floating disable
 for_window [class="^Steam$" title=" - Steam$"] floating enable
@@ -218,11 +218,11 @@ for_window [class="^Steam$" title="^Steam - News "] floating enable
 for_window [class="^Steam$" title="^Steam Library Folders$"] floating enable
 for_window [class="^Steam$" title="^Validating Steam files - "] floating enable
 
-#------------------------------------------------------------------------LINKS2
+#------------------------------------------------------------------------Links2
 
 for_window [class="^Links$" title="^Links - "] floating enable
 
-#--------------------------------------------------------------------TERMINATOR
+#--------------------------------------------------------------------Terminator
 
 for_window [class="^Terminator$"] floating disable
 for_window [class="^Terminator$" title="^Terminator Preferences$"] floating enable
