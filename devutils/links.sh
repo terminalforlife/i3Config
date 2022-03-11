@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/devutils/links.sh
 # Started On        - Sun 22 Oct 00:15:02 BST 2017
-# Last Change       - Fri 11 Mar 20:34:36 GMT 2022
+# Last Change       - Fri 11 Mar 20:44:57 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -21,6 +21,7 @@ if cd "$HOME/GitHub/terminalforlife/Personal/i3Config"; then
 
 	ln -vf source/config "$HOME/.config/i3/config"
 	ln -vf source/rules "$HOME/.config/i3/rules"
+	ln -vf source/binds "$HOME/.config/i3/binds"
 
 	if cd source/.i3a; then
 		for CurFile in *; do
