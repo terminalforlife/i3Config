@@ -1,0 +1,228 @@
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/rules
+# Started On        - Fri 11 Mar 20:31:25 GMT 2022
+# Last Change       - Fri 11 Mar 20:31:32 GMT 2022
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+# Important `for_window` rules to allow certain programs to display properly.
+# To use this file, simply `include` its contents in your 'config'. IE:
+#
+#   include ~/.config/i3/rules
+#
+# Pull requests to update and add to this file are welcome.
+#------------------------------------------------------------------------------
+
+for_window [window_role="popup"] floating enable
+for_window [class=".*"] border pixel 2
+for_window [class=".*"] floating enable
+for_window [class="^Links$" title="^Links$"] floating disable
+for_window [title="^Event Tester$" id="0x1000001"] floating enable
+
+#-----------------------------------------------------------------SKYPE WINDOWS
+
+#for_window [class="^[Ss]kype$"] floating disable
+
+#---------------------------------------------------------------Discord Windows
+
+for_window [class="^discord$"] floating disable
+
+#----------------------------------------------------------------PITIVI WINDOWS
+
+for_window [class="^Pitivi$" title=" — Pitivi$"] floating disable
+
+#------------------------------------------------------------------------LINKS2
+
+for_window [class="^Geany$"] floating disable
+for_window [class="^Geany$" title="^Colour Schemes$"] floating enable
+for_window [class="^Geany$" title="^Choose font$"] floating enable
+for_window [class="^Geany$" title="^Configure Plugins$"] floating enable
+for_window [class="^Geany$" title="^(Save|Open) File$"] floating enable
+for_window [class="^Geany$" title="^Keyboard Shortcuts$"] floating enable
+for_window [class="^Geany$" title="^(Find|Replace|Preferences)$"] floating enable
+
+#--------------------------------------------------------XFCE4-TERMINAL WINDOWS
+
+for_window [class="^Xfce4-terminal$"] floating disable
+for_window [class="^Xfce4-terminal$" title="^Choose Terminal Font$"] floating enable
+for_window [class="^Xfce4-terminal$" title="^Online Documentation$"] floating enable
+for_window [class="^Xfce4-terminal$" title="^Select Background Image File$"] floating enable
+for_window [class="^Xfce4-terminal$" title="^Terminal Preferences$"] floating enable
+for_window [class="^Xfce4-terminal$" title="^Pick a Colour$"] floating enable
+
+#-----------------------------------------------------FIREFOX WINDOWS (>= 98.0)
+
+for_window [class="firefox$" title="^Mozilla Firefox$"] floating disable
+for_window [class="firefox$" title=".* - Mozilla Firefox"] floating disable
+for_window [class="firefox$" title="Facebook call - Mozilla Firefox"] floating enable
+for_window [class="firefox$" title="NoScript Options"] floating enable
+for_window [class="firefox$" title="^About me . Mozilla Firefox.*$"] floating disable
+for_window [class="firefox$" title="^Adblock Plus.*"] floating enable
+for_window [class="firefox$" title="^Allowed Web Sites . Pop.ups$"] floating enable
+for_window [class="firefox$" title="^Cancel All Downloads\?$"] floating enable
+for_window [class="firefox$" title="^Clear All History$"] floating enable
+for_window [class="firefox$" title="^Clear all cookies and site data$"] floating enable
+for_window [class="firefox$" title="^Close Firefox$"] floating enable
+for_window [class="firefox$" title="^Create Profile Wizard$"] floating enable
+for_window [class="firefox$" title="^Firefox . Choose User Profile$"] floating enable
+for_window [class="firefox$" title="^Firefox Safe Mode$"] floating enable
+for_window [class="firefox$" title="^Problem loading page . Mozilla Firefox$"] floating disable
+for_window [class="firefox$" title="^Profiles Manager$"] floating enable
+for_window [class="firefox$" title="^Rename Profile$"] floating enable
+for_window [class="firefox$" title="^Restart Firefox$"] floating enable
+for_window [class="firefox$" title="^Restart with Add-ons Disabled$"] floating enable
+
+#-----------------------------------------------------------THUNDERBIRD WINDOWS
+
+for_window [class="^Thunderbird$" title=" ? Mozilla Thunderbird$"] floating disable
+for_window [class="^Thunderbird$" title="Sending Message - Re:.*$"] floating enable
+
+#-----------------------------------------------------------TERMINOLOGY WINDOWS
+
+for_window [class="^terminology$"] floating disable
+
+#--------------------------------------------------------------KDENLIVE WINDOWS
+
+for_window [class="^kdenlive$"] floating disable
+for_window [class="^kdenlive$" title="^Archive Project . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Configure.* . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^DVD Wizard . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Files to transcode . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Get Hot New Stuff . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Open . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Project Settings . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Rendering . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Save As . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Submit Bug Report . Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Welcome to Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Insert New Track — Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Delete Track — Kdenlive$"] floating enable
+for_window [class="^kdenlive$" title="^Warning — Kdenlive$"] floating enable
+
+#------------------------------------------------------------------GIMP WINDOWS
+
+for_window [class="^Gimp$" title="^GNU Image Manipulation Program$"] floating disable
+for_window [class="^Gimp$" title=" ? GIMP$"] floating disable
+for_window [class="^Gimp$" title="Tool Options$"] floating enable
+for_window [class="^Gimp$" title="^Quit GIMP$"] floating enable
+
+#--------------------------------------------------------------OPENSHOT WINDOWS
+
+for_window [class="^Openshot$" title="^OpenShot ? "] floating disable
+
+#-----------------------------------------------------------GNOME-PAINT WINDOWS
+
+for_window [class="^Gnome-paint$"] floating disable
+for_window [class="^Gnome-paint$" title="^Flip and Rotate$"] floating enable
+for_window [class="^Gnome-paint$" title="^About gnome-paint$"] floating enable
+for_window [class="^Gnome-paint$" title="^(Load|Save) Image$"] floating enable
+
+#--------------------------------------------------------------AUDACITY WINDOWS
+
+for_window [class="^Audacity$"] floating disable
+for_window [class="^Audacity$" title="^Change Speed$"] floating enable
+for_window [class="^Audacity$" title="^Importing FFmpeg-compatible files$"] floating enable
+for_window [class="^Audacity$" title="^Error$"] floating enable
+for_window [class="^Audacity$" title="^Progress$"] floating enable
+for_window [class="^Audacity$" title="^Importing Ogg Vorbis files$"] floating enable
+for_window [class="^Audacity$" title="^Warning - Orphan Block File\(s\)$"] floating enable
+for_window [class="^Audacity$" title="^Change Pitch$"] floating enable
+for_window [class="^Audacity$" title="^Paulstretch$"] floating enable
+for_window [class="^Audacity$" title="^Automatic Crash Recovery$"] floating enable
+for_window [class="^Audacity$" title="^Warning: Problems in Automatic Recovery$"] floating enable
+for_window [class="^Audacity$" title="^Dependency Check$"] floating enable
+for_window [class="^Audacity$" title="^Print$"] floating enable
+for_window [class="^Audacity$" title="^Page Setup$"] floating enable
+for_window [class="^Audacity$" title="^Edit Chains$"] floating enable
+for_window [class="^Audacity$" title="^Cannot Export Multiple$"] floating enable
+for_window [class="^Audacity$" title="^Select a text file containing labels...$"] floating enable
+for_window [class="^Audacity$" title="^Edit Metadata Tags$"] floating enable
+for_window [class="^Audacity$" title="^Export Selected Audio$"] floating enable
+for_window [class="^Audacity$" title="^Export Audio$"] floating enable
+for_window [class="^Audacity$" title="^Edit Metadata$"] floating enable
+for_window [class="^Audacity$" title="^Aliasing$"] floating enable
+for_window [class="^Audacity$" title="^Amplify$"] floating enable
+for_window [class="^Audacity$" title="^Apply Chain$"] floating enable
+for_window [class="^Audacity$" title="^Audacity Mixer Board$"] floating enable
+for_window [class="^Audacity$" title="^Audacity is starting up...$"] floating enable
+for_window [class="^Audacity$" title="^Auto Duck$"] floating enable
+for_window [class="^Audacity$" title="^Bass and Treble$"] floating enable
+for_window [class="^Audacity$" title="^Change Tempo$"] floating enable
+for_window [class="^Audacity$" title="^Choose a location to place the temporary directory$"] floating enable
+for_window [class="^Audacity$" title="^Choose an EQ curve file$"] floating enable
+for_window [class="^Audacity$" title="^Click Track$"] floating enable
+for_window [class="^Audacity$" title="^Compressor$"] floating enable
+for_window [class="^Audacity$" title="^Crossfade Settings$"] floating enable
+for_window [class="^Audacity$" title="^DTMF Tones$"] floating enable
+for_window [class="^Audacity$" title="^Equaliser$"] floating enable
+for_window [class="^Audacity$" title="^Equalization$"] floating enable
+for_window [class="^Audacity$" title="^Export Keyboard Shortcuts As:$"] floating enable
+for_window [class="^Audacity$" title="^High Pass Filter$"] floating enable
+for_window [class="^Audacity$" title="^Low Pass Filter$"] floating enable
+for_window [class="^Audacity$" title="^Manage Curves$"] floating enable
+for_window [class="^Audacity$" title="^Noise Reduction$"] floating enable
+for_window [class="^Audacity$" title="^Noise$"] floating enable
+for_window [class="^Audacity$" title="^Normalize$"] floating enable
+for_window [class="^Audacity$" title="^Nyquist$"] floating enable
+for_window [class="^Audacity$" title="^Phaser$"] floating enable
+for_window [class="^Audacity$" title="^Playback Speed$"] floating enable
+for_window [class="^Audacity$" title="^Pluck$"] floating enable
+for_window [class="^Audacity$" title="^Plug-in Manager: .*$"] floating enable
+for_window [class="^Audacity$" title="^Preferences: "] floating enable
+for_window [class="^Audacity$" title="^Reverb$"] floating enable
+for_window [class="^Audacity$" title="^Risset Drum$"] floating enable
+for_window [class="^Audacity$" title="^Rule deletion confirmation$"] floating enable
+for_window [class="^Audacity$" title="^Sample Rate Converter Settings$"] floating enable
+for_window [class="^Audacity$" title="^Save Compressed Project \".*\" As...$"] floating enable
+for_window [class="^Audacity$" title="^Save Project \".*\" As...$"] floating enable
+for_window [class="^Audacity$" title="^Save changes?"] floating enable
+for_window [class="^Audacity$" title="^Select an XML file containing Audacity keyboard shortcuts...$"] floating enable
+for_window [class="^Audacity$" title="^Select one or more audio files...$"] floating enable
+for_window [class="^Audacity$" title="^Silence Removal Settings$"] floating enable
+for_window [class="^Audacity$" title="^Silence$"] floating enable
+for_window [class="^Audacity$" title="^Sliding Time Scale/Pitch Shift$"] floating enable
+for_window [class="^Audacity$" title="^Sound Activated Record$"] floating enable
+for_window [class="^Audacity$" title="^Spectrum Analyzer$"] floating disable
+for_window [class="^Audacity$" title="^Tone$"] floating enable
+for_window [class="^Audacity$" title="^Truncate Silence$"] floating enable
+for_window [class="^Audacity$" title="^Wahwah$"] floating enable
+
+#---------------------------------------------------------------------Alacritty
+
+for_window [class="^Alacritty$"] floating disable
+
+#---------------------------------------------------------------COOL-RETRO-TERM
+
+for_window [class="^Cool-Retro-Term-.*"] floating disable
+for_window [class="^Cool-Retro-Term-.*" title="^Settings$"] floating enable
+
+#-------------------------------------------------------------------------SKYPE
+
+for_window [class="^Skype$"] floating disable
+
+#-------------------------------------------------------------------------STEAM
+
+for_window [class="^Steam$"] floating disable
+for_window [class="^Steam$" title=" - Steam$"] floating enable
+for_window [class="^Steam$" title="^About Steam$"] floating enable
+for_window [class="^Steam$" title="^Add a Game$"] floating enable
+for_window [class="^Steam$" title="^Create or select new Steam library folder:$"] floating enable
+for_window [class="^Steam$" title="^Friends List$"] floating enable
+for_window [class="^Steam$" title="^Install - "] floating enable
+for_window [class="^Steam$" title="^Product Activation$"] floating enable
+for_window [class="^Steam$" title="^Properties - "] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title="^Steam - Error$"] floating enable
+for_window [class="^Steam$" title="^Steam - News "] floating enable
+for_window [class="^Steam$" title="^Steam Library Folders$"] floating enable
+for_window [class="^Steam$" title="^Validating Steam files - "] floating enable
+
+#------------------------------------------------------------------------LINKS2
+
+for_window [class="^Links$" title="^Links - "] floating enable
+
+#--------------------------------------------------------------------TERMINATOR
+
+for_window [class="^Terminator$"] floating disable
+for_window [class="^Terminator$" title="^Terminator Preferences$"] floating enable

@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Fri 11 Mar 15:18:51 GMT 2022
+# Last Change       - Fri 11 Mar 20:34:14 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -14,9 +14,6 @@
 # Certain features call scripts I've written to allow for additional
 # functionality. I love the `i3-wm` configuration file, but I long for shell
 # syntax and logic!
-#
-# The for_windows are biased towards tiling (duh!). It's not perfect, not that
-# i3 is inherently perfect, but it's pretty decent, at least for what I use.
 #
 # I don't use a variable for the "mod" key I want to use. If you want to change
 # to the other mod key, you can use `sed` or vim global substitution. Just know
@@ -48,6 +45,10 @@ popup_during_fullscreen smart
 force_display_urgency_hint 1000 ms
 focus_on_window_activation urgent
 
+#--------------------------------------------------------------------INCLUSIONS
+
+include ~/.config/i3/rules
+
 #-----------------------------------------------------------------MAIN BINDINGS
 
 gaps inner 40
@@ -62,29 +63,29 @@ bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
 bindsym Mod1+Return exec --no-startup-id alacritty
-bindsym Shift+Ctrl+Up exec --no-startup-id bash $HOME/.i3a/term_font_size -r 1
-bindsym Shift+Ctrl+Down exec --no-startup-id bash $HOME/.i3a/term_font_size -l 1
+bindsym Shift+Ctrl+Up exec --no-startup-id bash ~/.i3a/term_font_size -r 1
+bindsym Shift+Ctrl+Down exec --no-startup-id bash ~/.i3a/term_font_size -l 1
 
 # For Mononoki (Alacritty):
-bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 14
-bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 27
+bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 14
+bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 27
 
 # For Monofur (XFCE4-Terminal):
-#bindsym Shift+Ctrl+Left exec --no-startup-id bash $HOME/.i3a/term_font_size -s 15
-#bindsym Shift+Ctrl+Right exec --no-startup-id bash $HOME/.i3a/term_font_size -s 30
+#bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 15
+#bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 30
 
 bindsym Mod4+w exec --no-startup-id mplayer tv:// -vo x11 -zoom -fps 30 -x 320 -y 240
 bindsym Mod4+m exec --no-startup-id sleep 1s && xset dpms force off
 bindsym Mod4+Shift+0 exec --no-startup-id transset --inc -a 0.01
 bindsym Mod4+Shift+9 exec --no-startup-id transset --dec -a 0.01
-bindsym Mod1+Shift+M exec --no-startup-id perl $HOME/.i3a/toggle_pad
-bindsym Ctrl+Mod1+L exec --no-startup-id perl $HOME/.i3a/leave_session
+bindsym Mod1+Shift+M exec --no-startup-id perl ~/.i3a/toggle_pad
+bindsym Ctrl+Mod1+L exec --no-startup-id perl ~/.i3a/leave_session
 bindsym Ctrl+Mod1+B exec --no-startup-id blueman-manager
 #bindsym Ctrl+Mod4+R exec --no-startup-id xrandr --output HDMI-1 --rotate right
 #bindsym Ctrl+Mod4+L exec --no-startup-id xrandr --output HDMI-1 --rotate left
 #bindsym Ctrl+Mod4+N exec --no-startup-id xrandr --output HDMI-1 --rotate normal
-bindsym Ctrl+Shift+K exec --no-startup-id sh $HOME/.i3a/key_autorepeat
-bindsym Mod4+L exec --no-startup-id sh $HOME/.i3a/lockscreen
+bindsym Ctrl+Shift+K exec --no-startup-id sh ~/.i3a/key_autorepeat
+bindsym Mod4+L exec --no-startup-id sh ~/.i3a/lockscreen
 
 #-------------------------------------------------------------------SOME COLORS
 
@@ -173,9 +174,9 @@ bindsym shift+Mod4+Left resize grow width 1 px
 
 #-----------------------------------------------------------FILESYSTEM MOUNTING
 
-bindsym Shift+Mod4+1 exec --no-startup-id bash $HOME/.i3a/partmount -L 'Main Data'
-bindsym Shift+Mod4+2 exec --no-startup-id bash $HOME/.i3a/partmount -L 'VBox'
-bindsym Shift+Mod4+3 exec --no-startup-id bash $HOME/.i3a/partmount -L 'ISOs'
+bindsym Shift+Mod4+1 exec --no-startup-id bash ~/.i3a/partmount -L 'Main Data'
+bindsym Shift+Mod4+2 exec --no-startup-id bash ~/.i3a/partmount -L 'VBox'
+bindsym Shift+Mod4+3 exec --no-startup-id bash ~/.i3a/partmount -L 'ISOs'
 
 #----------------------------------------------------------REDSHIFT ADJUSTMENTS
 
@@ -187,240 +188,24 @@ bindsym Mod4+8 exec --no-startup-id redshifter reset
 
 bindsym Mod4+k [class="^Xfce4-terminal$"] kill
 
-#---------------------------------------------------------MISCELLANEOUS WINDOWS
-
-for_window [window_role="popup"] floating enable
-for_window [class=".*"] border pixel 2
-for_window [class=".*"] floating enable
-for_window [class="^Links$" title="^Links$"] floating disable
-for_window [title="^Event Tester$" id="0x1000001"] floating enable
-
-#-----------------------------------------------------------------SKYPE WINDOWS
-
-#for_window [class="^[Ss]kype$"] floating disable
-
-#---------------------------------------------------------------Discord Windows
-
-for_window [class="^discord$"] floating disable
-
-#----------------------------------------------------------------PITIVI WINDOWS
-
-for_window [class="^Pitivi$" title=" — Pitivi$"] floating disable
-
-#------------------------------------------------------------------------LINKS2
-
-for_window [class="^Geany$"] floating disable
-for_window [class="^Geany$" title="^Colour Schemes$"] floating enable
-for_window [class="^Geany$" title="^Choose font$"] floating enable
-for_window [class="^Geany$" title="^Configure Plugins$"] floating enable
-for_window [class="^Geany$" title="^(Save|Open) File$"] floating enable
-for_window [class="^Geany$" title="^Keyboard Shortcuts$"] floating enable
-for_window [class="^Geany$" title="^(Find|Replace|Preferences)$"] floating enable
-
-#--------------------------------------------------------XFCE4-TERMINAL WINDOWS
-
-for_window [class="^Xfce4-terminal$"] floating disable
-for_window [class="^Xfce4-terminal$" title="^Choose Terminal Font$"] floating enable
-for_window [class="^Xfce4-terminal$" title="^Online Documentation$"] floating enable
-for_window [class="^Xfce4-terminal$" title="^Select Background Image File$"] floating enable
-for_window [class="^Xfce4-terminal$" title="^Terminal Preferences$"] floating enable
-for_window [class="^Xfce4-terminal$" title="^Pick a Colour$"] floating enable
-
-#-----------------------------------------------------FIREFOX WINDOWS (>= 98.0)
-
-for_window [class="firefox$" title="^Mozilla Firefox$"] floating disable
-for_window [class="firefox$" title=".* - Mozilla Firefox"] floating disable
-for_window [class="firefox$" title="Facebook call - Mozilla Firefox"] floating enable
-for_window [class="firefox$" title="NoScript Options"] floating enable
-for_window [class="firefox$" title="^About me . Mozilla Firefox.*$"] floating disable
-for_window [class="firefox$" title="^Adblock Plus.*"] floating enable
-for_window [class="firefox$" title="^Allowed Web Sites . Pop.ups$"] floating enable
-for_window [class="firefox$" title="^Cancel All Downloads\?$"] floating enable
-for_window [class="firefox$" title="^Clear All History$"] floating enable
-for_window [class="firefox$" title="^Clear all cookies and site data$"] floating enable
-for_window [class="firefox$" title="^Close Firefox$"] floating enable
-for_window [class="firefox$" title="^Create Profile Wizard$"] floating enable
-for_window [class="firefox$" title="^Firefox . Choose User Profile$"] floating enable
-for_window [class="firefox$" title="^Firefox Safe Mode$"] floating enable
-for_window [class="firefox$" title="^Problem loading page . Mozilla Firefox$"] floating disable
-for_window [class="firefox$" title="^Profiles Manager$"] floating enable
-for_window [class="firefox$" title="^Rename Profile$"] floating enable
-for_window [class="firefox$" title="^Restart Firefox$"] floating enable
-for_window [class="firefox$" title="^Restart with Add-ons Disabled$"] floating enable
-
-#-----------------------------------------------------------THUNDERBIRD WINDOWS
-
-for_window [class="^Thunderbird$" title=" ? Mozilla Thunderbird$"] floating disable
-for_window [class="^Thunderbird$" title="Sending Message - Re:.*$"] floating enable
-
-#-----------------------------------------------------------TERMINOLOGY WINDOWS
-
-for_window [class="^terminology$"] floating disable
-
-#--------------------------------------------------------------KDENLIVE WINDOWS
-
-for_window [class="^kdenlive$"] floating disable
-for_window [class="^kdenlive$" title="^Archive Project . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Configure.* . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^DVD Wizard . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Files to transcode . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Get Hot New Stuff . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Open . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Project Settings . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Rendering . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Save As . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Submit Bug Report . Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Welcome to Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Insert New Track — Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Delete Track — Kdenlive$"] floating enable
-for_window [class="^kdenlive$" title="^Warning — Kdenlive$"] floating enable
-
-#------------------------------------------------------------------GIMP WINDOWS
-
-for_window [class="^Gimp$" title="^GNU Image Manipulation Program$"] floating disable
-for_window [class="^Gimp$" title=" ? GIMP$"] floating disable
-for_window [class="^Gimp$" title="Tool Options$"] floating enable
-for_window [class="^Gimp$" title="^Quit GIMP$"] floating enable
-
-#--------------------------------------------------------------OPENSHOT WINDOWS
-
-for_window [class="^Openshot$" title="^OpenShot ? "] floating disable
-
-#-----------------------------------------------------------GNOME-PAINT WINDOWS
-
-for_window [class="^Gnome-paint$"] floating disable
-for_window [class="^Gnome-paint$" title="^Flip and Rotate$"] floating enable
-for_window [class="^Gnome-paint$" title="^About gnome-paint$"] floating enable
-for_window [class="^Gnome-paint$" title="^(Load|Save) Image$"] floating enable
-
-#--------------------------------------------------------------AUDACITY WINDOWS
-
-for_window [class="^Audacity$"] floating disable
-for_window [class="^Audacity$" title="^Change Speed$"] floating enable
-for_window [class="^Audacity$" title="^Importing FFmpeg-compatible files$"] floating enable
-for_window [class="^Audacity$" title="^Error$"] floating enable
-for_window [class="^Audacity$" title="^Progress$"] floating enable
-for_window [class="^Audacity$" title="^Importing Ogg Vorbis files$"] floating enable
-for_window [class="^Audacity$" title="^Warning - Orphan Block File\(s\)$"] floating enable
-for_window [class="^Audacity$" title="^Change Pitch$"] floating enable
-for_window [class="^Audacity$" title="^Paulstretch$"] floating enable
-for_window [class="^Audacity$" title="^Automatic Crash Recovery$"] floating enable
-for_window [class="^Audacity$" title="^Warning: Problems in Automatic Recovery$"] floating enable
-for_window [class="^Audacity$" title="^Dependency Check$"] floating enable
-for_window [class="^Audacity$" title="^Print$"] floating enable
-for_window [class="^Audacity$" title="^Page Setup$"] floating enable
-for_window [class="^Audacity$" title="^Edit Chains$"] floating enable
-for_window [class="^Audacity$" title="^Cannot Export Multiple$"] floating enable
-for_window [class="^Audacity$" title="^Select a text file containing labels...$"] floating enable
-for_window [class="^Audacity$" title="^Edit Metadata Tags$"] floating enable
-for_window [class="^Audacity$" title="^Export Selected Audio$"] floating enable
-for_window [class="^Audacity$" title="^Export Audio$"] floating enable
-for_window [class="^Audacity$" title="^Edit Metadata$"] floating enable
-for_window [class="^Audacity$" title="^Aliasing$"] floating enable
-for_window [class="^Audacity$" title="^Amplify$"] floating enable
-for_window [class="^Audacity$" title="^Apply Chain$"] floating enable
-for_window [class="^Audacity$" title="^Audacity Mixer Board$"] floating enable
-for_window [class="^Audacity$" title="^Audacity is starting up...$"] floating enable
-for_window [class="^Audacity$" title="^Auto Duck$"] floating enable
-for_window [class="^Audacity$" title="^Bass and Treble$"] floating enable
-for_window [class="^Audacity$" title="^Change Tempo$"] floating enable
-for_window [class="^Audacity$" title="^Choose a location to place the temporary directory$"] floating enable
-for_window [class="^Audacity$" title="^Choose an EQ curve file$"] floating enable
-for_window [class="^Audacity$" title="^Click Track$"] floating enable
-for_window [class="^Audacity$" title="^Compressor$"] floating enable
-for_window [class="^Audacity$" title="^Crossfade Settings$"] floating enable
-for_window [class="^Audacity$" title="^DTMF Tones$"] floating enable
-for_window [class="^Audacity$" title="^Equaliser$"] floating enable
-for_window [class="^Audacity$" title="^Equalization$"] floating enable
-for_window [class="^Audacity$" title="^Export Keyboard Shortcuts As:$"] floating enable
-for_window [class="^Audacity$" title="^High Pass Filter$"] floating enable
-for_window [class="^Audacity$" title="^Low Pass Filter$"] floating enable
-for_window [class="^Audacity$" title="^Manage Curves$"] floating enable
-for_window [class="^Audacity$" title="^Noise Reduction$"] floating enable
-for_window [class="^Audacity$" title="^Noise$"] floating enable
-for_window [class="^Audacity$" title="^Normalize$"] floating enable
-for_window [class="^Audacity$" title="^Nyquist$"] floating enable
-for_window [class="^Audacity$" title="^Phaser$"] floating enable
-for_window [class="^Audacity$" title="^Playback Speed$"] floating enable
-for_window [class="^Audacity$" title="^Pluck$"] floating enable
-for_window [class="^Audacity$" title="^Plug-in Manager: .*$"] floating enable
-for_window [class="^Audacity$" title="^Preferences: "] floating enable
-for_window [class="^Audacity$" title="^Reverb$"] floating enable
-for_window [class="^Audacity$" title="^Risset Drum$"] floating enable
-for_window [class="^Audacity$" title="^Rule deletion confirmation$"] floating enable
-for_window [class="^Audacity$" title="^Sample Rate Converter Settings$"] floating enable
-for_window [class="^Audacity$" title="^Save Compressed Project \".*\" As...$"] floating enable
-for_window [class="^Audacity$" title="^Save Project \".*\" As...$"] floating enable
-for_window [class="^Audacity$" title="^Save changes?"] floating enable
-for_window [class="^Audacity$" title="^Select an XML file containing Audacity keyboard shortcuts...$"] floating enable
-for_window [class="^Audacity$" title="^Select one or more audio files...$"] floating enable
-for_window [class="^Audacity$" title="^Silence Removal Settings$"] floating enable
-for_window [class="^Audacity$" title="^Silence$"] floating enable
-for_window [class="^Audacity$" title="^Sliding Time Scale/Pitch Shift$"] floating enable
-for_window [class="^Audacity$" title="^Sound Activated Record$"] floating enable
-for_window [class="^Audacity$" title="^Spectrum Analyzer$"] floating disable
-for_window [class="^Audacity$" title="^Tone$"] floating enable
-for_window [class="^Audacity$" title="^Truncate Silence$"] floating enable
-for_window [class="^Audacity$" title="^Wahwah$"] floating enable
-
-#---------------------------------------------------------------------Alacritty
-
-for_window [class="^Alacritty$"] floating disable
-
-#---------------------------------------------------------------COOL-RETRO-TERM
-
-for_window [class="^Cool-Retro-Term-.*"] floating disable
-for_window [class="^Cool-Retro-Term-.*" title="^Settings$"] floating enable
-
-#-------------------------------------------------------------------------SKYPE
-
-for_window [class="^Skype$"] floating disable
-
-#-------------------------------------------------------------------------STEAM
-
-for_window [class="^Steam$"] floating disable
-for_window [class="^Steam$" title=" - Steam$"] floating enable
-for_window [class="^Steam$" title="^About Steam$"] floating enable
-for_window [class="^Steam$" title="^Add a Game$"] floating enable
-for_window [class="^Steam$" title="^Create or select new Steam library folder:$"] floating enable
-for_window [class="^Steam$" title="^Friends List$"] floating enable
-for_window [class="^Steam$" title="^Install - "] floating enable
-for_window [class="^Steam$" title="^Product Activation$"] floating enable
-for_window [class="^Steam$" title="^Properties - "] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title="^Steam - Error$"] floating enable
-for_window [class="^Steam$" title="^Steam - News "] floating enable
-for_window [class="^Steam$" title="^Steam Library Folders$"] floating enable
-for_window [class="^Steam$" title="^Validating Steam files - "] floating enable
-
-#------------------------------------------------------------------------LINKS2
-
-for_window [class="^Links$" title="^Links - "] floating enable
-
-#--------------------------------------------------------------------TERMINATOR
-
-for_window [class="^Terminator$"] floating disable
-for_window [class="^Terminator$" title="^Terminator Preferences$"] floating enable
-
 #----------------------------------------------------------------EXTRA BINDINGS
 
 # For keyboards without XF86 media controls. (just comment out to disable)
-bindsym Shift+F2 exec --no-startup-id sh $HOME/.i3a/sink_mute
-bindsym Shift+F3 exec --no-startup-id sh $HOME/.i3a/sink_lower
-bindsym Shift+F4 exec --no-startup-id bash $HOME/.i3a/sink_raise
-bindsym Shift+Ctrl+F2 exec --no-startup-id sh $HOME/.i3a/source_mute
-bindsym Shift+Ctrl+F3 exec --no-startup-id sh $HOME/.i3a/source_lower
-bindsym Shift+Ctrl+F4 exec --no-startup-id bash $HOME/.i3a/source_raise
-bindsym Shift+F6 exec --no-startup-id bash $HOME/.i3a/sink_switch
-bindsym Ctrl+Mod4+Mod1+l exec --no-startup-id bash $HOME/.i3a/toggle_loopback
+bindsym Shift+F2 exec --no-startup-id sh ~/.i3a/sink_mute
+bindsym Shift+F3 exec --no-startup-id sh ~/.i3a/sink_lower
+bindsym Shift+F4 exec --no-startup-id bash ~/.i3a/sink_raise
+bindsym Shift+Ctrl+F2 exec --no-startup-id sh ~/.i3a/source_mute
+bindsym Shift+Ctrl+F3 exec --no-startup-id sh ~/.i3a/source_lower
+bindsym Shift+Ctrl+F4 exec --no-startup-id bash ~/.i3a/source_raise
+bindsym Shift+F6 exec --no-startup-id bash ~/.i3a/sink_switch
+bindsym Ctrl+Mod4+Mod1+l exec --no-startup-id bash ~/.i3a/toggle_loopback
 
 bindsym XF86Calculator exec --no-startup-id xcalc
-bindsym Print exec --no-startup-id sh $HOME/.i3a/scrot_take
-bindsym Shift+Print exec --no-startup-id sh $HOME/.i3a/scrot_sel_take
-bindsym Ctrl+Print exec --no-startup-id sh $HOME/.i3a/scrot_win_take
-bindsym Mod1+d exec --no-startup-id sh $HOME/.i3a/launcher
-bindsym Mod1+c exec --no-startup-id bash $HOME/.i3a/compton_toggle
+bindsym Print exec --no-startup-id sh ~/.i3a/scrot_take
+bindsym Shift+Print exec --no-startup-id sh ~/.i3a/scrot_sel_take
+bindsym Ctrl+Print exec --no-startup-id sh ~/.i3a/scrot_win_take
+bindsym Mod1+d exec --no-startup-id sh ~/.i3a/launcher
+bindsym Mod1+c exec --no-startup-id bash ~/.i3a/compton_toggle
 
 # Useful to run this now and then if I get any weirdness during games. This is
 # only applicable when using nVidia proprietary garbage drivers. This also sets
@@ -429,7 +214,7 @@ bindsym Mod1+c exec --no-startup-id bash $HOME/.i3a/compton_toggle
 
 #--------------------------------------------------MEDIA PLAYBACK CONTROL (MOC)
 
-bindsym Mod4+p exec --no-startup-id sh $HOME/.i3a/track_notify
+bindsym Mod4+p exec --no-startup-id sh ~/.i3a/track_notify
 bindsym Mod4+XF86AudioNext exec --no-startup-id mocp --seek +3
 bindsym Mod4+XF86AudioPrev exec --no-startup-id mocp --seek -3
 bindsym XF86AudioPlay exec --no-startup-id mocp -G
@@ -446,4 +231,4 @@ bindsym XF86AudioPrev exec --no-startup-id mocp --previous
 
 #--------------------------------------------------------SESSION INITIALIZATION
 
-exec --no-startup-id sh $HOME/.i3a/initialize
+exec --no-startup-id sh ~/.i3a/initialize
