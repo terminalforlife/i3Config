@@ -3,18 +3,16 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Sun 12 Dec 08:42:16 GMT 2021
+# Last Change       - Fri 11 Mar 15:17:41 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-CurVer='2021-12-12'
-Progrm=${0##*/}
+CurVer='2022-03-11'
+Progrm='term_font_size'
 
-Usage(){
-	while read; do
-		printf '%s\n' "$REPLY"
-	done <<-EOF
+Usage() {
+	read -d '' <<-EOF
 		Usage: $Progrm [OPTS]
 
 		  -h, --help               - Displays this help information.
@@ -24,43 +22,50 @@ Usage(){
 		  -r, --raise [N]          - Raise font size by N.
 		  -s, --set [N]            - Set font size to N.
 
-		NOTE:    Due to the nature of the way in which this terminal checks for
-		         and processes the changes to its configuration file, this
-		         approach is sluggish to respond, but still works nicely, for
-		         those running older versions.
+		NOTE: This tool only supports xfce4-terminal(1) and alacritty(1).
 	EOF
+
+	printf '%s' "$REPLY"
 }
 
-Err(){
-	printf 'ERROR: %s\n' "$2" 1>&2
-	[ $1 -eq 1 ] && exit 1
+Err() {
+	printf 'Err: %s\n' "$2" 1>&2
+	(( $1 > 0 )) && exit $1
 }
 
-CheckVal(){
-	[[ $1 =~ ^[0-9]+$ ]] || Err 1 'Invalid expression.'
-}
-
-while [ -n "$1" ]; do
+while [[ -n $1 ]]; do
 	case $1 in
 		--help|-h|-\?)
 			Usage; exit 0 ;;
 		--version|-v)
 			printf '%s\n' "$CurVer"; exit 0 ;;
 		--raise|-r)
-			CheckVal "$2"
-			declare -i Raise=$2
-
-			shift ;;
+			if [[ -z $2 ]]; then
+				Err 1 "Option '$1' requires an argument."
+			elif ! [[ $2 =~ ^[0-9]+$ ]]; then
+				Err 1 "Option '$1' given invalid expression."
+			else
+				Raise=$2
+				shift
+			fi ;;
 		--lower|-l)
-			CheckVal "$2"
-			declare -i Lower=$2
-
-			shift ;;
+			if [[ -z $2 ]]; then
+				Err 1 "Option '$1' requires an argument."
+			elif ! [[ $2 =~ ^[0-9]+$ ]]; then
+				Err 1 "Option '$1' given invalid expression."
+			else
+				Lower=$2
+				shift
+			fi ;;
 		--set|-s)
-			CheckVal "$2"
-			declare -i SetTo=$2
-
-			shift ;;
+			if [[ -z $2 ]]; then
+				Err 1 "Option '$1' requires an argument."
+			elif ! [[ $2 =~ ^[0-9]+$ ]]; then
+				Err 1 "Option '$1' given invalid expression."
+			else
+				SetTo=$2
+				shift
+			fi ;;
 		*)
 			Err 1 'Incorrect argument(s) specified' ;;
 	esac
@@ -71,22 +76,57 @@ if ! type -P sed &> /dev/null; then
 	Err 1 "Dependency 'sed' not met."
 fi
 
-Config="$HOME/.config/xfce4/terminal/terminalrc"
+Configs=(
+	"$HOME/.config/alacritty/alacritty.yml"
+	"$HOME/.config/xfce4/terminal/terminalrc"
+)
 
-[ -f "$Config" ] || Err 1 'The configuration file is missing.'
+if [[ -f ${Configs[0]} ]]; then
+	if [[ -r ${Configs[0]} ]]; then
+		while read; do
+			case $REPLY in
+				\ \ size:\ *)
+					Now=${REPLY#*: }
+					break ;;
+			esac
+		done < "${Configs[0]}"
 
-while IFS='=' read Key Value; do
-	case $Key in
-		FontName)
-			Now=${Value##* }
-			break ;;
-	esac
-done < "$Config"
+		if [[ -w ${Configs[0]} ]]; then
+			if [[ -n $Raise ]]; then
+				sed -ri "s/^(\s\ssize:\s+)$Now$/\1$(( Now + Raise ))/" "${Configs[0]}"
+			elif [[ -n $Lower ]]; then
+				sed -ri "s/^(\s\ssize:\s+)$Now$/\1$(( Now - Lower ))/" "${Configs[0]}"
+			elif [[ -n $SetTo ]]; then
+				sed -ri "s/^(\s\ssize:\s+)$Now$/\1$SetTo/" "${Configs[0]}"
+			fi
+		else
+			Err 1 "File '${Configs[0]}' unwritable."
+		fi
+	else
+		Err 1 "File '${Configs[0]}' unreadable."
+	fi
+elif [[ -f ${Configss[1]} ]]; then
+	if [[ -r ${Configs[1]} ]]; then
+		while IFS='=' read Key Value; do
+			case $Key in
+				FontName)
+					Now=${Value##* }
+					break ;;
+			esac
+		done < "${Configs[1]}"
 
-if [ -n "$Raise" ]; then
-	sed -i "/^FontName=/s/${Now}$/$((Now+Raise))/" "$Config"
-elif [ -n "$Lower" ]; then
-	sed -i "/^FontName=/s/${Now}$/$((Now-Lower))/" "$Config"
-elif [ -n "$SetTo" ]; then
-	sed -i "/^FontName=/s/${Now}$/$SetTo/" "$Config"
+		if [[ -w ${Configs[1]} ]]; then
+			if [[ -n $Raise ]]; then
+				sed -i "/^FontName=/s/$Now$/$(( Now + Raise ))/" "${Configs[1]}"
+			elif [[ -n $Lower ]]; then
+				sed -i "/^FontName=/s/$Now$/$(( Now - Lower ))/" "${Configs[1]}"
+			elif [[ -n $SetTo ]]; then
+				sed -i "/^FontName=/s/$Now$/$SetTo/" "${Configs[1]}"
+			fi
+		else
+			Err 1 "File '${Configs[1]}' unwritable."
+		fi
+	else
+		Err 1 "File '${Configs[1]}' unreadable."
+	fi
 fi
