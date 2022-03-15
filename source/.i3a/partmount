@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/partmount
 # Started On        - Mon 15 Jan 20:17:34 GMT 2018
-# Last Change       - Fri 18 Feb 01:25:28 GMT 2022
+# Last Change       - Tue 15 Mar 21:44:12 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -42,14 +42,11 @@ Mounter() {
 	fi
 }
 
-while [[ -n $1 ]]; do
-	case $1 in
-		--uuid|-U)
-			shift; Mounter "/dev/disk/by-uuid/$1" 'UUID' ;;
-		--label|-L)
-			shift; Mounter "/dev/disk/by-label/${1// /\\x20}" 'label' ;;
-		--name|-N)
-			shift; Mounter "/dev/${1#/dev/}" 'name' ;;
-	esac
-	shift
-done
+case $1 in
+	--uuid|-U)
+		Mounter "/dev/disk/by-uuid/$2" 'UUID' ;;
+	--label|-L)
+		Mounter "/dev/disk/by-label/${2// /\\x20}" 'label' ;;
+	--name|-N)
+		Mounter "/dev/${2#/dev/}" 'name' ;;
+esac
