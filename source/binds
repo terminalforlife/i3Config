@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Wed 16 Mar 22:55:31 GMT 2022
+# Last Change       - Wed 16 Mar 23:02:25 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -147,9 +147,9 @@ bindsym Ctrl+Mod4+Mod1+l exec --no-startup-id bash ~/.i3a/toggle_loopback
 
 #----------------------------------------------------------------Screenshooting
 
-bindsym Print exec --no-startup-id sh ~/.i3a/shooter
-bindsym Shift+Print exec --no-startup-id sh ~/.i3a/shooter -s
-bindsym Ctrl+Print exec --no-startup-id sh ~/.i3a/shooter -w
+bindsym Print exec --no-startup-id bash ~/.i3a/shooter
+bindsym Shift+Print exec --no-startup-id bash ~/.i3a/shooter -s
+bindsym Ctrl+Print exec --no-startup-id bash ~/.i3a/shooter -w
 
 #--------------------------------------------------Media Playback Control (MoC)
 
