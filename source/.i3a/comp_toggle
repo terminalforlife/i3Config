@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 
 #------------------------------------------------------------------------------
-# Project Name      - i3Config/source/.i3a/compton_toggle
+# Project Name      - i3Config/source/.i3a/comp_toggle
 # Started On        - Sun  3 Jan 05:14:26 GMT 2021
-# Last Change       - Thu 17 Feb 14:33:11 GMT 2022
+# Last Change       - Wed 16 Mar 22:41:57 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-type -P compton &> /dev/null || exit $?
+# picom | compton
+Which='picom'
 
-ps -C compton &> /dev/null && Result='Activated'
+type -P $Which &> /dev/null || exit $?
+
+ps -C $Which &> /dev/null && Result='Activated'
 if [[ $Result == Activated ]]; then
-	pkill compton
+	pkill $Which
 else
-	compton -b
+	$Which -b
 fi
