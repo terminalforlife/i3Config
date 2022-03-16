@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/shooter
+# Started On        - Fri 27 Oct 14:55:25 BST 2017
+# Last Change       - Wed 16 Mar 22:57:38 GMT 2022
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+# Take a screen-, selection-, or window-shot with scrot(1).
+#------------------------------------------------------------------------------
+
+case $1 in
+	--window|-w)
+		printf -v File '%s/Desktop/Windowshot_%(%F_%X)T.jpg' "$HOME" -1
+		scrot -zuq 100 "$File" && notify-send 'Windowshot taken and saved.' ;;
+	--select|-s)
+		printf -v File '%s/Desktop/Selectshot_%(%F_%X)T.jpg' "$HOME" -1
+		scrot -zsq 100 -d 1 "$File" && notify-send 'Selectshot taken and saved.' ;;
+	'')
+		printf -v File '%s/Desktop/Screenshot_%(%F_%X)T.jpg' "$HOME" -1
+		scrot -zq 100 "$File" && notify-send 'Screenshot taken and saved.' ;;
+	*)
+		printf 'Err: Invalid argument(s)\n' 1>&2
+		exit 1 ;;
+esac

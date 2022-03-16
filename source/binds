@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Mon 14 Mar 19:20:40 GMT 2022
+# Last Change       - Wed 16 Mar 22:55:31 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ bindsym Ctrl+Mod1+B exec --no-startup-id blueman-manager
 bindsym Ctrl+Shift+K exec --no-startup-id sh ~/.i3a/key_autorepeat
 bindsym Mod4+L exec --no-startup-id sh ~/.i3a/lockscreen
 bindsym Mod1+d exec --no-startup-id sh ~/.i3a/launcher
-bindsym Mod1+c exec --no-startup-id bash ~/.i3a/compton_toggle
+bindsym Mod1+c exec --no-startup-id bash ~/.i3a/comp_toggle
 bindsym XF86Calculator exec --no-startup-id xcalc
 
 #------------------------------------------------------------Terminal Font Size
@@ -147,9 +147,9 @@ bindsym Ctrl+Mod4+Mod1+l exec --no-startup-id bash ~/.i3a/toggle_loopback
 
 #----------------------------------------------------------------Screenshooting
 
-bindsym Print exec --no-startup-id sh ~/.i3a/scrot_take
-bindsym Shift+Print exec --no-startup-id sh ~/.i3a/scrot_sel_take
-bindsym Ctrl+Print exec --no-startup-id sh ~/.i3a/scrot_win_take
+bindsym Print exec --no-startup-id sh ~/.i3a/shooter
+bindsym Shift+Print exec --no-startup-id sh ~/.i3a/shooter -s
+bindsym Ctrl+Print exec --no-startup-id sh ~/.i3a/shooter -w
 
 #--------------------------------------------------Media Playback Control (MoC)
 
