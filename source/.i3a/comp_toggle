@@ -3,13 +3,12 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/comp_toggle
 # Started On        - Sun  3 Jan 05:14:26 GMT 2021
-# Last Change       - Wed 16 Mar 22:41:57 GMT 2022
+# Last Change       - Wed 16 Mar 23:05:20 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-# picom | compton
-Which='picom'
+Which='compton'
 
 type -P $Which &> /dev/null || exit $?
 
