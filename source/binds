@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Wed 16 Mar 23:02:25 GMT 2022
+# Last Change       - Fri 18 Mar 01:10:35 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -29,14 +29,23 @@ bindsym XF86Calculator exec --no-startup-id xcalc
 
 #------------------------------------------------------------Terminal Font Size
 
+bindsym Shift+Ctrl+Return exec --no-startup-id bash ~/.i3a/font_cycle
 bindsym Shift+Ctrl+Up exec --no-startup-id bash ~/.i3a/term_font_size -r 1
 bindsym Shift+Ctrl+Down exec --no-startup-id bash ~/.i3a/term_font_size -l 1
 
-# For Mononoki (Alacritty):
-bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 15
-bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 30
+# For JetBrainsMono (Alacritty):
+bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 12
+bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 25
 
-# For Monofur (XFCE4-Terminal):
+# For IBM 3270 (Alacritty):
+#bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 14
+#bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 28
+
+# For Mononoki (Alacritty):
+#bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 13
+#bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 27
+
+# For Monofur (Alacritty):
 #bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 15
 #bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 30
 
