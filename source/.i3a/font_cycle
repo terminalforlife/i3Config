@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/font_cycle
+# Started On        - Fri 18 Mar 00:01:21 GMT 2022
+# Last Change       - Fri 18 Mar 01:03:48 GMT 2022
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+# Cycle a given selection of fonts for Alacritty. A preset is used by
+# default, but you can optionally hand this script a series of font names over
+# which to sequentially iterate. When the final font is reached, it goes back
+# to the first one.
+#
+# Usage: $0 [FONT ...]
+#------------------------------------------------------------------------------
+
+File="$HOME/.config/alacritty/alacritty.yml"
+
+if (( $# == 0 )); then
+	Fonts=(
+		'IBM 3270'      # sudo apt-get install fonts-3270
+		'Inconsolata'   # sudo apt-get install fonts-inconsolata
+		'JetBrainsMono' # https://www.jetbrains.com/lp/mono/
+		'Monofur'       # https://github.com/riccardosven/ttf-monofur-powerline
+		'Mononoki'      # sudo apt-get install mononoki
+		'Monospace'     # sudo apt-get install fonts-monospace
+		'Oxygen Mono'   # https://design.ubuntu.com/font/
+		'Ubuntu Mono'   # sudo apt-get install fonts-ubuntu-console
+	)
+else
+	Fonts=("$@")
+fi
+
+if ! [[ -f $File ]]; then
+	printf "Err: File '%s' not found.\n" "$File" 1>&2
+	exit 1
+elif ! [[ -r $File ]]; then
+	printf "Err: File '%s' unreadable.\n" "$File" 1>&2
+	exit 1
+fi
+
+while read -r; do
+	if [[ $Found == True ]]; then
+		StopMatch='True'
+
+		case ${REPLY#  } in
+			\ \ family:\ *)
+				Current=${REPLY#*: }
+				printf "Now: %s\n" "$Current"
+
+				# Cycle fonts.
+				Len=${#Fonts[@]}
+				for (( Index = 0; Index < Len; Index++ )); {
+					if [[ ${Fonts[Index]} == $Current ]]; then
+						if (( Index < Len - 1 )); then
+							Current=${Fonts[Index + 1]}
+						else
+							Current=${Fonts[0]}
+						fi
+
+						break
+					fi
+				}
+
+				printf "New: %s\n" "$Current"
+				Output+=("${REPLY%%:*}: $Current") ;;
+			''|*)
+				Output+=("$REPLY") ;;
+		esac
+	elif [[ $StopMatch != True && $REPLY == font: ]]; then
+		Output+=("$REPLY")
+		Found='True'
+	else
+		Output+=("$REPLY")
+	fi
+done < "$File"
+
+printf '%s\n' "${Output[@]}" > "$File"
