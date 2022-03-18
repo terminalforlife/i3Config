@@ -3,9 +3,21 @@
 
 # Introduction to i3Config
 
-My dedicated i3-wm setup, which I've used and tweaked for a few years now, is part of the pride and joy of any of my Linux installations. There will some things you'll want to manually change to fit _your_ needs, if you use this setup.
+My dedicated [i3-wm](https://i3wm.org) (now [i3-gaps](https://github.com/AirBlader/i3)) setup \- which I've used and tweaked for ~7 years \- is part of the pride and joy of any of my Linux installations. It's a very clean, minimalistic approach to window management, without the hand-holding of the default i3-wm configuration. You are assumed to be familiar with this tiling window manager.
 
-What you'll get out of this setup is a very clean, minimalistic layout, without the hand-holding of the default i3-wm configuration. You are assumed to be familiar with this tiling window manager.
+Included, are several handy scripts for i3(-gaps):
+
+  * **comp_toggle** - Easily toggle compton/picom on or off.
+  * **font_cycle** - Cycle between multiple pre-set alacritty(1) fonts.
+  * **key_autorepeat** - Toggle keyboard autorepeat \- challenge your Vim!
+  * **lockscreen** - Simple but presentable lockscreen helper for i3lock(1).
+  * **partmount** - Easily toggle-mount filesystems with udisksctl(1).
+  * **shooter** - Easily take screen-, window-, or select-shots with scrot(1).
+  * **term_font_size** - Globally adjust alacritty(1) or xfce4-terminal(1) font sizes.
+
+Note to mention several scripts for PulseAudio users. Easily and intelligently adjust sink and source volumes. Toggle the loopback device with a simple script. Switch sinks with ease, such as between monitor speakers and headphones.
+
+Check out my i3(-gaps) programs [csi3](https://github.com/terminalforlife/Extra/blob/master/source/csi3), [i3-workspaces](https://github.com/terminalforlife/PerlProjects/blob/master/source/i3-workspaces), and [i3-active](https://github.com/terminalforlife/PerlProjects/blob/master/source/i3-active).
 
 # Have Some Questions?
 
@@ -18,28 +30,13 @@ You might have some questions, so here, I'll attempt a pre-emptive strike:
   A: To be frank, I consider them to be inefficient and annoying.
 
   **Q: Why are you using 'jkl;' keys instead of vim-like keys?**\
-  A: Because I type _properly_ and don't want to butcher the keyboard.
+  A: Because it's the touch-typing standard I've used all my life.
 
   **Q: Why no bars?**\
   A: I usually find them distracting and they take up screen space.
 
-  **Q: Will you bring them back?**\
-  A: I'm in the process of revisiting bars, but not sure yet.
-
-  **Q: How can I contribute?**\
-  A: Pull requests are welcome, but failing that, sharing is caring!
-
-  **Q: I have this horrible bug -- what can I do?**\
-  A: Post an issue report on GitHub, or E-Mail: terminalforlife@yahoo.com
-
   **Q: How portable is this setup?**\
   A: You may have some issues here, but I'll address this when possible.
-
-  **Q: I wrote a cool plugin, can I add it to your repository?**\
-  A: Possibly...
-
-  **Q: Why not just use Arch Linux?**\
-  A: Because of many reasons I tend to rant about on my [YouTube](https://www.youtube.com/channel/UCfp-lNJy4QkIGnaEE6NtDSg) channel.
 
   **Q: Have you tried other tiling window managers?**\
   A: Yes, but always came back to i3-wm; it just appeals to me the most.
