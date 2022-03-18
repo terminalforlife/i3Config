@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/toggle_loopback
 # Started On        - Mon 13 Dec 22:38:45 GMT 2021
-# Last Change       - Mon 13 Dec 23:00:34 GMT 2021
+# Last Change       - Fri 18 Mar 01:33:45 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -11,13 +11,14 @@
 #------------------------------------------------------------------------------
 
 while read _ Module _; do
-	if [ "$Module" = 'module-loopback' ]; then
+	if [[ $Module = module-loopback ]]; then
 		Status='Enabled'
+
 		break
 	fi
 done <<< "$(pactl list short modules)"
 
-if [ "$Status" = 'Enabled' ]; then
+if [[ $Status == Enabled ]]; then
 	pactl unload-module module-loopback
 else
 	pactl load-module module-loopback
