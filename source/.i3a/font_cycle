@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/font_cycle
 # Started On        - Fri 18 Mar 00:01:21 GMT 2022
-# Last Change       - Fri 18 Mar 01:03:48 GMT 2022
+# Last Change       - Fri 18 Mar 01:25:26 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -47,7 +47,6 @@ while read -r; do
 		case ${REPLY#  } in
 			\ \ family:\ *)
 				Current=${REPLY#*: }
-				printf "Now: %s\n" "$Current"
 
 				# Cycle fonts.
 				Len=${#Fonts[@]}
@@ -63,7 +62,6 @@ while read -r; do
 					fi
 				}
 
-				printf "New: %s\n" "$Current"
 				Output+=("${REPLY%%:*}: $Current") ;;
 			''|*)
 				Output+=("$REPLY") ;;
@@ -76,4 +74,5 @@ while read -r; do
 	fi
 done < "$File"
 
+printf "Font '%s' set for Alacritty.\n" "$Current"
 printf '%s\n' "${Output[@]}" > "$File"
