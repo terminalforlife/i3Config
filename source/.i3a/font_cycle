@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/font_cycle
 # Started On        - Fri 18 Mar 00:01:21 GMT 2022
-# Last Change       - Fri 18 Mar 01:25:26 GMT 2022
+# Last Change       - Fri 18 Mar 16:36:55 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -42,8 +42,6 @@ fi
 
 while read -r; do
 	if [[ $Found == True ]]; then
-		StopMatch='True'
-
 		case ${REPLY#  } in
 			\ \ family:\ *)
 				Current=${REPLY#*: }
@@ -66,7 +64,7 @@ while read -r; do
 			''|*)
 				Output+=("$REPLY") ;;
 		esac
-	elif [[ $StopMatch != True && $REPLY == font: ]]; then
+	elif [[ $REPLY == font: ]]; then
 		Output+=("$REPLY")
 		Found='True'
 	else
