@@ -7,13 +7,13 @@ My dedicated [i3-wm](https://i3wm.org) (now [i3-gaps](https://github.com/AirBlad
 
 Included, are several handy scripts for i3(-gaps):
 
-  * **comp_toggle** - Easily toggle compton/picom on or off.
-  * **font_cycle** - Cycle between multiple pre-set alacritty(1) fonts.
-  * **key_autorepeat** - Toggle keyboard autorepeat \- challenge your Vim!
-  * **lockscreen** - Simple but presentable lockscreen helper for i3lock(1).
-  * **partmount** - Easily toggle-mount filesystems with udisksctl(1).
-  * **shooter** - Easily take screen-, window-, or select-shots with scrot(1).
-  * **term_font_size** - Globally adjust alacritty(1) or xfce4-terminal(1) font sizes.
+  * **comp_toggle** - _Easily toggle compton/picom on or off._
+  * **font_cycle** - _Cycle between multiple pre-set alacritty(1) fonts._
+  * **key_autorepeat** - _Toggle keyboard autorepeat \- challenge your Vim!_
+  * **lockscreen** - _Simple but presentable lockscreen helper for i3lock(1)_
+  * **partmount** - _Easily toggle-mount filesystems with udisksctl(1)_
+  * **shooter** - _Easily take screen-, window-, or select-shots with scrot(1)_
+  * **term_font_size** - _Globally adjust alacritty(1) or xfce4-terminal(1) font sizes_
 
 Note to mention several scripts for PulseAudio users. Easily and intelligently adjust sink and source volumes. Toggle the loopback device with a simple script. Switch sinks with ease, such as between monitor speakers and headphones.
 
