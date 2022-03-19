@@ -96,9 +96,9 @@ if type -P alacritty &> /dev/null; then
 		if [[ -r ${Configs[0]} ]]; then
 			while read -r; do
 				if [[ $FoundFonts == True ]]; then
-					if [[ $REPLY =~ ^(\ +size:\ +)([[:digit:]]+)$ ]]; then
-						Pre=${BASH_REMATCH[1]}
-						Now=${BASH_REMATCH[2]}
+					if [[ $REPLY == +( )*size:\ *+([0-9]) ]]; then
+						Pre=${REPLY%%+([0-9])}
+						Now=${REPLY##*+( )}
 						if [[ -n $Raise ]]; then
 							Output+=("$Pre$(( Now + Raise ))")
 						elif [[ -n $Lower ]]; then
