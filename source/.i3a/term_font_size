@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Tue 15 Mar 23:23:49 GMT 2022
+# Last Change       - Sat 19 Mar 15:55:36 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -20,7 +20,7 @@
 #   bash (>= 3.2.48)
 #------------------------------------------------------------------------------
 
-CurVer='2022-03-15'
+CurVer='2022-03-19'
 Progrm='term_font_size'
 
 Usage() {
@@ -91,74 +91,66 @@ while [[ -n $1 ]]; do
 	shift
 done
 
+FileChk() {
+	if ! [[ -f $1 ]]; then
+		Err 1 "File '$1' not found."
+	elif ! [[ -r $1 ]]; then
+		Err 1 "File '$1' unwritable."
+	elif ! [[ -w $1 ]]; then
+		Err 1 "File '$1' unwritable."
+	fi
+}
+
 if type -P alacritty &> /dev/null; then
-	if [[ -f ${Configs[0]} ]]; then
-		if [[ -r ${Configs[0]} ]]; then
-			while read -r; do
-				if [[ $FoundFonts == True ]]; then
-					if [[ $REPLY =~ ^(\ +size:\ +)([[:digit:]]+)$ ]]; then
-						Pre=${BASH_REMATCH[1]}
-						Now=${BASH_REMATCH[2]}
-						if [[ -n $Raise ]]; then
-							Output+=("$Pre$(( Now + Raise ))")
-						elif [[ -n $Lower ]]; then
-							Output+=("$Pre$(( Now - Lower ))")
-						elif [[ -n $SetTo ]]; then
-							Output+=("$Pre$SetTo")
-						fi
+	FileChk "${Configs[0]}"
 
-						FoundFonts='False'
-						NoMatch='True'
-					else
-						Output+=("$REPLY")
-					fi
-				elif [[ $NoMatch != True && $REPLY == font: ]]; then
-					Output+=("$REPLY")
-					FoundFonts='True'
-				else
-					Output+=("$REPLY")
-				fi
-			done < "${Configs[0]}"
+	while read -r; do
+		if [[ $Found == True ]]; then
+			case $REPLY in
+				'  size: '*)
+					Current=${REPLY#*: }
 
-			if [[ -w ${Configs[0]} ]]; then
-				printf '%s\n' "${Output[@]}" > "${Configs[0]}"
-			else
-				Err 1 "File '${Configs[0]}' unwritable."
-			fi
-		else
-			Err 1 "File '${Configs[0]}' unreadable."
-		fi
-	else
-		Err 1 "File '${Configs[1]}' not found."
-	fi
-elif type -P xfce4-terminal &> /dev/null; then
-	if [[ -f ${Configs[1]} ]]; then
-		if [[ -r ${Configs[1]} ]]; then
-			while read -r; do
-				if [[ $REPLY == FontName=* ]]; then
-					Pre=${REPLY% *}
-					Now=${REPLY##* }
 					if [[ -n $Raise ]]; then
-						Output+=("$Pre $(( Now + Raise ))")
+						(( Current += Raise ))
 					elif [[ -n $Lower ]]; then
-						Output+=("$Pre $(( Now - Lower ))")
+						(( Current -= Lower ))
 					elif [[ -n $SetTo ]]; then
-						Output+=("$Pre $SetTo")
+						Current=$SetTo
 					fi
-				else
-					Output+=("$REPLY")
-				fi
-			done < "${Configs[1]}"
 
-			if [[ -w ${Configs[1]} ]]; then
-				printf '%s\n' "${Output[@]}" > "${Configs[1]}"
-			else
-				Err 1 "File '${Configs[1]}' unwritable."
+					Output+=("${REPLY%%:*}: $Current") ;;
+				''|*)
+					Output+=("$REPLY") ;;
+			esac
+		elif [[ $REPLY == font: ]]; then
+			Output+=("$REPLY")
+			Found='True'
+		else
+			Output+=("$REPLY")
+		fi
+	done < "${Configs[0]}"
+
+	printf '%s\n' "${Output[@]}" > "${Configs[0]}"
+elif type -P xfce4-terminal &> /dev/null; then
+	FileChk "${Configs[1]}"
+
+	while read -r; do
+		if [[ $REPLY == FontName=* ]]; then
+			Pre=${REPLY% *}
+			Now=${REPLY##* }
+			if [[ -n $Raise ]]; then
+				Output+=("$Pre $(( Now + Raise ))")
+			elif [[ -n $Lower ]]; then
+				Output+=("$Pre $(( Now - Lower ))")
+			elif [[ -n $SetTo ]]; then
+				Output+=("$Pre $SetTo")
 			fi
 		else
-			Err 1 "File '${Configs[1]}' unreadable."
+			Output+=("$REPLY")
 		fi
-	else
-		Err 1 "File '${Configs[1]}' not found."
-	fi
+	done < "${Configs[1]}"
+
+	printf '%s\n' "${Output[@]}" > "${Configs[1]}"
+else
+	Err 1 'Neither xfce4-terminal(1) nor alacritty(1) found.'
 fi
