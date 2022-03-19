@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/font_cycle
 # Started On        - Fri 18 Mar 00:01:21 GMT 2022
-# Last Change       - Fri 18 Mar 16:36:55 GMT 2022
+# Last Change       - Sat 19 Mar 16:03:55 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -25,19 +25,24 @@ if (( $# == 0 )); then
 		'Monofur'       # https://github.com/riccardosven/ttf-monofur-powerline
 		'Mononoki'      # sudo apt-get install mononoki
 		'Monospace'     # sudo apt-get install fonts-monospace
-		'Oxygen Mono'   # https://design.ubuntu.com/font/
+		'Oxygen Mono'   # sudo apt-get install fonts-oxygen
 		'Ubuntu Mono'   # sudo apt-get install fonts-ubuntu-console
 	)
 else
 	Fonts=("$@")
 fi
 
+Err() {
+	printf 'Err: %s\n' "$1" 1>&2
+	exit 1
+}
+
 if ! [[ -f $File ]]; then
-	printf "Err: File '%s' not found.\n" "$File" 1>&2
-	exit 1
+	Err "File '$File' not found."
 elif ! [[ -r $File ]]; then
-	printf "Err: File '%s' unreadable.\n" "$File" 1>&2
-	exit 1
+	Err "File '$File' unwritable."
+elif ! [[ -w $File ]]; then
+	Err "File '$File' unwritable."
 fi
 
 while read -r; do
@@ -71,6 +76,10 @@ while read -r; do
 		Output+=("$REPLY")
 	fi
 done < "$File"
+
+if type -P &> /dev/null; then
+	notify-send -a 'font_cyle' "Font '$Current' set for Alacritty."
+fi
 
 printf "Font '%s' set for Alacritty.\n" "$Current"
 printf '%s\n' "${Output[@]}" > "$File"
