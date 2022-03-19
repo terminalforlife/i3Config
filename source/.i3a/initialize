@@ -1,78 +1,45 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Fri 11 Mar 20:15:03 GMT 2022
+# Last Change       - Sat 19 Mar 19:06:11 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Similar code to that found within `.xinitrc` and the like.
 #------------------------------------------------------------------------------
 
+DepChk() {
+	for Dep in "$@"; do
+		if ! type -P &> /dev/null; then
+			printf "Err: Dependency '%s' not met.\n" "$Dep" 1>&2
+			(( DepCount++ ))
+		fi
+	done
+
+	(( DepCount > 0 )) && exit 1
+}
+
+BG="$HOME/Pictures/Surface Texture with Logo.jpg"
+
+DepChk xmodmap dunst compton redshift redshifter
+
 xmodmap -e 'keysym Caps_Lock = ' &
-
 dunst -config "$HOME/.config/dunst/dunstrc" &
-
-# I've switched over to `picom`, as of 2022-02-05.
-if command -v picom 1> /dev/null 2>&1; then
-	picom &
-elif command -v compton 1> /dev/null 2>&1; then
-	compton --config "$HOME/.config/compton.conf" -b &
-fi
-
-# Valid use of redshifter(1) as of version 2021-01-12.
+compton --config "$HOME/.config/compton.conf" -b &
 redshift -O `redshifter show`K &
 
-case `hostname` in
+case $HOSTNAME in
 	Z11)
-		Interface='enp3s0'
+		DepChk xset xset feh mocp
 
 		xset s off -dpms r rate 170 70 &
-
-		# Just use this for Skype.
-		export `gnome-keyring-daemon`
-
-		# For use with proprietary nVidia drivers. Helps avoid screen tearing
-		# and potentially other weirdness, like performance drops(?).
-		nvidia-settings --assign "CurrentMetaMode=nvidia-auto-select\
-			+0+0 {ForceFullCompositionPipeline=On}"
-
-		# Set power mode for nVidia GPU to 'max performance'. This setting does
-		# not stick, despite setting via `nvidia-settings`. This should make it
-		# permanent. I'm using this mode because performance is really weird
-		# without it.
-		nvidia-settings -a [gpu:0]/GpuPowerMizerMode=1
-
-		# Make sure bluetooth is available right out of the gate.
-		bluetoothctl <<-EOF
-			power on
-			discoverable off
-			scan on
-			exit
-		EOF
-
-		if ! command -V rudbgvid 1> /dev/null 2>&1; then
-			#BG="$HOME/Pictures/TFL Wallpaper with Images/Full.png"
-			BG="$HOME/Pictures/Surface Texture with Logo.jpg"
-			feh --no-fehbg --bg-scale "$BG" &
-		else
-			rudbgvid -r -i 9 &
-		fi
-
-		mocp -S &
-
-		#perl "$HOME/.i3a/dev_setup"
-
-		sleep 1m
-		if command -v notify-upgrade; then
-			while :; do
-				notify-upgrade
-				sleep 1h
-			done &
-		fi ;;
+		feh --no-fehbg --bg-scale "$BG" &
+		mocp -S & ;;
 	Sam)
-		Interface='wlp1s0'
+		DepChk xset xset feh
+
 		xset s off r rate 180 60 &
-		feh --bg-center "$HOME/Pictures/background.jpg" & ;;
+		feh --bg-center "$BG" & ;;
 esac
