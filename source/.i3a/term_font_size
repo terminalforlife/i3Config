@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Sat 19 Mar 15:55:36 GMT 2022
+# Last Change       - Sat 19 Mar 16:14:09 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -113,6 +113,7 @@ if type -P alacritty &> /dev/null; then
 					if [[ -n $Raise ]]; then
 						(( Current += Raise ))
 					elif [[ -n $Lower ]]; then
+						(( Current <= 0 )) && exit 1
 						(( Current -= Lower ))
 					elif [[ -n $SetTo ]]; then
 						Current=$SetTo
@@ -141,6 +142,7 @@ elif type -P xfce4-terminal &> /dev/null; then
 			if [[ -n $Raise ]]; then
 				Output+=("$Pre $(( Now + Raise ))")
 			elif [[ -n $Lower ]]; then
+				(( Now <= 0 )) && exit 1
 				Output+=("$Pre $(( Now - Lower ))")
 			elif [[ -n $SetTo ]]; then
 				Output+=("$Pre $SetTo")
