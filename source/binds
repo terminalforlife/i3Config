@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Fri 18 Mar 01:10:35 GMT 2022
+# Last Change       - Sun  3 Apr 16:13:41 BST 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -162,7 +162,7 @@ bindsym Ctrl+Print exec --no-startup-id bash ~/.i3a/shooter -w
 
 #--------------------------------------------------Media Playback Control (MoC)
 
-bindsym Mod4+p exec --no-startup-id sh ~/.i3a/track_notify
+bindsym Mod4+p exec --no-startup-id notify-send -a MoC "$(mocp --format='%file')"
 bindsym Mod4+XF86AudioNext exec --no-startup-id mocp --seek +3
 bindsym Mod4+XF86AudioPrev exec --no-startup-id mocp --seek -3
 bindsym XF86AudioPlay exec --no-startup-id mocp -G
