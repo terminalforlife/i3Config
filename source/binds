@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Sun  3 Apr 16:13:41 BST 2022
+# Last Change       - Wed  6 Apr 18:40:05 BST 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ bindsym Mod1+Shift+q kill
 
 bindsym Mod1+Return exec --no-startup-id alacritty
 bindsym Mod1+Shift+M exec --no-startup-id perl ~/.i3a/toggle_pad
-bindsym Ctrl+Mod1+L exec pkill -u "$USER"
+bindsym Ctrl+Shift+Mod1+L exec pkill -u "$USER"
 bindsym Ctrl+Mod1+B exec --no-startup-id blueman-manager
 bindsym Ctrl+Shift+K exec --no-startup-id sh ~/.i3a/key_autorepeat
 bindsym Mod4+L exec --no-startup-id sh ~/.i3a/lockscreen
