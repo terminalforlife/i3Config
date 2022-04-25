@@ -27,7 +27,7 @@ focus_on_window_activation urgent
 include ~/.config/i3/binds
 include ~/.config/i3/rules
 
-gaps inner 30
+gaps inner 40
 gaps outer 0
 
 # class                  border   backgr.  text     indic.   child_border
