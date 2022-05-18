@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Wed  6 Apr 18:40:05 BST 2022
+# Last Change       - Tue 17 May 19:02:52 BST 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -126,6 +126,10 @@ bindsym shift+Mod4+Right resize shrink width 1 px
 bindsym shift+Mod4+Down resize grow height 1 px
 bindsym shift+Mod4+Up resize shrink height 1 px
 bindsym shift+Mod4+Left resize grow width 1 px
+
+#----------------------------------------------------------------String Pasting
+
+bindsym Mod1+i exec --no-startup-id printf "Please paste the output from [c]inxi -Fxxxrz[/c] between [c][code][/code][/c] tags." | xclip -selection clipboard
 
 #-----------------------------------------------------------Filesystem Mounting
 
