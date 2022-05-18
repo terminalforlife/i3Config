@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/font_cycle
 # Started On        - Fri 18 Mar 00:01:21 GMT 2022
-# Last Change       - Sat 19 Mar 16:03:55 GMT 2022
+# Last Change       - Thu 19 May 00:09:17 BST 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -45,6 +45,7 @@ elif ! [[ -w $File ]]; then
 	Err "File '$File' unwritable."
 fi
 
+Output=()
 while read -r; do
 	if [[ $Found == True ]]; then
 		case ${REPLY#  } in

@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Sat 19 Mar 16:14:09 GMT 2022
+# Last Change       - Thu 19 May 00:08:28 BST 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -20,7 +20,7 @@
 #   bash (>= 3.2.48)
 #------------------------------------------------------------------------------
 
-CurVer='2022-03-19'
+CurVer='2022-05-19'
 Progrm='term_font_size'
 
 Usage() {
@@ -104,6 +104,7 @@ FileChk() {
 if type -P alacritty &> /dev/null; then
 	FileChk "${Configs[0]}"
 
+	Output=()
 	while read -r; do
 		if [[ $Found == True ]]; then
 			case $REPLY in
@@ -135,6 +136,7 @@ if type -P alacritty &> /dev/null; then
 elif type -P xfce4-terminal &> /dev/null; then
 	FileChk "${Configs[1]}"
 
+	Output=()
 	while read -r; do
 		if [[ $REPLY == FontName=* ]]; then
 			Pre=${REPLY% *}
