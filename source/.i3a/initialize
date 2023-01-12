@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Mon 11 Apr 02:49:44 BST 2022
+# Last Change       - Thu 12 Jan 20:32:07 GMT 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ BG="$HOME/Pictures/Surface Texture with Logo.jpg"
 
 DepChk xmodmap dunst compton redshift redshifter
 
-xmodmap -e 'keysym Caps_Lock = ' &
+setxkbmap -option caps:none
 dunst -config "$HOME/.config/dunst/dunstrc" &
 compton --config "$HOME/.config/compton.conf" -b &
 redshift -O `redshifter show`K &
@@ -49,7 +49,7 @@ case $HOSTNAME in
 		nwchk -I -N enp3s0 &
 
 		File="$HOME/bin/autorun"
-		[[ -f $File && -x $File ]] && "$File" ;;
+		[[ -f $File && -x $File ]] && "$File" & ;;
 	Sam)
 		DepChk xset xset feh
 
