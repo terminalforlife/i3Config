@@ -3,12 +3,13 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Fri 18 Feb 19:13:25 GMT 2022
+# Last Change       - Fri 28 Apr 19:43:56 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-TargetDev='<bluez_sink.E8_07_BF_04_1C_08.a2dp_sink>'
+TargetDev='<bluez_sink.B0_18_6F_0B_53_D6.a2dp_sink>'
+
 LimitInt=65536
 
 while read; do
