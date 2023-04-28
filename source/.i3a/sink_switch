@@ -3,13 +3,23 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_switch
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 17 Jan 19:31:10 GMT 2022
+# Last Change       - Fri 28 Apr 20:28:25 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # This script is more of a personal one than any of the others. I have two
 # devices I switch between the mixer and the monitor's speakers. Headphones on
 # the former.
+#
+#TODO:  On 2023-04-28, I've found this doesn't seem to work anymore.
+#
+#       I use a Bluetooth headset, but even changing `$Dev_1` to the correct
+#       string won't yield any serviceable results. Also, the monitor profile
+#       is apparently unplugged, so I tried `out:hdmi-stereo`, which is
+#       correct, but still, nothing seems to switch over. Apparently my
+#       Bluetooth headset doesn't have a profile, according to the pactl(1)
+#       output, despite it clearly showing the A2DP Sink profile in
+#       pavucontrol(1).
 #------------------------------------------------------------------------------
 
 Dev_1='alsa_output.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-stereo'
@@ -21,8 +31,6 @@ if type -P pacmd &> /dev/null; then
 	done <<< "$(pacmd info)"
 
 	if type -P pactl &> /dev/null; then
-		pactl play-sample x11-volume-change & disown
-
 		if [[ $Master == $Dev_1 ]]; then
 			pactl set-card-profile "${Dev_2%.*}" output:hdmi-stereo-extra1
 		else
