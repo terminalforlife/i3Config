@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/middle_toggle
+# Started On        - Sun 14 May 21:12:27 BST 2023
+# Last Change       - Sun 14 May 21:49:06 BST 2023
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+# Enable and disable (toggle) the middle mouse button. This assumes the middle
+# mouse button is the 2nd number in the list of maps. This won't be suitable
+# for everyone, but I believe it should work for most people.
+#
+# Refer to `xinput` to get your device ID.
+#
+# Usage: $0 DEV_ID
+#------------------------------------------------------------------------------
+
+Err() {
+	printf 'Err: %s\n' "$2" 1>&2
+	(( $1 > 0 )) && exit $1
+}
+
+if ! type -P xinput &> /dev/null; then
+	Err 1 "Dependency 'xinput' not met."
+elif (( $# > 1 )); then
+	Err 1 'Trailing argument(s) detected.'
+elif (( $# != 1 )); then
+	Err 1 'Device ID required.'
+else
+	Found=
+	for DevID in `xinput --list --id-only`; {
+		(( $1 == DevID )) && Found='True'
+	}
+
+	if [[ $Found != True ]]; then
+		Err 1 "Device ID '$1' not found."
+	fi
+fi
+
+Count=1
+NewMap=()
+for Button in `xinput --get-button-map $1`; {
+	if (( Count++ == 2 )); then
+		if (( Button == 2 )); then
+			NewMap+=(0)
+		elif (( Button == 0 )); then
+			NewMap+=(2)
+		fi
+	else
+		NewMap+=($Button)
+	fi
+}
+
+xinput --set-button-map $1 "${NewMap[@]}"
