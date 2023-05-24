@@ -3,18 +3,18 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/comp_toggle
 # Started On        - Sun  3 Jan 05:14:26 GMT 2021
-# Last Change       - Wed 16 Mar 23:05:20 GMT 2022
+# Last Change       - Wed 24 May 14:27:30 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
+# If `$1` is open, close it and all instances of it under the current user, but
+# if no processes under that name are open, then open it. This is meant to be
+# used with Picom or Compton. The first argument is the name of which to use.
+#------------------------------------------------------------------------------
 
-Which='compton'
-
-type -P $Which &> /dev/null || exit $?
-
-ps -C $Which &> /dev/null && Result='Activated'
-if [[ $Result == Activated ]]; then
-	pkill $Which
+ps -C "$1" &> /dev/null && Found='True'
+if [[ $Found == True ]]; then
+	pkill -u $UID "$1"
 else
-	$Which -b
+	"$1" -b
 fi

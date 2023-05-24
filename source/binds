@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Tue 17 May 19:02:52 BST 2022
+# Last Change       - Wed 24 May 14:27:45 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -18,13 +18,12 @@ bindsym Mod1+Shift+s sticky toggle
 bindsym Mod1+Shift+q kill
 
 bindsym Mod1+Return exec --no-startup-id alacritty
-bindsym Mod1+Shift+M exec --no-startup-id perl ~/.i3a/toggle_pad
 bindsym Ctrl+Shift+Mod1+L exec pkill -u "$USER"
 bindsym Ctrl+Mod1+B exec --no-startup-id blueman-manager
 bindsym Ctrl+Shift+K exec --no-startup-id sh ~/.i3a/key_autorepeat
 bindsym Mod4+L exec --no-startup-id sh ~/.i3a/lockscreen
 bindsym Mod1+d exec --no-startup-id sh ~/.i3a/launcher
-bindsym Mod1+c exec --no-startup-id bash ~/.i3a/comp_toggle
+bindsym Mod1+c exec --no-startup-id bash ~/.i3a/comp_toggle compton
 bindsym XF86Calculator exec --no-startup-id xcalc
 
 #------------------------------------------------------------Terminal Font Size
