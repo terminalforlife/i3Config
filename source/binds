@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Wed 24 May 14:27:45 BST 2023
+# Last Change       - Wed 31 May 02:13:45 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -10,172 +10,175 @@
 # that I have a few bindings which use that key, so they'll need to be changed.
 #------------------------------------------------------------------------------
 
-bindsym Mod1+Shift+space floating toggle
-bindsym Mod1+space focus mode_toggle
-bindsym Mod1+Shift+c reload
-bindsym Mod1+Shift+r restart
-bindsym Mod1+Shift+s sticky toggle
-bindsym Mod1+Shift+q kill
+set $Bind = 'bindsym'
+set $NSID = '--no-startup-id'
 
-bindsym Mod1+Return exec --no-startup-id alacritty
-bindsym Ctrl+Shift+Mod1+L exec pkill -u "$USER"
-bindsym Ctrl+Mod1+B exec --no-startup-id blueman-manager
-bindsym Ctrl+Shift+K exec --no-startup-id sh ~/.i3a/key_autorepeat
-bindsym Mod4+L exec --no-startup-id sh ~/.i3a/lockscreen
-bindsym Mod1+d exec --no-startup-id sh ~/.i3a/launcher
-bindsym Mod1+c exec --no-startup-id bash ~/.i3a/comp_toggle compton
-bindsym XF86Calculator exec --no-startup-id xcalc
+$Bind Mod1+Shift+space floating toggle
+$Bind Mod1+space focus mode_toggle
+$Bind Mod1+Shift+c reload
+$Bind Mod1+Shift+r restart
+$Bind Mod1+Shift+s sticky toggle
+$Bind Mod1+Shift+q kill
+
+$Bind Mod1+Return exec $NSID alacritty
+$Bind Ctrl+Shift+Mod1+L exec pkill -u "$USER"
+$Bind Ctrl+Mod1+B exec $NSID blueman-manager
+$Bind Ctrl+Shift+K exec $NSID sh ~/.i3a/key_autorepeat
+$Bind Mod4+L exec $NSID sh ~/.i3a/lockscreen
+$Bind Mod1+d exec $NSID sh ~/.i3a/launcher
+$Bind Mod1+c exec $NSID bash ~/.i3a/comp_toggle compton
+$Bind XF86Calculator exec $NSID xcalc
 
 #------------------------------------------------------------Terminal Font Size
 
-bindsym Shift+Ctrl+Return exec --no-startup-id bash ~/.i3a/font_cycle
-bindsym Shift+Ctrl+Up exec --no-startup-id bash ~/.i3a/term_font_size -r 1
-bindsym Shift+Ctrl+Down exec --no-startup-id bash ~/.i3a/term_font_size -l 1
+$Bind Shift+Ctrl+Return exec $NSID bash ~/.i3a/font_cycle
+$Bind Shift+Ctrl+Up exec $NSID bash ~/.i3a/term_font_size -r 1
+$Bind Shift+Ctrl+Down exec $NSID bash ~/.i3a/term_font_size -l 1
 
 # For JetBrainsMono (Alacritty):
-bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 12
-bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 25
+$Bind Shift+Ctrl+Left exec $NSID bash ~/.i3a/term_font_size -s 12
+$Bind Shift+Ctrl+Right exec $NSID bash ~/.i3a/term_font_size -s 25
 
 # For IBM 3270 (Alacritty):
-#bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 14
-#bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 28
+#$Bind Shift+Ctrl+Left exec $NSID bash ~/.i3a/term_font_size -s 14
+#$Bind Shift+Ctrl+Right exec $NSID bash ~/.i3a/term_font_size -s 28
 
 # For Mononoki (Alacritty):
-#bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 13
-#bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 27
+#$Bind Shift+Ctrl+Left exec $NSID bash ~/.i3a/term_font_size -s 13
+#$Bind Shift+Ctrl+Right exec $NSID bash ~/.i3a/term_font_size -s 27
 
 # For Monofur (Alacritty):
-#bindsym Shift+Ctrl+Left exec --no-startup-id bash ~/.i3a/term_font_size -s 15
-#bindsym Shift+Ctrl+Right exec --no-startup-id bash ~/.i3a/term_font_size -s 30
+#$Bind Shift+Ctrl+Left exec $NSID bash ~/.i3a/term_font_size -s 15
+#$Bind Shift+Ctrl+Right exec $NSID bash ~/.i3a/term_font_size -s 30
 
 #------------------------------------------------------------------Transparency
 
-bindsym Mod4+Shift+0 exec --no-startup-id transset --inc -a 0.01
-bindsym Mod4+Shift+9 exec --no-startup-id transset --dec -a 0.01
+$Bind Mod4+Shift+0 exec $NSID transset --inc -a 0.01
+$Bind Mod4+Shift+9 exec $NSID transset --dec -a 0.01
 
 #-------------------------------------------------------------------X11 Display
 
-bindsym Mod4+m exec --no-startup-id sleep 1s && xset dpms force off
-#bindsym Ctrl+Mod4+R exec --no-startup-id xrandr --output HDMI-1 --rotate right
-#bindsym Ctrl+Mod4+L exec --no-startup-id xrandr --output HDMI-1 --rotate left
-#bindsym Ctrl+Mod4+N exec --no-startup-id xrandr --output HDMI-1 --rotate normal
+$Bind Mod4+m exec $NSID sleep 1s && xset dpms force off
+#$Bind Ctrl+Mod4+R exec $NSID xrandr --output HDMI-1 --rotate right
+#$Bind Ctrl+Mod4+L exec $NSID xrandr --output HDMI-1 --rotate left
+#$Bind Ctrl+Mod4+N exec $NSID xrandr --output HDMI-1 --rotate normal
 
 #------------------------------------------------------------------Window Focus
 
-bindsym Mod1+j focus left
-bindsym Mod1+k focus down
-bindsym Mod1+l focus up
-bindsym Mod1+semicolon focus right
-bindsym Mod1+Left focus left
-bindsym Mod1+Down focus down
-bindsym Mod1+Up focus up
-bindsym Mod1+Right focus right
+$Bind Mod1+j focus left
+$Bind Mod1+k focus down
+$Bind Mod1+l focus up
+$Bind Mod1+semicolon focus right
+$Bind Mod1+Left focus left
+$Bind Mod1+Down focus down
+$Bind Mod1+Up focus up
+$Bind Mod1+Right focus right
 
 #---------------------------------------------------------------Window Movement
 
-bindsym Mod1+Shift+j move left 90 px
-bindsym Mod1+Shift+k move down 90 px
-bindsym Mod1+Shift+l move up 90 px
-bindsym Mod1+Shift+semicolon move right 90 px
-bindsym Mod1+Shift+Left move left 10 px
-bindsym Mod1+Shift+Down move down 10 px
-bindsym Mod1+Shift+Up move up 10 px
-bindsym Mod1+Shift+Right move right 10 px
+$Bind Mod1+Shift+j move left 90 px
+$Bind Mod1+Shift+k move down 90 px
+$Bind Mod1+Shift+l move up 90 px
+$Bind Mod1+Shift+semicolon move right 90 px
+$Bind Mod1+Shift+Left move left 10 px
+$Bind Mod1+Shift+Down move down 10 px
+$Bind Mod1+Shift+Up move up 10 px
+$Bind Mod1+Shift+Right move right 10 px
 
 #--------------------------------------------------------------Window Splitting
 
-bindsym Mod1+h split h
-bindsym Mod1+v split v
-bindsym Mod1+Ctrl+f fullscreen
+$Bind Mod1+h split h
+$Bind Mod1+v split v
+$Bind Mod1+Ctrl+f fullscreen
 
 #------------------------------------------------------------Container Movement
 
-bindsym Mod1+Shift+1 move container to workspace 1
-bindsym Mod1+Shift+2 move container to workspace 2
-bindsym Mod1+Shift+3 move container to workspace 3
-bindsym Mod1+Shift+4 move container to workspace 4
-bindsym Mod1+Shift+5 move container to workspace 5
-bindsym Mod1+Shift+6 move container to workspace 6
-bindsym Mod1+Shift+7 move container to workspace 7
-bindsym Mod1+Shift+8 move container to workspace 8
-bindsym Mod1+Shift+9 move container to workspace 9
-bindsym Mod1+Shift+0 move container to workspace 10
+$Bind Mod1+Shift+1 move container to workspace 1
+$Bind Mod1+Shift+2 move container to workspace 2
+$Bind Mod1+Shift+3 move container to workspace 3
+$Bind Mod1+Shift+4 move container to workspace 4
+$Bind Mod1+Shift+5 move container to workspace 5
+$Bind Mod1+Shift+6 move container to workspace 6
+$Bind Mod1+Shift+7 move container to workspace 7
+$Bind Mod1+Shift+8 move container to workspace 8
+$Bind Mod1+Shift+9 move container to workspace 9
+$Bind Mod1+Shift+0 move container to workspace 10
 
 #-----------------------------------------------------------Workspace Switching
 
-bindsym Mod1+1 workspace 1
-bindsym Mod1+2 workspace 2
-bindsym Mod1+3 workspace 3
-bindsym Mod1+4 workspace 4
-bindsym Mod1+5 workspace 5
-bindsym Mod1+6 workspace 6
-bindsym Mod1+7 workspace 7
-bindsym Mod1+8 workspace 8
-bindsym Mod1+9 workspace 9
-bindsym Mod1+0 workspace 10
+$Bind Mod1+1 workspace 1
+$Bind Mod1+2 workspace 2
+$Bind Mod1+3 workspace 3
+$Bind Mod1+4 workspace 4
+$Bind Mod1+5 workspace 5
+$Bind Mod1+6 workspace 6
+$Bind Mod1+7 workspace 7
+$Bind Mod1+8 workspace 8
+$Bind Mod1+9 workspace 9
+$Bind Mod1+0 workspace 10
 
 #---------------------------------------------------------------Window Resizing
 
-bindsym shift+Mod4+semicolon resize shrink width 100 px
-bindsym shift+Mod4+k resize grow height 100 px
-bindsym shift+Mod4+l resize shrink height 100 px
-bindsym shift+Mod4+j resize grow width 100 px
+$Bind shift+Mod4+semicolon resize shrink width 100 px
+$Bind shift+Mod4+k resize grow height 100 px
+$Bind shift+Mod4+l resize shrink height 100 px
+$Bind shift+Mod4+j resize grow width 100 px
 
-bindsym shift+Mod4+Right resize shrink width 1 px
-bindsym shift+Mod4+Down resize grow height 1 px
-bindsym shift+Mod4+Up resize shrink height 1 px
-bindsym shift+Mod4+Left resize grow width 1 px
+$Bind shift+Mod4+Right resize shrink width 1 px
+$Bind shift+Mod4+Down resize grow height 1 px
+$Bind shift+Mod4+Up resize shrink height 1 px
+$Bind shift+Mod4+Left resize grow width 1 px
 
 #----------------------------------------------------------------String Pasting
 
-bindsym Mod1+i exec --no-startup-id printf "Please paste the output from [c]inxi -Fxxxrz[/c] between [c][code][/code][/c] tags." | xclip -selection clipboard
+$Bind Mod1+i exec $NSID printf "Please paste the output from [c]inxi -Fxxxrz[/c] between [c][code][/code][/c] tags." | xclip -selection clipboard
 
 #-----------------------------------------------------------Filesystem Mounting
 
-bindsym Shift+Mod4+1 exec --no-startup-id bash ~/.i3a/partmount -L 'Main Data'
-bindsym Shift+Mod4+2 exec --no-startup-id bash ~/.i3a/partmount -L 'VBox'
-bindsym Shift+Mod4+3 exec --no-startup-id bash ~/.i3a/partmount -L 'ISOs'
+$Bind Shift+Mod4+1 exec $NSID bash ~/.i3a/partmount -L 'Main Data'
+$Bind Shift+Mod4+2 exec $NSID bash ~/.i3a/partmount -L 'VBox'
+$Bind Shift+Mod4+3 exec $NSID bash ~/.i3a/partmount -L 'ISOs'
 
 #----------------------------------------------------------Redshift Adjustments
 
-bindsym Mod4+0 exec --no-startup-id redshifter raise 500
-bindsym Mod4+9 exec --no-startup-id redshifter lower 500
-bindsym Mod4+8 exec --no-startup-id redshifter reset
+$Bind Mod4+0 exec $NSID redshifter raise 500
+$Bind Mod4+9 exec $NSID redshifter lower 500
+$Bind Mod4+8 exec $NSID redshifter reset
 
 #-----------------------------------------------------------------Group Actions
 
-bindsym Mod4+k [class="^Xfce4-terminal$"] kill
+$Bind Mod4+k [class="^Xfce4-terminal$"] kill
 
 #----------------------------------------------------Audio Control (PulseAudio)
 
-bindsym Shift+F2 exec --no-startup-id sh ~/.i3a/sink_mute
-bindsym Shift+F3 exec --no-startup-id sh ~/.i3a/sink_lower
-bindsym Shift+F4 exec --no-startup-id bash ~/.i3a/sink_raise
-bindsym Shift+Ctrl+F2 exec --no-startup-id sh ~/.i3a/source_mute
-bindsym Shift+Ctrl+F3 exec --no-startup-id sh ~/.i3a/source_lower
-bindsym Shift+Ctrl+F4 exec --no-startup-id bash ~/.i3a/source_raise
-bindsym Shift+F6 exec --no-startup-id bash ~/.i3a/sink_switch
-bindsym Ctrl+Mod4+Mod1+l exec --no-startup-id bash ~/.i3a/toggle_loopback
+$Bind Shift+F2 exec $NSID sh ~/.i3a/sink_mute
+$Bind Shift+F3 exec $NSID sh ~/.i3a/sink_lower
+$Bind Shift+F4 exec $NSID bash ~/.i3a/sink_raise
+$Bind Shift+Ctrl+F2 exec $NSID sh ~/.i3a/source_mute
+$Bind Shift+Ctrl+F3 exec $NSID sh ~/.i3a/source_lower
+$Bind Shift+Ctrl+F4 exec $NSID bash ~/.i3a/source_raise
+$Bind Shift+F6 exec $NSID bash ~/.i3a/sink_switch
+$Bind Ctrl+Mod4+Mod1+l exec $NSID bash ~/.i3a/toggle_loopback
 
 #----------------------------------------------------------------Screenshooting
 
-bindsym Print exec --no-startup-id bash ~/.i3a/shooter
-bindsym Shift+Print exec --no-startup-id bash ~/.i3a/shooter -s
-bindsym Ctrl+Print exec --no-startup-id bash ~/.i3a/shooter -w
+$Bind Print exec $NSID bash ~/.i3a/shooter
+$Bind Shift+Print exec $NSID bash ~/.i3a/shooter -s
+$Bind Ctrl+Print exec $NSID bash ~/.i3a/shooter -w
 
 #--------------------------------------------------Media Playback Control (MoC)
 
-bindsym Mod4+p exec --no-startup-id notify-send -a MoC "$(mocp --format='%file')"
-bindsym Mod4+XF86AudioNext exec --no-startup-id mocp --seek +3
-bindsym Mod4+XF86AudioPrev exec --no-startup-id mocp --seek -3
-bindsym XF86AudioPlay exec --no-startup-id mocp -G
-bindsym XF86AudioNext exec --no-startup-id mocp --next
-bindsym XF86AudioPrev exec --no-startup-id mocp --previous
+$Bind Mod4+p exec $NSID notify-send -a MoC "$(mocp --format='%file')"
+$Bind Mod4+XF86AudioNext exec $NSID mocp --seek +3
+$Bind Mod4+XF86AudioPrev exec $NSID mocp --seek -3
+$Bind XF86AudioPlay exec $NSID mocp -G
+$Bind XF86AudioNext exec $NSID mocp --next
+$Bind XF86AudioPrev exec $NSID mocp --previous
 
 #--------------------------------------------Media Playback Control (Audacious)
 
-#bindsym XF86AudioNext exec --no-startup-id audtool --playlist-advance
-#bindsym XF86AudioPrev exec --no-startup-id audtool --playlist-reverse
-#bindsym Mod4+XF86AudioNext exec --no-startup-id audtool --playback-seek-relative +10
-#bindsym Mod4+XF86AudioPrev exec --no-startup-id audtool --playback-seek-relative -10
-#bindsym XF86AudioPlay exec --no-startup-id audtool --playback-playpause
+#$Bind XF86AudioNext exec $NSID audtool --playlist-advance
+#$Bind XF86AudioPrev exec $NSID audtool --playlist-reverse
+#$Bind Mod4+XF86AudioNext exec $NSID audtool --playback-seek-relative +10
+#$Bind Mod4+XF86AudioPrev exec $NSID audtool --playback-seek-relative -10
+#$Bind XF86AudioPlay exec $NSID audtool --playback-playpause
