@@ -10,6 +10,8 @@
 # syntax is of course for i3-gaps, so comment them out if you're on regular i3.
 #------------------------------------------------------------------------------
 
+# requesting license for youtube channel content to know if i can upload my archive to peertube for distribution
+
 new_float normal 2 px
 new_window normal 2 px
 default_border normal 2 px
