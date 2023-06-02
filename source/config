@@ -1,13 +1,11 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Sat 19 Mar 19:06:47 GMT 2022
+# Last Change       - Thu  1 Jun 20:10:48 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
-# Syntax valid for at least i3-gaps 4.19.1. If you have an old version, ensure
-# the word `disable` (IE: for `for` rules) is set to `disabled`. The gaps
-# syntax is of course for i3-gaps, so comment them out if you're on regular i3.
+# Syntax valid for >= i3WM 4.22.
 #------------------------------------------------------------------------------
 
 new_float normal 2 px
