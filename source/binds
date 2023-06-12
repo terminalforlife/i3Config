@@ -1,18 +1,23 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Fri  2 Jun 19:24:53 BST 2023
+# Last Change       - Thu  8 Jun 23:07:08 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # I don't use a variable for the "mod" key I want to use. If you want to change
 # to the other mod key, you can use `sed` or vim global substitution. Just know
 # that I have a few bindings which use that key, so they'll need to be changed.
+#
+# The `--release` binding pairs and the variables are for testing CSi3.
 #------------------------------------------------------------------------------
 
 set $Bind bindsym
 set $Exec exec --no-startup-id
 set $WS workspace
+
+$Bind Shift+Ctrl+p focus left
+$Bind --release Shift+Ctrl+p focus right
 
 $Bind Mod1+Shift+space floating toggle
 $Bind Mod1+space focus mode_toggle
@@ -20,6 +25,9 @@ $Bind Mod1+Shift+c reload
 $Bind Mod1+Shift+r restart
 $Bind Mod1+Shift+s sticky toggle
 $Bind Mod1+Shift+q kill
+
+$Bind Shift+Ctrl+o $Exec notify-send 'Pressed a key!'
+$Bind --release Shift+Ctrl+o $Exec notify-send 'Released a key!'
 
 $Bind Mod1+Return $Exec alacritty
 $Bind Ctrl+Shift+Mod1+L exec pkill -u "$USER"
