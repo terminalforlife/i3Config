@@ -3,24 +3,46 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Thu 19 May 00:08:28 BST 2022
+# Last Change       - Mon 12 Jun 02:37:47 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
-# features:
+# Adjusts the terminal emulator font size, for xfce4-terminal(1) and
+# alacritty(1). These terminals are viable for this approach, because they
+# automatically update based on the contents of their configuration files. It's
+# these files this tool programmatically modifies. Alongside raising and
+# lowering, preset values are also available.
 #
-# n/a
+# The xfce4-terminal(1) iteration was initially written when this TE didn't
+# have built-in font-adjustment support. Even so, long after this was added, -
+# I preferred to use this tool to adjust the fonts, largely for the preset
+# values, which I found especially useful when making YouTube videos. The other
+# bonus is that I was able to choose by how much to raise or lower.
 #
-# bugs:
+# This works very well with Alacritty. You would think it were built into
+# Alacritty, it's so smooth. Strongly recommend both this and Alacritty!
 #
-#TODO: Running this script too frequently (extremely) corrupts file.
+# Technically, flock(1) isn't a requirement, but I've marked it as such (via
+# the 'util-linux' package) anyway, because it's crucial to avoid the target
+# file being corrupted from multiple processes crowding around the file, all
+# trying to do the same thing. This script will still work without flock(1), -
+# but I recommend installing it.
+#
+# Features:
+#
+# N/A
+#
+# Bugs:
+#
+# N/A
 #
 # dependencies:
 #
 #   bash (>= 3.2.48)
+#   util-linux (>= 2.31.1)
 #------------------------------------------------------------------------------
 
-CurVer='2022-05-19'
+CurVer='2023-06-12'
 Progrm='term_font_size'
 
 Usage() {
@@ -104,6 +126,10 @@ FileChk() {
 if type -P alacritty &> /dev/null; then
 	FileChk "${Configs[0]}"
 
+	if type -P &> /dev/null; then
+		flock "${Configs[0]}"
+	fi
+
 	Output=()
 	while read -r; do
 		if [[ $Found == True ]]; then
@@ -135,6 +161,10 @@ if type -P alacritty &> /dev/null; then
 	printf '%s\n' "${Output[@]}" > "${Configs[0]}"
 elif type -P xfce4-terminal &> /dev/null; then
 	FileChk "${Configs[1]}"
+
+	if type -P &> /dev/null; then
+		flock "${Configs[1]}"
+	fi
 
 	Output=()
 	while read -r; do
