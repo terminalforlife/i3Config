@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/term_font_size
 # Started On        - Mon 30 Oct 15:14:16 GMT 2017
-# Last Change       - Mon 12 Jun 02:37:47 BST 2023
+# Last Change       - Mon 12 Jun 02:40:44 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ FileChk() {
 if type -P alacritty &> /dev/null; then
 	FileChk "${Configs[0]}"
 
-	if type -P &> /dev/null; then
+	if type -P flock &> /dev/null; then
 		flock "${Configs[0]}"
 	fi
 
@@ -162,7 +162,7 @@ if type -P alacritty &> /dev/null; then
 elif type -P xfce4-terminal &> /dev/null; then
 	FileChk "${Configs[1]}"
 
-	if type -P &> /dev/null; then
+	if type -P flock &> /dev/null; then
 		flock "${Configs[1]}"
 	fi
 
