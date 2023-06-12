@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/source_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Fri 18 Feb 19:12:56 GMT 2022
+# Last Change       - Mon 12 Jun 02:11:05 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -12,12 +12,12 @@ TargetDev='<alsa_input.usb-Burr-Brown_from_TI_USB_Audio_CODEC-00.analog-mono>'
 LimitInt=85113
 
 while read; do
-	if [[ $TargetFound == True && $REPLY =~ ^[[:space:]]+volume: ]]; then
+	if [[ $TargetFound == True && $REPLY == +([[:space:]])volume:* ]]; then
 		for Field in $REPLY; {
 			(( ++FieldNr == 3 )) || continue
 
 			# 85113 is 130%.
-			if (( (Field + 500) > LimitInt )); then
+			if (( Field + 500 > LimitInt )); then
 				pactl set-source-volume '@DEFAULT_SOURCE@' $LimitInt
 			elif (( Field < LimitInt )); then
 				pactl set-source-volume '@DEFAULT_SOURCE@' +500
@@ -25,7 +25,7 @@ while read; do
 
 			exit 0
 		}
-	elif [[ $REPLY == *$TargetDev* ]]; then
+	elif [[ $REPLY == *"$TargetDev"* ]]; then
 		TargetFound='True'
 	fi
 done <<< "$(pacmd list-sources)"
