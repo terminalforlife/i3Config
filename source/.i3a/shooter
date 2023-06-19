@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/shooter
 # Started On        - Fri 27 Oct 14:55:25 BST 2017
-# Last Change       - Mon 18 Apr 18:35:36 BST 2022
+# Last Change       - Fri 16 Jun 23:11:37 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -16,7 +16,7 @@ case $1 in
 		scrot -zuq 100 "$File" && notify-send 'Windowshot taken and saved.' ;;
 	--select|-s)
 		printf -v File '%s/Desktop/Selectshot_%(%F_%X)T.jpg' "$HOME" -1
-		sleep 1s # <-- For some reason needed, else scrot(1) fails.
+		sleep 0.2 # <-- For some reason needed, else scrot(1) fails.
 		scrot -zsq 100 -d 1 "$File" && notify-send 'Selectshot taken and saved.' ;;
 	'')
 		printf -v File '%s/Desktop/Screenshot_%(%F_%X)T.jpg' "$HOME" -1
