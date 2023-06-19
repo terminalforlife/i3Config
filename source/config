@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/config
 # Started On        - Mon 18 Sep 14:53:56 BST 2017
-# Last Change       - Thu  1 Jun 20:10:48 BST 2023
+# Last Change       - Mon 19 Jun 12:22:12 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ floating_modifier Mod1
 force_focus_wrapping no
 font pango: Mononoki 14
 floating_maximum_size 1920 x 1080
-floating_minimum_size 100 x 100
+floating_minimum_size 40 x 40
 popup_during_fullscreen smart
 force_display_urgency_hint 1000 ms
 focus_on_window_activation urgent
