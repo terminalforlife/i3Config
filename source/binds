@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Thu  8 Jun 23:07:08 BST 2023
+# Last Change       - Mon  3 Jul 00:15:45 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -137,7 +137,7 @@ $Bind shift+Mod4+Left resize grow width 1 px
 
 #----------------------------------------------------------------String Pasting
 
-$Bind Mod1+i $Exec printf '%s%s' "Please paste the output from [c]inxi"\
+$Bind Mod1+i $Exec printf '%s%s' "Please paste the output from [c]inxi "\
 	"-Fxxxrz[/c] between [c][code][/code][/c] tags." | xclip -selection clipboard
 
 #-----------------------------------------------------------Filesystem Mounting
