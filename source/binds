@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Mon  3 Jul 00:15:45 BST 2023
+# Last Change       - Tue 25 Jul 00:26:50 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -181,3 +181,7 @@ $Bind Mod4+XF86AudioPrev $Exec mocp --seek -3
 $Bind XF86AudioPlay $Exec mocp -G
 $Bind XF86AudioNext $Exec mocp --next
 $Bind XF86AudioPrev $Exec mocp --previous
+
+#-----------------------------------------------------------------Miscellaneous
+
+$Bind Mod4+T $Exec bash ~/.i3a/show_time
