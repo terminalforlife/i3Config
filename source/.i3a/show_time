@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/show_time
+# Started On        - Mon 24 Jul 23:50:44 BST 2023
+# Last Change       - Tue 25 Jul 00:24:05 BST 2023
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+# Open a sticky instance Alacritty, which runs date(1) with watch(1). The
+# window is sized accordingly and moved to the bottom-right of the screen.
+#
+# I don't often need to constantly have the time shown, but sometimes I do, -
+# such as when I've got an important appointment due shortly. It's too easy to
+# simply lose track of time, otherwise.
+#
+# Granted, I could just use a scratchpad, but I've never been into those, so
+# I'm not gonna start now! Don't tell Matt Man; he sure loves his scratchpads.
+#
+# This is only suitable for my screen, which is 1080p, 27", and a 16:9 ratio.
+#------------------------------------------------------------------------------
+
+if type -P alacritty watch i3-msg date &> /dev/null; then
+	alacritty -e watch -n 1 -t date '+%I:%M%P' & disown
+
+	sleep 0.3
+
+	i3-msg 'floating enable'
+	i3-msg 'resize set 110 60 px'
+	i3-msg 'move window to position 1785 995'
+	i3-msg 'sticky toggle'
+	i3-msg 'focus mode_toggle'
+else
+	printf 'E: Missing one or more dependencies.\n' 1>&2
+	exit 1
+fi
