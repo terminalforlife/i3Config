@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/rules
 # Started On        - Fri 11 Mar 20:31:25 GMT 2022
-# Last Change       - Wed  2 Aug 23:33:34 BST 2023
+# Last Change       - Fri  4 Aug 01:54:51 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -21,10 +21,11 @@ for_window [class=".*"] floating enable
 
 for_window [class="^discord$"] floating disable
 
-#-----------------------------------------------------Firefox Windows (>= 98.0)
+#----------------------------------------------------Firefox Windows (>= 116.0)
 
 for_window [class="firefox$"] floating disable
 for_window [class="firefox$" title=".* - Mozilla Firefox"] floating disable
+for_window [class="firefox$" title="^About Mozilla Firefox$"] floating enable
 for_window [class="firefox$" title="Facebook call - Mozilla Firefox"] floating enable
 for_window [class="firefox$" title="NoScript Options"] floating enable
 for_window [class="firefox$" title="^About me . Mozilla Firefox.*$"] floating disable
