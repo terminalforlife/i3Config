@@ -3,13 +3,14 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/middle_toggle
 # Started On        - Sun 14 May 21:12:27 BST 2023
-# Last Change       - Sun 14 May 21:49:06 BST 2023
+# Last Change       - Sun 15 Oct 16:48:02 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Enable and disable (toggle) the middle mouse button. This assumes the middle
 # mouse button is the 2nd number in the list of maps. This won't be suitable
-# for everyone, but I believe it should work for most people.
+# for everyone, but I believe it should work for most people, provided you're
+# not on Wayland or some other display server.
 #
 # Refer to `xinput` to get your device ID.
 #
