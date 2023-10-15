@@ -3,12 +3,16 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/sink_raise
 # Started On        - Sun 24 Sep 00:30:17 BST 2017
-# Last Change       - Mon 12 Jun 02:10:31 BST 2023
+# Last Change       - Sun 15 Oct 16:31:18 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 
-TargetDev='<bluez_sink.B0_18_6F_0B_53_D6.a2dp_sink>'
+# Old headphones (JVC).
+#TargetDev='<bluez_sink.B0_18_6F_0B_53_D6.a2dp_sink>'
+
+# New Headphones (Bose QC45).
+TargetDev='<bluez_sink.AC_BF_71_0B_40_F6.a2dp_sink>'
 
 LimitInt=65536
 
