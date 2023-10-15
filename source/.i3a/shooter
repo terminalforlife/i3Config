@@ -3,24 +3,35 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/shooter
 # Started On        - Fri 27 Oct 14:55:25 BST 2017
-# Last Change       - Fri 16 Jun 23:11:37 BST 2023
+# Last Change       - Sun 15 Oct 16:44:18 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Take a screen-, selection-, or window-shot with scrot(1).
 #------------------------------------------------------------------------------
 
+Take() {
+	local Type=$1
+	shift
+
+	if "$@"; then
+		notify-send "$Type taken and saved."
+	else
+		notify-send -u 'critical' "Failed to take ${Type,}."
+	fi
+}
+
 case $1 in
 	--window|-w)
 		printf -v File '%s/Desktop/Windowshot_%(%F_%X)T.jpg' "$HOME" -1
-		scrot -zuq 100 "$File" && notify-send 'Windowshot taken and saved.' ;;
+		Take Windowshot scrot -zuq 100 "$File" ;;
 	--select|-s)
 		printf -v File '%s/Desktop/Selectshot_%(%F_%X)T.jpg' "$HOME" -1
 		sleep 0.2 # <-- For some reason needed, else scrot(1) fails.
-		scrot -zsq 100 -d 1 "$File" && notify-send 'Selectshot taken and saved.' ;;
+		Take Selectshot scrot -zsq 100 -d 1 "$File" ;;
 	'')
 		printf -v File '%s/Desktop/Screenshot_%(%F_%X)T.jpg' "$HOME" -1
-		scrot -zq 100 "$File" && notify-send 'Screenshot taken and saved.' ;;
+		Take Screenshot scrot -zq 100 "$File" ;;
 	*)
 		printf 'Err: Invalid argument(s)\n' 1>&2
 		exit 1 ;;
