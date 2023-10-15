@@ -3,56 +3,29 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/.i3a/initialize
 # Started On        - Sat 23 Sep 14:47:51 BST 2017
-# Last Change       - Mon  1 May 23:38:59 BST 2023
+# Last Change       - Sun  3 Sep 20:32:17 BST 2023
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Similar code to that found within `.xinitrc` and the like.
 #------------------------------------------------------------------------------
 
-DepChk() {
-	for Dep in "$@"; do
-		if ! type -P &> /dev/null; then
-			printf "Err: Dependency '%s' not met.\n" "$Dep" 1>&2
-			(( DepCount++ ))
-		fi
-	done
-
-	(( DepCount > 0 )) && exit 1
-}
-
-BG="$HOME/Pictures/Surface Texture with Logo.jpg"
-
-DepChk dunst compton redshift redshifter setxkbmap
-
-setxkbmap -option caps:none
-dunst -config "$HOME/.config/dunst/dunstrc" &
-compton --config "$HOME/.config/compton.conf" -b &
+setxkbmap -option caps:none &
 redshift -O `redshifter show`K &
+xset s off -dpms r rate 170 70 &
+feh --no-fehbg --bg-scale "$HOME"/.wallpaper &
 
-case $HOSTNAME in
-	Z11)
-		DepChk xset bluetoothctl xset feh mocp
+compton --config "$HOME/.config/compton.conf" -b &
+dunst -config "$HOME/.config/dunst/dunstrc" &
 
-		xset s off -dpms r rate 170 70 &
+# Make sure bluetooth is available right out of the gate. Without this, -
+# Bluetooth isn't enabled and so the headsets don't connect.
+bluetoothctl <<-EOF &
+	power on
+	discoverable off
+	exit
+EOF
 
-		# Make sure bluetooth is available right out of the gate. Without
-		# this, Bluetooth isn't enabled and so the headsets don't connect.
-		bluetoothctl <<-EOF &
-			power on
-			discoverable off
-			exit
-		EOF
-
-		feh --no-fehbg --bg-scale "$BG" &
-		mocp -S &
-		nwchk -I -N enp3s0 &
-
-		File="$HOME/bin/autorun"
-		[[ -f $File && -x $File ]] && "$File" & ;;
-	Sam)
-		DepChk xset xset feh
-
-		xset s off r rate 180 60 &
-		feh --bg-center "$BG" & ;;
-esac
+"$HOME"/bin/autorun &
+nwchk -I -N enp3s0 &
+mocp -S &
