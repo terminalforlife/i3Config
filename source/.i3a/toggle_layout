@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#------------------------------------------------------------------------------
+# Project Name      - i3Config/source/.i3a/toggle_layout
+# Started On        - Mon 11 Mar 21:18:05 GMT 2024
+# Last Change       - Mon 11 Mar 21:28:58 GMT 2024
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#------------------------------------------------------------------------------
+# Uses setxkbmap(1), which is a more modern way of adjusting the keyboard
+# layout in X11. This script won't help you if you're needing the old method.
+#------------------------------------------------------------------------------
+
+while read Key Value; do
+	if [[ $Key == layout: ]]; then
+		case $Value in
+			gb) setxkbmap de ;;
+			de) setxkbmap gb ;;
+		esac
+		break
+	fi
+done <<< "$(setxkbmap -query)"

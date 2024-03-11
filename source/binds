@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - i3Config/source/binds
 # Started On        - Fri 11 Mar 20:50:13 GMT 2022
-# Last Change       - Tue 25 Jul 00:26:50 BST 2023
+# Last Change       - Mon 11 Mar 21:31:34 GMT 2024
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ $Bind Mod1+Return $Exec alacritty
 $Bind Ctrl+Shift+Mod1+L exec pkill -u "$USER"
 $Bind Ctrl+Mod1+B $Exec blueman-manager
 $Bind Ctrl+Shift+K $Exec sh ~/.i3a/key_autorepeat
-$Bind Mod4+L $Exec sh ~/.i3a/lockscreen
+#$Bind Mod4+L $Exec sh ~/.i3a/lockscreen
 $Bind Mod1+d $Exec sh ~/.i3a/launcher
 $Bind Mod1+c $Exec bash ~/.i3a/comp_toggle compton
 $Bind XF86Calculator $Exec xcalc
@@ -185,3 +185,4 @@ $Bind XF86AudioPrev $Exec mocp --previous
 #-----------------------------------------------------------------Miscellaneous
 
 $Bind Mod4+T $Exec bash ~/.i3a/show_time
+$Bind Mod4+L $Exec bash ~/.i3a/toggle_layout
